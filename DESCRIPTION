@@ -40,6 +40,7 @@ Imports:
 Suggests:
     bslib,
     dplyr,
+    DT,
     ggplot2,
     knitr,
     pointblank,
