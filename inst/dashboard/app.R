@@ -83,14 +83,13 @@ sources_card_ui <- function(source_keys, yaml_path) {
 # ---- UI --------------------------------------------------------------
 
 ui <- bslib::page_navbar(
-  title = "educabr — Educação no Brasil",
-  theme = bslib::bs_theme(version = 5),
-  bg    = "#2d6a4f",
+  title           = "educabr — Educação no Brasil",
+  theme           = bslib::bs_theme(version = 5),
+  navbar_options  = bslib::navbar_options(bg = "#2d6a4f"),
 
   # ---- Matrículas ----
   bslib::nav_panel(
     title = "Matrículas",
-    icon  = bslib::bs_icon("mortarboard"),
     bslib::layout_sidebar(
       sidebar = bslib::sidebar(
         width = 320,
@@ -118,16 +117,16 @@ ui <- bslib::page_navbar(
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
-          "Série", icon = bslib::bs_icon("graph-up"),
+          "Série",
           plotOutput("enr_plot", height = "520px"),
           tags$small(textOutput("enr_caption"))
         ),
         bslib::nav_panel(
-          "Tabela", icon = bslib::bs_icon("table"),
+          "Tabela",
           DT::DTOutput("enr_table")
         ),
         bslib::nav_panel(
-          "Fontes", icon = bslib::bs_icon("book"),
+          "Fontes",
           uiOutput("enr_sources")
         )
       )
@@ -137,7 +136,6 @@ ui <- bslib::page_navbar(
   # ---- Escolaridade ----
   bslib::nav_panel(
     title = "Escolaridade",
-    icon  = bslib::bs_icon("journal-bookmark"),
     bslib::layout_sidebar(
       sidebar = bslib::sidebar(
         width = 320,
@@ -169,16 +167,16 @@ ui <- bslib::page_navbar(
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
-          "Série", icon = bslib::bs_icon("graph-up"),
+          "Série",
           plotOutput("sch_plot", height = "520px"),
           tags$small(textOutput("sch_caption"))
         ),
         bslib::nav_panel(
-          "Tabela", icon = bslib::bs_icon("table"),
+          "Tabela",
           DT::DTOutput("sch_table")
         ),
         bslib::nav_panel(
-          "Fontes", icon = bslib::bs_icon("book"),
+          "Fontes",
           uiOutput("sch_sources")
         )
       )
@@ -187,7 +185,7 @@ ui <- bslib::page_navbar(
 
   bslib::nav_spacer(),
   bslib::nav_panel(
-    title = "Sobre", icon = bslib::bs_icon("info-circle"),
+    title = "Sobre",
     tags$div(
       class = "container py-4",
       tags$h4(tags$strong("educabr")),
