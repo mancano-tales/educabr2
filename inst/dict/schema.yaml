@@ -210,6 +210,10 @@ constraints:
     - age_group
     - indicator
     - source
+    - source_note    # variant discriminator (e.g. different INEP Sinopse tables
+                     # for the same year both canonicalise to inep_sinopse_censup
+                     # but carry distinct source_notes; for derived rows it
+                     # records the exact Presencial+EAD composition).
   domain:
     year: { min: 1871, max: 2100 }
     value: { allow_negative: false }

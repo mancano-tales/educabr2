@@ -158,7 +158,7 @@ canonicalise_source <- function(ds) {
     return(list(source = "ibge_seculo_xx", source_note = note, is_derived = FALSE))
   }
   # INEP Sinopse CENSUP (1995-2008)
-  if (grepl("^CENSUP(19|200[0-8])_tabela", ds, ignore.case = FALSE) ||
+  if (grepl("^CENSUP(19\\d{2}|200[0-8])_tabela", ds, ignore.case = FALSE) ||
       grepl("^Sinopse_CENSUP_", ds)) {
     note <- sprintf("INEP Sinopse Estatística da Educação Superior — referência '%s'.", ds)
     return(list(source = "inep_sinopse_censup", source_note = note, is_derived = FALSE))
@@ -244,13 +244,39 @@ cat("\nDerived vs natural:\n")
 print(dplyr::count(enrollment_tertiary, is_derived))
 
 # ---------------------------------------------------------------------
-# 5. Validate
+# 5. Drop exact-duplicate rows (data-quality safeguard for the v6 file)
+# ---------------------------------------------------------------------
+#
+# The v6 xlsx ships with a small set of literal duplicate rows in the
+# 2009 microdata layer (likely an artefact of an incremental rebuild of
+# the upstream script). We drop them here and log exactly which were
+# removed, so the user has a paper trail.
+
+n_before <- nrow(enrollment_tertiary)
+dup_mask <- duplicated(enrollment_tertiary)
+removed  <- enrollment_tertiary[dup_mask, , drop = FALSE]
+enrollment_tertiary <- dplyr::distinct(enrollment_tertiary)
+n_after  <- nrow(enrollment_tertiary)
+
+if (n_after < n_before) {
+  cat(sprintf("\nRemoved %d exact-duplicate row(s) from the raw v6 file:\n",
+              n_before - n_after))
+  print(
+    removed |>
+      dplyr::select(year, source, network, institution_type, modality, value) |>
+      dplyr::arrange(year, network, institution_type, modality),
+    n = Inf
+  )
+}
+
+# ---------------------------------------------------------------------
+# 6. Validate
 # ---------------------------------------------------------------------
 
 educabr:::validate_against_schema(enrollment_tertiary, theme = "enrollment")
 
 # ---------------------------------------------------------------------
-# 6. Save
+# 7. Save
 # ---------------------------------------------------------------------
 
 attr(enrollment_tertiary, "educabr_meta") <- list(
