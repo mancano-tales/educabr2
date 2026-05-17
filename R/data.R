@@ -61,3 +61,50 @@
 #'   Data compilation: FGV/IBRE (April 2023 revision).
 #'   ETL script: `data-raw/01_build_enrollment_kang_fgv.R`.
 "enrollment_kang_fgv"
+
+#' Mean years of schooling — Walter & Kang 2023 compilation
+#'
+#' Long-run Brazilian mean years of schooling reconstructed by Walter &
+#' Kang (2023) from Censuses and household surveys. The dataset is the
+#' internal backing store consumed by [get_schooling()]; end-users
+#' should call that function rather than loading this object directly.
+#'
+#' @format A tibble with approximately 2 300 rows and 12 columns:
+#' \describe{
+#'   \item{year}{`integer`. Reference year (1925–2015). BR-level series
+#'     starts in 1925; region and UF series start in 1950.}
+#'   \item{geo_level}{`character`. `"BR"`, `"region"`, or `"UF"`.}
+#'   \item{geo_code}{`character`. `"BR"` for national; IBGE single/double-
+#'     letter macro-region code (`"N"`, `"NE"`, `"CO"`, `"SE"`, `"S"`);
+#'     or IBGE 2-letter UF code.}
+#'   \item{geo_name}{`character`. Human-readable geographic name in
+#'     Portuguese.}
+#'   \item{dim_race}{`character`. Race/colour dimension: `"white"`,
+#'     `"black"`, `"brown"`, `"asian"`, `"indigenous"`, or `"total"`.
+#'     Race breakdown available at BR level only.}
+#'   \item{dim_sex}{`character`. Sex: `"male"`, `"female"`, or `"total"`.
+#'     Sex breakdown available at BR level only.}
+#'   \item{age_group}{`character`. Always `NA` in this dataset; included
+#'     for schema compatibility.}
+#'   \item{indicator}{`character`. Always `"mean_years_schooling"`.}
+#'   \item{value}{`double`. Mean years of schooling of the adult
+#'     population.}
+#'   \item{unit}{`character`. Always `"years"`.}
+#'   \item{source}{`character`. Always `"walter_kang_2023"`.}
+#'   \item{source_note}{`character`. Inline bibliographic reference.}
+#' }
+#'
+#' @section Coverage:
+#' \tabular{lll}{
+#'   **Scope**               \tab **Years**  \tab **Breakdowns**  \cr
+#'   BR — total              \tab 1925–2015  \tab —               \cr
+#'   BR — by sex             \tab 1925–2015  \tab male, female    \cr
+#'   BR — by race            \tab 1925–2015  \tab 4 categories    \cr
+#'   Macro-region (5 regiões)\tab 1950–2015  \tab —               \cr
+#'   UF (27 estados)         \tab 1950–2015  \tab —               \cr
+#' }
+#'
+#' @source Walter, J., & Kang, T. H. (2023). A new dataset of average
+#'   years of schooling in Brazil, 1925-2015. FGV-IBRE working paper.
+#'   ETL script: `data-raw/02_build_schooling_kang_fgv.R`.
+"schooling_kang_fgv"

@@ -47,3 +47,24 @@ datasets:
     post_build:
       - Add `LazyData: true` to DESCRIPTION so the dataset is lazy-loaded.
       - Commit data/enrollment_kang_fgv.rda together with this manifest entry.
+
+  - name: schooling_kang_fgv
+    theme: schooling
+    description: >
+      Mean years of schooling reconstructed by Walter & Kang (2023) from
+      Brazilian Censuses and PNAD. National series 1925–2015 with
+      breakdowns by sex and race; macro-region and UF series from 1950.
+    processed_file: data/schooling_kang_fgv.rda
+    build_script: data-raw/02_build_schooling_kang_fgv.R
+    storage: embedded
+    release_pointer: null
+    geo_level: [BR, region, UF]
+    year_range: [1925, 2015]
+    sources: [walter_kang_2023]
+    indicators: [mean_years_schooling]
+    levels: []
+    networks: [total]
+    dimensions: [dim_race, dim_sex]
+    raw_files:
+      - path: data-raw/sources/kang_fgv_ibre_2023/3._anos_estudo_1925_2015_v_abril2023.xlsx
+        sha256: ""
