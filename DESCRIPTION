@@ -35,7 +35,8 @@ Depends:
 Imports:
     cli,
     rlang,
-    tibble
+    tibble,
+    yaml
 Suggests:
     bslib,
     dplyr,
@@ -47,5 +48,6 @@ Suggests:
     scales,
     shiny,
     testthat (>= 3.0.0),
-    yaml
+    tidyr,
+    usethis
 Config/testthat/edition: 3

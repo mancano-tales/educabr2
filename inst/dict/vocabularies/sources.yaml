@@ -62,3 +62,36 @@ sources:
     notes: >
       Long-run compilation of administrative statistics; primary source
       for pre-PNAD enrollment series.
+
+  kang_fgv_ibre_2023:
+    short_name: Kang/FGV-IBRE
+    full_name: >
+      Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and
+      Unequal: Measuring Enrolments and Retention in Brazilian Education,
+      1933-2010. Revista de Historia Económica - Journal of Iberian and
+      Latin American Economic History, 39(2), 191-218.
+      Compilation refreshed and extended (1871-2010) and republished by
+      FGV/IBRE in April 2023.
+    type: academic_compilation
+    doi: 10.1017/S0212610920000099
+    url: https://www.cambridge.org/core/journals/revista-de-historia-economica-journal-of-iberian-and-latin-american-economic-history/article/abs/late-and-unequal-measuring-enrolments-and-retention-in-brazilian-education-19332010/38E316BCDABEC93DD66443FB90194859
+    coverage: { years: [1871, 2010], geo: [BR, UF] }
+    notes: >
+      Long-run series of enrollment counts and rates (EF1, EF2, EF, EM,
+      ES) at the national level since 1871 (primary only), 1933-2010
+      (all levels) and 1955-2010 by UF. National break by color/race
+      (PNAD-aligned categories) covers 1960-2010. Methodological notes:
+      relatorio_metodologico_condati_26042023.pdf (in the source folder).
+
+  walter_kang_2023:
+    short_name: Walter & Kang
+    full_name: >
+      Walter, J., & Kang, T. H. (2023). A new dataset of average years
+      of schooling in Brazil, 1925-2015. FGV-IBRE working paper.
+    type: academic_compilation
+    url: https://ibre.fgv.br/sites/ibre.fgv.br/files/arquivos/u65/walter_e_kang_2023_-_ays_wp.pdf
+    coverage: { years: [1925, 2015], geo: [BR, region, UF] }
+    notes: >
+      Series of mean years of schooling for the adult population, with
+      breakdowns by sex, color/race, macro-region and UF. Primary source
+      for `get_schooling(measure = "years_of_schooling")` (M3).

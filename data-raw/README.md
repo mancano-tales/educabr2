@@ -76,3 +76,28 @@ usethis::use_data(<dataset_name>, overwrite = TRUE, compress = "xz")
 
 After running the script, **update `_manifest.yaml`** with the dataset
 entry (or refresh sha256 of raw files).
+
+## Inspect raw spreadsheets without R
+
+`scripts/inspect_xlsx.py` walks a folder and prints sheet names, bounds
+and the first ~20 rows of each sheet (raw cell values). Useful to drive
+the design of an ETL script before writing it.
+
+```sh
+py -3 -m pip install --user openpyxl
+py -3 data-raw/scripts/inspect_xlsx.py data-raw/sources/<source_key>/
+```
+
+## Running a build script
+
+From the package root, with the package itself loaded so internal
+helpers (`validate_against_schema()`) are available:
+
+```r
+devtools::load_all()
+source("data-raw/01_build_enrollment_kang_fgv.R")
+```
+
+The script writes `data/<dataset>.rda`. When committing, also ensure
+`DESCRIPTION` has `LazyData: true` so the dataset is lazy-loaded by the
+package.
