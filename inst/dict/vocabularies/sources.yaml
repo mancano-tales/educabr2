@@ -179,11 +179,17 @@ sources:
       INEP/MEC. Painel Power BI do Censo da Educação Superior.
     type: administrative
     url: https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior
-    coverage: { years: [1980, 2024], geo: [BR] }
+    coverage: { years: [2010, 2024], geo: [BR] }
     notes: >
-      Painel interativo do INEP que consolida totais por categoria
-      administrativa e modalidade. Usado como fonte secundária quando
-      a sinopse ou microdado não estão disponíveis.
+      Painel interativo consolidado do INEP. Para 67% das células
+      (modalidade × tipo institucional × categoria administrativa)
+      os valores reproduzem exatamente a agregação dos microdados; os
+      33% restantes divergem nos totais setoriais agregados
+      (publica/privada/municipal sem outras decomposições) a partir
+      de 2012, refletindo critérios próprios de aglutinação do painel.
+      Mantido neste pacote como estimativa alternativa do INEP — útil
+      para validação cruzada e para acompanhar revisões pós-publicação
+      dos microdados.
 
   walter_kang_2023:
     short_name: Walter & Kang (2024)

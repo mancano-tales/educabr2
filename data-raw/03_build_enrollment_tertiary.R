@@ -175,7 +175,15 @@ canonicalise_source <- function(ds) {
   if (ds == "INEP_Power_BI") {
     return(list(
       source      = "inep_censup_powerbi",
-      source_note = "INEP CENSUP Power BI — painel interativo (consulta direta).",
+      source_note = paste(
+        "INEP CENSUP Power BI — painel consolidado do INEP (anos 2010-2024).",
+        "Para a maioria das células (modalidade, tipo institucional, categoria",
+        "administrativa) os valores reproduzem a agregação dos microdados; nos",
+        "totais setoriais agregados (publica/privada/municipal sem outras",
+        "decomposições) os valores apresentam pequenas divergências em relação",
+        "ao microdado a partir de 2012, atribuíveis a critérios de aglutinação",
+        "do painel oficial. Mantido como estimativa alternativa do INEP."
+      ),
       is_derived  = FALSE
     ))
   }
