@@ -1,17 +1,28 @@
 #' Brazilian school-enrollment series
 #'
-#' Returns harmonized school-enrollment counts and rates at the national
-#' or state level, optionally broken down by color/race. The bundled
-#' data comes from the Kang/FGV-IBRE (2023) compilation; additional
-#' sources are added in later milestones.
+#' Returns harmonized school-enrollment counts and rates, optionally
+#' broken down by color/race, administrative network, institutional
+#' type, or teaching modality. Series are pulled from all enrollment
+#' datasets shipped with the package and concatenated into the canonical
+#' long-format schema.
 #'
 #' @param level Character vector with one or more stage codes:
 #'   `"fundamental_anos_iniciais"`, `"fundamental_anos_finais"`,
 #'   `"fundamental"`, `"medio"`, `"superior"`. `NULL` (default) means
 #'   no filter.
-#' @param network Character vector with administrative-network codes.
-#'   The bundled data currently covers only `"total"`. `NULL` (default)
-#'   means no filter.
+#' @param network Character vector with administrative-network codes
+#'   (`"federal"`, `"estadual"`, `"municipal"`, `"publica"`,
+#'   `"privada"`, plus the post-2009 private subcategories
+#'   `"privada_particular"`, `"privada_comunitaria_confessional_filantropica"`,
+#'   `"privada_lucrativa"`, `"privada_nao_lucrativa"`, `"especial"`,
+#'   `"total"`). `NULL` (default) means no filter.
+#' @param institution_type Character vector restricting the
+#'   institutional category (only meaningful for `level = "superior"`).
+#'   See `inst/dict/schema.yaml` for the controlled vocabulary. `NULL`
+#'   (default) means no filter; pass `"total"` to keep only rows that
+#'   aggregate across institutional types.
+#' @param modality Character vector: `"presencial"`, `"ead"`,
+#'   `"total"`. `NULL` (default) means no filter.
 #' @param year Integer vector or two-element `c(min, max)` range. `NULL`
 #'   for all years.
 #' @param geo_level One of `"BR"` (national, default) or `"UF"` (state).
@@ -22,41 +33,59 @@
 #'   `"location"`.
 #' @param indicator Character vector. `"count"` for counts, `"rate"`
 #'   for gross enrollment rates. `NULL` returns both.
-#' @param source Character vector of source keys (see [list_sources()];
-#'   forthcoming). `NULL` returns all available sources.
+#' @param source Character vector of source keys (see
+#'   `inst/dict/vocabularies/sources.yaml`). `NULL` returns all
+#'   available sources. **Tip:** when the same `(year, level, network)`
+#'   is covered by multiple sources (common in the tertiary panel),
+#'   pass `source = "..."` to lock down a single series.
+#' @param include_derived Logical. If `FALSE` (default), rows where the
+#'   value was computed by combining components from different sources
+#'   (e.g. Presencial from one source + EAD from another, for years
+#'   where the original source did not publish the combined figure)
+#'   are excluded. Set to `TRUE` to inspect or compare these
+#'   derived rows. Has no effect on datasets that do not carry an
+#'   `is_derived` flag.
 #' @param wide Logical. If `TRUE`, pivots the `indicator` column to
-#'   wide form (one column per indicator). Default `FALSE` returns the
-#'   canonical long schema.
+#'   wide form (one column per indicator). Default `FALSE`.
 #' @param lang One of `"en"` (default) or `"pt"`. When `"pt"`, factor
 #'   levels are translated using `inst/dict/i18n.yaml`.
 #'
-#' @return A tibble. In long form, follows the canonical schema in
-#'   `inst/dict/schema.yaml`. In wide form, the `indicator` and `unit`
-#'   columns are dropped and replaced by one column per indicator.
+#' @return A tibble following the canonical schema in
+#'   `inst/dict/schema.yaml`. Optional columns (`institution_type`,
+#'   `modality`, `is_derived`) are present whenever any of the loaded
+#'   datasets carries them; for rows coming from datasets without that
+#'   column the value defaults to `"total"` (or `FALSE` for
+#'   `is_derived`).
 #'
 #' @examplesIf FALSE
 #' # National series, ensino fundamental, all years
 #' get_enrollment(level = "fundamental", geo_level = "BR")
 #'
-#' # By race, rates only, 1960-2010
-#' get_enrollment(dimension = "race", indicator = "rate",
-#'                year = c(1960, 2010))
+#' # Tertiary enrollment, all sources, compare them
+#' get_enrollment(level = "superior", network = "total", modality = "total")
 #'
-#' # State-level enrollment rates for a handful of UFs
-#' get_enrollment(geo_level = "UF", geo = c("SP", "BA", "AM"),
-#'                level = "fundamental", indicator = "rate")
+#' # Tertiary private particular only, post-2000
+#' get_enrollment(level = "superior", network = "privada_particular",
+#'                year = c(2000, 2024))
+#'
+#' # Compare with derived rows included
+#' get_enrollment(level = "superior", network = "total",
+#'                year = c(2000, 2008), include_derived = TRUE)
 #'
 #' @export
-get_enrollment <- function(level = NULL,
-                           network = NULL,
-                           year = NULL,
-                           geo_level = c("BR", "UF"),
-                           geo = NULL,
-                           dimension = c("none", "race"),
-                           indicator = NULL,
-                           source = NULL,
-                           wide = FALSE,
-                           lang = c("en", "pt")) {
+get_enrollment <- function(level            = NULL,
+                           network          = NULL,
+                           institution_type = NULL,
+                           modality         = NULL,
+                           year             = NULL,
+                           geo_level        = c("BR", "UF"),
+                           geo              = NULL,
+                           dimension        = c("none", "race"),
+                           indicator        = NULL,
+                           source           = NULL,
+                           include_derived  = FALSE,
+                           wide             = FALSE,
+                           lang             = c("en", "pt")) {
   geo_level <- match.arg(geo_level)
   dimension <- match.arg(dimension)
   lang      <- match.arg(lang)
@@ -64,9 +93,11 @@ get_enrollment <- function(level = NULL,
   data <- .load_enrollment_panel()
   data <- .filter_enrollment(
     data,
-    level = level, network = network, year = year,
-    geo_level = geo_level, geo = geo,
-    dimension = dimension, indicator = indicator, source = source
+    level = level, network = network,
+    institution_type = institution_type, modality = modality,
+    year = year, geo_level = geo_level, geo = geo,
+    dimension = dimension, indicator = indicator, source = source,
+    include_derived = include_derived
   )
 
   if (lang == "pt") {
@@ -87,9 +118,27 @@ get_enrollment <- function(level = NULL,
 #' @noRd
 .enrollment_datasets <- function() {
   # Registry of datasets that contribute rows to `get_enrollment()`.
-  # Update this constant when adding a new source.
-  c("enrollment_kang_fgv")
+  c("enrollment_kang_fgv", "enrollment_tertiary")
 }
+
+# Canonical column order produced by .load_enrollment_panel().
+.ENR_CANONICAL_COLS <- c(
+  "year", "geo_level", "geo_code", "geo_name",
+  "level", "network", "institution_type", "modality",
+  "dim_race", "age_group",
+  "indicator", "value", "unit",
+  "source", "source_note", "is_derived"
+)
+
+# Defaults applied to columns missing in a particular dataset.
+.ENR_DEFAULTS <- list(
+  institution_type = "total",
+  modality         = "total",
+  dim_race         = "total",
+  age_group        = NA_character_,
+  is_derived       = FALSE,
+  source_note      = NA_character_
+)
 
 #' @noRd
 .load_enrollment_panel <- function(env = NULL) {
@@ -101,7 +150,6 @@ get_enrollment <- function(level = NULL,
     if (exists(nm, envir = env, inherits = FALSE)) {
       pieces[[nm]] <- get(nm, envir = env, inherits = FALSE)
     } else {
-      # Try data() loader for the unlikely case the dataset is not lazy-loaded.
       tmp <- new.env()
       try(utils::data(list = nm, package = "educabr", envir = tmp), silent = TRUE)
       if (exists(nm, envir = tmp, inherits = FALSE)) {
@@ -113,19 +161,34 @@ get_enrollment <- function(level = NULL,
   if (length(pieces) == 0) {
     cli::cli_abort(c(
       "No enrollment dataset is available in the installed package.",
-      i = "Run {.code source(\"data-raw/01_build_enrollment_kang_fgv.R\")} from the package root, then reinstall."
+      i = "Run the ETL scripts in {.path data-raw/} and reinstall."
     ))
   }
 
-  # Same canonical schema across all pieces — base rbind is safe.
+  # Normalise each piece so they all share the canonical column set
+  # (datasets that pre-date a given column get the documented default).
+  pieces <- lapply(pieces, .normalise_enrollment_piece)
   do.call(rbind, unname(pieces))
 }
 
 #' @noRd
+.normalise_enrollment_piece <- function(df) {
+  for (col in .ENR_CANONICAL_COLS) {
+    if (!col %in% names(df)) {
+      df[[col]] <- if (col %in% names(.ENR_DEFAULTS))
+        .ENR_DEFAULTS[[col]] else NA
+    }
+  }
+  df[, .ENR_CANONICAL_COLS, drop = FALSE]
+}
+
+#' @noRd
 .filter_enrollment <- function(data,
-                               level, network, year,
-                               geo_level, geo,
-                               dimension, indicator, source) {
+                               level, network,
+                               institution_type, modality,
+                               year, geo_level, geo,
+                               dimension, indicator, source,
+                               include_derived) {
   data <- data[data$geo_level == geo_level, , drop = FALSE]
 
   if (geo_level == "UF" && !is.null(geo)) {
@@ -139,6 +202,14 @@ get_enrollment <- function(level = NULL,
 
   if (!is.null(network)) {
     data <- data[data$network %in% as.character(network), , drop = FALSE]
+  }
+
+  if (!is.null(institution_type)) {
+    data <- data[data$institution_type %in% as.character(institution_type), , drop = FALSE]
+  }
+
+  if (!is.null(modality)) {
+    data <- data[data$modality %in% as.character(modality), , drop = FALSE]
   }
 
   if (!is.null(year)) {
@@ -165,7 +236,18 @@ get_enrollment <- function(level = NULL,
     data <- data[data$source %in% as.character(source), , drop = FALSE]
   }
 
+  if (!isTRUE(include_derived)) {
+    data <- data[!isTRUE_vec(data$is_derived), , drop = FALSE]
+  }
+
   data
+}
+
+#' @noRd
+isTRUE_vec <- function(x) {
+  out <- as.logical(x)
+  out[is.na(out)] <- FALSE
+  out
 }
 
 #' @noRd

@@ -62,6 +62,60 @@
 #'   ETL script: `data-raw/01_build_enrollment_kang_fgv.R`.
 "enrollment_kang_fgv"
 
+#' Tertiary (ensino superior) enrollment — multi-source compilation
+#'
+#' National-level (BR) Brazilian higher-education enrollment from 1907
+#' to 2024, harmonised across seven different primary sources. The
+#' dataset is consumed by [get_enrollment()] when `level = "superior"`.
+#' Multiple sources for the same `(year, network)` are kept on purpose
+#' so users can compare competing estimates — pass `source = "..."`
+#' to lock in a specific series.
+#'
+#' @format A tibble with approximately 1 350 rows and 16 columns
+#'   matching the canonical schema (`inst/dict/schema.yaml`). The
+#'   tertiary-specific columns are:
+#' \describe{
+#'   \item{level}{Always `"superior"`.}
+#'   \item{network}{Administrative dependency: `federal`, `estadual`,
+#'     `municipal`, `publica`, `privada`, plus the private sub-categories
+#'     (`privada_particular` / `privada_comunitaria_confessional_filantropica`
+#'     pre-2009, `privada_lucrativa` / `privada_nao_lucrativa` post-2009),
+#'     `especial`, `total`.}
+#'   \item{institution_type}{INEP/MEC institutional category:
+#'     `university`, `university_center`, `faculty`,
+#'     `faculty_school_institute`, `integrated_faculty`,
+#'     `integrated_faculty_university_center`, `technology_center`,
+#'     `technology_center_fat`, `cefet_ifet`, `isolated_establishment`,
+#'     `total`.}
+#'   \item{modality}{`presencial`, `ead`, or `total` (available from
+#'     2000 onwards).}
+#'   \item{is_derived}{`TRUE` when the row is a computed total
+#'     combining components from different sources (e.g. Presencial
+#'     from Kang + EAD from CENSUP 7.1 for 2000-2008, where the
+#'     original source did not publish a combined figure). Filtered
+#'     out by `get_enrollment()` unless `include_derived = TRUE`.}
+#' }
+#'
+#' @section Primary sources:
+#' \itemize{
+#'   \item `ibge_seculo_xx` — Anuários Estatísticos 1908-1980.
+#'   \item `durham_2005` — Durham (2005).
+#'   \item `maduro_junior_2007` — Maduro Junior MSc dissertation.
+#'   \item `kang_paese_felix_2021` — Kang, Paese & Felix RHE paper.
+#'   \item `inep_sinopse_censup` — INEP Sinopse 1995-2008.
+#'   \item `inep_microdados_censup` — INEP microdata 2009-2024.
+#'   \item `inep_censup_powerbi` — INEP Power BI panel.
+#' }
+#' For derived rows the `source` column is the concatenation
+#' `"<presencial_key>+<ead_key>"`; the exact composition is documented
+#' in `source_note`.
+#'
+#' @source Compilation curated by the package author (Mançano, 2026)
+#'   from publicly available sources. Raw file:
+#'   `data-raw/sources/tertiary_multisource/data_tertiary_v6_clean.xlsx`.
+#'   ETL: `data-raw/03_build_enrollment_tertiary.R`.
+"enrollment_tertiary"
+
 #' Mean years of schooling — Walter & Kang 2023 compilation
 #'
 #' Long-run Brazilian mean years of schooling reconstructed by Walter &

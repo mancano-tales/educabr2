@@ -104,6 +104,87 @@ sources:
     coverage: { years: [1871, 2010], geo: [BR] }
     notes: Historical primary (ensino primário / anos iniciais) enrollment, 1871-2010.
 
+  durham_2005:
+    short_name: Durham (2005)
+    full_name: >
+      Durham, E. R. (2005). Educação superior, pública e privada. In
+      S. Schwartzman (Ed.), Os desafios da educação no Brasil
+      (pp. 191–233). Rio de Janeiro: Nova Fronteira.
+    type: academic
+    coverage: { years: [1933, 2003], geo: [BR] }
+    notes: >
+      Historical tertiary enrollment series (Public/Private). Used as
+      one of the alternative sources for 1933-onwards totals in the
+      `enrollment_tertiary` dataset.
+
+  maduro_junior_2007:
+    short_name: Maduro Junior (2007)
+    full_name: >
+      Maduro Junior, P. R. R. M. (2007). Taxas de matrícula e gastos em
+      educação no Brasil [Dissertação de Mestrado, Fundação Getulio
+      Vargas, Escola de Pós-Graduação em Economia – EPGE].
+    type: academic_thesis
+    url: https://hdl.handle.net/10438/110
+    coverage: { years: [1933, 2005], geo: [BR] }
+    notes: Tertiary enrollment series reconstructed in the MSc dissertation.
+
+  ibge_seculo_xx:
+    short_name: IBGE Estatísticas do Século XX
+    full_name: >
+      IBGE (2007). Estatísticas do Século XX. Rio de Janeiro: Instituto
+      Brasileiro de Geografia e Estatística.
+    type: historical_compilation
+    url: https://seculoxx.ibge.gov.br/
+    coverage: { years: [1907, 1980], geo: [BR] }
+    notes: >
+      Anuários Estatísticos do Brasil compilados pelo IBGE. As tabelas
+      específicas (e.g. `educacao1908_12aeb_008` → AEB 1908-1912,
+      tabela 008; `educacao1980aeb_07_2` → AEB 1980, tabela 07.2) são
+      referenciadas no `source_note` de cada linha.
+
+  inep_sinopse_censup:
+    short_name: INEP Sinopse CENSUP
+    full_name: >
+      INEP/MEC. Sinopse Estatística da Educação Superior (anos 1995-2008).
+    type: administrative
+    url: https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior
+    coverage: { years: [1995, 2008], geo: [BR] }
+    notes: >
+      Tabelas publicadas nos relatórios sinopse do INEP. Convenção:
+      tabela 4.x e 5.x = matrículas presenciais por categoria
+      administrativa; tabela 7.x = matrículas em EAD. A tabela exata
+      é referenciada no `source_note`.
+
+  inep_microdados_censup:
+    short_name: INEP Microdados CENSUP
+    full_name: >
+      INEP/MEC. Microdados do Censo da Educação Superior (anos 2009-2024).
+    type: administrative_microdata
+    url: https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior
+    coverage: { years: [2009, 2024], geo: [BR] }
+    notes: >
+      Agregados a partir das tabelas de cadastro de cursos
+      (`MICRODADOS_CADASTRO_CURSOS_*.CSV`) via
+      `TP_CATEGORIA_ADMINISTRATIVA` × `TP_MODALIDADE_ENSINO` × `QT_MAT`.
+      Mapeamento de categorias administrativas segue a convenção do
+      INEP (1=Pública Federal, 2=Pública Estadual, 3=Pública Municipal,
+      4=Privada com fins lucrativos, 5=Privada sem fins lucrativos,
+      6=Particular, 7=Especial, 8=Comunitária, 9=Confessional). A
+      categorização privada muda em 2010 (lucrativa vs não-lucrativa)
+      em relação a 2009 (particular vs comunitária/confessional).
+
+  inep_censup_powerbi:
+    short_name: INEP CENSUP Power BI
+    full_name: >
+      INEP/MEC. Painel Power BI do Censo da Educação Superior.
+    type: administrative
+    url: https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior
+    coverage: { years: [1980, 2024], geo: [BR] }
+    notes: >
+      Painel interativo do INEP que consolida totais por categoria
+      administrativa e modalidade. Usado como fonte secundária quando
+      a sinopse ou microdado não estão disponíveis.
+
   walter_kang_2023:
     short_name: Walter & Kang (2024)
     full_name: >

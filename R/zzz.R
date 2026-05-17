@@ -2,5 +2,6 @@
 # silence "no visible binding for global variable" notes from R CMD check.
 utils::globalVariables(c(
   "enrollment_kang_fgv",
+  "enrollment_tertiary",
   "schooling_kang_fgv"
 ))

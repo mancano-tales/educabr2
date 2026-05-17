@@ -48,6 +48,52 @@ datasets:
       - Add `LazyData: true` to DESCRIPTION so the dataset is lazy-loaded.
       - Commit data/enrollment_kang_fgv.rda together with this manifest entry.
 
+  - name: enrollment_tertiary
+    theme: enrollment
+    description: >
+      National (BR) tertiary enrollment compiled across seven primary
+      sources: IBGE Estatísticas do Século XX, Durham (2005), Maduro
+      Junior (2007), Kang/Paese/Felix (2021), INEP Sinopse CENSUP
+      (1995-2008), INEP Microdados CENSUP (2009-2024) and the INEP
+      CENSUP Power BI panel. Multiple sources per `(year, network)`
+      are kept on purpose to support cross-source comparison. Derived
+      rows (Presencial from one source + EAD from another, 2000-2008)
+      are flagged via `is_derived` and excluded by default.
+    processed_file: data/enrollment_tertiary.rda
+    build_script: data-raw/03_build_enrollment_tertiary.R
+    storage: embedded
+    release_pointer: null
+    geo_level: [BR]
+    year_range: [1907, 2024]
+    sources:
+      - ibge_seculo_xx
+      - durham_2005
+      - maduro_junior_2007
+      - kang_paese_felix_2021
+      - inep_sinopse_censup
+      - inep_microdados_censup
+      - inep_censup_powerbi
+    indicators: [enrollment_count]
+    levels: [superior]
+    networks:
+      - federal
+      - estadual
+      - municipal
+      - publica
+      - privada
+      - privada_particular
+      - privada_comunitaria_confessional_filantropica
+      - privada_lucrativa
+      - privada_nao_lucrativa
+      - especial
+      - total
+    dimensions: [institution_type, modality, is_derived]
+    raw_files:
+      - path: data-raw/sources/tertiary_multisource/data_tertiary_v6_clean.xlsx
+        sha256: ""
+    post_build:
+      - Commit data/enrollment_tertiary.rda together with this manifest entry.
+
   - name: schooling_kang_fgv
     theme: schooling
     description: >

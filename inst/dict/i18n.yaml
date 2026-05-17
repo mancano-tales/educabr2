@@ -22,8 +22,29 @@ levels:
     federal: Federal
     estadual: Estadual
     municipal: Municipal
-    privada: Privada
     publica: Pública
+    privada: Privada
+    privada_particular: Privada — Particular
+    privada_comunitaria_confessional_filantropica: Privada — Comunitária/Confessional/Filantrópica
+    privada_lucrativa: Privada — com fins lucrativos
+    privada_nao_lucrativa: Privada — sem fins lucrativos
+    especial: Especial
+    total: Total
+  institution_type:
+    university: Universidade
+    university_center: Centro Universitário
+    faculty: Faculdade
+    faculty_school_institute: Faculdade/Escola/Instituto
+    integrated_faculty: Faculdade Integrada
+    integrated_faculty_university_center: Faculdade Integrada / Centro Universitário
+    technology_center: Centro de Educação Tecnológica
+    technology_center_fat: Centro de Educação Tecnológica / Faculdade de Tecnologia
+    cefet_ifet: CEFET/IFET
+    isolated_establishment: Estabelecimento Isolado
+    total: Total
+  modality:
+    presencial: Presencial
+    ead: EAD (Distância)
     total: Total
   dim_race:
     white: Branca

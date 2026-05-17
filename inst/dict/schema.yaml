@@ -57,8 +57,62 @@ columns:
     role: dimension_education
     required: false
     appears_in: [enrollment]
-    levels: [federal, estadual, municipal, privada, publica, total]
-    description: Administrative dependency of the school network.
+    levels:
+      - federal
+      - estadual
+      - municipal
+      - publica
+      - privada
+      - privada_particular
+      - privada_comunitaria_confessional_filantropica
+      - privada_lucrativa
+      - privada_nao_lucrativa
+      - especial
+      - total
+    description: >
+      Administrative dependency. Public network is split into
+      federal/estadual/municipal (with `publica` reserved for the
+      aggregate). Private network is further split (after the 2009
+      CENSUP reform) into for-profit (lucrativa) vs non-profit
+      (nao_lucrativa), or — under the pre-2009 scheme — into particular
+      vs comunitária/confessional/filantrópica. Use `total` for "no
+      network breakdown".
+
+  - name: institution_type
+    type: factor
+    role: dimension_education
+    required: false
+    appears_in: [enrollment]
+    levels:
+      - university
+      - university_center
+      - faculty
+      - faculty_school_institute
+      - integrated_faculty
+      - integrated_faculty_university_center
+      - technology_center
+      - technology_center_fat
+      - cefet_ifet
+      - isolated_establishment
+      - total
+    description: >
+      INEP/MEC institutional category (organização acadêmica):
+      Universidade, Centro Universitário, Faculdade,
+      Faculdade/Escola/Instituto, Faculdade Integrada, Centro de
+      Educação Tecnológica, CEFET/IFET, Estabelecimento Isolado. Use
+      `total` for "no institutional breakdown". Only meaningful for
+      tertiary (`level = "superior"`).
+
+  - name: modality
+    type: factor
+    role: dimension_education
+    required: false
+    appears_in: [enrollment]
+    levels: [presencial, ead, total]
+    description: >
+      Teaching modality: in-person (presencial) or distance (EAD).
+      Available from 2000 onwards for tertiary enrollment. Use
+      `total` for "no modality breakdown".
 
   - name: dim_race
     type: factor
@@ -126,6 +180,20 @@ columns:
     required: false
     description: Short bibliographic reference inline.
 
+  - name: is_derived
+    type: logical
+    role: provenance
+    required: false
+    appears_in: [enrollment]
+    description: >
+      `TRUE` when the row is computed by combining components from
+      different sources (e.g. presencial enrollment from one source
+      summed with EAD enrollment from another, where the original
+      source did not publish the combined total). `FALSE` for rows
+      taken directly from a single source. Default behaviour of
+      `get_enrollment()` is `include_derived = FALSE`. The exact
+      composition is documented in `source_note`.
+
 constraints:
   primary_key:
     - year
@@ -133,6 +201,8 @@ constraints:
     - geo_code
     - level
     - network
+    - institution_type
+    - modality
     - dim_race
     - dim_sex
     - dim_income_quintile
