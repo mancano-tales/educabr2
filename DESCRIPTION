@@ -52,3 +52,4 @@ Suggests:
     tidyr,
     usethis
 Config/testthat/edition: 3
+LazyData: true
