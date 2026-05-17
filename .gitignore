@@ -1,18 +1,32 @@
 # History files
 .Rhistory
+.Rapp.history
 
 # Example code in package build process
 *-Ex.R
 
 # R data files from past sessions
 .Rdata
+.RData
 
 # RStudio files
 .Rproj.user/
 .Rproj.user
 
-# previewing
+# previewing / build outputs
 README.html
 data-raw/*.html
 docs
 inst/doc
+/*.tar.gz
+/*.Rcheck/
+
+# pkgdown
+/docs/
+
+# release artefacts (built by data-raw/99_zenodo_release.R)
+data-release/
+
+# environment
+.Renviron
+.env

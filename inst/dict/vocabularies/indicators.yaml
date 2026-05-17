@@ -1,0 +1,61 @@
+schema_version: "0.1.0"
+description: >
+  Controlled vocabulary of indicator keys used in the `indicator` column.
+  Each entry declares the theme, the unit and the typical age reference
+  used to compute it.
+
+indicators:
+
+  enrollment_count:
+    theme: enrollment
+    unit: count
+    label_en: Number of enrolled students
+    label_pt: Número de matrículas
+    description: >
+      Absolute headcount of students enrolled in a given stage and
+      network, in a given year.
+
+  enrollment_rate:
+    theme: enrollment
+    unit: percent
+    label_en: Gross enrollment rate
+    label_pt: Taxa bruta de matrícula
+    description: >
+      Total enrollment in a stage divided by the population in the
+      reference age bracket for that stage. Includes age-grade mismatch.
+
+  net_enrollment_rate:
+    theme: enrollment
+    unit: percent
+    label_en: Net enrollment rate
+    label_pt: Taxa líquida de matrícula
+    description: >
+      Enrollment of students in the reference age bracket for a stage,
+      divided by the total population in that age bracket.
+
+  years_of_schooling:
+    theme: schooling
+    unit: years
+    label_en: Mean years of schooling
+    label_pt: Média de anos de estudo
+    description: >
+      Mean years of completed schooling in the reference population
+      (typically aged 15+ or 25+).
+
+  literacy_rate:
+    theme: schooling
+    unit: percent
+    label_en: Literacy rate
+    label_pt: Taxa de alfabetização
+    description: >
+      Share of the reference population (typically aged 15+) who report
+      being able to read and write a simple note.
+
+  attainment_share:
+    theme: schooling
+    unit: percent
+    label_en: Educational attainment share
+    label_pt: Proporção com nível atingido
+    description: >
+      Share of the reference population who have completed at least the
+      stage indicated by `level`.

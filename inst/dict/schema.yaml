@@ -1,0 +1,161 @@
+schema_version: "0.1.0"
+description: >
+  Canonical tidy-long schema for all data tables returned by educabr.
+  One row per observation. Alternative sources for the same indicator
+  appear as separate rows (filterable via the `source` column), never as
+  separate columns. Aggregation levels (e.g. "total" for a dimension) are
+  encoded as explicit factor levels, never as NA.
+
+columns:
+
+  - name: year
+    type: integer
+    role: time
+    required: true
+    description: Reference year of the observation.
+
+  - name: geo_level
+    type: factor
+    role: geography
+    required: true
+    levels: [BR, region, UF]
+    description: Geographic aggregation level.
+
+  - name: geo_code
+    type: character
+    role: geography
+    required: true
+    description: >
+      Geographic code. "BR" for national; IBGE 1-letter macro-region code
+      (N, NE, CO, SE, S); IBGE 2-letter UF code (e.g. SP, BA).
+
+  - name: geo_name
+    type: character
+    role: geography
+    required: true
+    description: Human-readable geographic name (PT-BR).
+
+  - name: level
+    type: factor
+    role: dimension_education
+    required: false
+    appears_in: [enrollment, schooling_attainment]
+    levels:
+      - infantil_creche
+      - infantil_pre
+      - fundamental
+      - fundamental_anos_iniciais
+      - fundamental_anos_finais
+      - medio
+      - superior
+      - eja
+      - total
+    description: Education stage (Brazilian system).
+
+  - name: network
+    type: factor
+    role: dimension_education
+    required: false
+    appears_in: [enrollment]
+    levels: [federal, estadual, municipal, privada, publica, total]
+    description: Administrative dependency of the school network.
+
+  - name: dim_race
+    type: factor
+    role: dimension_inequality
+    required: false
+    levels: [white, black, brown, indigenous, asian, total]
+    description: >
+      IBGE color/race classification (branca, preta, parda, indígena,
+      amarela) plus "total".
+
+  - name: dim_sex
+    type: factor
+    role: dimension_inequality
+    required: false
+    levels: [female, male, total]
+
+  - name: dim_income_quintile
+    type: factor
+    role: dimension_inequality
+    required: false
+    levels: [q1, q2, q3, q4, q5, total]
+    description: Per-capita household income quintile.
+
+  - name: dim_location
+    type: factor
+    role: dimension_inequality
+    required: false
+    levels: [urban, rural, total]
+
+  - name: age_group
+    type: character
+    role: dimension_demography
+    required: false
+    description: >
+      Age cut as a compact string (e.g. "5-14", "15+", "25+"). For
+      enrollment, the reference age bracket of the indicator. For
+      schooling, the population aged X being measured.
+
+  - name: indicator
+    type: character
+    role: measure
+    required: true
+    description: Indicator key (see vocabularies/indicators.yaml).
+
+  - name: value
+    type: double
+    role: measure
+    required: true
+
+  - name: unit
+    type: factor
+    role: measure
+    required: true
+    levels: [count, percent, ratio, years]
+
+  - name: source
+    type: factor
+    role: provenance
+    required: true
+    description: Compact source key (see vocabularies/sources.yaml).
+
+  - name: source_note
+    type: character
+    role: provenance
+    required: false
+    description: Short bibliographic reference inline.
+
+constraints:
+  primary_key:
+    - year
+    - geo_level
+    - geo_code
+    - level
+    - network
+    - dim_race
+    - dim_sex
+    - dim_income_quintile
+    - dim_location
+    - age_group
+    - indicator
+    - source
+  domain:
+    year: { min: 1872, max: 2100 }
+    value: { allow_negative: false }
+
+conventions:
+  missing:
+    rule: >
+      Use NA only when the value itself is unknown. Aggregation levels
+      ("total" across a dimension) are encoded as the explicit factor
+      level "total", never as NA. Columns not applicable to a given
+      indicator are omitted from the table rather than filled with NA.
+  units:
+    count: Absolute headcount.
+    percent: 0-100 scale.
+    ratio: 0-1 scale.
+    years: Years (e.g. mean years of schooling).
+  language:
+    column_names: english
+    factor_levels: english (with PT-BR labels resolved via inst/dict/i18n.yaml)

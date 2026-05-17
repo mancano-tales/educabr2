@@ -1,0 +1,64 @@
+schema_version: "0.1.0"
+description: >
+  Controlled vocabulary of source keys used in the `source` column.
+  Each entry carries provenance metadata that drives `list_sources()`
+  and `educabr_cite()`.
+
+sources:
+
+  paglayan_2022:
+    short_name: Paglayan
+    full_name: >
+      Paglayan, A. S. (2022). Education or Indoctrination? The Violent
+      Origins of Public Schooling.
+    type: academic
+    doi: 10.7910/DVN/LKE1WQ
+    url: https://doi.org/10.7910/DVN/LKE1WQ
+    coverage: { years: [1828, 2015], geo: [BR] }
+    notes: >
+      Comparative dataset of historical primary-school enrollment.
+      Brazilian series interpolated from heterogeneous national sources.
+
+  pnad_ibge:
+    short_name: PNAD
+    full_name: >
+      Pesquisa Nacional por Amostra de Domicílios. Instituto Brasileiro
+      de Geografia e Estatística (IBGE).
+    type: official_survey
+    url: https://www.ibge.gov.br/estatisticas/sociais/educacao/9127-pesquisa-nacional-por-amostra-de-domicilios.html
+    coverage: { years: [1967, 2015], geo: [BR, region, UF] }
+    notes: >
+      Annual household survey (discontinued 2016, replaced by PNAD
+      Contínua). Source for enrollment by age, schooling, literacy.
+
+  pnadc_ibge:
+    short_name: PNAD Contínua
+    full_name: >
+      Pesquisa Nacional por Amostra de Domicílios Contínua. IBGE.
+    type: official_survey
+    url: https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html
+    coverage: { years: [2012, null], geo: [BR, region, UF] }
+
+  censo_demografico_ibge:
+    short_name: Censo Demográfico
+    full_name: Censo Demográfico. IBGE.
+    type: census
+    url: https://www.ibge.gov.br/estatisticas/sociais/populacao/22827-censo-demografico-2022.html
+    coverage: { years: [1872, 2022], geo: [BR, region, UF] }
+
+  censo_escolar_inep:
+    short_name: Censo Escolar
+    full_name: Censo Escolar da Educação Básica. INEP/MEC.
+    type: administrative
+    url: https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar
+    coverage: { years: [1995, null], geo: [BR, region, UF] }
+
+  anuario_ibge:
+    short_name: Anuário IBGE
+    full_name: Anuário Estatístico do Brasil. IBGE.
+    type: historical_compilation
+    url: https://biblioteca.ibge.gov.br/biblioteca-catalogo?id=720&view=detalhes
+    coverage: { years: [1908, null], geo: [BR, region, UF] }
+    notes: >
+      Long-run compilation of administrative statistics; primary source
+      for pre-PNAD enrollment series.

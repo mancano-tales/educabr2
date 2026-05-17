@@ -1,0 +1,38 @@
+schema_version: "0.1.0"
+description: >
+  Manifest of datasets produced by the ETL pipeline. Each entry binds a
+  processed table to its raw input, build script, storage location and
+  source vocabulary. Used by build scripts to know what to (re)build and
+  by `list_datasets()` to expose data inventory to users.
+
+# When adding a new dataset:
+#  1. Drop the raw file under data-raw/sources/<source_key>/ and record
+#     its sha256 in `raw_files[].sha256`.
+#  2. Write a build script under data-raw/<NN>_build_<dataset>.R that
+#     follows the gabarito (read → tidy → validate → annotate → write).
+#  3. Append an entry below.
+#  4. Add the source to inst/dict/vocabularies/sources.yaml if new.
+
+datasets: []
+
+# Example entry (uncomment and fill when the first dataset lands):
+#
+# - name: enrollment_primary_br
+#   theme: enrollment
+#   description: National primary enrollment series, multiple sources.
+#   processed_file: data/enrollment_primary_br.rda
+#   build_script: data-raw/01_build_enrollment_primary_br.R
+#   storage: embedded                    # embedded | release
+#   release_pointer: null                # filled when storage == release
+#   geo_level: [BR]
+#   year_range: [1872, 2022]
+#   sources: [paglayan_2022, pnad_ibge, anuario_ibge]
+#   indicators: [enrollment_rate, net_enrollment_rate]
+#   levels: [fundamental]
+#   networks: []
+#   dimensions: []
+#   raw_files:
+#     - path: data-raw/sources/paglayan_2022/paglayan_primary.xlsx
+#       sha256: "<filled by build script>"
+#     - path: data-raw/sources/anuario_ibge/anuario_1936.xlsx
+#       sha256: "<filled by build script>"

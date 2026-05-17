@@ -1,0 +1,49 @@
+schema_version: "0.1.0"
+description: >
+  PT-BR labels for factor levels and indicator keys. Used by `get_*()`
+  when `lang = "pt"` and by the bundled dashboard.
+
+levels:
+  geo_level:
+    BR: Brasil
+    region: Macrorregião
+    UF: Unidade da Federação
+  level:
+    infantil_creche: Educação infantil — creche
+    infantil_pre: Educação infantil — pré-escola
+    fundamental: Ensino fundamental
+    fundamental_anos_iniciais: Fundamental — anos iniciais
+    fundamental_anos_finais: Fundamental — anos finais
+    medio: Ensino médio
+    superior: Ensino superior
+    eja: Educação de Jovens e Adultos
+    total: Total
+  network:
+    federal: Federal
+    estadual: Estadual
+    municipal: Municipal
+    privada: Privada
+    publica: Pública
+    total: Total
+  dim_race:
+    white: Branca
+    black: Preta
+    brown: Parda
+    indigenous: Indígena
+    asian: Amarela
+    total: Total
+  dim_sex:
+    female: Feminino
+    male: Masculino
+    total: Total
+  dim_income_quintile:
+    q1: 1º quintil
+    q2: 2º quintil
+    q3: 3º quintil
+    q4: 4º quintil
+    q5: 5º quintil
+    total: Total
+  dim_location:
+    urban: Urbano
+    rural: Rural
+    total: Total

@@ -1,5 +1,5 @@
 Package: educabr
-Title: Access Historical Statistics on Brazilian Education
+Title: Harmonized Historical Series on Brazilian Education
 Version: 0.0.0.9000
 Authors@R: c(
     person("Tales", "Mançano",
@@ -14,18 +14,38 @@ Authors@R: c(
            email = "artur.cardoso@usp.br",
            role = "ctb",
            comment = c(ORCID = "0000-0002-8628-1653")))
-Description: Pacote em construção. Pretendemos fornecer dados tratados de múltiplas 
-    fontes, contemplando estatísticas históricas centrais da educação formal no Brasil, 
-    como proporção de matrículas, número de escolas, dados de fluxo escolar e indicadores 
-    de qualidade educacional. Os dados são organizados de forma limpa e padronizada 
-    para facilitar análises e visualizações.
-License: file LICENSE
+Description: Provides curated long-run series on Brazilian formal education,
+    with a focus on school enrollment and educational attainment (years of
+    schooling, literacy, level completion). Data are compiled and reconciled
+    from heterogeneous official and academic sources (Censo Escolar, PNAD,
+    Censo Demográfico, Anuário Estatístico do IBGE, Paglayan 2022, among
+    others) into a single tidy schema, with explicit provenance, enabling
+    descriptive analyses and the study of educational inequality across
+    race, sex, income and location.
+License: GPL (>= 3)
 URL: https://github.com/mancano-tales/educabr,
     https://mancano-tales.github.io/educabr/
 BugReports: https://github.com/mancano-tales/educabr/issues
 Encoding: UTF-8
+Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Depends: 
-    R (>= 3.5)
-LazyData: true
+Depends:
+    R (>= 4.1)
+Imports:
+    cli,
+    rlang,
+    tibble
+Suggests:
+    bslib,
+    dplyr,
+    ggplot2,
+    knitr,
+    pointblank,
+    readxl,
+    rmarkdown,
+    scales,
+    shiny,
+    testthat (>= 3.0.0),
+    yaml
+Config/testthat/edition: 3
