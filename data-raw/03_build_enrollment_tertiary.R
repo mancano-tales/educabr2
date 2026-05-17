@@ -153,18 +153,20 @@ canonicalise_source <- function(ds) {
 
   # ---- natural rows ------------------------------------------------
   # IBGE Estatísticas do Século XX
-  if (grepl("^educacao\\d", ds)) {
+  if (grepl("^educacao[0-9]", ds)) {
     note <- sprintf("IBGE Estatísticas do Século XX — referência '%s' (Anuário Estatístico do Brasil).", ds)
     return(list(source = "ibge_seculo_xx", source_note = note, is_derived = FALSE))
   }
   # INEP Sinopse CENSUP (1995-2008)
-  if (grepl("^CENSUP(19\\d{2}|200[0-8])_tabela", ds, ignore.case = FALSE) ||
+  # Note: R's grepl defaults to POSIX ERE where `\d` is not a digit class.
+  # Use [0-9] for portability.
+  if (grepl("^CENSUP(19[0-9]{2}|200[0-8])_tabela", ds, ignore.case = FALSE) ||
       grepl("^Sinopse_CENSUP_", ds)) {
     note <- sprintf("INEP Sinopse Estatística da Educação Superior — referência '%s'.", ds)
     return(list(source = "inep_sinopse_censup", source_note = note, is_derived = FALSE))
   }
   # INEP Microdados (2009-2024)
-  if (grepl("^CENSUP\\d{4}_microdados$", ds)) {
+  if (grepl("^CENSUP[0-9]{4}_microdados$", ds)) {
     year <- as.integer(substr(ds, 7, 10))
     note <- sprintf("INEP Microdados do CENSUP %d (MICRODADOS_CADASTRO_CURSOS_%d.CSV; agregação TP_CATEGORIA_ADMINISTRATIVA × TP_MODALIDADE_ENSINO × QT_MAT).", year, year)
     return(list(source = "inep_microdados_censup", source_note = note, is_derived = FALSE))
