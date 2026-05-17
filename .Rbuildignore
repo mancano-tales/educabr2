@@ -11,3 +11,5 @@
 ^CONTRIBUTING\.md$
 ^cran-comments\.md$
 ^\.lintr$
+^\.positai$
+^\.claude$

@@ -30,3 +30,4 @@ data-release/
 # environment
 .Renviron
 .env
+.positai

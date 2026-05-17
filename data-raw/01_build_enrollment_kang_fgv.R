@@ -79,7 +79,7 @@ build_primary_br <- function() {
   names(raw) <- c("year", "value")
 
   raw |>
-    dplyr::filter(!is.na(year), !is.na(value)) |>
+    dplyr::filter(!is.na(year), !is.na(value), year < 1933) |>
     dplyr::mutate(
       year        = as.integer(year),
       geo_level   = "BR", geo_code = "BR", geo_name = "Brasil",

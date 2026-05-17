@@ -141,7 +141,7 @@ constraints:
     - indicator
     - source
   domain:
-    year: { min: 1872, max: 2100 }
+    year: { min: 1871, max: 2100 }
     value: { allow_negative: false }
 
 conventions:
