@@ -31,3 +31,6 @@ data-release/
 .Renviron
 .env
 .positai
+
+# Claude Code local settings (machine-specific)
+.claude/
