@@ -43,6 +43,7 @@ Suggests:
     DT,
     ggplot2,
     knitr,
+    plotly,
     pointblank,
     readxl,
     rmarkdown,

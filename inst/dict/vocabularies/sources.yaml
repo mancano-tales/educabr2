@@ -63,35 +63,58 @@ sources:
       Long-run compilation of administrative statistics; primary source
       for pre-PNAD enrollment series.
 
-  kang_fgv_ibre_2023:
-    short_name: Kang/FGV-IBRE
+  kang_paese_felix_2021:
+    short_name: Kang, Paese & Felix (2021)
     full_name: >
       Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and
-      Unequal: Measuring Enrolments and Retention in Brazilian Education,
-      1933-2010. Revista de Historia Económica - Journal of Iberian and
-      Latin American Economic History, 39(2), 191-218.
-      Compilation refreshed and extended (1871-2010) and republished by
-      FGV/IBRE in April 2023.
-    type: academic_compilation
-    doi: 10.1017/S0212610920000099
-    url: https://www.cambridge.org/core/journals/revista-de-historia-economica-journal-of-iberian-and-latin-american-economic-history/article/abs/late-and-unequal-measuring-enrolments-and-retention-in-brazilian-education-19332010/38E316BCDABEC93DD66443FB90194859
-    coverage: { years: [1871, 2010], geo: [BR, UF] }
+      unequal: Enrolments and retention in Brazilian education, 1933-2010.
+      Revista de Historia Económica / Journal of Iberian and Latin American
+      Economic History, 39(2), 191–218.
+    type: academic
+    doi: 10.1017/S0212610921000112
+    url: https://doi.org/10.1017/S0212610921000112
+    coverage: { years: [1933, 2010], geo: [BR, UF] }
     notes: >
-      Long-run series of enrollment counts and rates (EF1, EF2, EF, EM,
-      ES) at the national level since 1871 (primary only), 1933-2010
-      (all levels) and 1955-2010 by UF. National break by color/race
-      (PNAD-aligned categories) covers 1960-2010. Methodological notes:
-      relatorio_metodologico_condati_26042023.pdf (in the source folder).
+      Enrollment counts and rates by stage (EF1, EF2, EF, EM, ES) at BR
+      and UF level, 1933-2010, including breakdown by color/race 1960-2010.
+
+  kang_menetrier_2024:
+    short_name: Kang & Menetrier (2024)
+    full_name: >
+      Kang, T. H., & Menetrier, I. (2024). Políticas elitistas e despesas
+      públicas em educação no Brasil, 1933-2010. Estudos Econômicos (São
+      Paulo), 54(3), e53575434.
+    type: academic
+    doi: 10.1590/1980-53575434tkim
+    url: https://doi.org/10.1590/1980-53575434tkim
+    coverage: { years: [1955, 2010], geo: [BR, UF] }
+    notes: UF-level enrollment and public expenditure series, 1955-2010.
+
+  kang_menetrier_comim_2024:
+    short_name: Kang, Menetrier & Comim (2024)
+    full_name: >
+      Kang, T. H., Menetrier, I., & Comim, F. (2024). The side effects of
+      a big push growth strategy: Export incentives and primary education
+      under military rule in Brazil, 1967–1985. Revista de Historia
+      Económica / Journal of Iberian and Latin American Economic History,
+      42(3), 387–414.
+    type: academic
+    doi: 10.1017/S0212610924000120
+    url: https://doi.org/10.1017/S0212610924000120
+    coverage: { years: [1871, 2010], geo: [BR] }
+    notes: Historical primary (ensino primário / anos iniciais) enrollment, 1871-2010.
 
   walter_kang_2023:
-    short_name: Walter & Kang
+    short_name: Walter & Kang (2024)
     full_name: >
-      Walter, J., & Kang, T. H. (2023). A new dataset of average years
-      of schooling in Brazil, 1925-2015. FGV-IBRE working paper.
-    type: academic_compilation
-    url: https://ibre.fgv.br/sites/ibre.fgv.br/files/arquivos/u65/walter_e_kang_2023_-_ays_wp.pdf
+      Walter, J. R., & Kang, T. H. (2024). A new dataset of average years
+      of schooling in Brazil, 1925–2015. Economic History of Developing
+      Regions, 39(3), 307–336. [Originally circulated as FGV-IBRE working
+      paper, 2023.]
+    type: academic
+    doi: 10.1080/20780389.2024.2417268
+    url: https://doi.org/10.1080/20780389.2024.2417268
     coverage: { years: [1925, 2015], geo: [BR, region, UF] }
     notes: >
-      Series of mean years of schooling for the adult population, with
-      breakdowns by sex, color/race, macro-region and UF. Primary source
-      for `get_schooling(measure = "years_of_schooling")` (M3).
+      Mean years of schooling with breakdowns by sex, color/race,
+      macro-region, and UF.

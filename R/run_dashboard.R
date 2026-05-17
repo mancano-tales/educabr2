@@ -18,7 +18,7 @@ run_dashboard <- function(lang = c("pt", "en"), ...) {
   lang <- match.arg(lang)
 
   rlang::check_installed(
-    c("shiny", "bslib", "ggplot2", "scales", "DT"),
+    c("shiny", "bslib", "ggplot2", "plotly", "scales", "DT"),
     reason = "to launch the educabr dashboard"
   )
 

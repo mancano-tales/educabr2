@@ -24,13 +24,18 @@ library(readxl)
 
 stopifnot(file.exists("DESCRIPTION"))  # run from package root
 
-src_dir     <- "data-raw/sources/kang_fgv_ibre_2023"
-SOURCE_KEY  <- "kang_fgv_ibre_2023"
-SOURCE_NOTE <- paste(
-  "Kang, Paese & Felix (2021), Late and Unequal,",
-  "Revista de Historia Económica 39(2):191-218.",
-  "FGV/IBRE compilation refreshed Apr 2023."
-)
+src_dir <- "data-raw/sources/kang_fgv_ibre_2023"
+
+# Each xlsx file is cited to the article that introduced / primarily uses it.
+SK_PRIMARY  <- "kang_menetrier_comim_2024"
+SK_STAGES   <- "kang_paese_felix_2021"
+SK_BYRACE   <- "kang_paese_felix_2021"
+SK_BYUF     <- "kang_menetrier_2024"
+
+SN_PRIMARY  <- "Kang, Menetrier & Comim (2024). RHE 42(3):387-414. doi:10.1017/S0212610924000120"
+SN_STAGES   <- "Kang, Paese & Felix (2021). RHE 39(2):191-218. doi:10.1017/S0212610921000112"
+SN_BYRACE   <- SN_STAGES
+SN_BYUF     <- "Kang & Menetrier (2024). Estudos Econômicos 54(3). doi:10.1590/1980-53575434tkim"
 
 # ---------------------------------------------------------------------
 # helpers
@@ -89,11 +94,8 @@ build_primary_br <- function() {
       age_group   = NA_character_,
       indicator   = "enrollment_count",
       unit        = "count",
-      source      = SOURCE_KEY,
-      source_note = paste(
-        SOURCE_NOTE,
-        "Sheet `dados_matricula`: ensino primário histórico (~anos iniciais)."
-      )
+      source      = SK_PRIMARY,
+      source_note = SN_PRIMARY
     )
 }
 
@@ -170,8 +172,8 @@ build_stages_br <- function() {
       year        = as.integer(year),
       geo_level   = "BR", geo_code = "BR", geo_name = "Brasil",
       network     = "total", dim_race = "total",
-      source      = SOURCE_KEY,
-      source_note = SOURCE_NOTE
+      source      = SK_STAGES,
+      source_note = SN_STAGES
     )
 }
 
@@ -245,8 +247,8 @@ build_byrace_br <- function() {
     dplyr::mutate(
       geo_level   = "BR", geo_code = "BR", geo_name = "Brasil",
       network     = "total",
-      source      = SOURCE_KEY,
-      source_note = SOURCE_NOTE
+      source      = SK_BYRACE,
+      source_note = SN_BYRACE
     )
 }
 
@@ -308,8 +310,8 @@ build_byuf <- function() {
       geo_name    = unname(UF_NAMES[uf]),
       network     = "total",
       dim_race    = "total",
-      source      = SOURCE_KEY,
-      source_note = SOURCE_NOTE
+      source      = SK_BYUF,
+      source_note = SN_BYUF
     ) |>
     dplyr::select(-uf)
 }
@@ -341,11 +343,10 @@ print(dplyr::count(enrollment_kang_fgv, geo_level, level, indicator))
 educabr:::validate_against_schema(enrollment_kang_fgv, theme = "enrollment")
 
 attr(enrollment_kang_fgv, "educabr_meta") <- list(
-  build_script    = "data-raw/01_build_enrollment_kang_fgv.R",
-  built_at        = Sys.time(),
-  primary_source  = SOURCE_KEY,
-  citation        = SOURCE_NOTE,
-  raw_files       = c(
+  build_script   = "data-raw/01_build_enrollment_kang_fgv.R",
+  built_at       = Sys.time(),
+  primary_sources = c(SK_PRIMARY, SK_STAGES, SK_BYRACE, SK_BYUF),
+  raw_files      = c(
     "data-raw/sources/kang_fgv_ibre_2023/1._matricula_primario_1871_2010_v_abril2023.xlsx",
     "data-raw/sources/kang_fgv_ibre_2023/2._matriculas_txmatriculas_porcor_1960_2010_v_abril2023.xlsx",
     "data-raw/sources/kang_fgv_ibre_2023/4._matricula_txmatriculas_1933_2010_v_abril2023.xlsx",

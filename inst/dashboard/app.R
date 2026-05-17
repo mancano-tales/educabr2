@@ -118,7 +118,7 @@ ui <- bslib::page_navbar(
       bslib::navset_card_tab(
         bslib::nav_panel(
           "Série",
-          plotOutput("enr_plot", height = "520px"),
+          plotly::plotlyOutput("enr_plot", height = "520px"),
           tags$small(textOutput("enr_caption"))
         ),
         bslib::nav_panel(
@@ -168,7 +168,7 @@ ui <- bslib::page_navbar(
       bslib::navset_card_tab(
         bslib::nav_panel(
           "Série",
-          plotOutput("sch_plot", height = "520px"),
+          plotly::plotlyOutput("sch_plot", height = "520px"),
           tags$small(textOutput("sch_caption"))
         ),
         bslib::nav_panel(
@@ -227,17 +227,27 @@ server <- function(input, output, session) {
     )
   })
 
-  output$enr_plot <- renderPlot({
+  output$enr_plot <- plotly::renderPlotly({
     d <- enr_data()
     validate(need(nrow(d) > 0, "Sem dados para os filtros selecionados."))
 
     color_var <- if (input$enr_dimension == "race") "dim_race" else "level"
 
+    d$hover_text <- paste0(
+      "<b>Ano:</b> ", d$year, "<br>",
+      "<b>", d[[color_var]], "</b><br>",
+      if (input$enr_indicator == "rate")
+        paste0("<b>Taxa:</b> ", sprintf("%.1f%%", d$value))
+      else
+        paste0("<b>Matrículas:</b> ", format(round(d$value), big.mark = ".", scientific = FALSE))
+    )
+
     g <- ggplot2::ggplot(
       d,
       ggplot2::aes(x = year, y = value,
                    colour = .data[[color_var]],
-                   group  = interaction(.data[[color_var]], geo_code))
+                   group  = interaction(.data[[color_var]], geo_code),
+                   text   = hover_text)
     ) +
       ggplot2::geom_line(linewidth = 0.9, alpha = 0.9) +
       ggplot2::geom_point(size = 0.6, alpha = 0.6) +
@@ -266,7 +276,8 @@ server <- function(input, output, session) {
     if (input$enr_geo_level == "UF" && length(unique(d$geo_code)) > 1)
       g <- g + ggplot2::facet_wrap(~ geo_name, scales = "free_y")
 
-    g
+    plotly::ggplotly(g, tooltip = "text") |>
+      plotly::layout(legend = list(orientation = "h", y = -0.15))
   })
 
   output$enr_caption <- renderText({
@@ -311,7 +322,7 @@ server <- function(input, output, session) {
     )
   })
 
-  output$sch_plot <- renderPlot({
+  output$sch_plot <- plotly::renderPlotly({
     d <- sch_data()
     validate(need(nrow(d) > 0, "Sem dados para os filtros selecionados."))
 
@@ -320,11 +331,18 @@ server <- function(input, output, session) {
                         sex  = "dim_sex",
                         "geo_name")
 
+    d$hover_text <- paste0(
+      "<b>Ano:</b> ", d$year, "<br>",
+      "<b>", d[[color_var]], "</b><br>",
+      "<b>Anos médios:</b> ", sprintf("%.2f", d$value)
+    )
+
     g <- ggplot2::ggplot(
       d,
       ggplot2::aes(x = year, y = value,
                    colour = .data[[color_var]],
-                   group  = interaction(.data[[color_var]], geo_code))
+                   group  = interaction(.data[[color_var]], geo_code),
+                   text   = hover_text)
     ) +
       ggplot2::geom_line(linewidth = 0.9, alpha = 0.9) +
       ggplot2::geom_point(size = 0.6, alpha = 0.6) +
@@ -347,7 +365,8 @@ server <- function(input, output, session) {
     if (input$sch_geo_level == "UF" && length(unique(d$geo_code)) > 1)
       g <- g + ggplot2::facet_wrap(~ geo_name, scales = "free_y")
 
-    g
+    plotly::ggplotly(g, tooltip = "text") |>
+      plotly::layout(legend = list(orientation = "h", y = -0.15))
   })
 
   output$sch_caption <- renderText({
