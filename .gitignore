@@ -8,6 +8,7 @@
 # R data files from past sessions
 .Rdata
 .RData
+.RDataTmp
 
 # RStudio files
 .Rproj.user/
