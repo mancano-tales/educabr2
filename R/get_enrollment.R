@@ -38,13 +38,16 @@
 #'   available sources. **Tip:** when the same `(year, level, network)`
 #'   is covered by multiple sources (common in the tertiary panel),
 #'   pass `source = "..."` to lock down a single series.
-#' @param include_derived Logical. If `FALSE` (default), rows where the
-#'   value was computed by combining components from different sources
-#'   (e.g. Presencial from one source + EAD from another, for years
-#'   where the original source did not publish the combined figure)
-#'   are excluded. Set to `TRUE` to inspect or compare these
-#'   derived rows. Has no effect on datasets that do not carry an
-#'   `is_derived` flag.
+#' @param include_derived Logical. If `FALSE` (default), excludes the
+#'   so-called **reconstructed totals** — rows where the value was
+#'   computed by combining components from different sources (typically
+#'   the in-person enrollment from a single-source paper plus the EAD
+#'   enrollment from INEP, for 2000-2008 where the original sources
+#'   under-reported the combined total). Set to `TRUE` to include them.
+#'   The composition is documented in `source_note`; the `source`
+#'   column for these rows carries the composite key
+#'   `"<presencial_source>+<ead_source>"`. Has no effect on datasets
+#'   that do not carry an `is_derived` flag.
 #' @param wide Logical. If `TRUE`, pivots the `indicator` column to
 #'   wide form (one column per indicator). Default `FALSE`.
 #' @param lang One of `"en"` (default) or `"pt"`. When `"pt"`, factor

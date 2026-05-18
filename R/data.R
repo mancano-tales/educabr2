@@ -89,11 +89,12 @@
 #'     `total`.}
 #'   \item{modality}{`presencial`, `ead`, or `total` (available from
 #'     2000 onwards).}
-#'   \item{is_derived}{`TRUE` when the row is a computed total
-#'     combining components from different sources (e.g. Presencial
-#'     from Kang + EAD from CENSUP 7.1 for 2000-2008, where the
-#'     original source did not publish a combined figure). Filtered
-#'     out by `get_enrollment()` unless `include_derived = TRUE`.}
+#'   \item{is_derived}{`TRUE` when the row is a **reconstructed total**
+#'     — a computed total combining the in-person enrollment from one
+#'     source with the EAD enrollment from INEP, used to fix the
+#'     2000-2008 transition gap where the original sources excluded
+#'     EAD from their nominal totals. Filtered out by
+#'     `get_enrollment()` unless `include_derived = TRUE`.}
 #' }
 #'
 #' @section Primary sources:

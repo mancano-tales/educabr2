@@ -1,0 +1,69 @@
+url: https://mancano-tales.github.io/educabr/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    primary: "#2d6a4f"
+    base_font:    {google: "Source Sans Pro"}
+    heading_font: {google: "Source Sans Pro"}
+    code_font:    {google: "JetBrains Mono"}
+
+home:
+  title: "educabr"
+  description: >
+    Harmonised historical series on Brazilian education — enrollment,
+    educational attainment and inequality — from 1871 to 2024.
+  links:
+    - text: GitHub
+      href: https://github.com/mancano-tales/educabr
+    - text: Live dashboard
+      href: https://github.com/mancano-tales/educabr
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    intro:
+      text: Get started
+      href: articles/01-introducao.html
+
+reference:
+  - title: Data access
+    desc: Public API for the harmonised series.
+    contents:
+      - get_enrollment
+      - get_schooling
+
+  - title: Dashboard
+    contents:
+      - run_dashboard
+
+  - title: Datasets
+    desc: >
+      Internal backing stores for `get_enrollment()` and
+      `get_schooling()`. End users should call the `get_*()`
+      functions rather than loading these objects directly.
+    contents:
+      - enrollment_kang_fgv
+      - enrollment_tertiary
+      - schooling_kang_fgv
+
+  - title: Package
+    contents:
+      - educabr-package
+
+articles:
+  - title: Tutorials
+    navbar: ~
+    contents:
+      - 01-introducao
+
+news:
+  releases:
+    - text: "All releases"
+      href: news/index.html
+
+development:
+  mode: auto
