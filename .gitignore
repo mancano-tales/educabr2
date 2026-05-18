@@ -40,3 +40,7 @@ data-release/
 man/figures/raw/brasil-centered.png
 /doc/
 /Meta/
+
+# rsconnect (shinyapps.io) — local deployment state, regenerated each deploy
+inst/dashboard/rsconnect/
+inst/dashboard/manifest.json

@@ -55,3 +55,13 @@ Suggests:
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 LazyData: true
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: educabr
+RemoteUsername: mancano-tales
+RemoteRef: HEAD
+RemoteSha: d402e73
+GithubRepo: educabr
+GithubUsername: mancano-tales
+GithubRef: HEAD
+GithubSHA1: d402e73

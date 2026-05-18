@@ -5,6 +5,11 @@
 #   * Tertiary Education (multi-source comparison, 1907-2024)
 #   * Educational Attainment (Walter & Kang mean years of schooling)
 # Consumes only the public API: get_enrollment() and get_schooling().
+#
+# INSTALLATION
+#   educabr is not on CRAN. Install from GitHub before running locally:
+#     remotes::install_github("mancano-tales/educabr")
+#   global.R handles this automatically on shinyapps.io and fresh clones.
 
 library(shiny)
 library(bslib)
