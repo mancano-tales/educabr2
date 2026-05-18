@@ -1,9 +1,9 @@
-# educabr dashboard — v0.3
+# educabr dashboard — v0.4
 #
-# Three-theme navbar:
-#   * Matrículas (Kang fundamental/médio/superior, simple)
-#   * Ensino Superior (multi-source comparison, 1907-2024)
-#   * Escolaridade (Walter & Kang mean years of schooling)
+# Three-theme navbar (UI in English):
+#   * Enrollment (Kang fundamental/medio/superior, simple)
+#   * Tertiary Education (multi-source comparison, 1907-2024)
+#   * Educational Attainment (Walter & Kang mean years of schooling)
 # Consumes only the public API: get_enrollment() and get_schooling().
 
 library(shiny)
@@ -33,52 +33,52 @@ REGION_CHOICES <- c(
   "Sul (S)"            = "S"
 )
 
-# ---- matrículas choices ----------------------------------------------
+# ---- enrollment choices ----------------------------------------------
 
 ENR_LEVEL_CHOICES <- c(
-  "Fundamental (total)"         = "fundamental",
-  "Fundamental — anos iniciais" = "fundamental_anos_iniciais",
-  "Fundamental — anos finais"   = "fundamental_anos_finais",
-  "Médio"                       = "medio",
-  "Superior"                    = "superior"
+  "Fundamental (total)"             = "fundamental",
+  "Fundamental — primary grades"    = "fundamental_anos_iniciais",
+  "Fundamental — lower secondary"   = "fundamental_anos_finais",
+  "Upper secondary (médio)"         = "medio",
+  "Tertiary (superior)"             = "superior"
 )
-ENR_IND_CHOICES <- c("Taxa bruta (%)" = "rate", "Matrículas (n)" = "count")
-ENR_DIM_CHOICES <- c("Total (sem recorte)" = "none", "Por raça/cor" = "race")
+ENR_IND_CHOICES <- c("Gross rate (%)" = "rate", "Enrollment (n)" = "count")
+ENR_DIM_CHOICES <- c("Total (no breakdown)" = "none", "By race/colour" = "race")
 
-# ---- ensino superior (multifonte) choices ----------------------------
+# ---- tertiary education (multi-source) choices -----------------------
 
 TER_NETWORK_CHOICES <- c(
-  "Total (geral)"                       = "total",
-  "Pública (agregada)"                  = "publica",
-  "Pública — Federal"                   = "federal",
-  "Pública — Estadual"                  = "estadual",
-  "Pública — Municipal"                 = "municipal",
-  "Privada (agregada)"                  = "privada",
-  "Privada — Particular"                = "privada_particular",
-  "Privada — Comunit./Confes./Filant."  = "privada_comunitaria_confessional_filantropica",
-  "Privada — Com fins lucrativos"       = "privada_lucrativa",
-  "Privada — Sem fins lucrativos"       = "privada_nao_lucrativa",
-  "Especial"                            = "especial"
+  "Total (all)"                                    = "total",
+  "Public (aggregate)"                             = "publica",
+  "Public — Federal"                               = "federal",
+  "Public — State"                                 = "estadual",
+  "Public — Municipal"                             = "municipal",
+  "Private (aggregate)"                            = "privada",
+  "Private — Particular"                           = "privada_particular",
+  "Private — Community/Confessional/Philanthropic" = "privada_comunitaria_confessional_filantropica",
+  "Private — For-profit"                           = "privada_lucrativa",
+  "Private — Non-profit"                           = "privada_nao_lucrativa",
+  "Especial"                                       = "especial"
 )
 
 TER_INST_CHOICES <- c(
-  "Total (sem desagregação)"            = "total",
-  "Universidade"                        = "university",
-  "Centro Universitário"                = "university_center",
-  "Faculdade"                           = "faculty",
-  "Faculdade/Escola/Instituto"          = "faculty_school_institute",
-  "Faculdade Integrada"                 = "integrated_faculty",
-  "Faculdade Integ./Centro Univ."       = "integrated_faculty_university_center",
-  "Centro de Educação Tecnológica"      = "technology_center",
-  "Centro de Ed. Tec./Fac. Tec."        = "technology_center_fat",
-  "CEFET/IFET"                          = "cefet_ifet",
-  "Estabelecimento Isolado"             = "isolated_establishment"
+  "Total (no breakdown)"               = "total",
+  "University"                         = "university",
+  "University Center"                  = "university_center",
+  "Faculty"                            = "faculty",
+  "Faculty/School/Institute"           = "faculty_school_institute",
+  "Integrated Faculty"                 = "integrated_faculty",
+  "Integrated Faculty/Univ. Center"    = "integrated_faculty_university_center",
+  "Technology Center"                  = "technology_center",
+  "Technology Center / Tech. Faculty"  = "technology_center_fat",
+  "CEFET/IFET"                         = "cefet_ifet",
+  "Isolated Establishment"             = "isolated_establishment"
 )
 
 TER_MOD_CHOICES <- c(
-  "Total (sem desagregação)" = "total",
-  "Presencial"               = "presencial",
-  "EAD (Distância)"          = "ead"
+  "Total (no breakdown)" = "total",
+  "In-person"            = "presencial",
+  "Distance (EAD)"       = "ead"
 )
 
 TER_SOURCE_CHOICES <- c(
@@ -87,31 +87,53 @@ TER_SOURCE_CHOICES <- c(
   "Kang, Menetrier & Comim (2024)"      = "kang_menetrier_comim_2024",
   "Durham (2005)"                       = "durham_2005",
   "Maduro Junior (2007)"                = "maduro_junior_2007",
-  "IBGE Estatísticas do Século XX"      = "ibge_seculo_xx",
-  "INEP Sinopse CENSUP (1995-2008)"     = "inep_sinopse_censup",
-  "INEP Microdados CENSUP (2009-2024)"  = "inep_microdados_censup",
+  "IBGE Statistics of the 20th Century" = "ibge_seculo_xx",
+  "INEP CENSUP Synopsis (1995-2008)"    = "inep_sinopse_censup",
+  "INEP CENSUP Microdata (2009-2024)"   = "inep_microdados_censup",
   "INEP CENSUP Power BI (2010-2024)"    = "inep_censup_powerbi"
 )
 
 TER_COLOR_BY_CHOICES <- c(
-  "Fonte"               = "source",
-  "Rede"                = "network",
-  "Tipo institucional"  = "institution_type",
-  "Modalidade"          = "modality"
+  "Source"            = "source",
+  "Network"           = "network",
+  "Institution type"  = "institution_type",
+  "Modality"          = "modality"
 )
 
-# ---- escolaridade choices --------------------------------------------
+# Each source gets a distinct ggplot2 plotting symbol for redundant
+# (color + shape) encoding — inspired by Mançano (2026) thesis plots.
+TER_SOURCE_SHAPES <- c(
+  "kang_paese_felix_2021"     = 17,  # solid up-triangle
+  "kang_menetrier_2024"       = 2,   # open up-triangle
+  "kang_menetrier_comim_2024" = 25,  # solid down-triangle
+  "durham_2005"               = 18,  # solid diamond
+  "maduro_junior_2007"        = 5,   # open diamond
+  "ibge_seculo_xx"            = 15,  # solid square
+  "inep_sinopse_censup"       = 22,  # crossed square
+  "inep_microdados_censup"    = 16,  # solid circle
+  "inep_censup_powerbi"       = 1    # open circle
+)
+
+# Modality drives the line dash pattern (solid for in-person & total,
+# dashed for EAD), again echoing the convention in the reference plots.
+TER_MODALITY_LINETYPES <- c(
+  "total"      = "solid",
+  "presencial" = "solid",
+  "ead"        = "dashed"
+)
+
+# ---- educational attainment choices ----------------------------------
 
 SCH_DIM_CHOICES <- c(
-  "Total (sem recorte)" = "none",
-  "Por raça/cor"        = "race",
-  "Por sexo"            = "sex"
+  "Total (no breakdown)" = "none",
+  "By race/colour"       = "race",
+  "By sex"               = "sex"
 )
 
 # ---- helper ----------------------------------------------------------
 
 sources_card_ui <- function(source_keys, yaml_path) {
-  if (!nzchar(yaml_path)) return(tags$p("Catálogo de fontes indisponível."))
+  if (!nzchar(yaml_path)) return(tags$p("Source catalogue unavailable."))
   all_sources <- yaml::read_yaml(yaml_path)$sources
   used <- if (length(source_keys)) source_keys else names(all_sources)
   cards <- lapply(used, function(key) {
@@ -122,12 +144,12 @@ sources_card_ui <- function(source_keys, yaml_path) {
       bslib::card_body(
         tags$p(meta$full_name %||% ""),
         if (!is.null(meta$url))
-          tags$a(href = meta$url, "Link da fonte", target = "_blank"),
+          tags$a(href = meta$url, "Source link", target = "_blank"),
         if (!is.null(meta$coverage))
-          tags$p(tags$strong("Cobertura: "),
+          tags$p(tags$strong("Coverage: "),
                  sprintf("%s–%s, %s",
                          meta$coverage$years[[1]] %||% "?",
-                         meta$coverage$years[[2]] %||% "atual",
+                         meta$coverage$years[[2]] %||% "present",
                          paste(meta$coverage$geo, collapse = ", ")))
       )
     )
@@ -140,78 +162,78 @@ sources_card_ui <- function(source_keys, yaml_path) {
 # ---- UI --------------------------------------------------------------
 
 ui <- bslib::page_navbar(
-  title           = "educabr — Educação no Brasil",
+  title           = "educabr — Brazilian Education",
   theme           = bslib::bs_theme(version = 5),
   navbar_options  = bslib::navbar_options(bg = "#2d6a4f"),
 
-  # ---- Matrículas ----
+  # ---- Enrollment ----
   bslib::nav_panel(
-    title = "Matrículas",
+    title = "Enrollment",
     bslib::layout_sidebar(
       sidebar = bslib::sidebar(
         width = 320,
-        radioButtons("enr_geo_level", "Granularidade",
-                     choices = c("Brasil" = "BR", "Estados (UF)" = "UF"),
+        radioButtons("enr_geo_level", "Geographic level",
+                     choices = c("Brazil" = "BR", "States (UF)" = "UF"),
                      selected = "BR", inline = TRUE),
         conditionalPanel(
           condition = "input.enr_geo_level == 'UF'",
-          selectizeInput("enr_geo", "UF(s)", choices = UF_CHOICES,
+          selectizeInput("enr_geo", "State(s)", choices = UF_CHOICES,
                          multiple = TRUE, selected = c("SP","BA","AM","RS"),
                          options = list(plugins = list("remove_button")))
         ),
-        selectizeInput("enr_level", "Nível", choices = ENR_LEVEL_CHOICES,
+        selectizeInput("enr_level", "Level", choices = ENR_LEVEL_CHOICES,
                        multiple = TRUE, selected = "fundamental",
                        options = list(plugins = list("remove_button"))),
-        radioButtons("enr_indicator", "Indicador", ENR_IND_CHOICES,
+        radioButtons("enr_indicator", "Indicator", ENR_IND_CHOICES,
                      selected = "rate", inline = TRUE),
-        radioButtons("enr_dimension", "Recorte", ENR_DIM_CHOICES,
+        radioButtons("enr_dimension", "Breakdown", ENR_DIM_CHOICES,
                      selected = "none"),
-        sliderInput("enr_year", "Anos",
+        sliderInput("enr_year", "Years",
                     min = 1871, max = 2010, value = c(1933, 2010),
                     sep = "", step = 1),
         hr(),
-        downloadButton("enr_download", "Baixar CSV", class = "btn-primary w-100")
+        downloadButton("enr_download", "Download CSV", class = "btn-primary w-100")
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
-          "Série",
+          "Series",
           plotly::plotlyOutput("enr_plot", height = "520px"),
           tags$small(textOutput("enr_caption"))
         ),
         bslib::nav_panel(
-          "Tabela",
+          "Table",
           DT::DTOutput("enr_table")
         ),
         bslib::nav_panel(
-          "Fontes",
+          "Sources",
           uiOutput("enr_sources")
         )
       )
     )
   ),
 
-  # ---- Ensino Superior (multi-fonte) ----
+  # ---- Tertiary Education (multi-source) ----
   bslib::nav_panel(
-    title = "Ensino Superior",
+    title = "Tertiary Education",
     bslib::layout_sidebar(
       sidebar = bslib::sidebar(
         width = 360,
-        sliderInput("ter_year", "Anos",
+        sliderInput("ter_year", "Years",
                     min = 1907, max = 2024, value = c(1933, 2024),
                     sep = "", step = 1),
-        selectizeInput("ter_network", "Rede(s)",
+        selectizeInput("ter_network", "Network(s)",
                        choices = TER_NETWORK_CHOICES, multiple = TRUE,
                        selected = "total",
                        options = list(plugins = list("remove_button"))),
-        selectizeInput("ter_inst", "Tipo institucional",
+        selectizeInput("ter_inst", "Institution type",
                        choices = TER_INST_CHOICES, multiple = TRUE,
                        selected = "total",
                        options = list(plugins = list("remove_button"))),
-        selectizeInput("ter_modality", "Modalidade",
+        selectizeInput("ter_modality", "Modality",
                        choices = TER_MOD_CHOICES, multiple = TRUE,
                        selected = "total",
                        options = list(plugins = list("remove_button"))),
-        selectizeInput("ter_source", "Fonte(s) — selecione para comparar",
+        selectizeInput("ter_source", "Source(s) — select to compare",
                        choices = TER_SOURCE_CHOICES, multiple = TRUE,
                        selected = c("kang_paese_felix_2021",
                                     "durham_2005",
@@ -219,76 +241,76 @@ ui <- bslib::page_navbar(
                                     "inep_microdados_censup",
                                     "ibge_seculo_xx"),
                        options = list(plugins = list("remove_button"))),
-        radioButtons("ter_color_by", "Colorir linhas por",
+        radioButtons("ter_color_by", "Colour lines by",
                      choices = TER_COLOR_BY_CHOICES,
                      selected = "source", inline = FALSE),
-        checkboxInput("ter_derived", "Incluir linhas derivadas (Presencial+EAD)",
+        checkboxInput("ter_derived", "Include derived rows (In-person + EAD)",
                       value = FALSE),
         hr(),
-        downloadButton("ter_download", "Baixar CSV", class = "btn-primary w-100")
+        downloadButton("ter_download", "Download CSV", class = "btn-primary w-100")
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
-          "Série",
+          "Series",
           plotly::plotlyOutput("ter_plot", height = "520px"),
           tags$small(textOutput("ter_caption"))
         ),
         bslib::nav_panel(
-          "Tabela",
+          "Table",
           DT::DTOutput("ter_table")
         ),
         bslib::nav_panel(
-          "Fontes",
+          "Sources",
           uiOutput("ter_sources")
         )
       )
     )
   ),
 
-  # ---- Escolaridade ----
+  # ---- Educational Attainment ----
   bslib::nav_panel(
-    title = "Escolaridade",
+    title = "Educational Attainment",
     bslib::layout_sidebar(
       sidebar = bslib::sidebar(
         width = 320,
-        radioButtons("sch_geo_level", "Granularidade",
-                     choices = c("Brasil" = "BR",
-                                 "Macrorregiões" = "region",
-                                 "Estados (UF)" = "UF"),
+        radioButtons("sch_geo_level", "Geographic level",
+                     choices = c("Brazil"      = "BR",
+                                 "Macroregion" = "region",
+                                 "States (UF)" = "UF"),
                      selected = "BR", inline = FALSE),
         conditionalPanel(
           condition = "input.sch_geo_level == 'UF'",
-          selectizeInput("sch_geo_uf", "UF(s)", choices = UF_CHOICES,
+          selectizeInput("sch_geo_uf", "State(s)", choices = UF_CHOICES,
                          multiple = TRUE, selected = c("SP","BA","AM","RS"),
                          options = list(plugins = list("remove_button")))
         ),
         conditionalPanel(
           condition = "input.sch_geo_level == 'region'",
-          selectizeInput("sch_geo_reg", "Região(ões)", choices = REGION_CHOICES,
+          selectizeInput("sch_geo_reg", "Region(s)", choices = REGION_CHOICES,
                          multiple = TRUE,
                          selected = c("N","NE","SE","S"),
                          options = list(plugins = list("remove_button")))
         ),
-        radioButtons("sch_dimension", "Recorte", SCH_DIM_CHOICES,
+        radioButtons("sch_dimension", "Breakdown", SCH_DIM_CHOICES,
                      selected = "none"),
-        sliderInput("sch_year", "Anos",
+        sliderInput("sch_year", "Years",
                     min = 1925, max = 2015, value = c(1950, 2015),
                     sep = "", step = 1),
         hr(),
-        downloadButton("sch_download", "Baixar CSV", class = "btn-primary w-100")
+        downloadButton("sch_download", "Download CSV", class = "btn-primary w-100")
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
-          "Série",
+          "Series",
           plotly::plotlyOutput("sch_plot", height = "520px"),
           tags$small(textOutput("sch_caption"))
         ),
         bslib::nav_panel(
-          "Tabela",
+          "Table",
           DT::DTOutput("sch_table")
         ),
         bslib::nav_panel(
-          "Fontes",
+          "Sources",
           uiOutput("sch_sources")
         )
       )
@@ -297,24 +319,24 @@ ui <- bslib::page_navbar(
 
   bslib::nav_spacer(),
   bslib::nav_panel(
-    title = "Sobre",
+    title = "About",
     tags$div(
       class = "container py-4",
       tags$h4(tags$strong("educabr")),
-      tags$p("Séries históricas tratadas de educação brasileira.",
-             " Dados compilados de fontes oficiais e acadêmicas em",
-             " um schema tidy canônico com proveniência explícita."),
-      tags$p("Temas disponíveis neste painel:"),
+      tags$p("Harmonised historical series on Brazilian education. Data",
+             " curated from official and academic sources into a single",
+             " tidy schema with explicit provenance."),
+      tags$p("Themes available in this dashboard:"),
       tags$ul(
-        tags$li(tags$strong("Matrículas"), " — taxas e contagens por nível, raça e UF (1871–2010, Kang/FGV-IBRE)."),
-        tags$li(tags$strong("Ensino Superior"), " — matrículas no ensino superior 1907–2024, compilação multi-fonte (IBGE Século XX, Durham, Maduro Junior, Kang, INEP Sinopse, INEP Microdados, INEP Power BI). Permite comparação direta entre fontes para o mesmo período."),
-        tags$li(tags$strong("Escolaridade"), " — anos médios de estudo por sexo, raça e UF (1925–2015, Walter & Kang).")
+        tags$li(tags$strong("Enrollment"), " — enrollment counts and gross rates by level, race and state (1871–2010, Kang/FGV-IBRE)."),
+        tags$li(tags$strong("Tertiary Education"), " — higher-education enrollment 1907–2024, multi-source compilation (IBGE 20th-Century Statistics, Durham, Maduro Junior, Kang et al., INEP Synopsis, INEP Microdata, INEP Power BI). Lets you compare estimates from different sources side by side."),
+        tags$li(tags$strong("Educational Attainment"), " — mean years of schooling by sex, race and state (1925–2015, Walter & Kang).")
       ),
-      tags$p("Dados acessíveis via R: ",
-             tags$code("educabr::get_enrollment()"), " e ",
+      tags$p("Data accessible from R: ",
+             tags$code("educabr::get_enrollment()"), " and ",
              tags$code("educabr::get_schooling()"), "."),
       tags$p(tags$a(href = "https://github.com/mancano-tales/educabr",
-                    "Repositório no GitHub", target = "_blank"))
+                    "GitHub repository", target = "_blank"))
     )
   )
 )
@@ -336,7 +358,7 @@ server <- function(input, output, session) {
       dimension = input$enr_dimension,
       indicator = input$enr_indicator,
       wide      = FALSE,
-      lang      = "pt"
+      lang      = "en"
     )
   })
 
@@ -347,12 +369,12 @@ server <- function(input, output, session) {
     color_var <- if (input$enr_dimension == "race") "dim_race" else "level"
 
     d$hover_text <- paste0(
-      "<b>Ano:</b> ", d$year, "<br>",
+      "<b>Year:</b> ", d$year, "<br>",
       "<b>", d[[color_var]], "</b><br>",
       if (input$enr_indicator == "rate")
-        paste0("<b>Taxa:</b> ", sprintf("%.1f%%", d$value))
+        paste0("<b>Rate:</b> ", sprintf("%.1f%%", d$value))
       else
-        paste0("<b>Matrículas:</b> ", format(round(d$value), big.mark = ".", scientific = FALSE))
+        paste0("<b>Enrollment:</b> ", format(round(d$value), big.mark = ",", scientific = FALSE))
     )
 
     g <- ggplot2::ggplot(
@@ -371,10 +393,10 @@ server <- function(input, output, session) {
                      panel.grid.minor = ggplot2::element_blank()) +
       ggplot2::labs(
         x = NULL,
-        y = if (input$enr_indicator == "rate") "Taxa bruta (%)" else "Matrículas",
+        y = if (input$enr_indicator == "rate") "Gross enrollment rate (%)" else "Enrollment",
         title = paste0(
-          if (input$enr_indicator == "rate") "Taxa de matrícula" else "Matrículas",
-          " — ", if (input$enr_geo_level == "BR") "Brasil" else "Estados"
+          if (input$enr_indicator == "rate") "Enrollment rate" else "Enrollment",
+          " — ", if (input$enr_geo_level == "BR") "Brazil" else "States"
         )
       )
 
@@ -383,7 +405,7 @@ server <- function(input, output, session) {
         labels = function(x) paste0(round(x, 1), "%"))
     } else {
       g <- g + ggplot2::scale_y_continuous(
-        labels = scales::label_number(big.mark = "."))
+        labels = scales::label_number(big.mark = ","))
     }
 
     if (input$enr_geo_level == "UF" && length(unique(d$geo_code)) > 1)
@@ -396,7 +418,7 @@ server <- function(input, output, session) {
   output$enr_caption <- renderText({
     d <- enr_data()
     if (!nrow(d)) return("")
-    sprintf("Fonte(s): %s. %d observações.",
+    sprintf("Source(s): %s. %d observations.",
             paste(sort(unique(d$source)), collapse = ", "), nrow(d))
   })
 
@@ -445,7 +467,7 @@ server <- function(input, output, session) {
 
   output$ter_plot <- plotly::renderPlotly({
     d <- ter_data()
-    validate(need(nrow(d) > 0, "Sem dados para os filtros selecionados."))
+    validate(need(nrow(d) > 0, "No data for the selected filters."))
 
     color_var <- input$ter_color_by
 
@@ -459,35 +481,52 @@ server <- function(input, output, session) {
     color_col <- color_col_map[[color_var]]
 
     d$hover_text <- paste0(
-      "<b>Ano:</b> ", d$year, "<br>",
-      "<b>Fonte:</b> ", d$source_lab, "<br>",
-      "<b>Rede:</b> ", d$network_lab, "<br>",
-      "<b>Tipo:</b> ", d$inst_lab, "<br>",
-      "<b>Modalidade:</b> ", d$mod_lab, "<br>",
-      "<b>Matrículas:</b> ",
-      format(round(d$value), big.mark = ".", scientific = FALSE),
+      "<b>Year:</b> ", d$year, "<br>",
+      "<b>Source:</b> ", d$source_lab, "<br>",
+      "<b>Network:</b> ", d$network_lab, "<br>",
+      "<b>Type:</b> ", d$inst_lab, "<br>",
+      "<b>Modality:</b> ", d$mod_lab, "<br>",
+      "<b>Enrollment:</b> ",
+      format(round(d$value), big.mark = ",", scientific = FALSE),
       if (any(d$is_derived))
-        ifelse(d$is_derived, " <i>(derivada)</i>", "") else ""
+        ifelse(d$is_derived, " <i>(derived)</i>", "") else ""
     )
+
+    # Build display-friendly labels for the shape/linetype legends.
+    source_lab_lookup   <- setNames(names(TER_SOURCE_CHOICES),
+                                    unname(TER_SOURCE_CHOICES))
+    modality_lab_lookup <- setNames(names(TER_MOD_CHOICES),
+                                    unname(TER_MOD_CHOICES))
 
     g <- ggplot2::ggplot(
       d,
       ggplot2::aes(x = year, y = value,
-                   colour = .data[[color_col]],
-                   group  = interaction(source, network, institution_type, modality),
-                   text   = hover_text)
+                   colour   = .data[[color_col]],
+                   shape    = source,
+                   linetype = modality,
+                   group    = interaction(source, network, institution_type, modality),
+                   text     = hover_text)
     ) +
       ggplot2::geom_line(linewidth = 0.7, alpha = 0.85) +
-      ggplot2::geom_point(size = 1.0, alpha = 0.7) +
+      ggplot2::geom_point(size = 2.4, alpha = 0.9) +
       ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(12)) +
-      ggplot2::scale_y_continuous(labels = scales::label_number(big.mark = ".")) +
+      ggplot2::scale_y_continuous(labels = scales::label_number(big.mark = ",")) +
+      ggplot2::scale_shape_manual(
+        name   = "Source",
+        values = TER_SOURCE_SHAPES,
+        labels = source_lab_lookup
+      ) +
+      ggplot2::scale_linetype_manual(
+        name   = "Modality",
+        values = TER_MODALITY_LINETYPES,
+        labels = modality_lab_lookup
+      ) +
       ggplot2::theme_minimal(base_size = 13) +
       ggplot2::theme(legend.position = "bottom",
-                     legend.title    = ggplot2::element_blank(),
                      panel.grid.minor = ggplot2::element_blank()) +
       ggplot2::labs(
-        x = NULL, y = "Matrículas",
-        title = "Ensino Superior — comparação multi-fonte"
+        x = NULL, y = "Enrollment",
+        title = "Tertiary Education — multi-source comparison"
       )
 
     plotly::ggplotly(g, tooltip = "text") |>
@@ -497,7 +536,7 @@ server <- function(input, output, session) {
   output$ter_caption <- renderText({
     d <- ter_data()
     if (!nrow(d)) return("")
-    sprintf("%d observações de %d fonte(s) distintas.",
+    sprintf("%d observations from %d distinct source(s).",
             nrow(d), length(unique(d$source)))
   })
 
@@ -542,13 +581,13 @@ server <- function(input, output, session) {
       geo_level = input$sch_geo_level,
       geo       = sch_geo(),
       dimension = input$sch_dimension,
-      lang      = "pt"
+      lang      = "en"
     )
   })
 
   output$sch_plot <- plotly::renderPlotly({
     d <- sch_data()
-    validate(need(nrow(d) > 0, "Sem dados para os filtros selecionados."))
+    validate(need(nrow(d) > 0, "No data for the selected filters."))
 
     color_var <- switch(input$sch_dimension,
                         race = "dim_race",
@@ -556,9 +595,9 @@ server <- function(input, output, session) {
                         "geo_name")
 
     d$hover_text <- paste0(
-      "<b>Ano:</b> ", d$year, "<br>",
+      "<b>Year:</b> ", d$year, "<br>",
       "<b>", d[[color_var]], "</b><br>",
-      "<b>Anos médios:</b> ", sprintf("%.2f", d$value)
+      "<b>Mean years:</b> ", sprintf("%.2f", d$value)
     )
 
     g <- ggplot2::ggplot(
@@ -576,13 +615,13 @@ server <- function(input, output, session) {
                      legend.title    = ggplot2::element_blank(),
                      panel.grid.minor = ggplot2::element_blank()) +
       ggplot2::labs(
-        x = NULL, y = "Anos médios de estudo",
+        x = NULL, y = "Mean years of schooling",
         title = paste0(
-          "Escolaridade média — ",
+          "Mean years of schooling — ",
           switch(input$sch_geo_level,
-                 BR     = "Brasil",
-                 region = "Macrorregiões",
-                 UF     = "Estados")
+                 BR     = "Brazil",
+                 region = "Macroregions",
+                 UF     = "States")
         )
       )
 
@@ -596,7 +635,7 @@ server <- function(input, output, session) {
   output$sch_caption <- renderText({
     d <- sch_data()
     if (!nrow(d)) return("")
-    sprintf("Fonte(s): %s. %d observações.",
+    sprintf("Source(s): %s. %d observations.",
             paste(sort(unique(d$source)), collapse = ", "), nrow(d))
   })
 
