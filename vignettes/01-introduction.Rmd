@@ -1,0 +1,225 @@
+---
+title: "Introduction to educabr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to educabr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  fig.width  = 7,
+  fig.height = 4.5,
+  out.width  = "100%"
+)
+```
+
+```{r setup, message = FALSE}
+library(educabr)
+```
+
+## About the package
+
+**educabr** provides, under a single canonical tidy schema, the most
+extensive set of harmonised historical series on Brazilian education
+available in analytic format:
+
+* **Tertiary (higher-education) enrollment** — 1907 to 2024, **118
+  years** of coverage, drawing on seven distinct primary sources
+  (IBGE *Statistics of the 20th Century*, Durham, Maduro Junior,
+  Kang, INEP Synopsis, INEP Microdata, and the INEP CENSUP Power BI
+  panel).
+* **Compulsory (fundamental) and upper-secondary enrollment** — 1933
+  to 2010, with **race/colour** disaggregation from 1960 onwards
+  (Kang, Paese & Felix 2021).
+* **Mean years of schooling of the adult population** — 1925 to
+  2015, with breakdowns by **sex**, **race/colour**, **macroregion**
+  and **state** (Walter & Kang 2024).
+
+Every transformation is auditable: each output row carries a
+canonical `source` key (catalogued in
+`inst/dict/vocabularies/sources.yaml`) and a `source_note` with the
+exact table or chapter of origin.
+
+## Installation
+
+```r
+# From GitHub
+remotes::install_github("mancano-tales/educabr")
+```
+
+## A two-function API
+
+The public interface is intentionally minimal:
+
+```{r}
+# Schemas of the two main return shapes
+str(get_enrollment(level = "fundamental", year = 1950))
+str(get_schooling(year = 1950))
+```
+
+Both return long-format tibbles that follow the same canonical
+schema (`inst/dict/schema.yaml`), with columns for the geographic
+unit, the inequality dimension (race, sex, …), the source, and the
+value.
+
+## Case 1 — gross enrollment rate by race/colour
+
+Using `dimension = "race"` we can trace the trajectory of gross
+fundamental-education enrollment for the five IBGE race/colour
+categories between 1960 and 2010:
+
+```{r}
+fund_race <- get_enrollment(
+  level     = "fundamental",
+  indicator = "rate",
+  geo_level = "BR",
+  dimension = "race",
+  year      = c(1960, 2010)
+)
+
+head(fund_race)
+```
+
+The gap between the three main categories (`white`, `black`,
+`brown`) traces one of the central narratives in the sociological
+literature on Brazilian education — relative convergence at
+compulsory levels alongside persistent inequality at higher levels.
+
+## Case 2 — multi-source comparison for tertiary enrollment
+
+Brazilian tertiary enrollment has been reconstructed by **multiple
+authors** with slightly different methodologies, especially for the
+long 1933–2000 period when official sources are sparse. The
+**educabr** package keeps **all competing estimates** side by side,
+enabling direct comparison:
+
+```{r}
+ter_1980 <- get_enrollment(
+  level     = "superior",
+  year      = 1980,
+  network   = "total",
+  modality  = "total",
+  indicator = "count"
+)
+
+ter_1980[, c("source", "value", "source_note")]
+```
+
+For 1980 several sources converge on the same value (~1.38 million),
+which suggests a stabilised figure in the literature. For other
+years estimates diverge — passing `source = "..."` to
+`get_enrollment()` is the recommended way to pin down a single
+series for secondary analysis.
+
+## Case 3 — the reconstructed totals problem (2000-2008)
+
+Between 2000 and 2008 INEP began collecting distance-learning (EAD)
+enrollment in a separate CENSUP table (`tabela7.x`), but **did not
+add** it to the total of in-person enrollment published in
+`tabela5.x`. This means that headline "total" series for that
+interval published by Kang, Durham, Maduro Junior, and INEP's own
+synopsis are **systematically undercounted** — by up to ~700,000
+enrollments in 2008 by our reckoning.
+
+From 2009 onwards the CENSUP microdata already aggregate in-person
+and EAD in the same registry, and the problem resolves itself.
+
+For this transition interval, **educabr** ships **reconstructed
+totals** that combine the in-person component of each source with
+INEP's published EAD figures. These rows carry `is_derived = TRUE`
+and are excluded from the default `get_enrollment()` output; pass
+`include_derived = TRUE` to inspect them:
+
+```{r}
+recon <- get_enrollment(
+  level           = "superior",
+  year            = c(2000, 2008),
+  network         = "total",
+  modality        = "total",
+  indicator       = "count",
+  include_derived = TRUE
+)
+
+recon[recon$is_derived, c("year", "source", "value")]
+```
+
+The composite `source` key (e.g.
+`kang_paese_felix_2021+inep_sinopse_censup`) makes it explicit that
+this is a combination: the **in-person component** comes from the
+first source and the **EAD component** comes from the second. The
+`source_note` records the exact composition for citation purposes.
+
+> Suggested citation convention: "Reconstructed total computed from
+> {in-person source} (in-person) and INEP CENSUP Synopsis (EAD),
+> following the methodology documented in `educabr` (Mançano 2026)."
+
+## Case 4 — mean years of schooling by sex
+
+```{r}
+schooling_sex <- get_schooling(
+  geo_level = "BR",
+  dimension = "sex"
+)
+
+tail(schooling_sex)
+```
+
+This series captures the historical reversal of the *gender gap*: in
+1925 men averaged more years of schooling than women; over the 20th
+century that advantage inverts, and by 2015 women surpass men in
+average attainment.
+
+## Interactive dashboard
+
+The package ships a Shiny dashboard for the three series:
+
+```r
+educabr::run_dashboard()
+```
+
+The dashboard replicates the multi-source tertiary comparison
+interactively. Each tab has a **"View R code"** button that emits
+the `educabr` + `ggplot2` snippet needed to reproduce the
+visualisation in your local R session — a direct bridge between
+dashboard exploration and reproducible scripted analysis.
+
+## Sources and citation
+
+Every series carries a canonical source key (`source`) with the
+full reference catalogued in
+`inst/dict/vocabularies/sources.yaml`. The seven primary tertiary
+sources are:
+
+* Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and
+  unequal. *Revista de Historia Económica* 39(2), 191-218.
+  [doi:10.1017/S0212610921000112](https://doi.org/10.1017/S0212610921000112)
+* Kang, T. H., & Menetrier, I. (2024). Políticas elitistas e
+  despesas públicas em educação. *Estudos Econômicos* 54(3).
+  [doi:10.1590/1980-53575434tkim](https://doi.org/10.1590/1980-53575434tkim)
+* Kang, T. H., Menetrier, I., & Comim, F. (2024). The side effects
+  of a big push growth strategy. *RHE* 42(3), 387-414.
+  [doi:10.1017/S0212610924000120](https://doi.org/10.1017/S0212610924000120)
+* Walter, J. R., & Kang, T. H. (2024). A new dataset of average
+  years of schooling in Brazil. *Economic History of Developing
+  Regions* 39(3), 307-336.
+  [doi:10.1080/20780389.2024.2417268](https://doi.org/10.1080/20780389.2024.2417268)
+* Durham, E. R. (2005). Educação superior, pública e privada. In
+  Schwartzman (ed.), *Os desafios da educação no Brasil*, pp. 191-233.
+* Maduro Junior, P. R. R. M. (2007). *Taxas de matrícula e gastos em
+  educação no Brasil* [MSc dissertation, FGV/EPGE].
+  [hdl:10438/110](https://hdl.handle.net/10438/110)
+* IBGE (2007). *Estatísticas do Século XX*.
+  [seculoxx.ibge.gov.br](https://seculoxx.ibge.gov.br/)
+* INEP/MEC. *Sinopse Estatística da Educação Superior* (1995-2008).
+* INEP/MEC. *Microdados do Censo da Educação Superior* (2009-2024).
+* INEP/MEC. *CENSUP Power BI panel* (2010-2024).
+
+To cite the package itself:
+
+> Mançano, T. (2026). *educabr: Harmonized Historical Series on
+> Brazilian Education* (version 0.0.0.9000).
+> <https://github.com/mancano-tales/educabr>

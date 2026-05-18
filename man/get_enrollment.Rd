@@ -7,12 +7,15 @@
 get_enrollment(
   level = NULL,
   network = NULL,
+  institution_type = NULL,
+  modality = NULL,
   year = NULL,
   geo_level = c("BR", "UF"),
   geo = NULL,
   dimension = c("none", "race"),
   indicator = NULL,
   source = NULL,
+  include_derived = FALSE,
   wide = FALSE,
   lang = c("en", "pt")
 )
@@ -23,9 +26,21 @@ get_enrollment(
 \code{"fundamental"}, \code{"medio"}, \code{"superior"}. \code{NULL} (default) means
 no filter.}
 
-\item{network}{Character vector with administrative-network codes.
-The bundled data currently covers only \code{"total"}. \code{NULL} (default)
-means no filter.}
+\item{network}{Character vector with administrative-network codes
+(\code{"federal"}, \code{"estadual"}, \code{"municipal"}, \code{"publica"},
+\code{"privada"}, plus the post-2009 private subcategories
+\code{"privada_particular"}, \code{"privada_comunitaria_confessional_filantropica"},
+\code{"privada_lucrativa"}, \code{"privada_nao_lucrativa"}, \code{"especial"},
+\code{"total"}). \code{NULL} (default) means no filter.}
+
+\item{institution_type}{Character vector restricting the
+institutional category (only meaningful for \code{level = "superior"}).
+See \code{inst/dict/schema.yaml} for the controlled vocabulary. \code{NULL}
+(default) means no filter; pass \code{"total"} to keep only rows that
+aggregate across institutional types.}
+
+\item{modality}{Character vector: \code{"presencial"}, \code{"ead"},
+\code{"total"}. \code{NULL} (default) means no filter.}
 
 \item{year}{Integer vector or two-element \code{c(min, max)} range. \code{NULL}
 for all years.}
@@ -42,38 +57,58 @@ totals only) or \code{"race"}. Future versions add \code{"sex"}, \code{"income"}
 \item{indicator}{Character vector. \code{"count"} for counts, \code{"rate"}
 for gross enrollment rates. \code{NULL} returns both.}
 
-\item{source}{Character vector of source keys (see \code{\link[=list_sources]{list_sources()}};
-forthcoming). \code{NULL} returns all available sources.}
+\item{source}{Character vector of source keys (see
+\code{inst/dict/vocabularies/sources.yaml}). \code{NULL} returns all
+available sources. \strong{Tip:} when the same \verb{(year, level, network)}
+is covered by multiple sources (common in the tertiary panel),
+pass \code{source = "..."} to lock down a single series.}
+
+\item{include_derived}{Logical. If \code{FALSE} (default), excludes the
+so-called \strong{reconstructed totals} — rows where the value was
+computed by combining components from different sources (typically
+the in-person enrollment from a single-source paper plus the EAD
+enrollment from INEP, for 2000-2008 where the original sources
+under-reported the combined total). Set to \code{TRUE} to include them.
+The composition is documented in \code{source_note}; the \code{source}
+column for these rows carries the composite key
+\code{"<presencial_source>+<ead_source>"}. Has no effect on datasets
+that do not carry an \code{is_derived} flag.}
 
 \item{wide}{Logical. If \code{TRUE}, pivots the \code{indicator} column to
-wide form (one column per indicator). Default \code{FALSE} returns the
-canonical long schema.}
+wide form (one column per indicator). Default \code{FALSE}.}
 
 \item{lang}{One of \code{"en"} (default) or \code{"pt"}. When \code{"pt"}, factor
 levels are translated using \code{inst/dict/i18n.yaml}.}
 }
 \value{
-A tibble. In long form, follows the canonical schema in
-\code{inst/dict/schema.yaml}. In wide form, the \code{indicator} and \code{unit}
-columns are dropped and replaced by one column per indicator.
+A tibble following the canonical schema in
+\code{inst/dict/schema.yaml}. Optional columns (\code{institution_type},
+\code{modality}, \code{is_derived}) are present whenever any of the loaded
+datasets carries them; for rows coming from datasets without that
+column the value defaults to \code{"total"} (or \code{FALSE} for
+\code{is_derived}).
 }
 \description{
-Returns harmonized school-enrollment counts and rates at the national
-or state level, optionally broken down by color/race. The bundled
-data comes from the Kang/FGV-IBRE (2023) compilation; additional
-sources are added in later milestones.
+Returns harmonized school-enrollment counts and rates, optionally
+broken down by color/race, administrative network, institutional
+type, or teaching modality. Series are pulled from all enrollment
+datasets shipped with the package and concatenated into the canonical
+long-format schema.
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # National series, ensino fundamental, all years
 get_enrollment(level = "fundamental", geo_level = "BR")
 
-# By race, rates only, 1960-2010
-get_enrollment(dimension = "race", indicator = "rate",
-               year = c(1960, 2010))
+# Tertiary enrollment, all sources, compare them
+get_enrollment(level = "superior", network = "total", modality = "total")
 
-# State-level enrollment rates for a handful of UFs
-get_enrollment(geo_level = "UF", geo = c("SP", "BA", "AM"),
-               level = "fundamental", indicator = "rate")
+# Tertiary private particular only, post-2000
+get_enrollment(level = "superior", network = "privada_particular",
+               year = c(2000, 2024))
+
+# Compare with derived rows included
+get_enrollment(level = "superior", network = "total",
+               year = c(2000, 2008), include_derived = TRUE)
 \dontshow{\}) # examplesIf}
 }

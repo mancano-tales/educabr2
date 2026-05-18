@@ -27,7 +27,7 @@ navbar:
   components:
     intro:
       text: Get started
-      href: articles/01-introducao.html
+      href: articles/01-introduction.html
 
 reference:
   - title: Data access
@@ -58,7 +58,8 @@ articles:
   - title: Tutorials
     navbar: ~
     contents:
-      - 01-introducao
+      - 01-introduction
+      - 02-introducao-pt
 
 news:
   releases:
