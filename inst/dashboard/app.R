@@ -173,6 +173,41 @@ TER_MODALITY_COLORS <- c(
   "ead"        = "#ea580c"   # orange
 )
 
+# --- helpers for the interaction-based palette --------------------------
+#
+# Each line is coloured by the interaction (chosen_dim × modality):
+#   - total      → darker  shade of the base hue
+#   - presencial → the base hue itself
+#   - ead        → lighter shade of the base hue
+# This reproduces the Mançano (2026) reference-plot convention where
+# the COLOUR FAMILY identifies the main dimension and the SHADE
+# identifies the modality, so every line has a unique colour.
+
+.hex_shade <- function(hex, amount) {
+  # amount > 0 → lighten (blend with white); < 0 → darken (blend with black)
+  rgb_vals <- grDevices::col2rgb(hex)[, 1] / 255
+  if (amount > 0) {
+    rgb_vals <- rgb_vals + (1 - rgb_vals) * amount
+  } else {
+    rgb_vals <- rgb_vals * (1 + amount)
+  }
+  rgb_vals <- pmin(pmax(rgb_vals, 0), 1)
+  grDevices::rgb(rgb_vals[1], rgb_vals[2], rgb_vals[3])
+}
+
+build_interaction_palette <- function(base_palette,
+                                      shade_total = -0.35,
+                                      shade_ead   = +0.50) {
+  out <- character()
+  for (key in names(base_palette)) {
+    base <- base_palette[[key]]
+    out[paste(key, "total",      sep = "·")] <- .hex_shade(base, shade_total)
+    out[paste(key, "presencial", sep = "·")] <- base
+    out[paste(key, "ead",        sep = "·")] <- .hex_shade(base, shade_ead)
+  }
+  out
+}
+
 # ---- educational attainment choices ----------------------------------
 
 SCH_DIM_CHOICES <- c(
@@ -543,68 +578,91 @@ server <- function(input, output, session) {
         ifelse(d$is_derived, " <i>(derived)</i>", "") else ""
     )
 
-    # Pick the colour palette + display-label lookup according to the
-    # user's "Colour lines by" choice.  Keeping aesthetic data on the
-    # *raw* key column lets us drive both the palette (named-vector
-    # values) and the legend labels from the same lookup.
-    pal <- switch(color_var,
+    # Base palette + labels for the chosen "Colour lines by" dimension.
+    base_pal <- switch(color_var,
       source           = list(col = "source",
                               values = TER_SOURCE_COLORS,
                               labels = setNames(names(TER_SOURCE_CHOICES),
-                                                unname(TER_SOURCE_CHOICES)),
-                              title  = "Source"),
+                                                unname(TER_SOURCE_CHOICES))),
       network          = list(col = "network",
                               values = TER_NETWORK_COLORS,
                               labels = setNames(names(TER_NETWORK_CHOICES),
-                                                unname(TER_NETWORK_CHOICES)),
-                              title  = "Network"),
+                                                unname(TER_NETWORK_CHOICES))),
       institution_type = list(col = "institution_type",
                               values = TER_INST_COLORS,
                               labels = setNames(names(TER_INST_CHOICES),
-                                                unname(TER_INST_CHOICES)),
-                              title  = "Institution type"),
+                                                unname(TER_INST_CHOICES))),
       modality         = list(col = "modality",
                               values = TER_MODALITY_COLORS,
                               labels = setNames(names(TER_MOD_CHOICES),
-                                                unname(TER_MOD_CHOICES)),
-                              title  = "Modality")
+                                                unname(TER_MOD_CHOICES)))
     )
 
-    source_label_lookup   <- setNames(names(TER_SOURCE_CHOICES),
-                                      unname(TER_SOURCE_CHOICES))
     modality_label_lookup <- setNames(names(TER_MOD_CHOICES),
                                       unname(TER_MOD_CHOICES))
+    source_label_lookup   <- setNames(names(TER_SOURCE_CHOICES),
+                                      unname(TER_SOURCE_CHOICES))
+
+    # If the user is colouring by anything OTHER than modality, fold the
+    # modality axis INTO the colour by interaction — each (dim × modality)
+    # pair gets its own unique shade, so every line on the chart is
+    # uniquely coloured.
+    if (color_var != "modality") {
+      d$color_key       <- paste(d[[base_pal$col]], d$modality, sep = "·")
+      color_values      <- build_interaction_palette(base_pal$values)
+      color_labels      <- character(length(color_values))
+      names(color_labels) <- names(color_values)
+      for (k in names(color_values)) {
+        parts <- strsplit(k, "·", fixed = TRUE)[[1]]
+        dim_disp <- base_pal$labels[[parts[1]]] %||% parts[1]
+        mod_disp <- modality_label_lookup[[parts[2]]] %||% parts[2]
+        color_labels[k] <- paste(dim_disp, mod_disp, sep = " · ")
+      }
+      color_title <- paste0(
+        switch(color_var,
+               source           = "Source",
+               network          = "Network",
+               institution_type = "Institution type"),
+        " · Modality")
+    } else {
+      d$color_key  <- d$modality
+      color_values <- base_pal$values
+      color_labels <- base_pal$labels
+      color_title  <- "Modality"
+    }
 
     g <- ggplot2::ggplot(
       d,
       ggplot2::aes(x = year, y = value,
-                   colour   = .data[[pal$col]],
+                   colour   = color_key,
                    shape    = source,
                    linetype = modality,
                    group    = interaction(source, network, institution_type, modality),
                    text     = hover_text)
     ) +
-      ggplot2::geom_line(linewidth = 0.8, alpha = 0.9) +
-      ggplot2::geom_point(size = 2.4, alpha = 0.95) +
+      ggplot2::geom_line(linewidth = 1.0, alpha = 0.95) +
+      ggplot2::geom_point(size = 2.6, alpha = 1.0) +
       ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(12)) +
       ggplot2::scale_y_continuous(labels = scales::label_number(big.mark = ",")) +
       ggplot2::scale_colour_manual(
-        name   = pal$title,
-        values = pal$values,
-        labels = pal$labels
+        name   = color_title,
+        values = color_values,
+        labels = color_labels
       ) +
       ggplot2::scale_shape_manual(
-        name   = "Source",
+        name   = "Source (shape)",
         values = TER_SOURCE_SHAPES,
         labels = source_label_lookup
       ) +
       ggplot2::scale_linetype_manual(
-        name   = "Modality",
+        name   = "Modality (line style)",
         values = TER_MODALITY_LINETYPES,
         labels = modality_label_lookup
       ) +
       ggplot2::theme_minimal(base_size = 13) +
-      ggplot2::theme(legend.position = "bottom",
+      ggplot2::theme(legend.position = "right",
+                     legend.text     = ggplot2::element_text(size = 10),
+                     legend.title    = ggplot2::element_text(size = 11, face = "bold"),
                      panel.grid.minor = ggplot2::element_blank()) +
       ggplot2::labs(
         x = NULL, y = "Enrollment",
@@ -612,7 +670,17 @@ server <- function(input, output, session) {
       )
 
     plotly::ggplotly(g, tooltip = "text") |>
-      plotly::layout(legend = list(orientation = "h", y = -0.2))
+      plotly::layout(
+        legend = list(orientation = "v",
+                      x = 1.02, y = 1,
+                      xanchor = "left", yanchor = "top",
+                      bgcolor = "rgba(255,255,255,0.9)",
+                      bordercolor = "#cccccc",
+                      borderwidth = 1,
+                      font = list(size = 10),
+                      tracegroupgap = 4),
+        margin = list(r = 240)
+      )
   })
 
   output$ter_caption <- renderText({
