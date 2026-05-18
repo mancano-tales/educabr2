@@ -236,7 +236,14 @@ get_enrollment <- function(level            = NULL,
   }
 
   if (!is.null(source)) {
-    data <- data[data$source %in% as.character(source), , drop = FALSE]
+    src_match <- data$source %in% as.character(source)
+    if (isTRUE(include_derived)) {
+      # Derived rows carry a composite source key (e.g. "a+b") that won't
+      # match any single-source entry — exempt them from this filter so
+      # include_derived = TRUE actually works.
+      src_match <- src_match | isTRUE_vec(data$is_derived)
+    }
+    data <- data[src_match, , drop = FALSE]
   }
 
   if (!isTRUE(include_derived)) {

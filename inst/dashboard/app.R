@@ -370,7 +370,7 @@ ui <- bslib::page_navbar(
                     sep = "", step = 1),
         selectizeInput("ter_network", "Network(s)",
                        choices = TER_NETWORK_CHOICES, multiple = TRUE,
-                       selected = "total",
+                       selected = c("total", "publica", "privada"),
                        options = list(plugins = list("remove_button"))),
         selectizeInput("ter_inst", "Institution type",
                        choices = TER_INST_CHOICES, multiple = TRUE,
@@ -378,22 +378,23 @@ ui <- bslib::page_navbar(
                        options = list(plugins = list("remove_button"))),
         selectizeInput("ter_modality", "Modality",
                        choices = TER_MOD_CHOICES, multiple = TRUE,
-                       selected = "total",
+                       selected = c("total", "presencial", "ead"),
                        options = list(plugins = list("remove_button"))),
         selectizeInput("ter_source", "Source(s) — select to compare",
                        choices = TER_SOURCE_CHOICES, multiple = TRUE,
                        selected = c("kang_paese_felix_2021",
-                                    "durham_2005",
                                     "maduro_junior_2007",
+                                    "ibge_seculo_xx",
+                                    "inep_sinopse_censup",
                                     "inep_microdados_censup",
-                                    "ibge_seculo_xx"),
+                                    "inep_censup_powerbi"),
                        options = list(plugins = list("remove_button"))),
         radioButtons("ter_color_by", "Colour lines by",
                      choices = TER_COLOR_BY_CHOICES,
-                     selected = "source", inline = FALSE),
+                     selected = "network", inline = FALSE),
         checkboxInput("ter_derived",
                       "Include reconstructed totals (In-person + EAD, 2000-2008)",
-                      value = FALSE),
+                      value = TRUE),
         hr(),
         downloadButton("ter_download", "Download CSV", class = "btn-primary w-100"),
         actionButton("ter_show_code", "View R code",
@@ -676,25 +677,29 @@ server <- function(input, output, session) {
     # pair gets its own unique shade, so every line on the chart is
     # uniquely coloured.
     if (color_var != "modality") {
-      d$color_key       <- paste(d[[base_pal$col]], d$modality, sep = "·")
-      color_values      <- build_interaction_palette(base_pal$values)
-      color_labels      <- character(length(color_values))
-      names(color_labels) <- names(color_values)
-      for (k in names(color_values)) {
+      raw_key           <- paste(d[[base_pal$col]], d$modality, sep = "·")
+      color_values_raw  <- build_interaction_palette(base_pal$values)
+      color_labels      <- character(length(color_values_raw))
+      names(color_labels) <- names(color_values_raw)
+      for (k in names(color_values_raw)) {
         parts <- strsplit(k, "·", fixed = TRUE)[[1]]
         dim_disp <- base_pal$labels[[parts[1]]] %||% parts[1]
         mod_disp <- modality_label_lookup[[parts[2]]] %||% parts[2]
         color_labels[k] <- paste(dim_disp, mod_disp, sep = " · ")
       }
-      color_title <- paste0(
+      # Pre-translate so plotly uses readable strings as legend entries
+      d$color_key  <- unname(color_labels[raw_key])
+      color_values <- setNames(unname(color_values_raw), unname(color_labels))
+      color_title  <- paste0(
         switch(color_var,
                source           = "Source",
                network          = "Network",
                institution_type = "Institution type"),
         " · Modality")
     } else {
-      d$color_key  <- d$modality
-      color_values <- base_pal$values
+      d$color_key  <- unname(base_pal$labels[d$modality])
+      color_values <- setNames(unname(base_pal$values),
+                               unname(base_pal$labels[names(base_pal$values)]))
       color_labels <- base_pal$labels
       color_title  <- "Modality"
     }
@@ -714,8 +719,7 @@ server <- function(input, output, session) {
       ggplot2::scale_y_continuous(labels = scales::label_number(big.mark = ",")) +
       ggplot2::scale_colour_manual(
         name   = color_title,
-        values = color_values,
-        labels = color_labels
+        values = color_values
       ) +
       ggplot2::scale_shape_manual(
         name   = "Source (shape)",
@@ -735,7 +739,8 @@ server <- function(input, output, session) {
       ggplot2::labs(
         x = NULL, y = "Enrollment",
         title = "Tertiary Education — multi-source comparison"
-      )
+      ) +
+      ggplot2::guides(shape = "none", linetype = "none")
 
     plotly::ggplotly(g, tooltip = "text") |>
       plotly::layout(
