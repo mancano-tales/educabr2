@@ -51,9 +51,12 @@ make_ter_fixture <- function() {
 with_ter_fixture <- function(code) {
   env <- new.env(parent = emptyenv())
   assign("enrollment_tertiary", make_ter_fixture(), envir = env)
-  local_panel <- function() educabr:::.load_enrollment_panel(env = env)
 
+  # Capture the ORIGINAL before replacing it in the namespace — otherwise
+  # the closure below would call the replacement and recurse infinitely.
   orig <- educabr:::.load_enrollment_panel
+  local_panel <- function() orig(env = env)
+
   unlockBinding(".load_enrollment_panel", asNamespace("educabr"))
   assign(".load_enrollment_panel",
          function(env = NULL) local_panel(),

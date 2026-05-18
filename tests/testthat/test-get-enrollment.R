@@ -22,10 +22,12 @@ make_fixture <- function() {
 with_fixture <- function(code) {
   env <- new.env(parent = emptyenv())
   assign("enrollment_kang_fgv", make_fixture(), envir = env)
-  local_panel <- function() educabr:::.load_enrollment_panel(env = env)
 
-  # Temporarily replace .load_enrollment_panel via trace
+  # Capture the ORIGINAL before replacing it in the namespace — otherwise
+  # the closure below would call the replacement and recurse infinitely.
   trace_orig <- educabr:::.load_enrollment_panel
+  local_panel <- function() trace_orig(env = env)
+
   unlockBinding(".load_enrollment_panel", asNamespace("educabr"))
   assign(".load_enrollment_panel",
          function(env = NULL) local_panel(),
@@ -64,8 +66,14 @@ test_that("geo filter restricts to listed UFs", {
 
 test_that("year accepts vector and range forms", {
   with_fixture({
+    # Single year: exact match
     expect_setequal(unique(get_enrollment(year = 1933)$year), 1933L)
-    expect_setequal(unique(get_enrollment(year = c(1933, 1960))$year), c(1933L, 1960L))
+    # Length-2 vector with first <= second is interpreted as [min, max] range
+    expect_setequal(unique(get_enrollment(year = c(1933, 1960))$year),
+                    c(1933L, 1960L))
+    # Length-3+ vector is treated as exact-year membership (not a range)
+    expect_setequal(unique(get_enrollment(year = c(1933, 1960, 2010))$year),
+                    c(1933L, 1960L, 2010L))
   })
 })
 

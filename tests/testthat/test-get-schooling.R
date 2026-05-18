@@ -19,9 +19,12 @@ make_sch_fixture <- function() {
 with_sch_fixture <- function(code) {
   env <- new.env(parent = emptyenv())
   assign("schooling_kang_fgv", make_sch_fixture(), envir = env)
-  local_panel <- function() educabr:::.load_schooling_panel(env = env)
 
+  # Capture the ORIGINAL before replacing it in the namespace — otherwise
+  # the closure below would call the replacement and recurse infinitely.
   orig <- educabr:::.load_schooling_panel
+  local_panel <- function() orig(env = env)
+
   unlockBinding(".load_schooling_panel", asNamespace("educabr"))
   assign(".load_schooling_panel",
          function(env = NULL) local_panel(),

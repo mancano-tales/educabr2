@@ -145,6 +145,10 @@ get_enrollment <- function(level            = NULL,
 
 #' @noRd
 .load_enrollment_panel <- function(env = NULL) {
+  # When `env` is supplied (test fixtures), look there only — no fallback
+  # to the installed package. Production callers leave it NULL and get
+  # the data() fallback as a safety net.
+  env_provided <- !is.null(env)
   if (is.null(env)) env <- asNamespace("educabr")
   names_ <- .enrollment_datasets()
 
@@ -152,7 +156,7 @@ get_enrollment <- function(level            = NULL,
   for (nm in names_) {
     if (exists(nm, envir = env, inherits = FALSE)) {
       pieces[[nm]] <- get(nm, envir = env, inherits = FALSE)
-    } else {
+    } else if (!env_provided) {
       tmp <- new.env()
       try(utils::data(list = nm, package = "educabr", envir = tmp), silent = TRUE)
       if (exists(nm, envir = tmp, inherits = FALSE)) {

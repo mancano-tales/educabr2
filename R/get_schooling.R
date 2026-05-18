@@ -89,6 +89,10 @@ get_schooling <- function(year      = NULL,
 
 #' @noRd
 .load_schooling_panel <- function(env = NULL) {
+  # When `env` is supplied (test fixtures), look there only — no fallback
+  # to the installed package. Production callers leave it NULL and get
+  # the data() fallback as a safety net.
+  env_provided <- !is.null(env)
   if (is.null(env)) env <- asNamespace("educabr")
   names_ <- .schooling_datasets()
 
@@ -96,7 +100,7 @@ get_schooling <- function(year      = NULL,
   for (nm in names_) {
     if (exists(nm, envir = env, inherits = FALSE)) {
       pieces[[nm]] <- get(nm, envir = env, inherits = FALSE)
-    } else {
+    } else if (!env_provided) {
       tmp <- new.env()
       try(utils::data(list = nm, package = "educabr", envir = tmp), silent = TRUE)
       if (exists(nm, envir = tmp, inherits = FALSE)) {

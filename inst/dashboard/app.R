@@ -257,13 +257,27 @@ build_r_call <- function(fn_name, args_list) {
          "\n)")
 }
 
+# Preamble for all reproducibility snippets: educabr is not on CRAN, so
+# users need to install it from GitHub before running the code. plotly
+# is loaded so ggplotly() reproduces the interactive chart from the
+# dashboard (drop the ggplotly() line at the end for a static ggplot).
+INSTALL_SNIPPET <- paste0(
+  "# educabr is not on CRAN. Install from GitHub once:\n",
+  "# install.packages(c(\"remotes\", \"ggplot2\", \"plotly\", \"scales\"))\n",
+  "# remotes::install_github(\"mancano-tales/educabr\")\n\n",
+  "library(educabr)\n",
+  "library(ggplot2)\n",
+  "library(plotly)\n\n"
+)
+
 show_code_modal <- function(title, code_text) {
   showModal(modalDialog(
     title = title,
     tags$p(tags$small(
       style = "color: #555;",
-      "Copy the snippet below into your R session to reproduce the chart locally. ",
-      "The code uses only the public {educabr} API and ggplot2.")),
+      "Copy the snippet below into your R session to reproduce the interactive chart locally. ",
+      "Uses the public {educabr} API plus ggplot2 + plotly. ",
+      "Drop the final ggplotly() line if you want a static ggplot instead.")),
     tags$pre(
       style = paste(
         "background:#f6f8fa; padding:14px; border-radius:6px;",
@@ -528,11 +542,27 @@ server <- function(input, output, session) {
 
     color_var <- if (input$enr_dimension == "race") "dim_race" else "level"
 
+    # Kang gives two enrollment-rate series for EF1 (anos iniciais), with
+    # different population denominators: ages 7-10 (nominal bracket) and
+    # 7-11 (extended bracket, accommodates the 9-year EF reform). Both
+    # carry level == "fundamental_anos_iniciais" and only differ in
+    # age_group, which caused the line to zig-zag between the two values
+    # year by year. We mark 7-11 as a "secondary" series and plot it
+    # dotted on top of the solid 7-10 line.
+    d$age_label <- ifelse(is.na(d$age_group) | d$age_group == "",
+                          "—", d$age_group)
+    d$series <- ifelse(
+      d$level == "fundamental_anos_iniciais" & d$age_group == "7-11",
+      "alt", "main"
+    )
+    has_alt <- any(d$series == "alt")
+
     d$hover_text <- paste0(
       "<b>Year:</b> ", d$year, "<br>",
       "<b>", d[[color_var]], "</b><br>",
       if (input$enr_indicator == "rate")
-        paste0("<b>Rate:</b> ", sprintf("%.1f%%", d$value))
+        paste0("<b>Rate:</b> ", sprintf("%.1f%%", d$value),
+               "<br><i>Age bracket: ", d$age_label, "</i>")
       else
         paste0("<b>Enrollment:</b> ", format(round(d$value), big.mark = ",", scientific = FALSE))
     )
@@ -540,9 +570,10 @@ server <- function(input, output, session) {
     g <- ggplot2::ggplot(
       d,
       ggplot2::aes(x = year, y = value,
-                   colour = .data[[color_var]],
-                   group  = interaction(.data[[color_var]], geo_code),
-                   text   = hover_text)
+                   colour   = .data[[color_var]],
+                   linetype = series,
+                   group    = interaction(.data[[color_var]], age_label, geo_code),
+                   text     = hover_text)
     ) +
       ggplot2::geom_line(linewidth = 0.9, alpha = 0.9) +
       ggplot2::geom_point(size = 0.6, alpha = 0.6) +
@@ -559,6 +590,20 @@ server <- function(input, output, session) {
           " — ", if (input$enr_geo_level == "BR") "Brazil" else "States"
         )
       )
+
+    if (has_alt) {
+      g <- g + ggplot2::scale_linetype_manual(
+        values = c(main = "solid", alt = "dotted"),
+        labels = c(main = "EF1 nominal (7-10)", alt = "EF1 ampliado (7-11)"),
+        breaks = c("main", "alt"),
+        name   = NULL
+      )
+    } else {
+      g <- g + ggplot2::scale_linetype_manual(
+        values = c(main = "solid", alt = "dotted"),
+        guide  = "none"
+      )
+    }
 
     if (input$enr_indicator == "rate") {
       g <- g + ggplot2::scale_y_continuous(
@@ -903,17 +948,17 @@ server <- function(input, output, session) {
     y_lab <- if (input$enr_indicator == "rate") "Gross enrollment rate (%)" else "Enrollment"
 
     code <- paste0(
-      "library(educabr)\n",
-      "library(ggplot2)\n\n",
+      INSTALL_SNIPPET,
       "data <- ", get_call, "\n\n",
-      "ggplot(data, aes(x = year, y = value,\n",
-      "                 colour = ", color_var, ",\n",
-      "                 group  = interaction(", color_var, ", geo_code))) +\n",
+      "p <- ggplot(data, aes(x = year, y = value,\n",
+      "                      colour = ", color_var, ",\n",
+      "                      group  = interaction(", color_var, ", geo_code))) +\n",
       "  geom_line(linewidth = 0.9, alpha = 0.9) +\n",
       "  geom_point(size = 0.6, alpha = 0.6) +\n",
       "  scale_x_continuous(breaks = scales::pretty_breaks(10)) +\n",
       "  theme_minimal(base_size = 13) +\n",
-      "  labs(x = NULL, y = \"", y_lab, "\")"
+      "  labs(x = NULL, y = \"", y_lab, "\")\n\n",
+      "ggplotly(p)\n"
     )
 
     show_code_modal("R code — Enrollment chart", code)
@@ -937,15 +982,14 @@ server <- function(input, output, session) {
                   else sprintf("interaction(%s, modality, sep = \" \\u00b7 \")", color_var)
 
     code <- paste0(
-      "library(educabr)\n",
-      "library(ggplot2)\n\n",
+      INSTALL_SNIPPET,
       "data <- ", get_call, "\n\n",
       "# colour = ", color_var, " (with modality shading); shape = source; linetype = modality\n",
-      "ggplot(data, aes(x = year, y = value,\n",
-      "                 colour   = ", color_expr, ",\n",
-      "                 shape    = source,\n",
-      "                 linetype = modality,\n",
-      "                 group    = interaction(source, network, institution_type, modality))) +\n",
+      "p <- ggplot(data, aes(x = year, y = value,\n",
+      "                      colour   = ", color_expr, ",\n",
+      "                      shape    = source,\n",
+      "                      linetype = modality,\n",
+      "                      group    = interaction(source, network, institution_type, modality))) +\n",
       "  geom_line(linewidth = 1) +\n",
       "  geom_point(size = 2.5) +\n",
       "  scale_x_continuous(breaks = scales::pretty_breaks(12)) +\n",
@@ -953,7 +997,8 @@ server <- function(input, output, session) {
       "  theme_minimal(base_size = 13) +\n",
       "  labs(x = NULL, y = \"Enrollment\",\n",
       "       title = \"Tertiary Education \\u2014 multi-source comparison\",\n",
-      "       colour = NULL, shape = \"Source\", linetype = \"Modality\")\n"
+      "       colour = NULL, shape = \"Source\", linetype = \"Modality\")\n\n",
+      "ggplotly(p)\n"
     )
 
     show_code_modal("R code — Tertiary Education chart", code)
@@ -979,12 +1024,11 @@ server <- function(input, output, session) {
                         "geo_name")
 
     code <- paste0(
-      "library(educabr)\n",
-      "library(ggplot2)\n\n",
+      INSTALL_SNIPPET,
       "data <- ", get_call, "\n\n",
-      "ggplot(data, aes(x = year, y = value,\n",
-      "                 colour = ", color_var, ",\n",
-      "                 group  = interaction(", color_var, ", geo_code))) +\n",
+      "p <- ggplot(data, aes(x = year, y = value,\n",
+      "                      colour = ", color_var, ",\n",
+      "                      group  = interaction(", color_var, ", geo_code))) +\n",
       "  geom_line(linewidth = 0.9, alpha = 0.9) +\n",
       "  geom_point(size = 0.6, alpha = 0.6) +\n",
       "  scale_x_continuous(breaks = scales::pretty_breaks(10)) +\n",
@@ -992,7 +1036,8 @@ server <- function(input, output, session) {
       "  labs(x = NULL, y = \"Mean years of schooling\")",
       if (input$sch_geo_level == "UF" && length(geo_arg) > 1L)
         " +\n  facet_wrap(~ geo_name, scales = \"free_y\")"
-      else ""
+      else "",
+      "\n\nggplotly(p)\n"
     )
 
     show_code_modal("R code — Educational Attainment chart", code)
