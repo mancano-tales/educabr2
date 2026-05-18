@@ -1,4 +1,4 @@
-# educabr <img align="right" src="man/figures/logo-gemini.png.png?raw=true" alt="logo" width="180">
+# educabr <img src="man/figures/logo.png" align="right" height="139" alt="educabr logo" />
 
 > Harmonized historical series on Brazilian education — enrollment and
 > educational attainment, compiled and reconciled across decades of

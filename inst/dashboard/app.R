@@ -251,6 +251,7 @@ ui <- bslib::page_navbar(
   title           = "educabr — Brazilian Education",
   theme           = bslib::bs_theme(version = 5),
   navbar_options  = bslib::navbar_options(bg = "#2d6a4f"),
+  selected        = "Tertiary Education",  # opens here on first load
 
   # ---- Enrollment ----
   bslib::nav_panel(
