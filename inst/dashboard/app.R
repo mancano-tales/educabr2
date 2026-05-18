@@ -122,6 +122,57 @@ TER_MODALITY_LINETYPES <- c(
   "ead"        = "dashed"
 )
 
+# Hand-picked categorical palettes per dimension — high contrast,
+# colour-blind-friendly, inspired by ColorBrewer Set1 and the
+# semantic conventions in the Mançano (2026) reference plots
+# (public ~ blue family; private ~ warm / red family; etc.).
+
+TER_SOURCE_COLORS <- c(
+  "kang_paese_felix_2021"     = "#e41a1c",  # red
+  "kang_menetrier_2024"       = "#984ea3",  # purple
+  "kang_menetrier_comim_2024" = "#f781bf",  # pink
+  "durham_2005"               = "#377eb8",  # blue
+  "maduro_junior_2007"        = "#4daf4a",  # green
+  "ibge_seculo_xx"            = "#a65628",  # brown
+  "inep_sinopse_censup"       = "#ff7f00",  # orange
+  "inep_microdados_censup"    = "#000000",  # black
+  "inep_censup_powerbi"       = "#999999"   # gray
+)
+
+TER_NETWORK_COLORS <- c(
+  "total"                                         = "#1f2937",  # near-black
+  "publica"                                       = "#1d4ed8",  # blue 700
+  "federal"                                       = "#1e3a8a",  # blue 900
+  "estadual"                                      = "#2563eb",  # blue 600
+  "municipal"                                     = "#93c5fd",  # blue 300
+  "privada"                                       = "#991b1b",  # red 800
+  "privada_particular"                            = "#dc2626",  # red 600
+  "privada_comunitaria_confessional_filantropica" = "#be185d",  # pink 700
+  "privada_lucrativa"                             = "#ea580c",  # orange 600
+  "privada_nao_lucrativa"                         = "#7e22ce",  # purple 700
+  "especial"                                      = "#6b7280"   # gray
+)
+
+TER_INST_COLORS <- c(
+  "total"                                = "#1f2937",
+  "university"                           = "#1d4ed8",
+  "university_center"                    = "#2563eb",
+  "faculty"                              = "#16a34a",
+  "faculty_school_institute"             = "#15803d",
+  "integrated_faculty"                   = "#ca8a04",
+  "integrated_faculty_university_center" = "#a16207",
+  "technology_center"                    = "#dc2626",
+  "technology_center_fat"                = "#991b1b",
+  "cefet_ifet"                           = "#7e22ce",
+  "isolated_establishment"               = "#525252"
+)
+
+TER_MODALITY_COLORS <- c(
+  "total"      = "#1f2937",  # near-black
+  "presencial" = "#1d4ed8",  # blue
+  "ead"        = "#ea580c"   # orange
+)
+
 # ---- educational attainment choices ----------------------------------
 
 SCH_DIM_CHOICES <- c(
@@ -448,6 +499,10 @@ server <- function(input, output, session) {
       modality         = input$ter_modality,
       year             = input$ter_year,
       source           = input$ter_source,
+      indicator        = "count",   # tertiary panel is enrollment counts;
+                                    # excludes Kang's enrollment_rate rows
+                                    # that would otherwise plot as ~0 next
+                                    # to count values in the millions.
       include_derived  = isTRUE(input$ter_derived),
       lang             = "en"   # keep raw keys; we re-label for display
     )
@@ -476,10 +531,6 @@ server <- function(input, output, session) {
     d$inst_lab    <- ter_label("institution_type", d$institution_type)
     d$mod_lab     <- ter_label("modality",         d$modality)
 
-    color_col_map <- c(source = "source_lab", network = "network_lab",
-                       institution_type = "inst_lab", modality = "mod_lab")
-    color_col <- color_col_map[[color_var]]
-
     d$hover_text <- paste0(
       "<b>Year:</b> ", d$year, "<br>",
       "<b>Source:</b> ", d$source_lab, "<br>",
@@ -492,34 +543,65 @@ server <- function(input, output, session) {
         ifelse(d$is_derived, " <i>(derived)</i>", "") else ""
     )
 
-    # Build display-friendly labels for the shape/linetype legends.
-    source_lab_lookup   <- setNames(names(TER_SOURCE_CHOICES),
-                                    unname(TER_SOURCE_CHOICES))
-    modality_lab_lookup <- setNames(names(TER_MOD_CHOICES),
-                                    unname(TER_MOD_CHOICES))
+    # Pick the colour palette + display-label lookup according to the
+    # user's "Colour lines by" choice.  Keeping aesthetic data on the
+    # *raw* key column lets us drive both the palette (named-vector
+    # values) and the legend labels from the same lookup.
+    pal <- switch(color_var,
+      source           = list(col = "source",
+                              values = TER_SOURCE_COLORS,
+                              labels = setNames(names(TER_SOURCE_CHOICES),
+                                                unname(TER_SOURCE_CHOICES)),
+                              title  = "Source"),
+      network          = list(col = "network",
+                              values = TER_NETWORK_COLORS,
+                              labels = setNames(names(TER_NETWORK_CHOICES),
+                                                unname(TER_NETWORK_CHOICES)),
+                              title  = "Network"),
+      institution_type = list(col = "institution_type",
+                              values = TER_INST_COLORS,
+                              labels = setNames(names(TER_INST_CHOICES),
+                                                unname(TER_INST_CHOICES)),
+                              title  = "Institution type"),
+      modality         = list(col = "modality",
+                              values = TER_MODALITY_COLORS,
+                              labels = setNames(names(TER_MOD_CHOICES),
+                                                unname(TER_MOD_CHOICES)),
+                              title  = "Modality")
+    )
+
+    source_label_lookup   <- setNames(names(TER_SOURCE_CHOICES),
+                                      unname(TER_SOURCE_CHOICES))
+    modality_label_lookup <- setNames(names(TER_MOD_CHOICES),
+                                      unname(TER_MOD_CHOICES))
 
     g <- ggplot2::ggplot(
       d,
       ggplot2::aes(x = year, y = value,
-                   colour   = .data[[color_col]],
+                   colour   = .data[[pal$col]],
                    shape    = source,
                    linetype = modality,
                    group    = interaction(source, network, institution_type, modality),
                    text     = hover_text)
     ) +
-      ggplot2::geom_line(linewidth = 0.7, alpha = 0.85) +
-      ggplot2::geom_point(size = 2.4, alpha = 0.9) +
+      ggplot2::geom_line(linewidth = 0.8, alpha = 0.9) +
+      ggplot2::geom_point(size = 2.4, alpha = 0.95) +
       ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(12)) +
       ggplot2::scale_y_continuous(labels = scales::label_number(big.mark = ",")) +
+      ggplot2::scale_colour_manual(
+        name   = pal$title,
+        values = pal$values,
+        labels = pal$labels
+      ) +
       ggplot2::scale_shape_manual(
         name   = "Source",
         values = TER_SOURCE_SHAPES,
-        labels = source_lab_lookup
+        labels = source_label_lookup
       ) +
       ggplot2::scale_linetype_manual(
         name   = "Modality",
         values = TER_MODALITY_LINETYPES,
-        labels = modality_lab_lookup
+        labels = modality_label_lookup
       ) +
       ggplot2::theme_minimal(base_size = 13) +
       ggplot2::theme(legend.position = "bottom",
@@ -530,7 +612,7 @@ server <- function(input, output, session) {
       )
 
     plotly::ggplotly(g, tooltip = "text") |>
-      plotly::layout(legend = list(orientation = "h", y = -0.15))
+      plotly::layout(legend = list(orientation = "h", y = -0.2))
   })
 
   output$ter_caption <- renderText({
