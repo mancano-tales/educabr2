@@ -326,11 +326,21 @@ enrollment_kang_fgv <- dplyr::bind_rows(
   build_byrace_br(),
   build_byuf()
 ) |>
+  # Make this dataset schema-complete: the optional columns
+  # institution_type/modality/is_derived exist in the canonical schema
+  # (introduced for the tertiary panel). Kang's series do not vary on
+  # those dimensions, so they take the documented defaults — but we
+  # write them explicitly so the .rda doesn't rely on loader fill.
+  dplyr::mutate(
+    institution_type = "total",
+    modality         = "total",
+    is_derived       = FALSE
+  ) |>
   dplyr::select(
     year, geo_level, geo_code, geo_name,
-    level, network, dim_race,
+    level, network, institution_type, modality, dim_race,
     age_group, indicator, value, unit,
-    source, source_note
+    source, source_note, is_derived
   ) |>
   dplyr::arrange(geo_level, geo_code, level, dim_race, age_group, indicator, year) |>
   tibble::as_tibble()

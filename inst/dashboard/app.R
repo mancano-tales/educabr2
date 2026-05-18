@@ -216,6 +216,63 @@ SCH_DIM_CHOICES <- c(
   "By sex"               = "sex"
 )
 
+# ---- code-generation helpers -----------------------------------------
+#
+# Each tab gets a "View R code" button that opens a modal showing the
+# exact `educabr::get_*()` + ggplot2 call needed to reproduce the chart
+# the user is currently looking at. This bridges interactive
+# exploration with reproducible analysis — a key academic-transparency
+# feature.
+
+fmt_r_arg <- function(name, value) {
+  if (is.null(value) || length(value) == 0L) return(NULL)
+  if (is.logical(value)) {
+    rep <- if (isTRUE(value)) "TRUE" else "FALSE"
+  } else if (is.character(value)) {
+    rep <- if (length(value) == 1L) sprintf('"%s"', value)
+           else sprintf('c(%s)',
+                        paste(sprintf('"%s"', value), collapse = ", "))
+  } else if (is.numeric(value)) {
+    rep <- if (length(value) == 1L) format(value, scientific = FALSE)
+           else sprintf('c(%s)',
+                        paste(format(value, scientific = FALSE), collapse = ", "))
+  } else {
+    rep <- as.character(value)
+  }
+  sprintf("  %s = %s", name, rep)
+}
+
+build_r_call <- function(fn_name, args_list) {
+  parts <- Filter(Negate(is.null),
+                  lapply(names(args_list),
+                         function(n) fmt_r_arg(n, args_list[[n]])))
+  if (length(parts) == 0L) return(paste0(fn_name, "()"))
+  paste0(fn_name, "(\n",
+         paste(parts, collapse = ",\n"),
+         "\n)")
+}
+
+show_code_modal <- function(title, code_text) {
+  showModal(modalDialog(
+    title = title,
+    tags$p(tags$small(
+      style = "color: #555;",
+      "Copy the snippet below into your R session to reproduce the chart locally. ",
+      "The code uses only the public {educabr} API and ggplot2.")),
+    tags$pre(
+      style = paste(
+        "background:#f6f8fa; padding:14px; border-radius:6px;",
+        "max-height:60vh; overflow:auto; font-size:12px;",
+        "white-space:pre; tab-size:2;"
+      ),
+      tags$code(class = "language-r", code_text)
+    ),
+    easyClose = TRUE,
+    size      = "l",
+    footer    = tagList(modalButton("Close"))
+  ))
+}
+
 # ---- helper ----------------------------------------------------------
 
 sources_card_ui <- function(source_keys, yaml_path) {
@@ -279,7 +336,10 @@ ui <- bslib::page_navbar(
                     min = 1871, max = 2010, value = c(1933, 2010),
                     sep = "", step = 1),
         hr(),
-        downloadButton("enr_download", "Download CSV", class = "btn-primary w-100")
+        downloadButton("enr_download", "Download CSV", class = "btn-primary w-100"),
+        actionButton("enr_show_code", "View R code",
+                     class = "btn-outline-secondary w-100 mt-2",
+                     icon  = icon("code"))
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
@@ -334,7 +394,10 @@ ui <- bslib::page_navbar(
         checkboxInput("ter_derived", "Include derived rows (In-person + EAD)",
                       value = FALSE),
         hr(),
-        downloadButton("ter_download", "Download CSV", class = "btn-primary w-100")
+        downloadButton("ter_download", "Download CSV", class = "btn-primary w-100"),
+        actionButton("ter_show_code", "View R code",
+                     class = "btn-outline-secondary w-100 mt-2",
+                     icon  = icon("code"))
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
@@ -384,7 +447,10 @@ ui <- bslib::page_navbar(
                     min = 1925, max = 2015, value = c(1950, 2015),
                     sep = "", step = 1),
         hr(),
-        downloadButton("sch_download", "Download CSV", class = "btn-primary w-100")
+        downloadButton("sch_download", "Download CSV", class = "btn-primary w-100"),
+        actionButton("sch_show_code", "View R code",
+                     class = "btn-outline-secondary w-100 mt-2",
+                     icon  = icon("code"))
       ),
       bslib::navset_card_tab(
         bslib::nav_panel(
@@ -805,6 +871,121 @@ server <- function(input, output, session) {
     content = function(file)
       utils::write.csv(sch_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
   )
+
+  # -- "View R code" buttons -------------------------------------------
+
+  observeEvent(input$enr_show_code, {
+    indicator_arg <- if (length(input$enr_indicator)) input$enr_indicator else NULL
+    geo_arg       <- if (input$enr_geo_level == "UF") input$enr_geo else NULL
+    color_var     <- if (input$enr_dimension == "race") "dim_race" else "level"
+
+    get_call <- build_r_call("get_enrollment", list(
+      level     = if (length(input$enr_level)) input$enr_level else NULL,
+      year      = input$enr_year,
+      geo_level = input$enr_geo_level,
+      geo       = geo_arg,
+      dimension = input$enr_dimension,
+      indicator = indicator_arg,
+      lang      = "en"
+    ))
+
+    y_lab <- if (input$enr_indicator == "rate") "Gross enrollment rate (%)" else "Enrollment"
+
+    code <- paste0(
+      "library(educabr)\n",
+      "library(ggplot2)\n\n",
+      "data <- ", get_call, "\n\n",
+      "ggplot(data, aes(x = year, y = value,\n",
+      "                 colour = ", color_var, ",\n",
+      "                 group  = interaction(", color_var, ", geo_code))) +\n",
+      "  geom_line(linewidth = 0.9, alpha = 0.9) +\n",
+      "  geom_point(size = 0.6, alpha = 0.6) +\n",
+      "  scale_x_continuous(breaks = scales::pretty_breaks(10)) +\n",
+      "  theme_minimal(base_size = 13) +\n",
+      "  labs(x = NULL, y = \"", y_lab, "\")"
+    )
+
+    show_code_modal("R code — Enrollment chart", code)
+  })
+
+  observeEvent(input$ter_show_code, {
+    get_call <- build_r_call("get_enrollment", list(
+      level            = "superior",
+      year             = input$ter_year,
+      network          = input$ter_network,
+      institution_type = input$ter_inst,
+      modality         = input$ter_modality,
+      source           = input$ter_source,
+      indicator        = "count",
+      include_derived  = isTRUE(input$ter_derived),
+      lang             = "en"
+    ))
+
+    color_var <- input$ter_color_by
+    color_expr <- if (color_var == "modality") "modality"
+                  else sprintf("interaction(%s, modality, sep = \" \\u00b7 \")", color_var)
+
+    code <- paste0(
+      "library(educabr)\n",
+      "library(ggplot2)\n\n",
+      "data <- ", get_call, "\n\n",
+      "# colour = ", color_var, " (with modality shading); shape = source; linetype = modality\n",
+      "ggplot(data, aes(x = year, y = value,\n",
+      "                 colour   = ", color_expr, ",\n",
+      "                 shape    = source,\n",
+      "                 linetype = modality,\n",
+      "                 group    = interaction(source, network, institution_type, modality))) +\n",
+      "  geom_line(linewidth = 1) +\n",
+      "  geom_point(size = 2.5) +\n",
+      "  scale_x_continuous(breaks = scales::pretty_breaks(12)) +\n",
+      "  scale_y_continuous(labels = scales::label_number(big.mark = \",\")) +\n",
+      "  theme_minimal(base_size = 13) +\n",
+      "  labs(x = NULL, y = \"Enrollment\",\n",
+      "       title = \"Tertiary Education \\u2014 multi-source comparison\",\n",
+      "       colour = NULL, shape = \"Source\", linetype = \"Modality\")\n"
+    )
+
+    show_code_modal("R code — Tertiary Education chart", code)
+  })
+
+  observeEvent(input$sch_show_code, {
+    geo_arg <- switch(input$sch_geo_level,
+                      UF     = input$sch_geo_uf,
+                      region = input$sch_geo_reg,
+                      NULL)
+
+    get_call <- build_r_call("get_schooling", list(
+      year      = input$sch_year,
+      geo_level = input$sch_geo_level,
+      geo       = geo_arg,
+      dimension = input$sch_dimension,
+      lang      = "en"
+    ))
+
+    color_var <- switch(input$sch_dimension,
+                        race = "dim_race",
+                        sex  = "dim_sex",
+                        "geo_name")
+
+    code <- paste0(
+      "library(educabr)\n",
+      "library(ggplot2)\n\n",
+      "data <- ", get_call, "\n\n",
+      "ggplot(data, aes(x = year, y = value,\n",
+      "                 colour = ", color_var, ",\n",
+      "                 group  = interaction(", color_var, ", geo_code))) +\n",
+      "  geom_line(linewidth = 0.9, alpha = 0.9) +\n",
+      "  geom_point(size = 0.6, alpha = 0.6) +\n",
+      "  scale_x_continuous(breaks = scales::pretty_breaks(10)) +\n",
+      "  theme_minimal(base_size = 13) +\n",
+      "  labs(x = NULL, y = \"Mean years of schooling\")",
+      if (input$sch_geo_level == "UF" && length(geo_arg) > 1L)
+        " +\n  facet_wrap(~ geo_name, scales = \"free_y\")"
+      else ""
+    )
+
+    show_code_modal("R code — Educational Attainment chart", code)
+  })
 }
 
 shinyApp(ui, server)

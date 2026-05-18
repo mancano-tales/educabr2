@@ -156,6 +156,15 @@ Issues e PRs são bem-vindos. Para contribuir com dados, abra uma issue
 descrevendo a planilha-fonte, autor, cobertura geográfica/temporal e
 licença — antes de mandar PR.
 
+Para regenerar o hex sticker do pacote:
+
+```r
+source("man/figures/logo.R")
+```
+
+O script lê `man/figures/raw/brasil.png` (silhueta do `geobr`) e produz
+`man/figures/logo.png` via `hexSticker`.
+
 ---
 
 ## Licença
