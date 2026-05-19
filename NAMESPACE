@@ -2,6 +2,8 @@
 
 export(educabr_cite)
 export(get_enrollment)
+export(get_expenditure)
+export(get_progression)
 export(get_schooling)
 export(list_sources)
 export(run_dashboard)

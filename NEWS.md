@@ -1,6 +1,42 @@
 # educabr 0.1.0.9000 (development version)
 
-CRAN-readiness polish; no breaking changes.
+CRAN-readiness polish plus two new themes (public expenditure and
+grade-progression). No breaking changes to existing `get_*()`
+signatures or to `enrollment_kang_fgv` / `schooling_kang_fgv`
+contents.
+
+## New themes & datasets
+
+* `expenditure_kang_fgv` — 1,170 rows. Public expenditure on education,
+  Brazil, 1933-2010 (Kang & Menetrier 2024). Four indicators:
+  `expenditure_share_gdp`, `expenditure_per_student_pct_gdp_pc`, and
+  the two "double ratio" indicators of fiscal regressivity
+  (`expenditure_double_ratio_es_ef1`,
+  `expenditure_double_ratio_es_ef_em`).
+* `progression_kang_fgv` — 1,090 rows. Grade-progression ratio GDR6
+  (enrollment in grades 4-6 / grades 1-3 of the old eight-year primary
+  system), BR + 20 UFs, 1955-2010 (Kang, Paese & Felix 2021).
+
+## New public API
+
+* `get_expenditure()` — long-format access to the public-expenditure
+  series. Supports indicator aliases (`"share_gdp"`, `"per_student"`,
+  `"double_ratio_es_ef1"`, `"double_ratio_es_ef_em"`).
+* `get_progression()` — long-format access to grade-progression
+  indicators. Supports indicator alias `"gdr6"`. Filters by
+  `geo_level` / `geo` like `get_enrollment()`.
+
+## Schema additions (additive only)
+
+* New `level` value: `fundamental_medio` (EF + EM combined; appears in
+  expenditure data).
+* New `unit` values: `percent_gdp` and `percent_gdp_per_capita`
+  (alongside the existing `percent`, `ratio`, `years`, `count`).
+* `inst/dict/vocabularies/indicators.yaml` gains entries for every
+  indicator emitted by the new datasets, with PT-BR translations
+  surfaced in `inst/dict/i18n.yaml`.
+
+## Other changes
 
 * `list_sources()` — new helper returning a tibble of every entry in
   the source vocabulary (key, short_name, type, coverage, DOI, URL,

@@ -15,6 +15,7 @@ levels:
     fundamental_anos_iniciais: Fundamental — anos iniciais
     fundamental_anos_finais: Fundamental — anos finais
     medio: Ensino médio
+    fundamental_medio: Educação básica regular (EF + EM)
     superior: Ensino superior
     eja: Educação de Jovens e Adultos
     total: Total
@@ -68,3 +69,16 @@ levels:
     urban: Urbano
     rural: Rural
     total: Total
+  indicator:
+    enrollment_count: Número de matrículas
+    enrollment_rate: Taxa bruta de matrícula
+    net_enrollment_rate: Taxa líquida de matrícula
+    mean_years_schooling: Média de anos de estudo
+    years_of_schooling: Média de anos de estudo
+    literacy_rate: Taxa de alfabetização
+    attainment_share: Proporção com nível atingido
+    expenditure_share_gdp: Despesa pública em educação (% do PIB)
+    expenditure_per_student_pct_gdp_pc: Despesa pública por estudante (% do PIB per capita)
+    expenditure_double_ratio_es_ef1: Razão dupla — ES/EF1
+    expenditure_double_ratio_es_ef_em: Razão dupla — ES/(EF+EM)
+    gross_distribution_ratio_grade_6: Razão de distribuição (séries 4-6 / 1-3) — GDR6

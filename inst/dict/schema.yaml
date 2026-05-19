@@ -39,7 +39,7 @@ columns:
     type: factor
     role: dimension_education
     required: false
-    appears_in: [enrollment, schooling_attainment]
+    appears_in: [enrollment, schooling_attainment, expenditure, progression]
     levels:
       - infantil_creche
       - infantil_pre
@@ -47,10 +47,15 @@ columns:
       - fundamental_anos_iniciais
       - fundamental_anos_finais
       - medio
+      - fundamental_medio
       - superior
       - eja
       - total
-    description: Education stage (Brazilian system).
+    description: >
+      Education stage (Brazilian system). `fundamental_medio` denotes
+      educação básica regular (EF + EM) combined — useful for fiscal
+      indicators that report basic education as a single aggregate even
+      though it spans two stages of the schooling ladder.
 
   - name: network
     type: factor
@@ -166,7 +171,15 @@ columns:
     type: factor
     role: measure
     required: true
-    levels: [count, percent, ratio, years]
+    levels: [count, percent, percent_gdp, percent_gdp_per_capita, ratio, years]
+    description: >
+      Unit of the `value` column. `percent` is a 0-100 share (e.g.
+      gross enrollment rate); `percent_gdp` denotes "share of GDP"
+      (expenditure indicators); `percent_gdp_per_capita` denotes
+      "share of GDP per capita" (per-student expenditure expressed in
+      the same comparable terms); `ratio` is a unitless ratio
+      (typically 0-1+); `years` is years (mean years of schooling);
+      `count` is an absolute headcount.
 
   - name: source
     type: factor
@@ -228,7 +241,9 @@ conventions:
   units:
     count: Absolute headcount.
     percent: 0-100 scale.
-    ratio: 0-1 scale.
+    percent_gdp: Share of GDP (0-100 scale).
+    percent_gdp_per_capita: Share of GDP per capita (0-100+ scale).
+    ratio: Unitless ratio (typically 0-1+).
     years: Years (e.g. mean years of schooling).
   language:
     column_names: english

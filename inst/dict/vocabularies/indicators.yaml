@@ -59,3 +59,70 @@ indicators:
     description: >
       Share of the reference population who have completed at least the
       stage indicated by `level`.
+
+  mean_years_schooling:
+    theme: schooling
+    unit: years
+    label_en: Mean years of schooling
+    label_pt: Média de anos de estudo
+    description: >
+      Mean years of completed schooling in the reference population
+      (Walter & Kang 2024 reconstruction; aged 15+).
+
+  expenditure_share_gdp:
+    theme: expenditure
+    unit: percent_gdp
+    label_en: Public expenditure on education (share of GDP)
+    label_pt: Despesa pública em educação (% do PIB)
+    description: >
+      Public expenditure on education at a given stage, expressed as a
+      share of gross domestic product. Use `level = "total"` for the
+      whole-system aggregate.
+
+  expenditure_per_student_pct_gdp_pc:
+    theme: expenditure
+    unit: percent_gdp_per_capita
+    label_en: Public expenditure per student (share of GDP per capita)
+    label_pt: Despesa pública por estudante (% do PIB per capita)
+    description: >
+      Public expenditure per student enrolled in the public network at
+      a given stage, expressed as a share of GDP per capita. Useful for
+      cross-country comparisons (eliminates currency / price-level
+      effects).
+
+  expenditure_double_ratio_es_ef1:
+    theme: expenditure
+    unit: ratio
+    label_en: Double ratio — per-student spending, Superior over EF1
+    label_pt: Razão dupla — despesa por estudante, Superior sobre EF1
+    description: >
+      Ratio of per-student public expenditure on tertiary education
+      (Ensino Superior) to per-student public expenditure on the first
+      grades of basic education (EF1 / anos iniciais). Kang & Menetrier
+      (2024) use it as a measure of fiscal regressivity of the
+      Brazilian education system. `level = "total"` because the
+      indicator is a system-wide comparison rather than a single
+      stage.
+
+  expenditure_double_ratio_es_ef_em:
+    theme: expenditure
+    unit: ratio
+    label_en: Double ratio — per-student spending, Superior over (EF+EM)
+    label_pt: Razão dupla — despesa por estudante, Superior sobre (EF+EM)
+    description: >
+      Ratio of per-student public expenditure on tertiary education
+      (Ensino Superior) to per-student public expenditure on basic
+      education (Fundamental + Médio combined). System-wide comparison
+      (`level = "total"`).
+
+  gross_distribution_ratio_grade_6:
+    theme: progression
+    unit: ratio
+    label_en: Gross distribution ratio — grade 6 (GDR6)
+    label_pt: Razão de distribuição de séries — 6º ano (GDR6)
+    description: >
+      Ratio of enrollment in grades 4-6 to enrollment in grades 1-3 of
+      the old eight-year primary system (séries 4-6 / séries 1-3). Used
+      by Kang, Paese & Felix (2021) as a proxy for grade-progression
+      efficiency in the lower primary school. Reported at the BR and UF
+      level for `level = "fundamental_anos_iniciais"`.

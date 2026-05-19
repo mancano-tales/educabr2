@@ -58,6 +58,8 @@ reference:
   contents:
   - get_enrollment
   - get_schooling
+  - get_expenditure
+  - get_progression
 
 - title: Citations and provenance
   desc: >
@@ -76,14 +78,16 @@ reference:
 
 - title: Backing datasets
   desc: >
-    Internal backing stores for `get_enrollment()` and `get_schooling()`.
-    End users should call the `get_*()` functions instead of loading
-    these objects directly — the public API normalises schema
-    differences across datasets, applies filters and translates labels.
+    Internal backing stores for the public `get_*()` functions. End
+    users should call the functions instead of loading these objects
+    directly — the public API normalises schema differences across
+    datasets, applies filters and translates labels.
   contents:
   - enrollment_kang_fgv
   - enrollment_tertiary
   - schooling_kang_fgv
+  - expenditure_kang_fgv
+  - progression_kang_fgv
 
 - title: Package
   contents: educabr-package
