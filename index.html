@@ -248,8 +248,18 @@ provenance. Includes a bundled Shiny dashboard.
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
+<p>Cite both the package (for the harmonisation work) and the <strong>originating sources</strong> for any data you actually use. The <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> helper builds APA / BibTeX entries for every bundled source:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr"</span><span class="op">)</span>                              <span class="co"># cite the package</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="st">"kang_paese_felix_2021"</span><span class="op">)</span>            <span class="co"># cite one source</span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"walter_kang_2023"</span>,               <span class="co"># cite many</span></span>
+<span>              <span class="st">"inep_microdados_censup"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="op">)</span>                                   <span class="co"># all bundled sources</span></span>
+<span></span>
+<span><span class="co"># Typical workflow — query first, then cite only what you used</span></span>
+<span><span class="va">d</span>   <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"fundamental"</span>, indicator <span class="op">=</span> <span class="st">"rate"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">source</span><span class="op">)</span>, style <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span></code></pre></div>
 <p>A Zenodo DOI will accompany the first tagged release.</p>
 <hr>
 </div>

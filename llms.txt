@@ -179,9 +179,23 @@ Design inspirations: [`geobr`](https://github.com/ipeaGIT/geobr)
 
 ## Citation
 
+Cite both the package (for the harmonisation work) and the **originating
+sources** for any data you actually use. The
+[`educabr_cite()`](https://mancano-tales.github.io/educabr/reference/educabr_cite.md)
+helper builds APA / BibTeX entries for every bundled source:
+
 ``` r
 
-citation("educabr")
+citation("educabr")                              # cite the package
+
+educabr_cite("kang_paese_felix_2021")            # cite one source
+educabr_cite(c("walter_kang_2023",               # cite many
+              "inep_microdados_censup"))
+educabr_cite()                                   # all bundled sources
+
+# Typical workflow — query first, then cite only what you used
+d   <- get_enrollment(level = "fundamental", indicator = "rate")
+educabr_cite(unique(d$source), style = "text")
 ```
 
 A Zenodo DOI will accompany the first tagged release.
@@ -214,6 +228,13 @@ the canonical tidy-long schema documented in `inst/dict/schema.yaml`.
   : Brazilian school-enrollment series
 - [`get_schooling()`](https://mancano-tales.github.io/educabr/reference/get_schooling.md)
   : Brazilian mean years of schooling
+
+## Citations
+
+Cite the originating data sources, not only the package itself.
+
+- [`educabr_cite()`](https://mancano-tales.github.io/educabr/reference/educabr_cite.md)
+  : Generate citations for educabr data sources
 
 ## Dashboard
 

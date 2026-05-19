@@ -10,6 +10,13 @@ the canonical tidy-long schema documented in `inst/dict/schema.yaml`.
 - [`get_schooling()`](https://mancano-tales.github.io/educabr/reference/get_schooling.md)
   : Brazilian mean years of schooling
 
+## Citations
+
+Cite the originating data sources, not only the package itself.
+
+- [`educabr_cite()`](https://mancano-tales.github.io/educabr/reference/educabr_cite.md)
+  : Generate citations for educabr data sources
+
 ## Dashboard
 
 Launch the bundled Shiny dashboard. A read-only deployment is also
