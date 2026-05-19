@@ -40,6 +40,10 @@ Brazilian education plus a bundled Shiny dashboard.
 
 * `run_dashboard()` — launches the bundled Shiny dashboard locally.
 
+* `educabr_cite()` — builds `bibentry` objects (or APA-style prose, or
+  BibTeX) for any of the harmonised data sources, driven by the
+  controlled vocabulary in `inst/dict/vocabularies/sources.yaml`.
+
 ## Dashboard
 
 * Three-theme navbar (English UI): Enrollment, Tertiary Education,

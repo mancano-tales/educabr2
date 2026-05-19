@@ -169,8 +169,22 @@ Design inspirations:
 
 ## Citation
 
+Cite both the package (for the harmonisation work) and the
+**originating sources** for any data you actually use. The
+`educabr_cite()` helper builds APA / BibTeX entries for every
+bundled source:
+
 ```r
-citation("educabr")
+citation("educabr")                              # cite the package
+
+educabr_cite("kang_paese_felix_2021")            # cite one source
+educabr_cite(c("walter_kang_2023",               # cite many
+              "inep_microdados_censup"))
+educabr_cite()                                   # all bundled sources
+
+# Typical workflow — query first, then cite only what you used
+d   <- get_enrollment(level = "fundamental", indicator = "rate")
+educabr_cite(unique(d$source), style = "text")
 ```
 
 A Zenodo DOI will accompany the first tagged release.

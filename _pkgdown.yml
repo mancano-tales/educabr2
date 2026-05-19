@@ -59,6 +59,12 @@ reference:
   - get_enrollment
   - get_schooling
 
+- title: Citations
+  desc: >
+    Cite the originating data sources, not only the package itself.
+  contents:
+  - educabr_cite
+
 - title: Dashboard
   desc: >
     Launch the bundled Shiny dashboard. A read-only deployment is also
