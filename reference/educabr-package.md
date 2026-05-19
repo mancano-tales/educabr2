@@ -10,8 +10,9 @@ The canonical output schema (one row per observation; sources as
 separate rows) is documented in `inst/dict/schema.yaml`. Inequality is
 not a dataset but a *cut* applied to indicators: every `get_*()`
 function accepts a `dimension` argument that returns the indicator
-broken down by race, sex, income or location. The helper `compute_gap()`
-(planned) turns long-format breakdowns into the usual gap/ratio metrics.
+broken down by race, sex, income or location. A `compute_gap()` helper
+for turning long-format breakdowns into the usual gap/ratio metrics is
+on the roadmap for a future release.
 
 ## Roadmap
 
@@ -38,6 +39,11 @@ Useful links:
 
 **Maintainer**: Tales Mançano <mancano.tales@usp.br>
 ([ORCID](https://orcid.org/0000-0001-5923-9743))
+
+Authors:
+
+- Tales Mançano <mancano.tales@usp.br>
+  ([ORCID](https://orcid.org/0000-0001-5923-9743))
 
 Other contributors:
 

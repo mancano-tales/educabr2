@@ -44,35 +44,34 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="educabr-development-version">educabr (development version)<a class="anchor" aria-label="anchor" href="#educabr-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.0.0.9000" id="educabr-0009000">educabr 0.0.0.9000<a class="anchor" aria-label="anchor" href="#educabr-0009000"></a></h2>
+<p>Initial development release.</p>
 <div class="section level3">
-<h3 id="initial-development-cycle-development-version">Initial development cycle (0.0.0.9000)<a class="anchor" aria-label="anchor" href="#initial-development-cycle-development-version"></a></h3>
-<div class="section level4">
-<h4 id="datasets-development-version">Datasets<a class="anchor" aria-label="anchor" href="#datasets-development-version"></a></h4>
+<h3 id="datasets-0-0-0-9000">Datasets<a class="anchor" aria-label="anchor" href="#datasets-0-0-0-9000"></a></h3>
 <ul><li><p><code>enrollment_kang_fgv</code> — 6,238 rows. Brazilian school enrollment counts and gross rates by stage (EF1, EF2, EF, EM, ES), 1933-2010 at national level and 1955-2010 at UF level, with breakdown by colour/race 1960-2010. Per-paper source attribution (<code>kang_paese_felix_2021</code>, <code>kang_menetrier_2024</code>, <code>kang_menetrier_comim_2024</code>).</p></li>
 <li><p><code>enrollment_tertiary</code> — 1,341 rows. Brazilian tertiary enrollment 1907-2024 compiled across seven primary sources: IBGE <em>Estatísticas do Século XX</em>, Durham (2005), Maduro Junior (2007), Kang/Paese/Felix (2021), INEP CENSUP Synopsis (1995-2008), INEP CENSUP Microdata (2009-2024), and the INEP CENSUP Power BI panel. Multiple sources per year-network are kept on purpose to support cross-source comparison. Includes 25 <em>reconstructed total</em> rows (<code>is_derived = TRUE</code>) that fill the 2000-2008 transition period where INEP published in-person and EAD enrollment separately.</p></li>
 <li><p><code>schooling_kang_fgv</code> — 2,287 rows. Mean years of schooling for the adult population, 1925-2015 (BR), 1950-2015 (region, UF), with sex and race breakdowns at BR level (Walter &amp; Kang 2024).</p></li>
 </ul></div>
-<div class="section level4">
-<h4 id="api-development-version">API<a class="anchor" aria-label="anchor" href="#api-development-version"></a></h4>
+<div class="section level3">
+<h3 id="api-0-0-0-9000">API<a class="anchor" aria-label="anchor" href="#api-0-0-0-9000"></a></h3>
 <ul><li><p><code><a href="../reference/get_enrollment.html">get_enrollment()</a></code> — long-format access to enrollment series with filters for <code>level</code>, <code>network</code>, <code>institution_type</code>, <code>modality</code>, <code>year</code>, <code>geo_level</code>/<code>geo</code>, <code>dimension</code>, <code>indicator</code>, <code>source</code>, <code>include_derived</code>. Returns the canonical schema with English labels (<code>lang = "en"</code>) or PT-BR labels (<code>lang = "pt"</code>).</p></li>
 <li><p><code><a href="../reference/get_schooling.html">get_schooling()</a></code> — long-format access to the mean-years-of-schooling series with filters for <code>year</code>, <code>geo_level</code>/<code>geo</code>, <code>dimension</code>, <code>source</code>, <code>lang</code>.</p></li>
 <li><p><code><a href="../reference/run_dashboard.html">run_dashboard()</a></code> — launches the bundled Shiny dashboard locally.</p></li>
 </ul></div>
-<div class="section level4">
-<h4 id="dashboard-development-version">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard-development-version"></a></h4>
+<div class="section level3">
+<h3 id="dashboard-0-0-0-9000">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard-0-0-0-9000"></a></h3>
 <ul><li>Three-theme navbar (English UI): Enrollment, Tertiary Education, Educational Attainment.</li>
 <li>Tertiary Education tab features multi-source comparison with interaction-based colour palette (each source × modality combination gets a unique colour shade), shape-by-source, and linetype-by-modality encoding.</li>
 <li>“View R code” button on every tab generates a self-contained, copy-pasteable R snippet (educabr + ggplot2) that reproduces the current chart locally.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="schema-development-version">Schema<a class="anchor" aria-label="anchor" href="#schema-development-version"></a></h4>
+<div class="section level3">
+<h3 id="schema-0-0-0-9000">Schema<a class="anchor" aria-label="anchor" href="#schema-0-0-0-9000"></a></h3>
 <ul><li>Canonical <em>tidy-long</em> schema documented in <code>inst/dict/schema.yaml</code> with primary-key constraints, year domain, controlled vocabularies for factor levels, and conventions for missing values.</li>
 <li>13 primary source entries documented in <code>inst/dict/vocabularies/sources.yaml</code> with DOIs, URLs, and coverage metadata.</li>
 <li>PT-BR labels for every factor level in <code>inst/dict/i18n.yaml</code>.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="build-pipeline-development-version">Build pipeline<a class="anchor" aria-label="anchor" href="#build-pipeline-development-version"></a></h4>
+<div class="section level3">
+<h3 id="build-pipeline-0-0-0-9000">Build pipeline<a class="anchor" aria-label="anchor" href="#build-pipeline-0-0-0-9000"></a></h3>
 <ul><li>
 <code>data-raw/01_build_enrollment_kang_fgv.R</code> — Kang/FGV-IBRE 2023 compilation (4 xlsx files → enrollment_kang_fgv.rda).</li>
 <li>
@@ -80,13 +79,12 @@
 <li>
 <code>data-raw/03_build_enrollment_tertiary.R</code> — multi-source tertiary compilation, with canonicalisation of 69 raw source strings into 7 canonical keys and 4 composite derived-row keys, plus exact-duplicate deduplication.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="tests-development-version">Tests<a class="anchor" aria-label="anchor" href="#tests-development-version"></a></h4>
+<div class="section level3">
+<h3 id="tests-0-0-0-9000">Tests<a class="anchor" aria-label="anchor" href="#tests-0-0-0-9000"></a></h3>
 <ul><li>9 tests for <code><a href="../reference/get_enrollment.html">get_enrollment()</a></code> (core filters and pivots).</li>
 <li>9 tests for <code><a href="../reference/get_schooling.html">get_schooling()</a></code>.</li>
 <li>7 tests for the tertiary-specific arguments (<code>institution_type</code>, <code>modality</code>, <code>include_derived</code>, composite source keys, loader normalisation of legacy datasets).</li>
 </ul></div>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

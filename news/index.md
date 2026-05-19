@@ -1,10 +1,10 @@
 # Changelog
 
-## educabr (development version)
+## educabr 0.0.0.9000
 
-### Initial development cycle (0.0.0.9000)
+Initial development release.
 
-#### Datasets
+### Datasets
 
 - `enrollment_kang_fgv` — 6,238 rows. Brazilian school enrollment counts
   and gross rates by stage (EF1, EF2, EF, EM, ES), 1933-2010 at national
@@ -26,7 +26,7 @@
   adult population, 1925-2015 (BR), 1950-2015 (region, UF), with sex and
   race breakdowns at BR level (Walter & Kang 2024).
 
-#### API
+### API
 
 - [`get_enrollment()`](https://mancano-tales.github.io/educabr/reference/get_enrollment.md)
   — long-format access to enrollment series with filters for `level`,
@@ -42,7 +42,7 @@
 - [`run_dashboard()`](https://mancano-tales.github.io/educabr/reference/run_dashboard.md)
   — launches the bundled Shiny dashboard locally.
 
-#### Dashboard
+### Dashboard
 
 - Three-theme navbar (English UI): Enrollment, Tertiary Education,
   Educational Attainment.
@@ -54,7 +54,7 @@
   copy-pasteable R snippet (educabr + ggplot2) that reproduces the
   current chart locally.
 
-#### Schema
+### Schema
 
 - Canonical *tidy-long* schema documented in `inst/dict/schema.yaml`
   with primary-key constraints, year domain, controlled vocabularies for
@@ -64,7 +64,7 @@
   metadata.
 - PT-BR labels for every factor level in `inst/dict/i18n.yaml`.
 
-#### Build pipeline
+### Build pipeline
 
 - `data-raw/01_build_enrollment_kang_fgv.R` — Kang/FGV-IBRE 2023
   compilation (4 xlsx files → enrollment_kang_fgv.rda).
@@ -75,7 +75,7 @@
   canonical keys and 4 composite derived-row keys, plus exact-duplicate
   deduplication.
 
-#### Tests
+### Tests
 
 - 9 tests for
   [`get_enrollment()`](https://mancano-tales.github.io/educabr/reference/get_enrollment.md)
