@@ -20,3 +20,5 @@
 ^man/figures/raw$
 ^_probe_renv\.R$
 ^_run_tests\.R$
+^planning$
+^CLAUDE\.md$
