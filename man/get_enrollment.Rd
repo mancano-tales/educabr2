@@ -96,7 +96,7 @@ datasets shipped with the package and concatenated into the canonical
 long-format schema.
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 # National series, ensino fundamental, all years
 get_enrollment(level = "fundamental", geo_level = "BR")
 

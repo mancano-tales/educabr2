@@ -33,7 +33,7 @@ level.}
 \item \code{"race"} — breakdown by IBGE color/race (\code{white}, \code{black},
 \code{brown}, \code{asian}, \code{indigenous}), totals across sex;
 \item \code{"sex"} — breakdown by sex (\code{male}, \code{female}), totals across race.
-Race and sub-national breakdowns are only available at \code{geo_level =   "BR"}.
+Race and sub-national breakdowns are only available at \code{geo_level = "BR"}.
 }}
 
 \item{source}{Character vector of source keys. \code{NULL} returns all
@@ -63,7 +63,7 @@ a FGV-IBRE working paper that reconstructs the series from 1925 to
 2015.
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 # National series, all years
 get_schooling()
 

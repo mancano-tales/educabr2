@@ -29,7 +29,7 @@ BugReports: https://github.com/mancano-tales/educabr/issues
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 8.0.0
 Depends:
     R (>= 4.1)
 Imports:

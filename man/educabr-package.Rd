@@ -15,9 +15,9 @@ The canonical output schema (one row per observation; sources as
 separate rows) is documented in \code{inst/dict/schema.yaml}. Inequality is
 not a dataset but a \emph{cut} applied to indicators: every \verb{get_*()}
 function accepts a \code{dimension} argument that returns the indicator
-broken down by race, sex, income or location. The helper
-\code{\link[=compute_gap]{compute_gap()}} (planned) turns long-format breakdowns into the usual
-gap/ratio metrics.
+broken down by race, sex, income or location. A \code{compute_gap()}
+helper for turning long-format breakdowns into the usual gap/ratio
+metrics is on the roadmap for a future release.
 }
 \section{Roadmap}{
 
@@ -38,6 +38,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Tales Mançano \email{mancano.tales@usp.br} (\href{https://orcid.org/0000-0001-5923-9743}{ORCID})
+
+Authors:
+\itemize{
+  \item Tales Mançano \email{mancano.tales@usp.br} (\href{https://orcid.org/0000-0001-5923-9743}{ORCID})
+}
 
 Other contributors:
 \itemize{

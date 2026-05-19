@@ -8,9 +8,9 @@
 #' separate rows) is documented in `inst/dict/schema.yaml`. Inequality is
 #' not a dataset but a *cut* applied to indicators: every `get_*()`
 #' function accepts a `dimension` argument that returns the indicator
-#' broken down by race, sex, income or location. The helper
-#' [compute_gap()] (planned) turns long-format breakdowns into the usual
-#' gap/ratio metrics.
+#' broken down by race, sex, income or location. A `compute_gap()`
+#' helper for turning long-format breakdowns into the usual gap/ratio
+#' metrics is on the roadmap for a future release.
 #'
 #' @section Roadmap:
 #' v0 lays out the data schema, ETL pipeline and package skeleton. The
