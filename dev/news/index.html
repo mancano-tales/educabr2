@@ -69,6 +69,10 @@
 <code>inst/dict/vocabularies/indicators.yaml</code> gains entries for every indicator emitted by the new datasets, with PT-BR translations surfaced in <code>inst/dict/i18n.yaml</code>.</li>
 </ul></div>
 <div class="section level3">
+<h3 id="dashboard-0-1-0-9000">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard-0-1-0-9000"></a></h3>
+<ul><li>Two new navbar tabs: <strong>Public Expenditure</strong> and <strong>Grade Progression</strong>, built on top of <code><a href="../reference/get_expenditure.html">get_expenditure()</a></code> and <code><a href="../reference/get_progression.html">get_progression()</a></code>. Each tab carries the standard educabr layout — sidebar filters, series plot (plotly), table view (DT), source cards, CSV download, and a “View R code” modal that emits a reproducible educabr + ggplot2 + plotly snippet.</li>
+</ul></div>
+<div class="section level3">
 <h3 id="other-changes-0-1-0-9000">Other changes<a class="anchor" aria-label="anchor" href="#other-changes-0-1-0-9000"></a></h3>
 <ul><li>
 <code><a href="../reference/list_sources.html">list_sources()</a></code> — new helper returning a tibble of every entry in the source vocabulary (key, short_name, type, coverage, DOI, URL, notes). Discovery counterpart to <code><a href="../reference/educabr_cite.html">educabr_cite()</a></code>.</li>
