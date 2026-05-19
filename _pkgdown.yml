@@ -1,4 +1,5 @@
 url: https://mancano-tales.github.io/educabr/
+
 template:
   bootstrap: 5
   bootswatch: flatly
@@ -10,56 +11,95 @@ template:
       google: Source Sans Pro
     code_font:
       google: JetBrains Mono
+  opengraph:
+    image:
+      src: man/figures/logo.png
+      alt: educabr logo
+    twitter:
+      creator: '@mancano_tales'
+      card: summary
+
 home:
-  title: educabr
+  title: 'educabr: Harmonised Brazilian Education Series'
   description: |
-    Harmonised historical series on Brazilian education — enrollment, educational attainment and inequality — from 1871 to 2024.
+    Curated long-run series on Brazilian formal education — enrollment by
+    stage and network, mean years of schooling, attainment — compiled
+    and reconciled from heterogeneous official and academic sources
+    (Censo Escolar, PNAD, IBGE, INEP CENSUP, Kang/FGV-IBRE,
+    Walter & Kang) into a single tidy schema with explicit per-row
+    provenance. Includes a bundled Shiny dashboard.
   links:
-  - text: GitHub
+  - text: Live dashboard (shinyapps.io)
+    href: https://qx3hly-tales-man0ano.shinyapps.io/educabr/
+  - text: Source on GitHub
     href: https://github.com/mancano-tales/educabr
-  - text: Live dashboard
-    href: https://github.com/mancano-tales/educabr
+  - text: Report a bug
+    href: https://github.com/mancano-tales/educabr/issues
+
 navbar:
   structure:
-    left:
-    - intro
-    - reference
-    - articles
-    - news
-    right:
-    - search
-    - github
+    left:  [intro, reference, articles, news]
+    right: [search, dashboard, github]
   components:
     intro:
       text: Get started
       href: articles/01-introduction.html
+    dashboard:
+      icon: fa-chart-line
+      href: https://qx3hly-tales-man0ano.shinyapps.io/educabr/
+      aria-label: Live dashboard
+
 reference:
 - title: Data access
-  desc: Public API for the harmonised series.
+  desc: >
+    Public API for the harmonised series. Each function returns a tibble
+    in the canonical tidy-long schema documented in
+    `inst/dict/schema.yaml`.
   contents:
   - get_enrollment
   - get_schooling
+
 - title: Dashboard
-  contents: run_dashboard
-- title: Datasets
-  desc: |
-    Internal backing stores for `get_enrollment()` and `get_schooling()`. End users should call the `get_*()` functions rather than loading these objects directly.
+  desc: >
+    Launch the bundled Shiny dashboard. A read-only deployment is also
+    [hosted on shinyapps.io](https://qx3hly-tales-man0ano.shinyapps.io/educabr/).
+  contents:
+  - run_dashboard
+
+- title: Backing datasets
+  desc: >
+    Internal backing stores for `get_enrollment()` and `get_schooling()`.
+    End users should call the `get_*()` functions instead of loading
+    these objects directly — the public API normalises schema
+    differences across datasets, applies filters and translates labels.
   contents:
   - enrollment_kang_fgv
   - enrollment_tertiary
   - schooling_kang_fgv
+
 - title: Package
   contents: educabr-package
+
 articles:
 - title: Tutorials
   navbar: ~
   contents:
   - "01-introduction"
   - "02-introducao-pt"
+
 news:
   releases:
   - text: All releases
     href: news/index.html
+
 development:
   mode: auto
 
+footer:
+  structure:
+    left: [developed_by, package]
+    right: [built_with]
+  components:
+    package: |
+      Code under GPL (>= 3). Data under CC BY 4.0 unless original
+      source restricts it (see `inst/dict/vocabularies/sources.yaml`).

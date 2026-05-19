@@ -1,6 +1,7 @@
-# educabr 0.0.0.9000
+# educabr 0.1.0
 
-Initial development release.
+First public release. Initial set of harmonised long-run series on
+Brazilian education plus a bundled Shiny dashboard.
 
 ## Datasets
 
