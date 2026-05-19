@@ -17,13 +17,13 @@ Source:
 [`DESCRIPTION`](https://github.com/mancano-tales/educabr/blob/main/DESCRIPTION)
 
 Mançano T (2026). *educabr: Harmonized Historical Series on Brazilian
-Education*. R package version 0.0.0.9000, commit d402e73,
+Education*. R package version 0.1.0, commit d402e73,
 <https://github.com/mancano-tales/educabr>.
 
     @Manual{,
       title = {educabr: Harmonized Historical Series on Brazilian Education},
       author = {Tales Mançano},
       year = {2026},
-      note = {R package version 0.0.0.9000, commit d402e73},
+      note = {R package version 0.1.0, commit d402e73},
       url = {https://github.com/mancano-tales/educabr},
     }

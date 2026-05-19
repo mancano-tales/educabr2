@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>educabr • educabr</title>
+<title>educabr: Harmonised Brazilian Education Series • educabr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -17,12 +17,26 @@
 <link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="educabr">
-<meta name="description" content="Harmonised historical series on Brazilian education — enrollment, educational attainment and inequality — from 1871 to 2024.
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="educabr: Harmonised Brazilian Education Series">
+<meta name="description" content="Curated long-run series on Brazilian formal education — enrollment by
+stage and network, mean years of schooling, attainment — compiled
+and reconciled from heterogeneous official and academic sources
+(Censo Escolar, PNAD, IBGE, INEP CENSUP, Kang/FGV-IBRE,
+Walter &amp; Kang) into a single tidy schema with explicit per-row
+provenance. Includes a bundled Shiny dashboard.
 ">
-<meta property="og:description" content="Harmonised historical series on Brazilian education — enrollment, educational attainment and inequality — from 1871 to 2024.
+<meta property="og:description" content="Curated long-run series on Brazilian formal education — enrollment by
+stage and network, mean years of schooling, attainment — compiled
+and reconciled from heterogeneous official and academic sources
+(Censo Escolar, PNAD, IBGE, INEP CENSUP, Kang/FGV-IBRE,
+Walter &amp; Kang) into a single tidy schema with explicit per-row
+provenance. Includes a bundled Shiny dashboard.
 ">
-<meta property="og:image" content="https://mancano-tales.github.io/educabr/logo.png">
+<meta property="og:image" content="https://mancano-tales.github.io/educabr/reference/figures/logo.png">
+<meta property="og:image:alt" content="educabr logo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@mancano_tales">
+<meta name="twitter:site" content="@mancano_tales">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -32,7 +46,7 @@
 
     <a class="navbar-brand me-2" href="index.html">educabr</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,6 +78,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr/" aria-label="Live dashboard"><span class="fa fa-chart-line"></span></a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/mancano-tales/educabr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
@@ -78,167 +93,176 @@
 </h1>
 </div>
 <blockquote>
-<p>Harmonized historical series on Brazilian education — enrollment and educational attainment, compiled and reconciled across decades of heterogeneous official and academic sources.</p>
+<p>Harmonised historical series on Brazilian education — enrollment and educational attainment, compiled and reconciled across decades of heterogeneous official and academic sources.</p>
 </blockquote>
-<p><a href="LICENSE.html"><img src="https://img.shields.io/badge/License-GPL--3-blue.svg" alt="License: GPL (&gt;= 3)"></a> <a href="https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></p>
-<p><strong>🇧🇷 PT-BR:</strong> <code>educabr</code> reúne séries históricas tratadas sobre educação formal no Brasil — matrículas por nível e rede, anos de estudo, alfabetização e atingimento educacional — compiladas de fontes oficiais e acadêmicas heterogêneas (Censo Escolar, PNAD, Censo Demográfico, Anuário Estatístico do IBGE, Paglayan 2022, entre outras) e reconciliadas em um único schema <em>tidy</em>, com proveniência explícita.</p>
-<p><strong>🇺🇸 EN:</strong> <code>educabr</code> provides curated long-run series on Brazilian formal education — enrollment by stage and network, years of schooling, literacy and attainment — compiled and reconciled from heterogeneous official and academic sources into a single tidy schema with explicit provenance.</p>
+<p><a href="LICENSE.html"><img src="https://img.shields.io/badge/License-GPL--3-blue.svg" alt="License: GPL (&gt;= 3)"></a> <a href="https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://mancano-tales.github.io/educabr/"><img src="https://github.com/mancano-tales/educabr/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></p>
+<p><code>educabr</code> provides curated long-run series on Brazilian formal education — enrollment by stage and network, years of schooling, literacy and attainment — compiled and reconciled from heterogeneous official and academic sources (Censo Escolar, PNAD, Censo Demográfico, Anuário Estatístico do IBGE, INEP CENSUP, Kang/FGV-IBRE, Walter &amp; Kang, among others) into a single tidy schema with explicit per-row provenance.</p>
+<p><strong>🇧🇷</strong> <code>educabr</code> reúne séries históricas tratadas sobre educação formal no Brasil — matrículas, anos de estudo, atingimento educacional — em um único schema <em>tidy</em>, com proveniência explícita. Veja a <a href="https://mancano-tales.github.io/educabr/articles/02-introducao-pt.html">vinheta em português</a>.</p>
 <hr>
 <div class="section level2">
-<h2 id="status">Status<a class="anchor" aria-label="anchor" href="#status"></a>
+<h2 id="quick-links">Quick links<a class="anchor" aria-label="anchor" href="#quick-links"></a>
 </h2>
-<p>🚧 <strong>Em desenvolvimento ativo (v0.0.x).</strong> O pacote está na fase M1 do roadmap: schema canônico, pipeline ETL e esqueleto definidos; sem funções de usuário ainda. Veja a seção <a href="#roadmap">Roadmap</a>.</p>
+<ul>
+<li>📖 <strong><a href="https://mancano-tales.github.io/educabr/">Reference site</a></strong> — function reference, articles, news</li>
+<li>📊 <strong><a href="https://qx3hly-tales-man0ano.shinyapps.io/educabr/" class="external-link">Live dashboard</a></strong> — interactive multi-source comparison on shinyapps.io</li>
+<li>📝 <strong><a href="https://mancano-tales.github.io/educabr/articles/01-introduction.html">Get started</a></strong> — 10-minute tour of the API</li>
+<li>🐛 <strong><a href="https://github.com/mancano-tales/educabr/issues" class="external-link">Issues</a></strong>
+</li>
+</ul>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="posicionamento">Posicionamento<a class="anchor" aria-label="anchor" href="#posicionamento"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p><code>educabr</code> é complementar ao <a href="https://github.com/SidneyBissoli/educabR" class="external-link"><code>educabR</code></a> de Sidney Bissoli, que organiza acesso por <strong>fonte oficial</strong> (<code>get_ideb()</code>, <code>get_enem()</code>, <code>get_censo_escolar()</code>, …). Aqui o eixo é por <strong>tema e série histórica</strong>: indicadores únicos compilados de múltiplas fontes ao longo do tempo. Convenções de nomenclatura, schema de saída e utilidades de cache são compatíveis, com vistas a uma eventual fusão.</p>
-<p>Inspirações de design: <a href="https://github.com/ipeaGIT/geobr" class="external-link"><code>geobr</code></a> (família de funções coerente), <a href="https://cran.r-project.org/package=PNADCperiods" class="external-link"><code>PNADCperiods</code></a> (dashboard embutido + entrega metodológica) e o ecossistema <a href="https://github.com/ipea/brverse" class="external-link"><code>brverse</code></a>.</p>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="instalação">Instalação<a class="anchor" aria-label="anchor" href="#instala%C3%A7%C3%A3o"></a>
-</h2>
+<p><code>educabr</code> is not yet on CRAN. Install the development version from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mancano-tales/educabr"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="como-vai-funcionar-preview-da-api-v04">Como vai funcionar (preview da API v0.4)<a class="anchor" aria-label="anchor" href="#como-vai-funcionar-preview-da-api-v04"></a>
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<p>The package exposes three top-level functions plus the bundled dashboard launcher.</p>
 <div class="section level3">
-<h3 id="matrículas-get_enrollment">Matrículas (<code>get_enrollment()</code>)<a class="anchor" aria-label="anchor" href="#matr%C3%ADculas-get_enrollment"></a>
+<h3 id="get_enrollment--school-enrollment">
+<code>get_enrollment()</code> — school enrollment<a class="anchor" aria-label="anchor" href="#get_enrollment--school-enrollment"></a>
 </h3>
 <blockquote>
-<p>Quem está estudando em determinada etapa e ano — <em>fluxo anual, perspectiva da escola.</em></p>
+<p>Who is enrolled at a given stage in a given year. <em>Annual flow, school perspective.</em></p>
 </blockquote>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mancano-tales/educabr" class="external-link">educabr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Taxa líquida de matrícula no fundamental, por raça, 1980-2020</span></span>
+<span><span class="co"># Gross enrollment rate for ensino fundamental, Brazil, all years</span></span>
 <span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
 <span>  level     <span class="op">=</span> <span class="st">"fundamental"</span>,</span>
-<span>  indicator <span class="op">=</span> <span class="st">"net_rate"</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"rate"</span>,</span>
+<span>  geo_level <span class="op">=</span> <span class="st">"BR"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Tertiary enrollment by network, all sources kept side by side</span></span>
+<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
+<span>  level    <span class="op">=</span> <span class="st">"superior"</span>,</span>
+<span>  network  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"publica"</span>, <span class="st">"privada"</span><span class="op">)</span>,</span>
+<span>  modality <span class="op">=</span> <span class="st">"total"</span>,</span>
+<span>  year     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1990</span>, <span class="fl">2024</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Enrollment rates by race/colour, 1960 onward</span></span>
+<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
+<span>  level     <span class="op">=</span> <span class="st">"fundamental"</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"rate"</span>,</span>
 <span>  dimension <span class="op">=</span> <span class="st">"race"</span>,</span>
-<span>  year      <span class="op">=</span> <span class="fl">1980</span><span class="op">:</span><span class="fl">2020</span></span>
+<span>  year      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1960</span>, <span class="fl">2010</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="escolaridade-get_schooling">Escolaridade (<code>get_schooling()</code>)<a class="anchor" aria-label="anchor" href="#escolaridade-get_schooling"></a>
+<h3 id="get_schooling--educational-attainment">
+<code>get_schooling()</code> — educational attainment<a class="anchor" aria-label="anchor" href="#get_schooling--educational-attainment"></a>
 </h3>
 <blockquote>
-<p>Quanto a população já estudou — <em>estoque acumulado, perspectiva da pessoa.</em></p>
+<p>How much the population has already studied. <em>Accumulated stock, person perspective.</em></p>
 </blockquote>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Média de anos de estudo da população 25+, por raça</span></span>
-<span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span></span>
-<span>  measure   <span class="op">=</span> <span class="st">"years_of_schooling"</span>,</span>
-<span>  dimension <span class="op">=</span> <span class="st">"race"</span>,</span>
-<span>  age_group <span class="op">=</span> <span class="st">"25+"</span>,</span>
-<span>  year      <span class="op">=</span> <span class="fl">1980</span><span class="op">:</span><span class="fl">2020</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Mean years of schooling for adults, Brazil</span></span>
+<span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"BR"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Same series broken down by race and by sex</span></span>
+<span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>dimension <span class="op">=</span> <span class="st">"race"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>dimension <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="desigualdade-como-recorte-não-como-dataset">Desigualdade como recorte, não como dataset<a class="anchor" aria-label="anchor" href="#desigualdade-como-recorte-n%C3%A3o-como-dataset"></a>
+<h3 id="run_dashboard--interactive-shiny-app">
+<code>run_dashboard()</code> — interactive Shiny app<a class="anchor" aria-label="anchor" href="#run_dashboard--interactive-shiny-app"></a>
 </h3>
-<p>Desigualdade educacional não é um dado pronto: é um <em>recorte</em> aplicado a um indicador. Toda função <code>get_*()</code> aceita o argumento <code>dimension</code> (<code>race</code>, <code>sex</code>, <code>income</code>, <code>location</code>). O helper <code>compute_gap()</code> calcula hiatos a partir do <em>output</em> dessas funções:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>measure <span class="op">=</span> <span class="st">"years_of_schooling"</span>, dimension <span class="op">=</span> <span class="st">"race"</span>,</span>
-<span>              year <span class="op">=</span> <span class="fl">1980</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">compute_gap</span><span class="op">(</span>by <span class="op">=</span> <span class="st">"dim_race"</span>, ref <span class="op">=</span> <span class="st">"white"</span>, method <span class="op">=</span> <span class="st">"difference"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="dashboard">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard"></a>
-</h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">educabr</span><span class="fu">::</span><span class="fu"><a href="reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span>       <span class="co"># Shiny app local</span></span></code></pre></div>
-<p>Também publicado em <code>shinyapps.io</code> (link após M5).</p>
+<code class="sourceCode R"><span><span class="fu">educabr</span><span class="fu">::</span><span class="fu"><a href="reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Three navbar tabs:</p>
+<ul>
+<li>
+<strong>Enrollment</strong> — Kang/FGV series by stage, year, race</li>
+<li>
+<strong>Tertiary Education</strong> — multi-source comparison 1907–2024 (Kang, Maduro Jr., IBGE Século XX, INEP CENSUP), with optional reconstructed totals for the 2000–2008 in-person + EAD split</li>
+<li>
+<strong>Educational Attainment</strong> — Walter &amp; Kang mean years of schooling by BR / region / UF, with race and sex breakdowns</li>
+</ul>
+<p>Every chart has a “View R code” button that prints a self-contained snippet (educabr + ggplot2 + plotly) you can paste into RStudio to reproduce the interactive chart locally.</p>
 <hr>
 </div>
 </div>
 <div class="section level2">
-<h2 id="schema-canônico">Schema canônico<a class="anchor" aria-label="anchor" href="#schema-can%C3%B4nico"></a>
+<h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h2>
-<p>Todos os <code>get_*()</code> devolvem um <em>tibble</em> no schema <em>tidy</em> documentado em <a href="inst/dict/schema.yaml"><code>inst/dict/schema.yaml</code></a>: uma linha por observação, fontes alternativas para o mesmo indicador como <strong>linhas distintas</strong> (coluna <code>source</code>), agregações como nível de fator explícito (<code>"total"</code>), nunca como <code>NA</code>. Vocabulários controlados de indicadores e fontes ficam em <a href="inst/dict/vocabularies"><code>inst/dict/vocabularies/</code></a>.</p>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="roadmap">Roadmap<a class="anchor" aria-label="anchor" href="#roadmap"></a>
-</h2>
-<table class="table">
+<p>Three internal datasets back the public functions:</p>
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="23%">
+<col width="30%">
+<col width="23%">
+<col width="23%">
 </colgroup>
 <thead><tr>
-<th>Marco</th>
-<th>Conteúdo</th>
-<th>Status</th>
+<th>Dataset</th>
+<th align="right">Rows</th>
+<th>Coverage</th>
+<th>Source(s)</th>
 </tr></thead>
 <tbody>
 <tr>
-<td><strong>M1</strong></td>
-<td>Schema canônico, esqueleto, ETL, CI, LICENSE</td>
-<td>✅</td>
+<td><code>enrollment_kang_fgv</code></td>
+<td align="right">6,238</td>
+<td>BR + UF, EF1/EF2/EF/EM/ES, 1933–2010 (+ race breakdown 1960–2010)</td>
+<td>Kang, Paese &amp; Felix (2021); Kang &amp; Menetrier (2024); Kang, Menetrier &amp; Comim (2024)</td>
 </tr>
 <tr>
-<td><strong>M2</strong></td>
-<td>
-<code><a href="reference/get_enrollment.html">get_enrollment()</a></code> (BR + UF, séries históricas) + 1ª vinheta</td>
-<td>⏳</td>
+<td><code>enrollment_tertiary</code></td>
+<td align="right">1,341</td>
+<td>BR, ensino superior, 1907–2024, by network/institution/modality</td>
+<td>IBGE <em>Século XX</em>; Maduro Jr. (2007); Kang/Paese/Felix (2021); INEP CENSUP Synopsis / Microdata / Power BI</td>
 </tr>
 <tr>
-<td><strong>M3</strong></td>
-<td>
-<code><a href="reference/get_schooling.html">get_schooling()</a></code> com <code>dimension</code> + vinheta de desigualdade + <code>compute_gap()</code>
-</td>
-<td>⏳</td>
-</tr>
-<tr>
-<td><strong>M4</strong></td>
-<td>Storage externo (release Zenodo) + utilidades de cache (<code>set_cache_dir</code>, <code>list_cache</code>, <code>clear_cache</code>)</td>
-<td>⏳</td>
-</tr>
-<tr>
-<td><strong>M5</strong></td>
-<td>Dashboard <code><a href="reference/run_dashboard.html">run_dashboard()</a></code> bilíngue + deploy shinyapps.io</td>
-<td>⏳</td>
-</tr>
-<tr>
-<td><strong>M6</strong></td>
-<td>Polimento CRAN + pkgdown bilíngue + submissão</td>
-<td>⏳</td>
+<td><code>schooling_kang_fgv</code></td>
+<td align="right">2,287</td>
+<td>BR + region + UF, mean years of schooling, 1925–2015, with race and sex breakdowns</td>
+<td>Walter &amp; Kang (2024)</td>
 </tr>
 </tbody>
 </table>
+<p>End users should call <code><a href="reference/get_enrollment.html">get_enrollment()</a></code> / <code><a href="reference/get_schooling.html">get_schooling()</a></code>. The datasets are exposed for inspection but the public API normalises schema differences, applies per-source filters and translates labels.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="citação">Citação<a class="anchor" aria-label="anchor" href="#cita%C3%A7%C3%A3o"></a>
+<h2 id="schema">Schema<a class="anchor" aria-label="anchor" href="#schema"></a>
 </h2>
-<p>Após o primeiro release com DOI Zenodo:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr"</span><span class="op">)</span></span>
-<span><span class="fu">educabr_cite</span><span class="op">(</span><span class="st">"paglayan_2022"</span><span class="op">)</span>   <span class="co"># cita também a fonte original do indicador</span></span></code></pre></div>
+<p>All <code>get_*()</code> functions return a <code>tibble</code> in the canonical tidy-long schema documented in <a href="inst/dict/schema.yaml"><code>inst/dict/schema.yaml</code></a>: one row per observation, alternative sources for the same indicator as <strong>separate rows</strong> (column <code>source</code>), aggregations as an explicit factor level (<code>"total"</code>) rather than <code>NA</code>. Controlled vocabularies live in <a href="inst/dict/vocabularies"><code>inst/dict/vocabularies/</code></a>, and PT-BR labels for every factor level in <a href="inst/dict/i18n.yaml"><code>inst/dict/i18n.yaml</code></a>.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="contribuindo">Contribuindo<a class="anchor" aria-label="anchor" href="#contribuindo"></a>
+<h2 id="related-work">Related work<a class="anchor" aria-label="anchor" href="#related-work"></a>
 </h2>
-<p>Issues e PRs são bem-vindos. Para contribuir com dados, abra uma issue descrevendo a planilha-fonte, autor, cobertura geográfica/temporal e licença — antes de mandar PR.</p>
-<p>Para regenerar o hex sticker do pacote:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"man/figures/logo.R"</span><span class="op">)</span></span></code></pre></div>
-<p>O script lê <code>man/figures/raw/brasil.png</code> (silhueta do <code>geobr</code>) e produz <code>man/figures/logo.png</code> via <code>hexSticker</code>.</p>
+<p><code>educabr</code> is complementary to <a href="https://github.com/SidneyBissoli/educabR" class="external-link"><code>educabR</code></a> (Sidney Bissoli), which organises access <strong>by official source</strong> (<code>get_ideb()</code>, <code>get_enem()</code>, <code>get_censo_escolar()</code>, …). Here the axis is <strong>by theme and historical series</strong>: single indicators compiled across multiple sources over long time spans.</p>
+<p>Design inspirations: <a href="https://github.com/ipeaGIT/geobr" class="external-link"><code>geobr</code></a> (coherent function family), <a href="https://cran.r-project.org/package=PNADCperiods" class="external-link"><code>PNADCperiods</code></a> (embedded dashboard + methodological delivery), and the <a href="https://github.com/ipea/brverse" class="external-link"><code>brverse</code></a> ecosystem.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="licença">Licença<a class="anchor" aria-label="anchor" href="#licen%C3%A7a"></a>
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
-<p>Código sob <strong>GPL (&gt;= 3)</strong>. Dados sob <strong>CC BY 4.0</strong> (exceto onde a fonte original impuser restrições; consulte <code>inst/dict/vocabularies/sources.yaml</code>). Veja <a href="LICENSE.html"><code>LICENSE.md</code></a>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr"</span><span class="op">)</span></span></code></pre></div>
+<p>A Zenodo DOI will accompany the first tagged release.</p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
+<p>Issues and PRs welcome. To contribute new data, open an issue first describing the source file, author, geographic/temporal coverage and licence — before submitting a PR.</p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>Code under <strong>GPL (&gt;= 3)</strong>. Data redistributed under <strong>CC BY 4.0</strong> (except where the original source imposes restrictions; see <a href="inst/dict/vocabularies/sources.yaml"><code>inst/dict/vocabularies/sources.yaml</code></a>). See <a href="LICENSE.html"><code>LICENSE.md</code></a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -246,8 +270,9 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/mancano-tales/educabr/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/mancano-tales/educabr/issues" class="external-link">Report a bug</a></li>
-<li><a href="https://github.com/mancano-tales/educabr" class="external-link">GitHub</a></li>
-<li><a href="https://github.com/mancano-tales/educabr" class="external-link">Live dashboard</a></li>
+<li><a href="https://qx3hly-tales-man0ano.shinyapps.io/educabr/" class="external-link">Live dashboard (shinyapps.io)</a></li>
+<li><a href="https://github.com/mancano-tales/educabr" class="external-link">Source on GitHub</a></li>
+<li><a href="https://github.com/mancano-tales/educabr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -282,7 +307,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Tales Mançano.</p>
+  <p>Developed by Tales Mançano. Code under GPL (&gt;= 3). Data under CC BY 4.0 unless original source restricts it (see <code>inst/dict/vocabularies/sources.yaml</code>).</p>
 </div>
 
 <div class="pkgdown-footer-right">
