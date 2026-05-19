@@ -52,7 +52,15 @@ sticker(
   url       = "github.com/mancano-tales/educabr",
   u_size    = 3.8,
   u_color   = cream,
-  white_around_sticker = TRUE,
+  white_around_sticker = FALSE,
   filename  = "man/figures/logo.png",
   dpi       = 600
 )
+
+# Force the area around the hex to be fully transparent. hexSticker still
+# rasterizes the canvas with an opaque white fill in some backends, so we
+# strip white pixels (with a small fuzz to catch anti-aliased edges) after
+# the sticker is written.
+image_read("man/figures/logo.png") |>
+  image_transparent("white", fuzz = 5) |>
+  image_write("man/figures/logo.png")
