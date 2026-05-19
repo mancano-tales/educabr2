@@ -36,6 +36,15 @@ contents.
   indicator emitted by the new datasets, with PT-BR translations
   surfaced in `inst/dict/i18n.yaml`.
 
+## Dashboard
+
+* Two new navbar tabs: **Public Expenditure** and **Grade Progression**,
+  built on top of `get_expenditure()` and `get_progression()`. Each
+  tab carries the standard educabr layout — sidebar filters, series
+  plot (plotly), table view (DT), source cards, CSV download, and a
+  "View R code" modal that emits a reproducible educabr + ggplot2 +
+  plotly snippet.
+
 ## Other changes
 
 * `list_sources()` — new helper returning a tibble of every entry in

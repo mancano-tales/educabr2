@@ -221,6 +221,47 @@ SCH_DIM_CHOICES <- c(
   "By sex"               = "sex"
 )
 
+# ---- public expenditure choices --------------------------------------
+
+EXP_IND_CHOICES <- c(
+  "Share of GDP (% PIB)"                              = "share_gdp",
+  "Per-student spending (% GDP per capita)"           = "per_student",
+  "Double ratio — per-student ES / EF1"               = "double_ratio_es_ef1",
+  "Double ratio — per-student ES / (EF + EM)"         = "double_ratio_es_ef_em"
+)
+
+EXP_LEVEL_CHOICES <- c(
+  "Total (all education)"                = "total",
+  "Fundamental (total)"                  = "fundamental",
+  "Fundamental — anos iniciais (EF1)"    = "fundamental_anos_iniciais",
+  "Fundamental — anos finais (EF2)"      = "fundamental_anos_finais",
+  "Upper secondary (médio)"              = "medio",
+  "Basic ed. regular (EF + EM)"          = "fundamental_medio",
+  "Tertiary (superior)"                  = "superior"
+)
+
+EXP_LEVEL_COLORS <- c(
+  "total"                     = "#1f2937",
+  "fundamental"               = "#1d4ed8",
+  "fundamental_anos_iniciais" = "#2563eb",
+  "fundamental_anos_finais"   = "#7dd3fc",
+  "medio"                     = "#16a34a",
+  "fundamental_medio"         = "#a3e635",
+  "superior"                  = "#dc2626"
+)
+
+# Map indicator -> y-axis label + value formatter
+EXP_Y_LAB <- c(
+  share_gdp             = "Public expenditure (% of GDP)",
+  per_student           = "Public expenditure per student (% of GDP per capita)",
+  double_ratio_es_ef1   = "Per-student spending ES / EF1 (ratio)",
+  double_ratio_es_ef_em = "Per-student spending ES / (EF+EM) (ratio)"
+)
+
+# ---- grade-progression choices ---------------------------------------
+
+PROG_UF_CHOICES <- UF_CHOICES[!(UF_CHOICES %in% c("AC","AP","DF","MS","RO","RR","TO"))]
+
 # ---- code-generation helpers -----------------------------------------
 #
 # Each tab gets a "View R code" button that opens a modal showing the
@@ -491,6 +532,99 @@ ui <- bslib::page_navbar(
     )
   ),
 
+  # ---- Public Expenditure ----
+  bslib::nav_panel(
+    title = "Public Expenditure",
+    bslib::layout_sidebar(
+      sidebar = bslib::sidebar(
+        width = 360,
+        radioButtons("exp_indicator", "Indicator",
+                     choices  = EXP_IND_CHOICES,
+                     selected = "share_gdp"),
+        conditionalPanel(
+          condition = "input.exp_indicator == 'share_gdp' || input.exp_indicator == 'per_student'",
+          selectizeInput("exp_level", "Education stage(s)",
+                         choices  = EXP_LEVEL_CHOICES,
+                         multiple = TRUE,
+                         selected = c("fundamental", "medio", "superior"),
+                         options  = list(plugins = list("remove_button")))
+        ),
+        sliderInput("exp_year", "Years",
+                    min = 1933, max = 2010, value = c(1933, 2010),
+                    sep = "", step = 1),
+        hr(),
+        downloadButton("exp_download", "Download CSV",
+                       class = "btn-primary w-100"),
+        actionButton("exp_show_code", "View R code",
+                     class = "btn-outline-secondary w-100 mt-2",
+                     icon  = icon("code"))
+      ),
+      bslib::navset_card_tab(
+        bslib::nav_panel(
+          "Series",
+          plotly::plotlyOutput("exp_plot", height = "520px"),
+          tags$small(textOutput("exp_caption"))
+        ),
+        bslib::nav_panel(
+          "Table",
+          DT::DTOutput("exp_table")
+        ),
+        bslib::nav_panel(
+          "Sources",
+          uiOutput("exp_sources")
+        )
+      )
+    )
+  ),
+
+  # ---- Grade Progression (GDR6) ----
+  bslib::nav_panel(
+    title = "Grade Progression",
+    bslib::layout_sidebar(
+      sidebar = bslib::sidebar(
+        width = 320,
+        radioButtons("prog_geo_level", "Geographic level",
+                     choices = c("Brazil" = "BR", "States (UF)" = "UF"),
+                     selected = "BR", inline = TRUE),
+        conditionalPanel(
+          condition = "input.prog_geo_level == 'UF'",
+          selectizeInput("prog_geo", "State(s)",
+                         choices  = PROG_UF_CHOICES,
+                         multiple = TRUE,
+                         selected = c("SP","BA","PE","RS"),
+                         options  = list(plugins = list("remove_button"))),
+          tags$small(style = "color:#777;",
+            "Note: Kang's GDR6 source covers 20 UFs. ",
+            "AC, AP, DF, MS, RO, RR and TO are not included.")
+        ),
+        sliderInput("prog_year", "Years",
+                    min = 1955, max = 2010, value = c(1955, 2010),
+                    sep = "", step = 1),
+        hr(),
+        downloadButton("prog_download", "Download CSV",
+                       class = "btn-primary w-100"),
+        actionButton("prog_show_code", "View R code",
+                     class = "btn-outline-secondary w-100 mt-2",
+                     icon  = icon("code"))
+      ),
+      bslib::navset_card_tab(
+        bslib::nav_panel(
+          "Series",
+          plotly::plotlyOutput("prog_plot", height = "520px"),
+          tags$small(textOutput("prog_caption"))
+        ),
+        bslib::nav_panel(
+          "Table",
+          DT::DTOutput("prog_table")
+        ),
+        bslib::nav_panel(
+          "Sources",
+          uiOutput("prog_sources")
+        )
+      )
+    )
+  ),
+
   bslib::nav_spacer(),
   bslib::nav_panel(
     title = "About",
@@ -504,11 +638,15 @@ ui <- bslib::page_navbar(
       tags$ul(
         tags$li(tags$strong("Enrollment"), " — enrollment counts and gross rates by level, race and state (1871–2010, Kang/FGV-IBRE)."),
         tags$li(tags$strong("Tertiary Education"), " — higher-education enrollment 1907–2024, multi-source compilation (IBGE 20th-Century Statistics, Durham, Maduro Junior, Kang et al., INEP Synopsis, INEP Microdata, INEP Power BI). Lets you compare estimates from different sources side by side."),
-        tags$li(tags$strong("Educational Attainment"), " — mean years of schooling by sex, race and state (1925–2015, Walter & Kang).")
+        tags$li(tags$strong("Educational Attainment"), " — mean years of schooling by sex, race and state (1925–2015, Walter & Kang)."),
+        tags$li(tags$strong("Public Expenditure"), " — public spending on education as share of GDP, per-student in % of GDP per capita, and the Kang & Menetrier (2024) double-ratio indicators of fiscal regressivity (Brazil, 1933–2010)."),
+        tags$li(tags$strong("Grade Progression"), " — GDR6 grade-progression ratio (enrollment grades 4-6 / grades 1-3), at BR and 20 UFs (1955–2010, Kang/Paese/Felix).")
       ),
       tags$p("Data accessible from R: ",
-             tags$code("educabr::get_enrollment()"), " and ",
-             tags$code("educabr::get_schooling()"), "."),
+             tags$code("educabr::get_enrollment()"), ", ",
+             tags$code("educabr::get_schooling()"), ", ",
+             tags$code("educabr::get_expenditure()"), " and ",
+             tags$code("educabr::get_progression()"), "."),
       tags$p(tags$a(href = "https://github.com/mancano-tales/educabr",
                     "GitHub repository", target = "_blank"))
     )
@@ -928,6 +1066,182 @@ server <- function(input, output, session) {
       utils::write.csv(sch_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
   )
 
+  # -- expenditure reactives -------------------------------------------
+
+  exp_data <- reactive({
+    # Level filter is only meaningful for share_gdp & per_student. The two
+    # double-ratio indicators are stored with level == "total", so passing
+    # the user's level selection through to get_expenditure() would empty
+    # the result. Drop the level filter in those cases.
+    level_arg <- if (input$exp_indicator %in% c("share_gdp", "per_student"))
+                   input$exp_level
+                 else NULL
+
+    educabr::get_expenditure(
+      level     = level_arg,
+      indicator = input$exp_indicator,
+      year      = input$exp_year,
+      lang      = "en"
+    )
+  })
+
+  exp_level_lookup <- setNames(names(EXP_LEVEL_CHOICES), unname(EXP_LEVEL_CHOICES))
+
+  output$exp_plot <- plotly::renderPlotly({
+    d <- exp_data()
+    validate(need(nrow(d) > 0, "No data for the selected filters."))
+
+    is_double_ratio <- input$exp_indicator %in% c("double_ratio_es_ef1",
+                                                  "double_ratio_es_ef_em")
+    y_lab <- EXP_Y_LAB[[input$exp_indicator]] %||% "Value"
+
+    d$level_lab <- unname(exp_level_lookup[d$level])
+    d$level_lab[is.na(d$level_lab)] <- d$level[is.na(d$level_lab)]
+
+    val_fmt <- if (is_double_ratio || input$exp_indicator == "per_student")
+                 function(x) sprintf("%.2f", x)
+               else
+                 function(x) sprintf("%.2f%%", x)
+
+    d$hover_text <- paste0(
+      "<b>Year:</b> ", d$year, "<br>",
+      "<b>Stage:</b> ", d$level_lab, "<br>",
+      "<b>Value:</b> ", val_fmt(d$value)
+    )
+
+    g <- ggplot2::ggplot(
+      d,
+      ggplot2::aes(x = year, y = value,
+                   colour = level,
+                   group  = level,
+                   text   = hover_text)
+    ) +
+      ggplot2::geom_line(linewidth = 0.95, alpha = 0.95) +
+      ggplot2::geom_point(size = 0.7, alpha = 0.7) +
+      ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(10)) +
+      ggplot2::scale_colour_manual(
+        name   = NULL,
+        values = EXP_LEVEL_COLORS,
+        labels = exp_level_lookup
+      ) +
+      ggplot2::theme_minimal(base_size = 13) +
+      ggplot2::theme(legend.position = "bottom",
+                     legend.title    = ggplot2::element_blank(),
+                     panel.grid.minor = ggplot2::element_blank()) +
+      ggplot2::labs(x = NULL, y = y_lab,
+                    title = "Public Expenditure on Education — Brazil")
+
+    if (input$exp_indicator == "share_gdp") {
+      g <- g + ggplot2::scale_y_continuous(
+        labels = function(x) paste0(round(x, 2), "%"))
+    } else if (input$exp_indicator == "per_student") {
+      g <- g + ggplot2::scale_y_continuous(
+        labels = function(x) paste0(round(x, 0), "%"))
+    } else {
+      g <- g + ggplot2::scale_y_continuous(
+        labels = function(x) sprintf("%.1f", x))
+    }
+
+    plotly::ggplotly(g, tooltip = "text") |>
+      plotly::layout(legend = list(orientation = "h", y = -0.15))
+  })
+
+  output$exp_caption <- renderText({
+    d <- exp_data()
+    if (!nrow(d)) return("")
+    sprintf("Source: %s. %d observations.",
+            paste(sort(unique(d$source)), collapse = ", "), nrow(d))
+  })
+
+  output$exp_table <- DT::renderDT({
+    DT::datatable(exp_data(), rownames = FALSE, filter = "top",
+                  options = list(pageLength = 25, scrollX = TRUE))
+  })
+
+  output$exp_sources <- renderUI({
+    sources_card_ui(unique(exp_data()$source), sources_path)
+  })
+
+  output$exp_download <- downloadHandler(
+    filename = function()
+      sprintf("educabr_expenditure_%s.csv", format(Sys.time(), "%Y%m%d_%H%M")),
+    content = function(file)
+      utils::write.csv(exp_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
+  )
+
+  # -- progression reactives -------------------------------------------
+
+  prog_data <- reactive({
+    educabr::get_progression(
+      year      = input$prog_year,
+      geo_level = input$prog_geo_level,
+      geo       = if (input$prog_geo_level == "UF") input$prog_geo else NULL,
+      lang      = "en"
+    )
+  })
+
+  output$prog_plot <- plotly::renderPlotly({
+    d <- prog_data()
+    validate(need(nrow(d) > 0, "No data for the selected filters."))
+
+    color_var <- if (input$prog_geo_level == "UF") "geo_name" else "geo_code"
+
+    d$hover_text <- paste0(
+      "<b>Year:</b> ", d$year, "<br>",
+      "<b>", d$geo_name, "</b><br>",
+      "<b>GDR6:</b> ", sprintf("%.3f", d$value)
+    )
+
+    g <- ggplot2::ggplot(
+      d,
+      ggplot2::aes(x = year, y = value,
+                   colour = .data[[color_var]],
+                   group  = .data[[color_var]],
+                   text   = hover_text)
+    ) +
+      ggplot2::geom_line(linewidth = 0.95, alpha = 0.9, na.rm = TRUE) +
+      ggplot2::geom_point(size = 0.7, alpha = 0.7, na.rm = TRUE) +
+      ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(10)) +
+      ggplot2::scale_y_continuous(labels = function(x) sprintf("%.2f", x)) +
+      ggplot2::theme_minimal(base_size = 13) +
+      ggplot2::theme(legend.position = "bottom",
+                     legend.title    = ggplot2::element_blank(),
+                     panel.grid.minor = ggplot2::element_blank()) +
+      ggplot2::labs(
+        x = NULL, y = "GDR6 (ratio)",
+        title = paste0(
+          "Grade-progression ratio GDR6 — ",
+          if (input$prog_geo_level == "BR") "Brazil" else "States"
+        )
+      )
+
+    plotly::ggplotly(g, tooltip = "text") |>
+      plotly::layout(legend = list(orientation = "h", y = -0.15))
+  })
+
+  output$prog_caption <- renderText({
+    d <- prog_data()
+    if (!nrow(d)) return("")
+    sprintf("Source: %s. %d observations.",
+            paste(sort(unique(d$source)), collapse = ", "), nrow(d))
+  })
+
+  output$prog_table <- DT::renderDT({
+    DT::datatable(prog_data(), rownames = FALSE, filter = "top",
+                  options = list(pageLength = 25, scrollX = TRUE))
+  })
+
+  output$prog_sources <- renderUI({
+    sources_card_ui(unique(prog_data()$source), sources_path)
+  })
+
+  output$prog_download <- downloadHandler(
+    filename = function()
+      sprintf("educabr_progression_%s.csv", format(Sys.time(), "%Y%m%d_%H%M")),
+    content = function(file)
+      utils::write.csv(prog_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
+  )
+
   # -- "View R code" buttons -------------------------------------------
 
   observeEvent(input$enr_show_code, {
@@ -1041,6 +1355,68 @@ server <- function(input, output, session) {
     )
 
     show_code_modal("R code — Educational Attainment chart", code)
+  })
+
+  observeEvent(input$exp_show_code, {
+    level_arg <- if (input$exp_indicator %in% c("share_gdp", "per_student"))
+                   input$exp_level
+                 else NULL
+
+    get_call <- build_r_call("get_expenditure", list(
+      level     = level_arg,
+      indicator = input$exp_indicator,
+      year      = input$exp_year,
+      lang      = "en"
+    ))
+
+    y_lab <- EXP_Y_LAB[[input$exp_indicator]] %||% "Value"
+
+    code <- paste0(
+      INSTALL_SNIPPET,
+      "data <- ", get_call, "\n\n",
+      "p <- ggplot(data, aes(x = year, y = value,\n",
+      "                      colour = level,\n",
+      "                      group  = level)) +\n",
+      "  geom_line(linewidth = 0.95) +\n",
+      "  geom_point(size = 0.7) +\n",
+      "  scale_x_continuous(breaks = scales::pretty_breaks(10)) +\n",
+      "  theme_minimal(base_size = 13) +\n",
+      "  labs(x = NULL, y = \"", y_lab, "\",\n",
+      "       title = \"Public Expenditure on Education \\u2014 Brazil\")\n\n",
+      "ggplotly(p)\n"
+    )
+
+    show_code_modal("R code — Public Expenditure chart", code)
+  })
+
+  observeEvent(input$prog_show_code, {
+    geo_arg <- if (input$prog_geo_level == "UF") input$prog_geo else NULL
+
+    get_call <- build_r_call("get_progression", list(
+      year      = input$prog_year,
+      geo_level = input$prog_geo_level,
+      geo       = geo_arg,
+      lang      = "en"
+    ))
+
+    color_var <- if (input$prog_geo_level == "UF") "geo_name" else "geo_code"
+
+    code <- paste0(
+      INSTALL_SNIPPET,
+      "data <- ", get_call, "\n\n",
+      "p <- ggplot(data, aes(x = year, y = value,\n",
+      "                      colour = ", color_var, ",\n",
+      "                      group  = ", color_var, ")) +\n",
+      "  geom_line(linewidth = 0.95) +\n",
+      "  geom_point(size = 0.7) +\n",
+      "  scale_x_continuous(breaks = scales::pretty_breaks(10)) +\n",
+      "  theme_minimal(base_size = 13) +\n",
+      "  labs(x = NULL, y = \"GDR6 (ratio)\",\n",
+      "       title = \"Grade-progression ratio GDR6 \\u2014 Brazil/UFs\")\n\n",
+      "ggplotly(p)\n"
+    )
+
+    show_code_modal("R code — Grade Progression chart", code)
   })
 }
 
