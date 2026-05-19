@@ -96,7 +96,6 @@ datasets shipped with the package and concatenated into the canonical
 long-format schema.
 }
 \examples{
-\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 # National series, ensino fundamental, all years
 get_enrollment(level = "fundamental", geo_level = "BR")
 
@@ -110,5 +109,5 @@ get_enrollment(level = "superior", network = "privada_particular",
 # Compare with derived rows included
 get_enrollment(level = "superior", network = "total",
                year = c(2000, 2008), include_derived = TRUE)
-\dontshow{\}) # examplesIf}
+
 }

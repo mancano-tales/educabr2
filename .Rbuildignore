@@ -18,7 +18,6 @@
 ^pkgdown$
 ^rodar sempre\.R$
 ^man/figures/raw$
-^_probe_renv\.R$
-^_run_tests\.R$
+^_.*\.R$
 ^planning$
 ^CLAUDE\.md$

@@ -1,6 +1,6 @@
 Package: educabr
 Title: Harmonized Historical Series on Brazilian Education
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(
     person("Tales", "Mançano",
            email = "mancano.tales@usp.br",

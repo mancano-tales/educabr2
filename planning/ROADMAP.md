@@ -20,10 +20,12 @@ Walter & Kang schooling, multi-source tertiary), public API
 
 Polish only — no API breakage. See [`cran-checklist.md`](cran-checklist.md).
 
-- [ ] `list_sources()` helper (mentioned in YAML but never built)
-- [ ] `check_win_devel()` clean
-- [ ] Spell check + URL check clean
-- [ ] `LICENSE` file separate from `LICENSE.md`
+- [x] `list_sources()` helper
+- [x] Spell check + URL check clean
+- [x] Examples runtime <5s each
+- [x] Windows R-devel added to CI matrix
+- [x] CONTRIBUTING.md
+- [ ] Run `check_win_devel()` once locally right before submission
 - [ ] Tag v0.2.0, release on GitHub, submit to CRAN
 
 ## v0.3 — PNAD Contínua integration (target: 2026-Q3)

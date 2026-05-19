@@ -1,3 +1,18 @@
+# educabr 0.1.0.9000 (development version)
+
+CRAN-readiness polish; no breaking changes.
+
+* `list_sources()` — new helper returning a tibble of every entry in
+  the source vocabulary (key, short_name, type, coverage, DOI, URL,
+  notes). Discovery counterpart to `educabr_cite()`.
+* `get_enrollment()` / `get_schooling()`: examples now run during
+  `R CMD check` (previously skipped with `@examplesIf FALSE`).
+* CI: added `windows-latest, r: 'devel'` to the R-CMD-check matrix —
+  covers what `check_win_devel()` does, on every push.
+* Docs: `.github/CONTRIBUTING.md`, `inst/WORDLIST` for clean spell
+  checks, abbreviation "anos inic." → "anos iniciais" in
+  `enrollment_kang_fgv` Rd table for readability.
+
 # educabr 0.1.0
 
 First public release. Initial set of harmonised long-run series on
@@ -43,6 +58,10 @@ Brazilian education plus a bundled Shiny dashboard.
 * `educabr_cite()` — builds `bibentry` objects (or APA-style prose, or
   BibTeX) for any of the harmonised data sources, driven by the
   controlled vocabulary in `inst/dict/vocabularies/sources.yaml`.
+
+* `list_sources()` — returns a tibble describing every entry in the
+  source vocabulary (key, type, temporal/geographic coverage, DOI,
+  URL). Discovery counterpart to `educabr_cite()`.
 
 ## Dashboard
 

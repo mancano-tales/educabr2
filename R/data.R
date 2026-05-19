@@ -42,7 +42,7 @@
 #' @section Coverage:
 #' \tabular{lll}{
 #'   **Scope**                        \tab **Years**    \tab **Indicators** \cr
-#'   BR — ensino primário/anos inic.  \tab 1871–1932    \tab count          \cr
+#'   BR — primário (anos iniciais)    \tab 1871–1932    \tab count          \cr
 #'   BR — all stages (EF, EM, ES)     \tab 1933–2010    \tab count, rate    \cr
 #'   BR — by race (EF, EM, ES)        \tab 1960–2010    \tab count, rate    \cr
 #'   UF — ensino fundamental          \tab 1955–2010    \tab count, rate    \cr

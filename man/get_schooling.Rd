@@ -63,7 +63,6 @@ a FGV-IBRE working paper that reconstructs the series from 1925 to
 2015.
 }
 \examples{
-\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 # National series, all years
 get_schooling()
 
@@ -72,5 +71,5 @@ get_schooling(dimension = "race", year = c(1960, 2015))
 
 # By sex across states
 get_schooling(dimension = "sex", geo_level = "UF", geo = c("SP", "BA"))
-\dontshow{\}) # examplesIf}
+
 }

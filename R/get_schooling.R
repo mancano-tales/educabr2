@@ -39,7 +39,7 @@
 #'   columns are omitted (not applicable to population-level attainment
 #'   averages).
 #'
-#' @examplesIf FALSE
+#' @examples
 #' # National series, all years
 #' get_schooling()
 #'

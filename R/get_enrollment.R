@@ -60,7 +60,7 @@
 #'   column the value defaults to `"total"` (or `FALSE` for
 #'   `is_derived`).
 #'
-#' @examplesIf FALSE
+#' @examples
 #' # National series, ensino fundamental, all years
 #' get_enrollment(level = "fundamental", geo_level = "BR")
 #'

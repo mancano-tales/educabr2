@@ -59,10 +59,12 @@ reference:
   - get_enrollment
   - get_schooling
 
-- title: Citations
+- title: Citations and provenance
   desc: >
-    Cite the originating data sources, not only the package itself.
+    Discover the underlying sources and cite them — not only the
+    package itself.
   contents:
+  - list_sources
   - educabr_cite
 
 - title: Dashboard
