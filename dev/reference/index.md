@@ -9,6 +9,10 @@ the canonical tidy-long schema documented in `inst/dict/schema.yaml`.
   : Brazilian school-enrollment series
 - [`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md)
   : Brazilian mean years of schooling
+- [`get_expenditure()`](https://mancano-tales.github.io/educabr/dev/reference/get_expenditure.md)
+  : Brazilian public expenditure on education
+- [`get_progression()`](https://mancano-tales.github.io/educabr/dev/reference/get_progression.md)
+  : Brazilian grade-progression series
 
 ## Citations and provenance
 
@@ -31,13 +35,10 @@ shinyapps.io](https://qx3hly-tales-man0ano.shinyapps.io/educabr/).
 
 ## Backing datasets
 
-Internal backing stores for
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
-and
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md).
-End users should call the `get_*()` functions instead of loading these
-objects directly — the public API normalises schema differences across
-datasets, applies filters and translates labels.
+Internal backing stores for the public `get_*()` functions. End users
+should call the functions instead of loading these objects directly —
+the public API normalises schema differences across datasets, applies
+filters and translates labels.
 
 - [`enrollment_kang_fgv`](https://mancano-tales.github.io/educabr/dev/reference/enrollment_kang_fgv.md)
   : Enrollment series — Kang / FGV-IBRE 2023 compilation
@@ -45,6 +46,11 @@ datasets, applies filters and translates labels.
   : Tertiary (ensino superior) enrollment — multi-source compilation
 - [`schooling_kang_fgv`](https://mancano-tales.github.io/educabr/dev/reference/schooling_kang_fgv.md)
   : Mean years of schooling — Walter & Kang 2023 compilation
+- [`expenditure_kang_fgv`](https://mancano-tales.github.io/educabr/dev/reference/expenditure_kang_fgv.md)
+  : Public expenditure on education — Kang & Menetrier 2024 compilation
+- [`progression_kang_fgv`](https://mancano-tales.github.io/educabr/dev/reference/progression_kang_fgv.md)
+  : Grade-progression series (GDR6) — Kang, Paese & Felix 2021
+  compilation
 
 ## Package
 

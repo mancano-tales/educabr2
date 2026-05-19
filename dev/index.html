@@ -124,7 +124,7 @@ provenance. Includes a bundled Shiny dashboard.
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>The package exposes three top-level functions plus the bundled dashboard launcher.</p>
+<p>The package exposes five top-level data-access functions plus the bundled dashboard launcher.</p>
 <div class="section level3">
 <h3 id="get_enrollment--school-enrollment">
 <code>get_enrollment()</code> — school enrollment<a class="anchor" aria-label="anchor" href="#get_enrollment--school-enrollment"></a>
@@ -174,10 +174,43 @@ provenance. Includes a bundled Shiny dashboard.
 <span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>dimension <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="get_expenditure--public-expenditure-on-education">
+<code>get_expenditure()</code> — public expenditure on education<a class="anchor" aria-label="anchor" href="#get_expenditure--public-expenditure-on-education"></a>
+</h3>
+<blockquote>
+<p>How much the State spends on education. <em>Annual flow, public-purse perspective.</em></p>
+</blockquote>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Total public expenditure on education as share of GDP</span></span>
+<span><span class="fu"><a href="reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"share_gdp"</span>, level <span class="op">=</span> <span class="st">"total"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Per-student spending in tertiary education, all years</span></span>
+<span><span class="fu"><a href="reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"per_student"</span>, level <span class="op">=</span> <span class="st">"superior"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Kang &amp; Menetrier's "double ratio" of fiscal regressivity (ES / EF1)</span></span>
+<span><span class="fu"><a href="reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"double_ratio_es_ef1"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="get_progression--grade-progression-indicators">
+<code>get_progression()</code> — grade-progression indicators<a class="anchor" aria-label="anchor" href="#get_progression--grade-progression-indicators"></a>
+</h3>
+<blockquote>
+<p>How students flow through the early primary grades. <em>Internal-flow ratio.</em></p>
+</blockquote>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># National GDR6 series (1955-2010)</span></span>
+<span><span class="fu"><a href="reference/get_progression.html">get_progression</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># GDR6 across Northeast states from 1980</span></span>
+<span><span class="fu"><a href="reference/get_progression.html">get_progression</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"UF"</span>,</span>
+<span>                geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BA"</span>, <span class="st">"PE"</span>, <span class="st">"CE"</span>, <span class="st">"PB"</span>, <span class="st">"MA"</span>, <span class="st">"PI"</span>, <span class="st">"RN"</span>, <span class="st">"AL"</span>, <span class="st">"SE"</span><span class="op">)</span>,</span>
+<span>                year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1980</span>, <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="run_dashboard--interactive-shiny-app">
 <code>run_dashboard()</code> — interactive Shiny app<a class="anchor" aria-label="anchor" href="#run_dashboard--interactive-shiny-app"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">educabr</span><span class="fu">::</span><span class="fu"><a href="reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Three navbar tabs:</p>
 <ul>
@@ -195,7 +228,7 @@ provenance. Includes a bundled Shiny dashboard.
 <div class="section level2">
 <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h2>
-<p>Three internal datasets back the public functions:</p>
+<p>Five internal datasets back the public functions:</p>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="23%">
@@ -228,9 +261,21 @@ provenance. Includes a bundled Shiny dashboard.
 <td>BR + region + UF, mean years of schooling, 1925–2015, with race and sex breakdowns</td>
 <td>Walter &amp; Kang (2024)</td>
 </tr>
+<tr>
+<td><code>expenditure_kang_fgv</code></td>
+<td align="right">1,170</td>
+<td>BR, public expenditure on education (% GDP, per-student, “double ratios”), 1933–2010</td>
+<td>Kang &amp; Menetrier (2024)</td>
+</tr>
+<tr>
+<td><code>progression_kang_fgv</code></td>
+<td align="right">1,090</td>
+<td>BR + 20 UFs, GDR6 grade-progression ratio, 1955–2010</td>
+<td>Kang, Paese &amp; Felix (2021)</td>
+</tr>
 </tbody>
 </table>
-<p>End users should call <code><a href="reference/get_enrollment.html">get_enrollment()</a></code> / <code><a href="reference/get_schooling.html">get_schooling()</a></code>. The datasets are exposed for inspection but the public API normalises schema differences, applies per-source filters and translates labels.</p>
+<p>End users should call the <code>get_*()</code> functions. The datasets are exposed for inspection but the public API normalises schema differences, applies per-source filters and translates labels.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -250,7 +295,7 @@ provenance. Includes a bundled Shiny dashboard.
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>Cite both the package (for the harmonisation work) and the <strong>originating sources</strong> for any data you actually use. The <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> helper builds APA / BibTeX entries for every bundled source:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr"</span><span class="op">)</span>                              <span class="co"># cite the package</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="st">"kang_paese_felix_2021"</span><span class="op">)</span>            <span class="co"># cite one source</span></span>

@@ -54,8 +54,8 @@ remotes::install_github("mancano-tales/educabr")
 
 ## Usage
 
-The package exposes three top-level functions plus the bundled dashboard
-launcher.
+The package exposes five top-level data-access functions plus the
+bundled dashboard launcher.
 
 ### `get_enrollment()` — school enrollment
 
@@ -105,6 +105,39 @@ get_schooling(dimension = "race")
 get_schooling(dimension = "sex")
 ```
 
+### `get_expenditure()` — public expenditure on education
+
+> How much the State spends on education. *Annual flow, public-purse
+> perspective.*
+
+``` r
+
+# Total public expenditure on education as share of GDP
+get_expenditure(indicator = "share_gdp", level = "total")
+
+# Per-student spending in tertiary education, all years
+get_expenditure(indicator = "per_student", level = "superior")
+
+# Kang & Menetrier's "double ratio" of fiscal regressivity (ES / EF1)
+get_expenditure(indicator = "double_ratio_es_ef1")
+```
+
+### `get_progression()` — grade-progression indicators
+
+> How students flow through the early primary grades. *Internal-flow
+> ratio.*
+
+``` r
+
+# National GDR6 series (1955-2010)
+get_progression()
+
+# GDR6 across Northeast states from 1980
+get_progression(geo_level = "UF",
+                geo = c("BA", "PE", "CE", "PB", "MA", "PI", "RN", "AL", "SE"),
+                year = c(1980, 2010))
+```
+
 ### `run_dashboard()` — interactive Shiny app
 
 ``` r
@@ -129,20 +162,19 @@ reproduce the interactive chart locally.
 
 ## Datasets
 
-Three internal datasets back the public functions:
+Five internal datasets back the public functions:
 
 | Dataset | Rows | Coverage | Source(s) |
 |----|---:|----|----|
 | `enrollment_kang_fgv` | 6,238 | BR + UF, EF1/EF2/EF/EM/ES, 1933–2010 (+ race breakdown 1960–2010) | Kang, Paese & Felix (2021); Kang & Menetrier (2024); Kang, Menetrier & Comim (2024) |
 | `enrollment_tertiary` | 1,341 | BR, ensino superior, 1907–2024, by network/institution/modality | IBGE *Século XX*; Maduro Jr. (2007); Kang/Paese/Felix (2021); INEP CENSUP Synopsis / Microdata / Power BI |
 | `schooling_kang_fgv` | 2,287 | BR + region + UF, mean years of schooling, 1925–2015, with race and sex breakdowns | Walter & Kang (2024) |
+| `expenditure_kang_fgv` | 1,170 | BR, public expenditure on education (% GDP, per-student, “double ratios”), 1933–2010 | Kang & Menetrier (2024) |
+| `progression_kang_fgv` | 1,090 | BR + 20 UFs, GDR6 grade-progression ratio, 1955–2010 | Kang, Paese & Felix (2021) |
 
-End users should call
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
-/
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md).
-The datasets are exposed for inspection but the public API normalises
-schema differences, applies per-source filters and translates labels.
+End users should call the `get_*()` functions. The datasets are exposed
+for inspection but the public API normalises schema differences, applies
+per-source filters and translates labels.
 
 ------------------------------------------------------------------------
 
