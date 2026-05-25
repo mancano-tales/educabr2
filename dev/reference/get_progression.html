@@ -99,9 +99,11 @@ for all years.</p></dd>
 <dt id="arg-geo">geo<a class="anchor" aria-label="anchor" href="#arg-geo"></a></dt>
 <dd><p>Character vector of 2-letter UF codes when
 <code>geo_level = "UF"</code>. <code>NULL</code> (default) returns all UFs available for
-the indicator (note: the source covers 20 UFs, not all 27 — newer
-federation units such as TO, RR, AP, RO, MS, DF and AC are not in
-Kang's compilation).</p></dd>
+the indicator. <strong>Coverage note:</strong> the source covers 20 UFs, not
+all 27 — newer / territorial-origin federation units (<code>AC</code>, <code>AP</code>,
+<code>DF</code>, <code>MS</code>, <code>RO</code>, <code>RR</code>, <code>TO</code>) are not in Kang's compilation.
+Passing one of those codes emits a warning explaining the gap
+and returns the remaining (covered) UFs only.</p></dd>
 
 
 <dt id="arg-source">source<a class="anchor" aria-label="anchor" href="#arg-source"></a></dt>

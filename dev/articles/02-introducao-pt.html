@@ -113,6 +113,15 @@ INEP).</li>
 1925 a 2015, com desagregação por <strong>sexo</strong>,
 <strong>cor/raça</strong>, <strong>macrorregião</strong> e
 <strong>unidade da federação</strong> (Walter &amp; Kang 2024).</li>
+<li>
+<strong>Despesa pública em educação</strong> — 1933 a 2010, em % do
+PIB por estágio, por estudante em % do PIB per capita, e os indicadores
+de <strong>razão dupla</strong> de regressividade fiscal (Kang &amp;
+Menetrier 2024).</li>
+<li>
+<strong>Razão de progressão escolar (GDR6)</strong> — 1955 a 2010,
+BR + 20 UFs, <em>proxy</em> da retenção nos primeiros anos do antigo
+primário (Kang, Paese &amp; Felix 2021).</li>
 </ul>
 <p>Toda a transformação dos dados é auditável: cada linha do
 <em>output</em> carrega o <code>source</code> (chave canônica em
@@ -128,11 +137,12 @@ origem.</p>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mancano-tales/educabr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="api-em-duas-funções">API em duas funções<a class="anchor" aria-label="anchor" href="#api-em-duas-fun%C3%A7%C3%B5es"></a>
+<h2 id="api-em-quatro-funções">API em quatro funções<a class="anchor" aria-label="anchor" href="#api-em-quatro-fun%C3%A7%C3%B5es"></a>
 </h2>
-<p>Toda a interface pública gira em torno de duas funções:</p>
+<p>A interface pública é deliberadamente enxuta — uma função por tema,
+todas devolvendo <em>tibbles</em> no mesmo esquema canônico:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Esquema dos dois principais resultados</span></span>
+<code class="sourceCode R"><span><span class="co"># Esquema dos quatro principais resultados</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"fundamental"</span>, year <span class="op">=</span> <span class="fl">1950</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; tibble [2 × 16] (S3: tbl_df/tbl/data.frame)</span></span>
 <span><span class="co">#&gt;  $ year            : int [1:2] 1950 1950</span></span>
@@ -170,11 +180,56 @@ origem.</p>
 <span><span class="co">#&gt;   ..$ built_at      : POSIXct[1:1], format: "2026-05-17 19:08:24"</span></span>
 <span><span class="co">#&gt;   ..$ primary_source: chr "walter_kang_2023"</span></span>
 <span><span class="co">#&gt;   ..$ citation      : chr "Walter, J., &amp; Kang, T. H. (2023). A new dataset of average years of schooling in Brazil, 1925-2015. FGV-IBRE working paper."</span></span>
-<span><span class="co">#&gt;   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/3._anos_estudo_1925_2015_v_abril2023.xlsx"</span></span></code></pre></div>
-<p>Ambas retornam <em>tibbles</em> longas seguindo o mesmo esquema
+<span><span class="co">#&gt;   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/3._anos_estudo_1925_2015_v_abril2023.xlsx"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"total"</span>, indicator <span class="op">=</span> <span class="st">"share_gdp"</span>, year <span class="op">=</span> <span class="fl">1950</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; tibble [1 × 13] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ year       : int 1950</span></span>
+<span><span class="co">#&gt;  $ geo_level  : chr "BR"</span></span>
+<span><span class="co">#&gt;  $ geo_code   : chr "BR"</span></span>
+<span><span class="co">#&gt;  $ geo_name   : chr "Brasil"</span></span>
+<span><span class="co">#&gt;  $ level      : chr "total"</span></span>
+<span><span class="co">#&gt;  $ network    : chr "publica"</span></span>
+<span><span class="co">#&gt;  $ dim_race   : chr "total"</span></span>
+<span><span class="co">#&gt;  $ age_group  : chr NA</span></span>
+<span><span class="co">#&gt;  $ indicator  : chr "expenditure_share_gdp"</span></span>
+<span><span class="co">#&gt;  $ value      : num 1.53</span></span>
+<span><span class="co">#&gt;  $ unit       : chr "percent_gdp"</span></span>
+<span><span class="co">#&gt;  $ source     : chr "kang_menetrier_2024"</span></span>
+<span><span class="co">#&gt;  $ source_note: chr "Kang &amp; Menetrier (2024). Estudos Econômicos 54(3). doi:10.1590/1980-53575434tkim"</span></span>
+<span><span class="co">#&gt;  - attr(*, "educabr_meta")=List of 5</span></span>
+<span><span class="co">#&gt;   ..$ build_script  : chr "data-raw/04_build_expenditure_kang_fgv.R"</span></span>
+<span><span class="co">#&gt;   ..$ built_at      : POSIXct[1:1], format: "2026-05-19 02:42:48"</span></span>
+<span><span class="co">#&gt;   ..$ primary_source: chr "kang_menetrier_2024"</span></span>
+<span><span class="co">#&gt;   ..$ citation      : chr "Kang &amp; Menetrier (2024). Estudos Econômicos 54(3). doi:10.1590/1980-53575434tkim"</span></span>
+<span><span class="co">#&gt;   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/5._despesa_pub_educ_1933_2010_v_abril2023.xlsx"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_progression.html">get_progression</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">1980</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; tibble [1 × 13] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ year       : int 1980</span></span>
+<span><span class="co">#&gt;  $ geo_level  : chr "BR"</span></span>
+<span><span class="co">#&gt;  $ geo_code   : chr "BR"</span></span>
+<span><span class="co">#&gt;  $ geo_name   : chr "Brasil"</span></span>
+<span><span class="co">#&gt;  $ level      : chr "fundamental_anos_iniciais"</span></span>
+<span><span class="co">#&gt;  $ network    : chr "total"</span></span>
+<span><span class="co">#&gt;  $ dim_race   : chr "total"</span></span>
+<span><span class="co">#&gt;  $ age_group  : chr NA</span></span>
+<span><span class="co">#&gt;  $ indicator  : chr "gross_distribution_ratio_grade_6"</span></span>
+<span><span class="co">#&gt;  $ value      : num 0.461</span></span>
+<span><span class="co">#&gt;  $ unit       : chr "ratio"</span></span>
+<span><span class="co">#&gt;  $ source     : chr "kang_paese_felix_2021"</span></span>
+<span><span class="co">#&gt;  $ source_note: chr "Kang, Paese &amp; Felix (2021). RHE 39(2):191-218. doi:10.1017/S0212610921000112"</span></span>
+<span><span class="co">#&gt;  - attr(*, "educabr_meta")=List of 5</span></span>
+<span><span class="co">#&gt;   ..$ build_script  : chr "data-raw/05_build_progression_kang_fgv.R"</span></span>
+<span><span class="co">#&gt;   ..$ built_at      : POSIXct[1:1], format: "2026-05-19 02:43:16"</span></span>
+<span><span class="co">#&gt;   ..$ primary_source: chr "kang_paese_felix_2021"</span></span>
+<span><span class="co">#&gt;   ..$ citation      : chr "Kang, Paese &amp; Felix (2021). RHE 39(2):191-218. doi:10.1017/S0212610921000112"</span></span>
+<span><span class="co">#&gt;   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/7._gdr6_1955_2010_v_abril2023.xlsx"</span></span></code></pre></div>
+<p>Todas retornam <em>tibbles</em> longas seguindo o mesmo esquema
 canônico (<code>inst/dict/schema.yaml</code>), com colunas para a
 unidade geográfica, a dimensão de desigualdade (raça, sexo, etc.), a
-fonte e o valor.</p>
+fonte e o valor. Os filtros compartilhados (<code>year</code>,
+<code>geo_level</code>, <code>geo</code>, <code>source</code>,
+<code>wide</code>, <code>lang</code>) funcionam de forma idêntica nas
+quatro funções.</p>
 </div>
 <div class="section level2">
 <h2 id="caso-1-taxa-bruta-de-matrícula-por-raçacor">Caso 1 — taxa bruta de matrícula por raça/cor<a class="anchor" aria-label="anchor" href="#caso-1-taxa-bruta-de-matr%C3%ADcula-por-ra%C3%A7acor"></a>
@@ -323,16 +378,94 @@ do século XX a vantagem inverte e em 2015 mulheres ultrapassam homens em
 escolaridade média.</p>
 </div>
 <div class="section level2">
+<h2 id="caso-5-regressividade-fiscal-na-despesa-educacional">Caso 5 — regressividade fiscal na despesa educacional<a class="anchor" aria-label="anchor" href="#caso-5-regressividade-fiscal-na-despesa-educacional"></a>
+</h2>
+<p>Kang &amp; Menetrier (2024) operacionalizam uma tese clássica da
+economia política da educação brasileira — que o Estado gasta
+desproporcionalmente mais por aluno no ensino superior do que no ensino
+primário — por meio do indicador de <strong>razão dupla</strong>: a
+despesa pública por estudante no Ensino Superior dividida pela despesa
+por estudante no EF1 (anos iniciais).</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">razao</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"double_ratio_es_ef1"</span><span class="op">)</span></span>
+<span><span class="va">razao</span><span class="op">[</span><span class="va">razao</span><span class="op">$</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1933</span>, <span class="fl">1960</span>, <span class="fl">1980</span>, <span class="fl">2000</span>, <span class="fl">2010</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 2</span></span></span>
+<span><span class="co">#&gt;    year value</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>933 66.0 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>960 86.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>980 15.9 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>000 16.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>010  8.36</span></span></code></pre></div>
+<p>Em 1933 o Estado gastava cerca de <strong>66 vezes</strong> mais por
+aluno do ES do que por aluno dos primeiros anos do primário. Em 2010
+essa razão havia caído para menos de <strong>9</strong>. A série deixa
+explícito que a expansão fiscal da educação básica ao longo da segunda
+metade do século XX reduziu significativamente a regressividade — embora
+não a tenha eliminado.</p>
+</div>
+<div class="section level2">
+<h2 id="caso-6-retenção-no-início-do-primário-gdr6">Caso 6 — retenção no início do primário (GDR6)<a class="anchor" aria-label="anchor" href="#caso-6-reten%C3%A7%C3%A3o-no-in%C3%ADcio-do-prim%C3%A1rio-gdr6"></a>
+</h2>
+<p>O <strong>GDR6</strong> (<em>Gross Distribution Ratio</em> da 6ª
+série) — definido como a razão entre as matrículas em séries 4–6 e as
+matrículas em séries 1–3 do antigo primário de oito anos — é um
+indicador de fluxo que mede quantas crianças avançam para além dos
+primeiros anos do primário. Valores mais altos indicam menos evasão e
+menos repetência nos anos iniciais.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gdr_estados</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_progression.html">get_progression</a></span><span class="op">(</span></span>
+<span>  geo_level <span class="op">=</span> <span class="st">"UF"</span>,</span>
+<span>  geo       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SP"</span>, <span class="st">"BA"</span><span class="op">)</span>,</span>
+<span>  year      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1955</span>, <span class="fl">2010</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gdr_estados</span><span class="op">[</span><span class="va">gdr_estados</span><span class="op">$</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1960</span>, <span class="fl">1980</span>, <span class="fl">2000</span>, <span class="fl">2010</span><span class="op">)</span>,</span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"geo_code"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 3</span></span></span>
+<span><span class="co">#&gt;    year geo_code value</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>960 BA       0.187</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>980 BA       0.276</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>000 BA       0.649</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>010 BA       0.848</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">1</span>960 SP       0.273</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">1</span>980 SP       0.665</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>000 SP       1.09 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span>  <span style="text-decoration: underline;">2</span>010 SP       0.952</span></span></code></pre></div>
+<p>O fosso persistente entre SP e BA é uma das ilustrações canônicas da
+desigualdade regional na literatura histórica: em 1960 a diferença já é
+ampla, e só se estreita de forma substantiva depois das reformas dos
+anos 1990.</p>
+<blockquote>
+<p><strong>Cobertura UF — atenção.</strong> A compilação de Kang, Paese
+&amp; Felix cobre <strong>20</strong> unidades da federação
+(<code>AL</code>, <code>AM</code>, <code>BA</code>, <code>CE</code>,
+<code>ES</code>, <code>GO</code>, <code>MA</code>, <code>MG</code>,
+<code>MT</code>, <code>PA</code>, <code>PB</code>, <code>PE</code>,
+<code>PI</code>, <code>PR</code>, <code>RJ</code>, <code>RN</code>,
+<code>RS</code>, <code>SC</code>, <code>SE</code>, <code>SP</code>). Os
+estados mais novos ou de origem territorial (AC, AP, DF, MS, RO, RR, TO)
+<strong>não</strong> constam da fonte. A série nacional brasileira tem
+buracos documentados em 1988-1990 e 1994, em razão das transições
+oficiais da estrutura de séries.</p>
+</blockquote>
+</div>
+<div class="section level2">
 <h2 id="painel-interativo">Painel interativo<a class="anchor" aria-label="anchor" href="#painel-interativo"></a>
 </h2>
-<p>O pacote acompanha um painel Shiny com as três séries:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>O pacote acompanha um painel Shiny com <strong>cinco abas</strong> —
+uma por tema (Enrollment, Tertiary Education, Educational Attainment,
+Public Expenditure, Grade Progression):</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">educabr</span><span class="fu">::</span><span class="fu"><a href="../reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>O painel reproduz toda a comparação multi-fonte do ensino superior de
-forma interativa, com um botão “View R code” em cada aba que gera o
-código <code>educabr</code> + <code>ggplot2</code> para reproduzir a
-visualização no seu ambiente R local — uma ponte direta entre exploração
-no painel e análise reprodutível em script.</p>
+<p>O painel reproduz toda a comparação multi-fonte do ensino superior e
+as novas séries de despesa e progressão de forma interativa, com um
+botão “View R code” em cada aba que gera o código <code>educabr</code> +
+<code>ggplot2</code> para reproduzir a visualização no seu ambiente R
+local — uma ponte direta entre exploração no painel e análise
+reprodutível em script.</p>
 </div>
 <div class="section level2">
 <h2 id="fontes-e-citação">Fontes e citação<a class="anchor" aria-label="anchor" href="#fontes-e-cita%C3%A7%C3%A3o"></a>

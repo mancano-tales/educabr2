@@ -21,6 +21,12 @@ available in analytic format:
 - **Mean years of schooling of the adult population** — 1925 to 2015,
   with breakdowns by **sex**, **race/colour**, **macroregion** and
   **state** (Walter & Kang 2024).
+- **Public expenditure on education** — 1933 to 2010, share of GDP by
+  stage, per-student spending as share of GDP per capita, and the Kang &
+  Menetrier (2024) “double ratio” indicators of fiscal regressivity.
+- **Grade-progression ratio (GDR6)** — 1955 to 2010, BR + 20 UFs, a
+  proxy for early-primary retention drawn from Kang, Paese & Felix
+  (2021).
 
 Every transformation is auditable: each output row carries a canonical
 `source` key (catalogued in `inst/dict/vocabularies/sources.yaml`) and a
@@ -34,13 +40,14 @@ Every transformation is auditable: each output row carries a canonical
 remotes::install_github("mancano-tales/educabr")
 ```
 
-## A two-function API
+## A four-function API
 
-The public interface is intentionally minimal:
+The public interface is intentionally minimal — one function per theme,
+all returning tibbles in the same canonical long schema:
 
 ``` r
 
-# Schemas of the two main return shapes
+# Schemas of the four return shapes
 str(get_enrollment(level = "fundamental", year = 1950))
 #> tibble [2 × 16] (S3: tbl_df/tbl/data.frame)
 #>  $ year            : int [1:2] 1950 1950
@@ -79,11 +86,55 @@ str(get_schooling(year = 1950))
 #>   ..$ primary_source: chr "walter_kang_2023"
 #>   ..$ citation      : chr "Walter, J., & Kang, T. H. (2023). A new dataset of average years of schooling in Brazil, 1925-2015. FGV-IBRE working paper."
 #>   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/3._anos_estudo_1925_2015_v_abril2023.xlsx"
+str(get_expenditure(level = "total", indicator = "share_gdp", year = 1950))
+#> tibble [1 × 13] (S3: tbl_df/tbl/data.frame)
+#>  $ year       : int 1950
+#>  $ geo_level  : chr "BR"
+#>  $ geo_code   : chr "BR"
+#>  $ geo_name   : chr "Brasil"
+#>  $ level      : chr "total"
+#>  $ network    : chr "publica"
+#>  $ dim_race   : chr "total"
+#>  $ age_group  : chr NA
+#>  $ indicator  : chr "expenditure_share_gdp"
+#>  $ value      : num 1.53
+#>  $ unit       : chr "percent_gdp"
+#>  $ source     : chr "kang_menetrier_2024"
+#>  $ source_note: chr "Kang & Menetrier (2024). Estudos Econômicos 54(3). doi:10.1590/1980-53575434tkim"
+#>  - attr(*, "educabr_meta")=List of 5
+#>   ..$ build_script  : chr "data-raw/04_build_expenditure_kang_fgv.R"
+#>   ..$ built_at      : POSIXct[1:1], format: "2026-05-19 02:42:48"
+#>   ..$ primary_source: chr "kang_menetrier_2024"
+#>   ..$ citation      : chr "Kang & Menetrier (2024). Estudos Econômicos 54(3). doi:10.1590/1980-53575434tkim"
+#>   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/5._despesa_pub_educ_1933_2010_v_abril2023.xlsx"
+str(get_progression(year = 1980))
+#> tibble [1 × 13] (S3: tbl_df/tbl/data.frame)
+#>  $ year       : int 1980
+#>  $ geo_level  : chr "BR"
+#>  $ geo_code   : chr "BR"
+#>  $ geo_name   : chr "Brasil"
+#>  $ level      : chr "fundamental_anos_iniciais"
+#>  $ network    : chr "total"
+#>  $ dim_race   : chr "total"
+#>  $ age_group  : chr NA
+#>  $ indicator  : chr "gross_distribution_ratio_grade_6"
+#>  $ value      : num 0.461
+#>  $ unit       : chr "ratio"
+#>  $ source     : chr "kang_paese_felix_2021"
+#>  $ source_note: chr "Kang, Paese & Felix (2021). RHE 39(2):191-218. doi:10.1017/S0212610921000112"
+#>  - attr(*, "educabr_meta")=List of 5
+#>   ..$ build_script  : chr "data-raw/05_build_progression_kang_fgv.R"
+#>   ..$ built_at      : POSIXct[1:1], format: "2026-05-19 02:43:16"
+#>   ..$ primary_source: chr "kang_paese_felix_2021"
+#>   ..$ citation      : chr "Kang, Paese & Felix (2021). RHE 39(2):191-218. doi:10.1017/S0212610921000112"
+#>   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/7._gdr6_1955_2010_v_abril2023.xlsx"
 ```
 
-Both return long-format tibbles that follow the same canonical schema
-(`inst/dict/schema.yaml`), with columns for the geographic unit, the
-inequality dimension (race, sex, …), the source, and the value.
+All four return long-format tibbles that follow the same canonical
+schema (`inst/dict/schema.yaml`), with columns for the geographic unit,
+the inequality dimension (race, sex, …), the source, and the value. The
+shared filters (`year`, `geo_level`, `geo`, `source`, `wide`, `lang`)
+work identically across the family.
 
 ## Case 1 — gross enrollment rate by race/colour
 
@@ -239,20 +290,96 @@ This series captures the historical reversal of the *gender gap*: in
 century that advantage inverts, and by 2015 women surpass men in average
 attainment.
 
+## Case 5 — fiscal regressivity in education spending
+
+Kang & Menetrier (2024) operationalise a long-standing claim of the
+political economy of Brazilian education — that the State spends
+disproportionately more per tertiary student than per primary student —
+through their **double ratio** indicator: per-student public spending on
+Ensino Superior divided by per-student public spending on EF1 (anos
+iniciais).
+
+``` r
+
+ratio <- get_expenditure(indicator = "double_ratio_es_ef1")
+ratio[ratio$year %in% c(1933, 1960, 1980, 2000, 2010),
+      c("year", "value")]
+#> # A tibble: 5 × 2
+#>    year value
+#>   <int> <dbl>
+#> 1  1933 66.0 
+#> 2  1960 86.6 
+#> 3  1980 15.9 
+#> 4  2000 16.8 
+#> 5  2010  8.36
+```
+
+In 1933 the State spent roughly **66 times** more per tertiary student
+than per first-grade student. By 2010 that ratio had fallen to under
+**9**. The series shows that the historical trajectory of fiscal
+expansion in basic education during the second half of the 20th century
+did meaningfully reduce regressivity — though it never eliminated it.
+
+## Case 6 — early-primary retention (GDR6)
+
+The **GDR6** (*Gross Distribution Ratio* for grade 6) — defined as the
+ratio of enrollment in grades 4–6 to enrollment in grades 1–3 of the old
+eight-year primary system — is a flow indicator of how many children
+make it past the early primary grades. Higher values mean fewer dropouts
+and repeaters in the lower grades.
+
+``` r
+
+gdr_states <- get_progression(
+  geo_level = "UF",
+  geo       = c("SP", "BA"),
+  year      = c(1955, 2010)
+)
+
+gdr_states[gdr_states$year %in% c(1960, 1980, 2000, 2010),
+           c("year", "geo_code", "value")]
+#> # A tibble: 8 × 3
+#>    year geo_code value
+#>   <int> <chr>    <dbl>
+#> 1  1960 BA       0.187
+#> 2  1980 BA       0.276
+#> 3  2000 BA       0.649
+#> 4  2010 BA       0.848
+#> 5  1960 SP       0.273
+#> 6  1980 SP       0.665
+#> 7  2000 SP       1.09 
+#> 8  2010 SP       0.952
+```
+
+The persistent SP-vs-BA gap is one of the canonical illustrations of
+regional inequality in the historical literature: in 1960 the SP/BA
+ratio is already wide, and only narrows substantially after the 1990s
+reforms.
+
+> **UF coverage caveat.** Kang, Paese & Felix’s compilation covers 20
+> federation units (`AL`, `AM`, `BA`, `CE`, `ES`, `GO`, `MA`, `MG`,
+> `MT`, `PA`, `PB`, `PE`, `PI`, `PR`, `RJ`, `RN`, `RS`, `SC`, `SE`,
+> `SP`). Newer or territorial-origin states (AC, AP, DF, MS, RO, RR, TO)
+> are **not** in the source. The BR national series has documented gaps
+> at 1988-1990 and 1994 due to transitions in the official grade
+> structure.
+
 ## Interactive dashboard
 
-The package ships a Shiny dashboard for the three series:
+The package ships a Shiny dashboard with **five tabs** — one per theme
+(Enrollment, Tertiary Education, Educational Attainment, Public
+Expenditure, Grade Progression):
 
 ``` r
 
 educabr::run_dashboard()
 ```
 
-The dashboard replicates the multi-source tertiary comparison
-interactively. Each tab has a **“View R code”** button that emits the
-`educabr` + `ggplot2` snippet needed to reproduce the visualisation in
-your local R session — a direct bridge between dashboard exploration and
-reproducible scripted analysis.
+The dashboard replicates the multi-source tertiary comparison and the
+new expenditure / progression series interactively. Each tab has a
+**“View R code”** button that emits the `educabr` + `ggplot2` snippet
+needed to reproduce the visualisation in your local R session — a direct
+bridge between dashboard exploration and reproducible scripted analysis.
 
 ## Sources and citation
 

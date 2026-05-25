@@ -41,9 +41,12 @@ get_progression(
 - geo:
 
   Character vector of 2-letter UF codes when `geo_level = "UF"`. `NULL`
-  (default) returns all UFs available for the indicator (note: the
-  source covers 20 UFs, not all 27 — newer federation units such as TO,
-  RR, AP, RO, MS, DF and AC are not in Kang's compilation).
+  (default) returns all UFs available for the indicator. **Coverage
+  note:** the source covers 20 UFs, not all 27 — newer /
+  territorial-origin federation units (`AC`, `AP`, `DF`, `MS`, `RO`,
+  `RR`, `TO`) are not in Kang's compilation. Passing one of those codes
+  emits a warning explaining the gap and returns the remaining (covered)
+  UFs only.
 
 - source:
 
