@@ -42,6 +42,10 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
         with:
-          clean: false
+          # clean: true removes orphan files on gh-pages that pkgdown
+          # no longer produces — e.g. when articles are renamed in the
+          # vignettes/ folder. Without it, the old HTML keeps being
+          # served indefinitely.
+          clean: true
           branch: gh-pages
           folder: docs
