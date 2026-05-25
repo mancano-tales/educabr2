@@ -110,3 +110,22 @@ test_that(".load_progression_panel errors with friendly message when nothing bui
     "No progression dataset"
   )
 })
+
+test_that("requesting unavailable UF emits a coverage warning but still returns", {
+  with_prog_fixture({
+    expect_warning(
+      out <- get_progression(geo_level = "UF", geo = c("SP", "TO")),
+      "TO"
+    )
+    # SP rows are returned; TO is just not in the source so it yields nothing.
+    expect_setequal(unique(out$geo_code), "SP")
+  })
+})
+
+test_that("requesting only covered UFs emits no warning", {
+  with_prog_fixture({
+    expect_no_warning(
+      get_progression(geo_level = "UF", geo = c("SP", "BA"))
+    )
+  })
+})

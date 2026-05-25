@@ -19,9 +19,11 @@
 #' @param geo_level One of `"BR"` (national, default) or `"UF"` (state).
 #' @param geo Character vector of 2-letter UF codes when
 #'   `geo_level = "UF"`. `NULL` (default) returns all UFs available for
-#'   the indicator (note: the source covers 20 UFs, not all 27 — newer
-#'   federation units such as TO, RR, AP, RO, MS, DF and AC are not in
-#'   Kang's compilation).
+#'   the indicator. **Coverage note:** the source covers 20 UFs, not
+#'   all 27 — newer / territorial-origin federation units (`AC`, `AP`,
+#'   `DF`, `MS`, `RO`, `RR`, `TO`) are not in Kang's compilation.
+#'   Passing one of those codes emits a warning explaining the gap
+#'   and returns the remaining (covered) UFs only.
 #' @param source Character vector of source keys. `NULL` returns all
 #'   available sources (currently only `"kang_paese_felix_2021"`).
 #' @param wide Logical. If `TRUE`, pivots to wide form. For this
@@ -120,12 +122,26 @@ get_progression <- function(indicator = NULL,
   gdr6 = "gross_distribution_ratio_grade_6"
 )
 
+# UFs that Kang, Paese & Felix's compilation does NOT cover (mostly newer
+# / territorial-origin states). Warned about — not silently dropped — so
+# the user knows the empty result is a source-data limitation rather
+# than a typo or filter mistake.
+.PROGRESSION_UNAVAILABLE_UF <- c("AC", "AP", "DF", "MS", "RO", "RR", "TO")
+
 #' @noRd
 .filter_progression <- function(data, indicator, year, geo_level, geo, source) {
   data <- data[data$geo_level == geo_level, , drop = FALSE]
 
   if (geo_level == "UF" && !is.null(geo)) {
     geo <- toupper(as.character(geo))
+    missing_uf <- intersect(geo, .PROGRESSION_UNAVAILABLE_UF)
+    if (length(missing_uf)) {
+      cli::cli_warn(c(
+        "UF{?s} not covered by the GDR6 source: {.val {missing_uf}}",
+        i = "Kang, Paese & Felix's (2021) compilation covers 20 of the 27 federation units.",
+        i = "Missing (not a bug in {.pkg educabr}): AC, AP, DF, MS, RO, RR, TO."
+      ))
+    }
     data <- data[data$geo_code %in% geo, , drop = FALSE]
   }
 

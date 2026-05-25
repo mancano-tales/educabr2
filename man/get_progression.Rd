@@ -26,9 +26,11 @@ for all years.}
 
 \item{geo}{Character vector of 2-letter UF codes when
 \code{geo_level = "UF"}. \code{NULL} (default) returns all UFs available for
-the indicator (note: the source covers 20 UFs, not all 27 — newer
-federation units such as TO, RR, AP, RO, MS, DF and AC are not in
-Kang's compilation).}
+the indicator. \strong{Coverage note:} the source covers 20 UFs, not
+all 27 — newer / territorial-origin federation units (\code{AC}, \code{AP},
+\code{DF}, \code{MS}, \code{RO}, \code{RR}, \code{TO}) are not in Kang's compilation.
+Passing one of those codes emits a warning explaining the gap
+and returns the remaining (covered) UFs only.}
 
 \item{source}{Character vector of source keys. \code{NULL} returns all
 available sources (currently only \code{"kang_paese_felix_2021"}).}
