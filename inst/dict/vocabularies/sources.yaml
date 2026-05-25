@@ -205,3 +205,22 @@ sources:
     notes: >
       Mean years of schooling with breakdowns by sex, color/race,
       macro-region, and UF.
+
+  lee_lee_2016:
+    short_name: Lee & Lee (2016)
+    full_name: >
+      Lee, J.-W., & Lee, H. (2016). Human capital in the long run.
+      Journal of Development Economics, 122, 147–169.
+    type: academic
+    doi: 10.1016/j.jdeveco.2016.05.006
+    url: https://barrolee.github.io/BarroLeeDataSet/DataLeeLee.html
+    coverage: { years: [1870, 2010], geo: [country] }
+    notes: >
+      Comparative cross-country dataset of long-run educational
+      attainment, reconstructed every five years from 1870 to 2010 for
+      ~146 countries by sex (MF/M/F) and age bracket (5-year cuts from
+      15-19 to 75+, plus 15+ and 25+ aggregates). Variables `lpc`, `lsc`,
+      `lhc` give the share of the reference population that has
+      completed primary / secondary / tertiary education. See the
+      Barro–Lee Long-Run Education Dataset page for the original `.dta`
+      and documentation.

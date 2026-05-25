@@ -170,3 +170,31 @@ datasets:
         sha256: ""
     post_build:
       - Commit data/progression_kang_fgv.rda together with this manifest entry.
+
+  - name: lee_lee_2016
+    theme: attainment_comparative
+    description: >
+      Comparative international educational-attainment series from Lee &
+      Lee (2016) "Human capital in the long run" (JDE 122, 147-169).
+      111 countries, every 5 years from 1870 to 2010, by sex
+      (Total/M/F). Reference population: aged 15-64. The bundled
+      indicator is the cumulative share who completed at least the
+      level indicated by `level` (primary / secondary / tertiary) —
+      re-aggregated from Lee & Lee's non-cumulative `lpc`/`lsc`/`lhc`
+      columns. Brazil appears as `geo_code = "BRA"`.
+    processed_file: data/lee_lee_2016.rda
+    build_script: data-raw/06_build_lee_lee_2016.R
+    storage: embedded
+    release_pointer: null
+    geo_level: [country]
+    year_range: [1870, 2010]
+    sources: [lee_lee_2016]
+    indicators: [attainment_share_completed]
+    levels: [primary, secondary, tertiary]
+    networks: []
+    dimensions: [dim_sex]
+    raw_files:
+      - path: https://barrolee.github.io/BarroLeeDataSet/LeeLee/LeeLee_v1.dta
+        sha256: ""  # remote-only; rebuild fetches from URL each run
+    post_build:
+      - Commit data/lee_lee_2016.rda together with this manifest entry.

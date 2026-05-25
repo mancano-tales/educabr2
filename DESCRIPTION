@@ -39,9 +39,11 @@ Imports:
     yaml
 Suggests:
     bslib,
+    countrycode,
     dplyr,
     DT,
     ggplot2,
+    haven,
     knitr,
     plotly,
     pointblank,

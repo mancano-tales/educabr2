@@ -262,6 +262,31 @@ EXP_Y_LAB <- c(
 
 PROG_UF_CHOICES <- UF_CHOICES[!(UF_CHOICES %in% c("AC","AP","DF","MS","RO","RR","TO"))]
 
+# ---- international comparison (Lee & Lee 2016) choices ---------------
+
+ATT_LEVEL_CHOICES <- c(
+  "Primary (completed at least)"   = "primary",
+  "Secondary (completed at least)" = "secondary",
+  "Tertiary (completed at least)"  = "tertiary"
+)
+
+ATT_DIM_CHOICES <- c(
+  "Total (no breakdown)" = "none",
+  "By sex"               = "sex"
+)
+
+# Country choices are built dynamically from the dataset on app start
+# so the dropdown stays in sync with whatever Lee & Lee currently
+# ships. A handful of countries are pre-selected to give a sensible
+# default plot on first load (Brazil + comparators).
+ATT_COUNTRY_DEFAULT <- c("BRA", "ARG", "CHL", "MEX", "USA", "ESP", "PRT")
+
+ATT_LEVEL_COLORS <- c(
+  "primary"   = "#1d4ed8",  # blue
+  "secondary" = "#16a34a",  # green
+  "tertiary"  = "#dc2626"   # red
+)
+
 # ---- code-generation helpers -----------------------------------------
 #
 # Each tab gets a "View R code" button that opens a modal showing the
@@ -625,6 +650,57 @@ ui <- bslib::page_navbar(
     )
   ),
 
+  # ---- International Comparison (Lee & Lee 2016) ----
+  bslib::nav_panel(
+    title = "International Comparison",
+    bslib::layout_sidebar(
+      sidebar = bslib::sidebar(
+        width = 360,
+        selectizeInput("att_level", "Level(s)",
+                       choices  = ATT_LEVEL_CHOICES,
+                       multiple = TRUE,
+                       selected = c("primary", "secondary", "tertiary"),
+                       options  = list(plugins = list("remove_button"))),
+        selectizeInput("att_geo", "Countries (ISO3)",
+                       choices  = NULL,    # populated from server (data-driven)
+                       multiple = TRUE,
+                       selected = ATT_COUNTRY_DEFAULT,
+                       options  = list(plugins = list("remove_button"))),
+        radioButtons("att_dimension", "Sex breakdown",
+                     choices  = ATT_DIM_CHOICES,
+                     selected = "none"),
+        sliderInput("att_year", "Years",
+                    min = 1870, max = 2010, value = c(1900, 2010),
+                    sep = "", step = 5),
+        tags$small(style = "color:#777;",
+          "Lee & Lee report attainment for the population aged 15-64. ",
+          "Values are cumulative: % who completed at least the selected ",
+          "level (primary ≥ secondary ≥ tertiary)."),
+        hr(),
+        downloadButton("att_download", "Download CSV",
+                       class = "btn-primary w-100"),
+        actionButton("att_show_code", "View R code",
+                     class = "btn-outline-secondary w-100 mt-2",
+                     icon  = icon("code"))
+      ),
+      bslib::navset_card_tab(
+        bslib::nav_panel(
+          "Series",
+          plotly::plotlyOutput("att_plot", height = "520px"),
+          tags$small(textOutput("att_caption"))
+        ),
+        bslib::nav_panel(
+          "Table",
+          DT::DTOutput("att_table")
+        ),
+        bslib::nav_panel(
+          "Sources",
+          uiOutput("att_sources")
+        )
+      )
+    )
+  ),
+
   bslib::nav_spacer(),
   bslib::nav_panel(
     title = "About",
@@ -640,13 +716,15 @@ ui <- bslib::page_navbar(
         tags$li(tags$strong("Tertiary Education"), " — higher-education enrollment 1907–2024, multi-source compilation (IBGE 20th-Century Statistics, Durham, Maduro Junior, Kang et al., INEP Synopsis, INEP Microdata, INEP Power BI). Lets you compare estimates from different sources side by side."),
         tags$li(tags$strong("Educational Attainment"), " — mean years of schooling by sex, race and state (1925–2015, Walter & Kang)."),
         tags$li(tags$strong("Public Expenditure"), " — public spending on education as share of GDP, per-student in % of GDP per capita, and the Kang & Menetrier (2024) double-ratio indicators of fiscal regressivity (Brazil, 1933–2010)."),
-        tags$li(tags$strong("Grade Progression"), " — GDR6 grade-progression ratio (enrollment grades 4-6 / grades 1-3), at BR and 20 UFs (1955–2010, Kang/Paese/Felix).")
+        tags$li(tags$strong("Grade Progression"), " — GDR6 grade-progression ratio (enrollment grades 4-6 / grades 1-3), at BR and 20 UFs (1955–2010, Kang/Paese/Felix)."),
+        tags$li(tags$strong("International Comparison"), " — cumulative share of population aged 15–64 who completed at least primary / secondary / tertiary education, by country and sex (111 countries, 1870–2010 in 5-year steps, Lee & Lee 2016).")
       ),
       tags$p("Data accessible from R: ",
              tags$code("educabr2::get_enrollment()"), ", ",
              tags$code("educabr2::get_schooling()"), ", ",
-             tags$code("educabr2::get_expenditure()"), " and ",
-             tags$code("educabr2::get_progression()"), "."),
+             tags$code("educabr2::get_expenditure()"), ", ",
+             tags$code("educabr2::get_progression()"), " and ",
+             tags$code("educabr2::get_attainment()"), "."),
       tags$p(tags$a(href = "https://github.com/mancano-tales/educabr2",
                     "GitHub repository", target = "_blank"))
     )
@@ -1242,6 +1320,114 @@ server <- function(input, output, session) {
       utils::write.csv(prog_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
   )
 
+  # -- international-comparison (Lee & Lee 2016) reactives -------------
+
+  # Populate the country selector from the dataset itself on app start.
+  # We do this once (rather than reactively) because the ISO3 universe
+  # is static for a given installed version of the package.
+  att_full <- educabr2::get_attainment(lang = "en")
+  att_country_choices <- {
+    countries <- unique(att_full[, c("geo_code", "geo_name")])
+    countries <- countries[order(countries$geo_name), , drop = FALSE]
+    setNames(countries$geo_code,
+             paste0(countries$geo_name, " (", countries$geo_code, ")"))
+  }
+  updateSelectizeInput(session, "att_geo",
+                      choices  = att_country_choices,
+                      selected = ATT_COUNTRY_DEFAULT,
+                      server   = TRUE)
+
+  att_data <- reactive({
+    educabr2::get_attainment(
+      level     = input$att_level,
+      year      = input$att_year,
+      geo       = input$att_geo,
+      dimension = input$att_dimension,
+      lang      = "en"
+    )
+  })
+
+  output$att_plot <- plotly::renderPlotly({
+    d <- att_data()
+    validate(need(nrow(d) > 0, "No data for the selected filters."))
+
+    # Colour by level (primary/secondary/tertiary). Distinguish countries
+    # via line group + interactive hover. If user selected a sex
+    # breakdown, encode sex as linetype.
+    d$hover_text <- paste0(
+      "<b>", d$geo_name, "</b> (", d$geo_code, ")<br>",
+      "<b>Year:</b> ", d$year, "<br>",
+      "<b>Level:</b> ", d$level, "<br>",
+      if (input$att_dimension == "sex")
+        paste0("<b>Sex:</b> ", d$dim_sex, "<br>") else "",
+      "<b>Share completed:</b> ", sprintf("%.1f%%", d$value)
+    )
+
+    aes_obj <- if (input$att_dimension == "sex") {
+      ggplot2::aes(x = year, y = value,
+                   colour = level,
+                   linetype = dim_sex,
+                   group  = interaction(geo_code, level, dim_sex),
+                   text   = hover_text)
+    } else {
+      ggplot2::aes(x = year, y = value,
+                   colour = level,
+                   group  = interaction(geo_code, level),
+                   text   = hover_text)
+    }
+
+    g <- ggplot2::ggplot(d, aes_obj) +
+      ggplot2::geom_line(linewidth = 0.9, alpha = 0.9) +
+      ggplot2::geom_point(size = 0.9, alpha = 0.7) +
+      ggplot2::scale_colour_manual(values = ATT_LEVEL_COLORS) +
+      ggplot2::scale_x_continuous(breaks = scales::pretty_breaks(10)) +
+      ggplot2::scale_y_continuous(
+        labels = function(x) paste0(round(x, 0), "%"),
+        limits = c(0, 100)) +
+      ggplot2::theme_minimal(base_size = 13) +
+      ggplot2::theme(legend.position = "bottom",
+                     legend.title    = ggplot2::element_blank(),
+                     panel.grid.minor = ggplot2::element_blank()) +
+      ggplot2::labs(
+        x = NULL,
+        y = "Share completed (% of pop. aged 15–64)",
+        title = "Educational attainment — Lee & Lee (2016) comparative dataset"
+      )
+
+    # Facet by country only when many countries selected — keeps the
+    # plot legible. Up to ~9 countries are fine on a single panel.
+    if (length(unique(d$geo_code)) > 9L) {
+      g <- g + ggplot2::facet_wrap(~ geo_name, scales = "free_y")
+    }
+
+    plotly::ggplotly(g, tooltip = "text") |>
+      plotly::layout(legend = list(orientation = "h", y = -0.15))
+  })
+
+  output$att_caption <- renderText({
+    d <- att_data()
+    if (!nrow(d)) return("")
+    sprintf("Source: %s. %d observations across %d countries.",
+            paste(sort(unique(d$source)), collapse = ", "),
+            nrow(d), length(unique(d$geo_code)))
+  })
+
+  output$att_table <- DT::renderDT({
+    DT::datatable(att_data(), rownames = FALSE, filter = "top",
+                  options = list(pageLength = 25, scrollX = TRUE))
+  })
+
+  output$att_sources <- renderUI({
+    sources_card_ui(unique(att_data()$source), sources_path)
+  })
+
+  output$att_download <- downloadHandler(
+    filename = function()
+      sprintf("educabr_attainment_%s.csv", format(Sys.time(), "%Y%m%d_%H%M")),
+    content = function(file)
+      utils::write.csv(att_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
+  )
+
   # -- "View R code" buttons -------------------------------------------
 
   observeEvent(input$enr_show_code, {
@@ -1417,6 +1603,53 @@ server <- function(input, output, session) {
     )
 
     show_code_modal("R code — Grade Progression chart", code)
+  })
+
+  observeEvent(input$att_show_code, {
+    get_call <- build_r_call("get_attainment", list(
+      level     = if (length(input$att_level)) input$att_level else NULL,
+      year      = input$att_year,
+      geo       = if (length(input$att_geo)) input$att_geo else NULL,
+      dimension = input$att_dimension,
+      lang      = "en"
+    ))
+
+    aes_block <- if (input$att_dimension == "sex") {
+      paste0(
+        "p <- ggplot(data, aes(x = year, y = value,\n",
+        "                      colour   = level,\n",
+        "                      linetype = dim_sex,\n",
+        "                      group    = interaction(geo_code, level, dim_sex))) +\n"
+      )
+    } else {
+      paste0(
+        "p <- ggplot(data, aes(x = year, y = value,\n",
+        "                      colour = level,\n",
+        "                      group  = interaction(geo_code, level))) +\n"
+      )
+    }
+
+    facet_line <- if (length(input$att_geo) > 9L)
+      " +\n  facet_wrap(~ geo_name, scales = \"free_y\")"
+    else ""
+
+    code <- paste0(
+      INSTALL_SNIPPET,
+      "data <- ", get_call, "\n\n",
+      aes_block,
+      "  geom_line(linewidth = 0.9) +\n",
+      "  geom_point(size = 0.9) +\n",
+      "  scale_x_continuous(breaks = scales::pretty_breaks(10)) +\n",
+      "  scale_y_continuous(labels = function(x) paste0(x, \"%\"),\n",
+      "                     limits = c(0, 100)) +\n",
+      "  theme_minimal(base_size = 13) +\n",
+      "  labs(x = NULL, y = \"Share completed (% of pop. aged 15\\u201364)\",\n",
+      "       title = \"Educational attainment \\u2014 Lee & Lee (2016)\")",
+      facet_line,
+      "\n\nggplotly(p)\n"
+    )
+
+    show_code_modal("R code — International Comparison chart", code)
   })
 }
 

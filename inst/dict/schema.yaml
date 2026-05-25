@@ -18,28 +18,38 @@ columns:
     type: factor
     role: geography
     required: true
-    levels: [BR, region, UF]
-    description: Geographic aggregation level.
+    levels: [BR, region, UF, country]
+    description: >
+      Geographic aggregation level. `BR`/`region`/`UF` are used for the
+      Brazilian datasets; `country` is used by comparative international
+      datasets (e.g. Lee & Lee 2016) — Brazil itself appears in those as
+      `geo_code = "BRA"`.
 
   - name: geo_code
     type: character
     role: geography
     required: true
     description: >
-      Geographic code. "BR" for national; IBGE 1-letter macro-region code
-      (N, NE, CO, SE, S); IBGE 2-letter UF code (e.g. SP, BA).
+      Geographic code. For Brazilian series: "BR" for national; IBGE
+      1-letter macro-region code (N, NE, CO, SE, S); IBGE 2-letter UF
+      code (e.g. SP, BA). For comparative international series
+      (`geo_level = "country"`): ISO 3166-1 alpha-3 code (e.g. BRA, USA,
+      ARG).
 
   - name: geo_name
     type: character
     role: geography
     required: true
-    description: Human-readable geographic name (PT-BR).
+    description: >
+      Human-readable geographic name. PT-BR for Brazilian series, English
+      for comparative international series (matches the names supplied by
+      the upstream source — e.g. "Brazil" not "Brasil" in Lee & Lee).
 
   - name: level
     type: factor
     role: dimension_education
     required: false
-    appears_in: [enrollment, schooling_attainment, expenditure, progression]
+    appears_in: [enrollment, schooling_attainment, expenditure, progression, attainment_comparative]
     levels:
       - infantil_creche
       - infantil_pre
@@ -50,12 +60,19 @@ columns:
       - fundamental_medio
       - superior
       - eja
+      - primary
+      - secondary
+      - tertiary
       - total
     description: >
-      Education stage (Brazilian system). `fundamental_medio` denotes
-      educação básica regular (EF + EM) combined — useful for fiscal
-      indicators that report basic education as a single aggregate even
-      though it spans two stages of the schooling ladder.
+      Education stage. Brazilian-system levels (`fundamental`, `medio`,
+      `superior`, …) are used by the Brazilian datasets;
+      `fundamental_medio` denotes educação básica regular (EF + EM)
+      combined. ISCED-style international levels (`primary`,
+      `secondary`, `tertiary`) are used by comparative international
+      datasets (Lee & Lee 2016) and are intentionally kept separate from
+      the Brazilian categories because the underlying definitions differ
+      (age-attainment cuts vs. Brazilian curricular stages).
 
   - name: network
     type: factor
@@ -228,7 +245,7 @@ constraints:
                      # but carry distinct source_notes; for derived rows it
                      # records the exact Presencial+EAD composition).
   domain:
-    year: { min: 1871, max: 2100 }
+    year: { min: 1820, max: 2100 }
     value: { allow_negative: false }
 
 conventions:

@@ -115,6 +115,17 @@ indicators:
       education (Fundamental + Médio combined). System-wide comparison
       (`level = "total"`).
 
+  attainment_share_completed:
+    theme: attainment_comparative
+    unit: percent
+    label_en: Share who completed the education level
+    label_pt: Proporção que completou o nível educacional
+    description: >
+      Share of the reference population (defined by `age_group`) that has
+      completed the education level indicated by `level` (`primary`,
+      `secondary`, or `tertiary`). Source: Lee & Lee (2016) Long-Run
+      Education Dataset. 0–100 scale.
+
   gross_distribution_ratio_grade_6:
     theme: progression
     unit: ratio
