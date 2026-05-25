@@ -79,8 +79,8 @@
 <h2 id="architecture">Architecture<a class="anchor" aria-label="anchor" href="#architecture"></a></h2>
 <div class="section level3">
 <h3 id="public-api">Public API<a class="anchor" aria-label="anchor" href="#public-api"></a></h3>
-<p>Three user-facing functions expose the internal datasets: - <code><a href="reference/get_enrollment.html">get_enrollment()</a></code> — school enrollment (counts and gross rates), backed by <code>enrollment_kang_fgv</code> + <code>enrollment_tertiary</code> - <code><a href="reference/get_schooling.html">get_schooling()</a></code> — mean years of schooling, backed by <code>schooling_kang_fgv</code> - <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> — builds <code>bibentry</code>/APA/BibTeX citations for any source key from <code>source</code> column values</p>
-<p>All three return tibbles in the same <strong>canonical tidy-long schema</strong>: one row per observation, alternative sources as separate rows (never separate columns), aggregations encoded as explicit <code>"total"</code> factor levels (never <code>NA</code>).</p>
+<p>Four user-facing data functions expose the internal datasets, plus citation/discovery helpers: - <code><a href="reference/get_enrollment.html">get_enrollment()</a></code> — school enrollment (counts and gross rates), backed by <code>enrollment_kang_fgv</code> + <code>enrollment_tertiary</code> - <code><a href="reference/get_schooling.html">get_schooling()</a></code> — mean years of schooling, backed by <code>schooling_kang_fgv</code> - <code><a href="reference/get_expenditure.html">get_expenditure()</a></code> — public expenditure on education (% GDP, per-student % GDP per capita, “double ratio” indicators), backed by <code>expenditure_kang_fgv</code> - <code><a href="reference/get_progression.html">get_progression()</a></code> — grade-progression indicators (GDR6), backed by <code>progression_kang_fgv</code> - <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> — builds <code>bibentry</code>/APA/BibTeX citations for any source key from <code>source</code> column values - <code><a href="reference/list_sources.html">list_sources()</a></code> — tibble of every entry in the source vocabulary (discovery counterpart to <code><a href="reference/educabr_cite.html">educabr_cite()</a></code>)</p>
+<p>All <code>get_*()</code> functions return tibbles in the same <strong>canonical tidy-long schema</strong>: one row per observation, alternative sources as separate rows (never separate columns), aggregations encoded as explicit <code>"total"</code> factor levels (never <code>NA</code>). Each <code>get_*()</code> accepts the same core args (<code>year</code>, <code>geo_level</code>, <code>geo</code>, <code>source</code>, <code>wide</code>, <code>lang</code>) plus theme-specific filters.</p>
 </div>
 <div class="section level3">
 <h3 id="schema-contract">Schema contract<a class="anchor" aria-label="anchor" href="#schema-contract"></a></h3>
@@ -89,7 +89,11 @@
 </div>
 <div class="section level3">
 <h3 id="data-loading-pattern">Data loading pattern<a class="anchor" aria-label="anchor" href="#data-loading-pattern"></a></h3>
-<p><code><a href="reference/get_enrollment.html">get_enrollment()</a></code> calls <code>.load_enrollment_panel()</code>, which iterates <code>.enrollment_datasets()</code> (a registry of dataset names), fetches each from the package namespace, fills any missing optional columns with <code>.ENR_DEFAULTS</code>, and row-binds them into a single canonical frame. New enrollment datasets must be registered in <code>.enrollment_datasets()</code>.</p>
+<p><code><a href="reference/get_enrollment.html">get_enrollment()</a></code> calls <code>.load_enrollment_panel()</code>, which iterates <code>.enrollment_datasets()</code> (a registry of dataset names), fetches each from the package namespace, fills any missing optional columns with <code>.ENR_DEFAULTS</code>, and row-binds them into a single canonical frame. New enrollment datasets must be registered in <code>.enrollment_datasets()</code>. The same pattern is repeated for the other themes (<code>.load_schooling_panel()</code> / <code>.schooling_datasets()</code>, <code>.load_expenditure_panel()</code> / <code>.expenditure_datasets()</code>, <code>.load_progression_panel()</code> / <code>.progression_datasets()</code>) — each theme has its own registry of contributing dataset names.</p>
+</div>
+<div class="section level3">
+<h3 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a></h3>
+<p>Five datasets are bundled, across four themes: - <strong>enrollment</strong> — <code>enrollment_kang_fgv</code> (BR+UF, 1871-2010, Kang/FGV), <code>enrollment_tertiary</code> (BR, 1907-2024, multi-source) - <strong>schooling</strong> — <code>schooling_kang_fgv</code> (BR+region+UF, 1925-2015, Walter &amp; Kang) - <strong>expenditure</strong> — <code>expenditure_kang_fgv</code> (BR, 1933-2010, Kang &amp; Menetrier) - <strong>progression</strong> — <code>progression_kang_fgv</code> (BR+20 UFs, 1955-2010, Kang/Paese/Felix)</p>
 </div>
 <div class="section level3">
 <h3 id="etl-pipeline-data-raw">ETL pipeline (<code>data-raw/</code>)<a class="anchor" aria-label="anchor" href="#etl-pipeline-data-raw"></a></h3>
@@ -97,7 +101,7 @@
 </div>
 <div class="section level3">
 <h3 id="dashboard-instdashboard">Dashboard (<code>inst/dashboard/</code>)<a class="anchor" aria-label="anchor" href="#dashboard-instdashboard"></a></h3>
-<p>The Shiny app (<code>app.R</code> + <code>global.R</code>) consumes only the public API. It is deployed to shinyapps.io. During development run it with <code>shiny::runApp("inst/dashboard")</code> rather than <code><a href="reference/run_dashboard.html">run_dashboard()</a></code> (which requires the package to be installed).</p>
+<p>The Shiny app (<code>app.R</code> + <code>global.R</code>) consumes only the public API and has five navbar tabs — Enrollment, Tertiary Education, Educational Attainment, Public Expenditure, Grade Progression. It is deployed to shinyapps.io at <a href="https://qx3hly-tales-man0ano.shinyapps.io/educabr/" class="external-link uri">https://qx3hly-tales-man0ano.shinyapps.io/educabr/</a>. During development run it with <code>shiny::runApp("inst/dashboard")</code> rather than <code><a href="reference/run_dashboard.html">run_dashboard()</a></code> (which requires the package to be installed). To redeploy after changes: <code>rsconnect::deployApp("inst/dashboard", appName = "educabr")</code>.</p>
 </div>
 </div>
 <div class="section level2">
