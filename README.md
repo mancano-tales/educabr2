@@ -136,7 +136,7 @@ get_progression(geo_level = "UF",
 educabr::run_dashboard()
 ```
 
-Three navbar tabs:
+Five navbar tabs:
 
 * **Enrollment** — Kang/FGV series by stage, year, race
 * **Tertiary Education** — multi-source comparison 1907–2024
@@ -144,6 +144,13 @@ Three navbar tabs:
   reconstructed totals for the 2000–2008 in-person + EAD split
 * **Educational Attainment** — Walter & Kang mean years of schooling
   by BR / region / UF, with race and sex breakdowns
+* **Public Expenditure** — Kang & Menetrier (2024) series on public
+  spending in education: share of GDP by stage, per-student spending
+  as share of GDP per capita, and the "double ratio" indicators of
+  fiscal regressivity (Brazil, 1933–2010)
+* **Grade Progression** — Kang/Paese/Felix (2021) GDR6 progression
+  ratio (enrollment in grades 4-6 / grades 1-3 of the old eight-year
+  primary system), BR and 20 UFs, 1955–2010
 
 Every chart has a "View R code" button that prints a self-contained
 snippet (educabr + ggplot2 + plotly) you can paste into RStudio to

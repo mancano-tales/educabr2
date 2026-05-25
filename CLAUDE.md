@@ -34,12 +34,15 @@ shiny::runApp("inst/dashboard")
 ## Architecture
 
 ### Public API
-Three user-facing functions expose the internal datasets:
+Four user-facing data functions expose the internal datasets, plus citation/discovery helpers:
 - `get_enrollment()` — school enrollment (counts and gross rates), backed by `enrollment_kang_fgv` + `enrollment_tertiary`
 - `get_schooling()` — mean years of schooling, backed by `schooling_kang_fgv`
+- `get_expenditure()` — public expenditure on education (% GDP, per-student % GDP per capita, "double ratio" indicators), backed by `expenditure_kang_fgv`
+- `get_progression()` — grade-progression indicators (GDR6), backed by `progression_kang_fgv`
 - `educabr_cite()` — builds `bibentry`/APA/BibTeX citations for any source key from `source` column values
+- `list_sources()` — tibble of every entry in the source vocabulary (discovery counterpart to `educabr_cite()`)
 
-All three return tibbles in the same **canonical tidy-long schema**: one row per observation, alternative sources as separate rows (never separate columns), aggregations encoded as explicit `"total"` factor levels (never `NA`).
+All `get_*()` functions return tibbles in the same **canonical tidy-long schema**: one row per observation, alternative sources as separate rows (never separate columns), aggregations encoded as explicit `"total"` factor levels (never `NA`). Each `get_*()` accepts the same core args (`year`, `geo_level`, `geo`, `source`, `wide`, `lang`) plus theme-specific filters.
 
 ### Schema contract
 The schema lives in `inst/dict/schema.yaml`. It defines required columns, controlled vocabularies (factor levels), primary-key columns, and year domain. `R/utils-schema.R` provides `load_schema()` and `validate_against_schema()` — every ETL script must call the latter before `usethis::use_data()`.
@@ -50,13 +53,20 @@ Supporting dictionaries:
 - `inst/dict/i18n.yaml` — PT-BR label translations applied when `lang = "pt"`
 
 ### Data loading pattern
-`get_enrollment()` calls `.load_enrollment_panel()`, which iterates `.enrollment_datasets()` (a registry of dataset names), fetches each from the package namespace, fills any missing optional columns with `.ENR_DEFAULTS`, and row-binds them into a single canonical frame. New enrollment datasets must be registered in `.enrollment_datasets()`.
+`get_enrollment()` calls `.load_enrollment_panel()`, which iterates `.enrollment_datasets()` (a registry of dataset names), fetches each from the package namespace, fills any missing optional columns with `.ENR_DEFAULTS`, and row-binds them into a single canonical frame. New enrollment datasets must be registered in `.enrollment_datasets()`. The same pattern is repeated for the other themes (`.load_schooling_panel()` / `.schooling_datasets()`, `.load_expenditure_panel()` / `.expenditure_datasets()`, `.load_progression_panel()` / `.progression_datasets()`) — each theme has its own registry of contributing dataset names.
+
+### Themes
+Five datasets are bundled, across four themes:
+- **enrollment** — `enrollment_kang_fgv` (BR+UF, 1871-2010, Kang/FGV), `enrollment_tertiary` (BR, 1907-2024, multi-source)
+- **schooling** — `schooling_kang_fgv` (BR+region+UF, 1925-2015, Walter & Kang)
+- **expenditure** — `expenditure_kang_fgv` (BR, 1933-2010, Kang & Menetrier)
+- **progression** — `progression_kang_fgv` (BR+20 UFs, 1955-2010, Kang/Paese/Felix)
 
 ### ETL pipeline (`data-raw/`)
 Scripts follow a five-step pattern: **READ → TIDY → VALIDATE → ANNOTATE → WRITE**. Run them with `devtools::load_all()` active so `educabr:::validate_against_schema()` is accessible. Each script writes one `.rda` to `data/`. After running, update `data-raw/_manifest.yaml`.
 
 ### Dashboard (`inst/dashboard/`)
-The Shiny app (`app.R` + `global.R`) consumes only the public API. It is deployed to shinyapps.io. During development run it with `shiny::runApp("inst/dashboard")` rather than `run_dashboard()` (which requires the package to be installed).
+The Shiny app (`app.R` + `global.R`) consumes only the public API and has five navbar tabs — Enrollment, Tertiary Education, Educational Attainment, Public Expenditure, Grade Progression. It is deployed to shinyapps.io at https://qx3hly-tales-man0ano.shinyapps.io/educabr/. During development run it with `shiny::runApp("inst/dashboard")` rather than `run_dashboard()` (which requires the package to be installed). To redeploy after changes: `rsconnect::deployApp("inst/dashboard", appName = "educabr")`.
 
 ## Key conventions
 
