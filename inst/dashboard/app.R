@@ -8,7 +8,7 @@
 #
 # INSTALLATION
 #   educabr2 is not on CRAN. Install from GitHub before running locally:
-#     remotes::install_github("mancano-tales/educabr")
+#     remotes::install_github("mancano-tales/educabr2")
 #   global.R handles this automatically on shinyapps.io and fresh clones.
 
 library(shiny)
@@ -305,7 +305,7 @@ build_r_call <- function(fn_name, args_list) {
 INSTALL_SNIPPET <- paste0(
   "# educabr2 is not on CRAN. Install from GitHub once:\n",
   "# install.packages(c(\"remotes\", \"ggplot2\", \"plotly\", \"scales\"))\n",
-  "# remotes::install_github(\"mancano-tales/educabr\")\n\n",
+  "# remotes::install_github(\"mancano-tales/educabr2\")\n\n",
   "library(educabr2)\n",
   "library(ggplot2)\n",
   "library(plotly)\n\n"
@@ -647,7 +647,7 @@ ui <- bslib::page_navbar(
              tags$code("educabr2::get_schooling()"), ", ",
              tags$code("educabr2::get_expenditure()"), " and ",
              tags$code("educabr2::get_progression()"), "."),
-      tags$p(tags$a(href = "https://github.com/mancano-tales/educabr",
+      tags$p(tags$a(href = "https://github.com/mancano-tales/educabr2",
                     "GitHub repository", target = "_blank"))
     )
   )

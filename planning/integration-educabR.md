@@ -5,7 +5,7 @@
 > **Version inspected**: 0.9.0 (2026-05)
 > **License**: MIT
 
-This document compares `mancano-tales/educabr` (this package) with
+This document compares `mancano-tales/educabr2` (this package) with
 `SidneyBissoli/educabR` and sketches plausible paths from "two
 parallel packages" to "shared ecosystem" or "merged package".
 

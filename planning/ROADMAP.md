@@ -13,7 +13,7 @@ Walter & Kang schooling, multi-source tertiary), public API
 
 - [x] R CMD check --as-cran: 0/0/0
 - [x] Live dashboard on shinyapps.io
-- [x] pkgdown site live at https://mancano-tales.github.io/educabr/
+- [x] pkgdown site live at https://mancano-tales.github.io/educabr2/
 - [x] 37 tests passing
 
 ## v0.2 — first CRAN submission (target: 2026-06)

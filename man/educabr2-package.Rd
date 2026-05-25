@@ -30,9 +30,9 @@ for the v0.2–v0.4 milestones. See \code{NEWS.md} once released.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/mancano-tales/educabr}
-  \item \url{https://mancano-tales.github.io/educabr/}
-  \item Report bugs at \url{https://github.com/mancano-tales/educabr/issues}
+  \item \url{https://github.com/mancano-tales/educabr2}
+  \item \url{https://mancano-tales.github.io/educabr2/}
+  \item Report bugs at \url{https://github.com/mancano-tales/educabr2/issues}
 }
 
 }

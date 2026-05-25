@@ -5,9 +5,9 @@ Replaces all standalone occurrences of the lowercase word `educabr2` with
 contexts (which refer to the GitHub repo, the gh-pages site, or the
 shinyapps app — none of which are being renamed):
 
-  * mancano-tales/educabr        (GitHub repo path)
+  * mancano-tales/educabr2        (GitHub repo path)
   * shinyapps.io/educabr         (shinyapps app URL, partial)
-  * github.io/educabr            (pkgdown URL, partial)
+  * github.io/educabr2            (pkgdown URL, partial)
 
 Also leaves alone the literal `educabR` (Bissoli's CRAN package) since
 the regex is case-sensitive.
@@ -25,7 +25,7 @@ PATTERN = re.compile(r"\beducabr\b(?!2)")
 
 # When the match is part of one of these strings, leave it alone.
 URL_CONTEXTS = (
-    "mancano-tales/educabr",
+    "mancano-tales/educabr2",
     "shinyapps.io/educabr",
     "github.io/educabr",
 )

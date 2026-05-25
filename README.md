@@ -5,8 +5,8 @@
 > heterogeneous official and academic sources.
 
 [![License: GPL (>= 3)](https://img.shields.io/badge/License-GPL--3-blue.svg)](LICENSE.md)
-[![R-CMD-check](https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/mancano-tales/educabr/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr/)
+[![R-CMD-check](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr2/)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 `educabr2` provides curated long-run series on Brazilian formal
@@ -20,19 +20,19 @@ provenance.
 **🇧🇷** `educabr2` reúne séries históricas tratadas sobre educação
 formal no Brasil — matrículas, anos de estudo, atingimento educacional
 — em um único schema *tidy*, com proveniência explícita. Veja a
-[vinheta em português](https://mancano-tales.github.io/educabr/dev/articles/introducao-pt.html).
+[vinheta em português](https://mancano-tales.github.io/educabr2/dev/articles/introducao-pt.html).
 
 ---
 
 ## Quick links
 
-- 📖 **[Reference site](https://mancano-tales.github.io/educabr/)** —
+- 📖 **[Reference site](https://mancano-tales.github.io/educabr2/)** —
   function reference, articles, news
 - 📊 **[Live dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr/)**
   — interactive multi-source comparison on shinyapps.io
-- 📝 **[Get started](https://mancano-tales.github.io/educabr/dev/articles/introduction.html)**
+- 📝 **[Get started](https://mancano-tales.github.io/educabr2/dev/articles/introduction.html)**
   — 10-minute tour of the API
-- 🐛 **[Issues](https://github.com/mancano-tales/educabr/issues)**
+- 🐛 **[Issues](https://github.com/mancano-tales/educabr2/issues)**
 
 ---
 
@@ -43,7 +43,7 @@ GitHub:
 
 ```r
 # install.packages("remotes")
-remotes::install_github("mancano-tales/educabr")
+remotes::install_github("mancano-tales/educabr2")
 ```
 
 ---

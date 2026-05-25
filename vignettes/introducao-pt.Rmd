@@ -55,7 +55,7 @@ e um `source_note` com a referência exata da tabela ou capítulo de origem.
 
 ```r
 # via GitHub
-remotes::install_github("mancano-tales/educabr")
+remotes::install_github("mancano-tales/educabr2")
 ```
 
 ## API em quatro funções
@@ -266,4 +266,4 @@ pacote em si:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
 > Brazilian Education* (versão 0.0.0.9000).
-> <https://github.com/mancano-tales/educabr>
+> <https://github.com/mancano-tales/educabr2>

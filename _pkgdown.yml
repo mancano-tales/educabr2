@@ -1,4 +1,4 @@
-url: https://mancano-tales.github.io/educabr/
+url: https://mancano-tales.github.io/educabr2/
 
 template:
   bootstrap: 5
@@ -32,9 +32,9 @@ home:
   - text: Live dashboard (shinyapps.io)
     href: https://qx3hly-tales-man0ano.shinyapps.io/educabr/
   - text: Source on GitHub
-    href: https://github.com/mancano-tales/educabr
+    href: https://github.com/mancano-tales/educabr2
   - text: Report a bug
-    href: https://github.com/mancano-tales/educabr/issues
+    href: https://github.com/mancano-tales/educabr2/issues
 
 navbar:
   structure:

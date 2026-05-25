@@ -55,7 +55,7 @@ exact table or chapter of origin.
 
 ```r
 # From GitHub
-remotes::install_github("mancano-tales/educabr")
+remotes::install_github("mancano-tales/educabr2")
 ```
 
 ## A four-function API
@@ -290,4 +290,4 @@ To cite the package itself:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
 > Brazilian Education* (version 0.0.0.9000).
-> <https://github.com/mancano-tales/educabr>
+> <https://github.com/mancano-tales/educabr2>

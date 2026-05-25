@@ -49,7 +49,7 @@ sticker(
   s_height  = 1.10,
   h_fill    = hex_fill,
   h_color   = hex_border,
-  url       = "github.com/mancano-tales/educabr",
+  url       = "github.com/mancano-tales/educabr2",
   u_size    = 3.8,
   u_color   = cream,
   white_around_sticker = FALSE,
