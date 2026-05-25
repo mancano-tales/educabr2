@@ -1,4 +1,4 @@
-# Launch the educabr Shiny dashboard
+# Launch the educabr2 Shiny dashboard
 
 Opens a local Shiny app that explores the data shipped by the package.
 The app consumes only the public API

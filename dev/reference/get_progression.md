@@ -66,7 +66,7 @@ get_progression(
 
 ## Value
 
-A tibble in the canonical educabr long schema (see
+A tibble in the canonical educabr2 long schema (see
 `inst/dict/schema.yaml`). Columns: `year`, `geo_level`, `geo_code`,
 `geo_name`, `level`, `network`, `dim_race`, `age_group`, `indicator`,
 `value`, `unit`, `source`, `source_note`. `level` is always

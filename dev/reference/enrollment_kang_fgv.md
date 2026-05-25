@@ -39,7 +39,7 @@ A tibble with 6 238 rows and 13 columns:
 
 - level:
 
-  `character`. Education stage using the educabr vocabulary:
+  `character`. Education stage using the educabr2 vocabulary:
   `"fundamental_anos_iniciais"`, `"fundamental_anos_finais"`,
   `"fundamental"`, `"medio"`, `"superior"`.
 
@@ -50,7 +50,7 @@ A tibble with 6 238 rows and 13 columns:
 
 - dim_race:
 
-  `character`. Race/colour dimension using the educabr vocabulary
+  `character`. Race/colour dimension using the educabr2 vocabulary
   (`"white"`, `"black"`, `"brown"`, `"asian"`, `"indigenous"`).
   `"total"` when not disaggregated. Race breakdown is available at BR
   level for 1960–2010 only.

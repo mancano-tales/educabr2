@@ -1,10 +1,26 @@
 # Changelog
 
-## educabr 0.1.0.9000 (development version)
+## educabr2 0.1.0.9000 (development version)
 
 CRAN-readiness polish plus two new themes (public expenditure and
 grade-progression). No breaking changes to existing `get_*()` signatures
 or to `enrollment_kang_fgv` / `schooling_kang_fgv` contents.
+
+### CI / build
+
+- Renamed vignettes from `01-introduction.Rmd` / `02-introducao-pt.Rmd`
+  to `introduction.Rmd` / `introducao-pt.Rmd` — the numeric-prefix
+  pattern triggered an `R CMD check --as-cran` WARNING about invalid
+  file names in `inst/doc`, which had been breaking the CI matrix since
+  the dashboard-tabs push.
+  [`vignette("introduction", "educabr2")`](https://mancano-tales.github.io/educabr/dev/articles/introduction.md)
+  and
+  [`vignette("introducao-pt", "educabr2")`](https://mancano-tales.github.io/educabr/dev/articles/introducao-pt.md)
+  are now the canonical entry points (the pkgdown URLs follow the new
+  names too).
+- `inst/WORDLIST` extended with the new technical vocabulary (`GDR6`,
+  `regressivity`, `Unitless`, …) and the PT-BR terms introduced in Case
+  5 / Case 6 of the vignettes — spell check is clean again.
 
 ### New themes & datasets
 
@@ -46,9 +62,9 @@ or to `enrollment_kang_fgv` / `schooling_kang_fgv` contents.
   [`get_expenditure()`](https://mancano-tales.github.io/educabr/dev/reference/get_expenditure.md)
   and
   [`get_progression()`](https://mancano-tales.github.io/educabr/dev/reference/get_progression.md).
-  Each tab carries the standard educabr layout — sidebar filters, series
-  plot (plotly), table view (DT), source cards, CSV download, and a
-  “View R code” modal that emits a reproducible educabr + ggplot2 +
+  Each tab carries the standard educabr2 layout — sidebar filters,
+  series plot (plotly), table view (DT), source cards, CSV download, and
+  a “View R code” modal that emits a reproducible educabr2 + ggplot2 +
   plotly snippet.
 
 ### Other changes
@@ -69,7 +85,7 @@ or to `enrollment_kang_fgv` / `schooling_kang_fgv` contents.
   checks, abbreviation “anos inic.” → “anos iniciais” in
   `enrollment_kang_fgv` Rd table for readability.
 
-## educabr 0.1.0
+## educabr2 0.1.0
 
 First public release. Initial set of harmonised long-run series on
 Brazilian education plus a bundled Shiny dashboard.
@@ -132,7 +148,7 @@ Brazilian education plus a bundled Shiny dashboard.
   gets a unique colour shade), shape-by-source, and linetype-by-modality
   encoding.
 - “View R code” button on every tab generates a self-contained,
-  copy-pasteable R snippet (educabr + ggplot2) that reproduces the
+  copy-pasteable R snippet (educabr2 + ggplot2) that reproduces the
   current chart locally.
 
 ### Schema

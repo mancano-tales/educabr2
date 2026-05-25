@@ -1,4 +1,4 @@
-# Contributing to educabr
+# Contributing to educabr2
 
 Thanks for considering a contribution. The fastest way to be useful
 depends on what you have in mind.
@@ -21,7 +21,7 @@ related design doc.
 
 ## Adding a dataset
 
-`educabr` is opinionated about which data it ships. New sources are
+`educabr2` is opinionated about which data it ships. New sources are
 welcome but they need:
 
 1.  **A stable provenance** — DOI, archive link, or government portal
@@ -36,7 +36,7 @@ welcome but they need:
 4.  **An ETL script** under `data-raw/NN_build_<dataset>.R` that takes
     the raw file, harmonises it to the canonical schema documented in
     `inst/dict/schema.yaml`, and writes a `data/<dataset>.rda`.
-5.  **Validation** via `educabr:::validate_against_schema()` (called at
+5.  **Validation** via `educabr2:::validate_against_schema()` (called at
     the end of the ETL script).
 6.  **A test file** under `tests/testthat/test-<dataset>.R` with a
     fixture exercising the loader.

@@ -20,9 +20,9 @@ Discover the underlying sources and cite them — not only the package
 itself.
 
 - [`list_sources()`](https://mancano-tales.github.io/educabr/dev/reference/list_sources.md)
-  : List the data sources bundled with educabr
+  : List the data sources bundled with educabr2
 - [`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md)
-  : Generate citations for educabr data sources
+  : Generate citations for educabr2 data sources
 
 ## Dashboard
 
@@ -31,7 +31,7 @@ Launch the bundled Shiny dashboard. A read-only deployment is also
 shinyapps.io](https://qx3hly-tales-man0ano.shinyapps.io/educabr/).
 
 - [`run_dashboard()`](https://mancano-tales.github.io/educabr/dev/reference/run_dashboard.md)
-  : Launch the educabr Shiny dashboard
+  : Launch the educabr2 Shiny dashboard
 
 ## Backing datasets
 
@@ -54,6 +54,6 @@ filters and translates labels.
 
 ## Package
 
-- [`educabr`](https://mancano-tales.github.io/educabr/dev/reference/educabr-package.md)
-  [`educabr-package`](https://mancano-tales.github.io/educabr/dev/reference/educabr-package.md)
-  : educabr: Harmonized Historical Series on Brazilian Education
+- [`educabr2`](https://mancano-tales.github.io/educabr/dev/reference/educabr2-package.md)
+  [`educabr2-package`](https://mancano-tales.github.io/educabr/dev/reference/educabr2-package.md)
+  : educabr2: Harmonized Historical Series on Brazilian Education

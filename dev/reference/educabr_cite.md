@@ -1,7 +1,7 @@
-# Generate citations for educabr data sources
+# Generate citations for educabr2 data sources
 
 Builds [`utils::bibentry()`](https://rdrr.io/r/utils/bibentry.html)
-objects for the primary sources whose data is harmonised in `educabr`.
+objects for the primary sources whose data is harmonised in `educabr2`.
 Use this whenever you publish analyses built on a `get_*()` call — cite
 the originating source(s), not only the package itself.
 

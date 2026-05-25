@@ -109,7 +109,7 @@ Menetrier) - **progression** — `progression_kang_fgv` (BR+20 UFs,
 
 Scripts follow a five-step pattern: **READ → TIDY → VALIDATE → ANNOTATE
 → WRITE**. Run them with `devtools::load_all()` active so
-`educabr:::validate_against_schema()` is accessible. Each script writes
+`educabr2:::validate_against_schema()` is accessible. Each script writes
 one `.rda` to `data/`. After running, update `data-raw/_manifest.yaml`.
 
 ### Dashboard (`inst/dashboard/`)
@@ -122,7 +122,7 @@ During development run it with `shiny::runApp("inst/dashboard")` rather
 than
 [`run_dashboard()`](https://mancano-tales.github.io/educabr/dev/reference/run_dashboard.md)
 (which requires the package to be installed). To redeploy after changes:
-`rsconnect::deployApp("inst/dashboard", appName = "educabr")`.
+`rsconnect::deployApp("inst/dashboard", appName = "educabr2")`.
 
 ## Key conventions
 

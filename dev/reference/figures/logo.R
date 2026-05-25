@@ -1,4 +1,4 @@
-# Regenerate the educabr hex sticker.
+# Regenerate the educabr2 hex sticker.
 #
 # Inputs:  man/figures/raw/brasil.png   (Brazil silhouette, any background)
 # Outputs: man/figures/logo.png         (canonical R hex sticker)
@@ -38,7 +38,7 @@ br_grob <- rasterGrob(png::readPNG(br_out), interpolate = TRUE)
 # Hex sticker -----------------------------------------------------------
 sticker(
   subplot   = br_grob,
-  package   = "educabr",
+  package   = "educabr2",
   p_family  = "fira",
   p_size    = 24,
   p_y       = 1.52,
