@@ -22,7 +22,7 @@ provenance.
 **🇧🇷** `educabr2` reúne séries históricas tratadas sobre educação formal
 no Brasil — matrículas, anos de estudo, atingimento educacional — em um
 único schema *tidy*, com proveniência explícita. Veja a [vinheta em
-português](https://mancano-tales.github.io/educabr/articles/introducao-pt.html).
+português](https://mancano-tales.github.io/educabr/dev/articles/introducao-pt.html).
 
 ------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ português](https://mancano-tales.github.io/educabr/articles/introducao-pt.html)
   dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr/)** —
   interactive multi-source comparison on shinyapps.io
 - 📝 **[Get
-  started](https://mancano-tales.github.io/educabr/articles/introduction.html)**
+  started](https://mancano-tales.github.io/educabr/dev/articles/introduction.html)**
   — 10-minute tour of the API
 - 🐛 **[Issues](https://github.com/mancano-tales/educabr/issues)**
 
