@@ -1,4 +1,4 @@
-#' Load the canonical educabr schema.
+#' Load the canonical educabr2 schema.
 #'
 #' Reads `inst/dict/schema.yaml` and returns the parsed content. Falls
 #' back to the source-tree path when called during package development
@@ -8,7 +8,7 @@
 #' @keywords internal
 #' @noRd
 load_schema <- function() {
-  path <- system.file("dict", "schema.yaml", package = "educabr")
+  path <- system.file("dict", "schema.yaml", package = "educabr2")
   if (!nzchar(path)) {
     path <- file.path("inst", "dict", "schema.yaml")
   }

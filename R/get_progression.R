@@ -33,7 +33,7 @@
 #'   levels and indicator labels are translated via
 #'   `inst/dict/i18n.yaml`.
 #'
-#' @return A tibble in the canonical educabr long schema (see
+#' @return A tibble in the canonical educabr2 long schema (see
 #'   `inst/dict/schema.yaml`). Columns: `year`, `geo_level`, `geo_code`,
 #'   `geo_name`, `level`, `network`, `dim_race`, `age_group`,
 #'   `indicator`, `value`, `unit`, `source`, `source_note`. `level` is
@@ -92,7 +92,7 @@ get_progression <- function(indicator = NULL,
 #' @noRd
 .load_progression_panel <- function(env = NULL) {
   env_provided <- !is.null(env)
-  if (is.null(env)) env <- asNamespace("educabr")
+  if (is.null(env)) env <- asNamespace("educabr2")
   names_ <- .progression_datasets()
 
   pieces <- list()
@@ -101,7 +101,7 @@ get_progression <- function(indicator = NULL,
       pieces[[nm]] <- get(nm, envir = env, inherits = FALSE)
     } else if (!env_provided) {
       tmp <- new.env()
-      try(utils::data(list = nm, package = "educabr", envir = tmp), silent = TRUE)
+      try(utils::data(list = nm, package = "educabr2", envir = tmp), silent = TRUE)
       if (exists(nm, envir = tmp, inherits = FALSE)) {
         pieces[[nm]] <- get(nm, envir = tmp, inherits = FALSE)
       }
@@ -139,7 +139,7 @@ get_progression <- function(indicator = NULL,
       cli::cli_warn(c(
         "UF{?s} not covered by the GDR6 source: {.val {missing_uf}}",
         i = "Kang, Paese & Felix's (2021) compilation covers 20 of the 27 federation units.",
-        i = "Missing (not a bug in {.pkg educabr}): AC, AP, DF, MS, RO, RR, TO."
+        i = "Missing (not a bug in {.pkg educabr2}): AC, AP, DF, MS, RO, RR, TO."
       ))
     }
     data <- data[data$geo_code %in% geo, , drop = FALSE]

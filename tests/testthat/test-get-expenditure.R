@@ -30,16 +30,16 @@ with_exp_fixture <- function(code) {
   env <- new.env(parent = emptyenv())
   assign("expenditure_kang_fgv", make_exp_fixture(), envir = env)
 
-  orig <- educabr:::.load_expenditure_panel
+  orig <- educabr2:::.load_expenditure_panel
   local_panel <- function() orig(env = env)
 
-  unlockBinding(".load_expenditure_panel", asNamespace("educabr"))
+  unlockBinding(".load_expenditure_panel", asNamespace("educabr2"))
   assign(".load_expenditure_panel",
          function(env = NULL) local_panel(),
-         envir = asNamespace("educabr"))
+         envir = asNamespace("educabr2"))
   on.exit({
-    assign(".load_expenditure_panel", orig, envir = asNamespace("educabr"))
-    lockBinding(".load_expenditure_panel", asNamespace("educabr"))
+    assign(".load_expenditure_panel", orig, envir = asNamespace("educabr2"))
+    lockBinding(".load_expenditure_panel", asNamespace("educabr2"))
   }, add = TRUE)
 
   force(code)
@@ -110,7 +110,7 @@ test_that("lang='pt' translates level labels", {
 test_that(".load_expenditure_panel errors with friendly message when nothing built", {
   empty_env <- new.env(parent = emptyenv())
   expect_error(
-    educabr:::.load_expenditure_panel(env = empty_env),
+    educabr2:::.load_expenditure_panel(env = empty_env),
     "No expenditure dataset"
   )
 })

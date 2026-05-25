@@ -1,4 +1,4 @@
-# educabr dashboard — v0.4
+# educabr2 dashboard — v0.4
 #
 # Three-theme navbar (UI in English):
 #   * Enrollment (Kang fundamental/medio/superior, simple)
@@ -7,7 +7,7 @@
 # Consumes only the public API: get_enrollment() and get_schooling().
 #
 # INSTALLATION
-#   educabr is not on CRAN. Install from GitHub before running locally:
+#   educabr2 is not on CRAN. Install from GitHub before running locally:
 #     remotes::install_github("mancano-tales/educabr")
 #   global.R handles this automatically on shinyapps.io and fresh clones.
 
@@ -15,7 +15,7 @@ library(shiny)
 library(bslib)
 library(ggplot2)
 
-stopifnot(requireNamespace("educabr", quietly = TRUE))
+stopifnot(requireNamespace("educabr2", quietly = TRUE))
 
 # ---- shared choices --------------------------------------------------
 
@@ -265,7 +265,7 @@ PROG_UF_CHOICES <- UF_CHOICES[!(UF_CHOICES %in% c("AC","AP","DF","MS","RO","RR",
 # ---- code-generation helpers -----------------------------------------
 #
 # Each tab gets a "View R code" button that opens a modal showing the
-# exact `educabr::get_*()` + ggplot2 call needed to reproduce the chart
+# exact `educabr2::get_*()` + ggplot2 call needed to reproduce the chart
 # the user is currently looking at. This bridges interactive
 # exploration with reproducible analysis — a key academic-transparency
 # feature.
@@ -298,15 +298,15 @@ build_r_call <- function(fn_name, args_list) {
          "\n)")
 }
 
-# Preamble for all reproducibility snippets: educabr is not on CRAN, so
+# Preamble for all reproducibility snippets: educabr2 is not on CRAN, so
 # users need to install it from GitHub before running the code. plotly
 # is loaded so ggplotly() reproduces the interactive chart from the
 # dashboard (drop the ggplotly() line at the end for a static ggplot).
 INSTALL_SNIPPET <- paste0(
-  "# educabr is not on CRAN. Install from GitHub once:\n",
+  "# educabr2 is not on CRAN. Install from GitHub once:\n",
   "# install.packages(c(\"remotes\", \"ggplot2\", \"plotly\", \"scales\"))\n",
   "# remotes::install_github(\"mancano-tales/educabr\")\n\n",
-  "library(educabr)\n",
+  "library(educabr2)\n",
   "library(ggplot2)\n",
   "library(plotly)\n\n"
 )
@@ -317,7 +317,7 @@ show_code_modal <- function(title, code_text) {
     tags$p(tags$small(
       style = "color: #555;",
       "Copy the snippet below into your R session to reproduce the interactive chart locally. ",
-      "Uses the public {educabr} API plus ggplot2 + plotly. ",
+      "Uses the public {educabr2} API plus ggplot2 + plotly. ",
       "Drop the final ggplotly() line if you want a static ggplot instead.")),
     tags$pre(
       style = paste(
@@ -365,7 +365,7 @@ sources_card_ui <- function(source_keys, yaml_path) {
 # ---- UI --------------------------------------------------------------
 
 ui <- bslib::page_navbar(
-  title           = "educabr — Brazilian Education",
+  title           = "educabr2 — Brazilian Education",
   theme           = bslib::bs_theme(version = 5),
   navbar_options  = bslib::navbar_options(bg = "#2d6a4f"),
   selected        = "Tertiary Education",  # opens here on first load
@@ -630,7 +630,7 @@ ui <- bslib::page_navbar(
     title = "About",
     tags$div(
       class = "container py-4",
-      tags$h4(tags$strong("educabr")),
+      tags$h4(tags$strong("educabr2")),
       tags$p("Harmonised historical series on Brazilian education. Data",
              " curated from official and academic sources into a single",
              " tidy schema with explicit provenance."),
@@ -643,10 +643,10 @@ ui <- bslib::page_navbar(
         tags$li(tags$strong("Grade Progression"), " — GDR6 grade-progression ratio (enrollment grades 4-6 / grades 1-3), at BR and 20 UFs (1955–2010, Kang/Paese/Felix).")
       ),
       tags$p("Data accessible from R: ",
-             tags$code("educabr::get_enrollment()"), ", ",
-             tags$code("educabr::get_schooling()"), ", ",
-             tags$code("educabr::get_expenditure()"), " and ",
-             tags$code("educabr::get_progression()"), "."),
+             tags$code("educabr2::get_enrollment()"), ", ",
+             tags$code("educabr2::get_schooling()"), ", ",
+             tags$code("educabr2::get_expenditure()"), " and ",
+             tags$code("educabr2::get_progression()"), "."),
       tags$p(tags$a(href = "https://github.com/mancano-tales/educabr",
                     "GitHub repository", target = "_blank"))
     )
@@ -657,12 +657,12 @@ ui <- bslib::page_navbar(
 
 server <- function(input, output, session) {
 
-  sources_path <- system.file("dict/vocabularies/sources.yaml", package = "educabr")
+  sources_path <- system.file("dict/vocabularies/sources.yaml", package = "educabr2")
 
   # -- enrollment reactives --------------------------------------------
 
   enr_data <- reactive({
-    educabr::get_enrollment(
+    educabr2::get_enrollment(
       level     = input$enr_level,
       year      = input$enr_year,
       geo_level = input$enr_geo_level,
@@ -784,7 +784,7 @@ server <- function(input, output, session) {
   # -- ensino superior reactives ---------------------------------------
 
   ter_data <- reactive({
-    educabr::get_enrollment(
+    educabr2::get_enrollment(
       level            = "superior",
       network          = input$ter_network,
       institution_type = input$ter_inst,
@@ -987,7 +987,7 @@ server <- function(input, output, session) {
   })
 
   sch_data <- reactive({
-    educabr::get_schooling(
+    educabr2::get_schooling(
       year      = input$sch_year,
       geo_level = input$sch_geo_level,
       geo       = sch_geo(),
@@ -1077,7 +1077,7 @@ server <- function(input, output, session) {
                    input$exp_level
                  else NULL
 
-    educabr::get_expenditure(
+    educabr2::get_expenditure(
       level     = level_arg,
       indicator = input$exp_indicator,
       year      = input$exp_year,
@@ -1172,7 +1172,7 @@ server <- function(input, output, session) {
   # -- progression reactives -------------------------------------------
 
   prog_data <- reactive({
-    educabr::get_progression(
+    educabr2::get_progression(
       year      = input$prog_year,
       geo_level = input$prog_geo_level,
       geo       = if (input$prog_geo_level == "UF") input$prog_geo else NULL,

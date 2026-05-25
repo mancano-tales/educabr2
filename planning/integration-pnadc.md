@@ -3,7 +3,7 @@
 > **External package**: `PNADcIBGE` (CRAN)
 >   <https://CRAN.R-project.org/package=PNADcIBGE>
 > **IBGE portal**: <https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html>
-> **Target version**: educabr v0.3
+> **Target version**: educabr2 v0.3
 > **Status**: scoped, not implemented
 
 ## Why
@@ -12,7 +12,7 @@
 household-survey source for educational attainment in Brazil is PNAD
 Contínua. Extending the series to the current quarter (a) keeps the
 package relevant for present-day analyses, and (b) introduces the
-first **on-demand fetcher** path to educabr — which is foundational
+first **on-demand fetcher** path to educabr2 — which is foundational
 infrastructure for v0.4+ (Censo Demográfico 2022, IDEB, etc.).
 
 ## What the user should see
@@ -41,7 +41,7 @@ in the canonical schema. Subsequent calls hit the cache.
 PNADc microdata is ~500 MB per quarter; bundling is out. **On-demand
 download with disk cache** is the only realistic option.
 
-- Cache location: `tools::R_user_dir("educabr", "cache")` (XDG-compliant,
+- Cache location: `tools::R_user_dir("educabr2", "cache")` (XDG-compliant,
   cross-platform, survives package reinstall).
 - Cache key: `pnadc_<year>_<quarter>.rds` storing the **aggregated
   indicator** (a tibble of ~6 rows: BR × age_group × year), not the
@@ -83,7 +83,7 @@ if (any(source == "pnadc_ibge") &&
 }
 ```
 
-This keeps the base install of `educabr` lightweight (no transitive
+This keeps the base install of `educabr2` lightweight (no transitive
 deps from PNADcIBGE unless the user opts in).
 
 ### 4. Indicator computation

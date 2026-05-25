@@ -1,7 +1,7 @@
-#' Generate citations for educabr data sources
+#' Generate citations for educabr2 data sources
 #'
 #' Builds [utils::bibentry()] objects for the primary sources whose data
-#' is harmonised in `educabr`. Use this whenever you publish analyses
+#' is harmonised in `educabr2`. Use this whenever you publish analyses
 #' built on a `get_*()` call — cite the originating source(s), not only
 #' the package itself.
 #'
@@ -115,7 +115,7 @@ educabr_cite <- function(source_key = NULL,
 #' @noRd
 .load_sources_vocab <- function() {
   path <- system.file("dict", "vocabularies", "sources.yaml",
-                      package = "educabr")
+                      package = "educabr2")
   if (!nzchar(path)) {
     path <- file.path("inst", "dict", "vocabularies", "sources.yaml")
   }

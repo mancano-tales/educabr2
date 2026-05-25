@@ -221,7 +221,7 @@ schooling_kang_fgv <- dplyr::bind_rows(
 cat("Built rows:", nrow(schooling_kang_fgv), "\n")
 print(dplyr::count(schooling_kang_fgv, geo_level, dim_race, dim_sex))
 
-educabr:::validate_against_schema(schooling_kang_fgv, theme = "schooling")
+educabr2:::validate_against_schema(schooling_kang_fgv, theme = "schooling")
 
 attr(schooling_kang_fgv, "educabr_meta") <- list(
   build_script   = "data-raw/02_build_schooling_kang_fgv.R",

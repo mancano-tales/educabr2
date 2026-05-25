@@ -16,12 +16,12 @@
 #'     IBGE 2-letter UF abbreviation (e.g. `"SP"`, `"BA"`) for states.}
 #'   \item{geo_name}{`character`. Human-readable geographic name in
 #'     Portuguese (e.g. `"Brasil"`, `"São Paulo"`).}
-#'   \item{level}{`character`. Education stage using the educabr vocabulary:
+#'   \item{level}{`character`. Education stage using the educabr2 vocabulary:
 #'     `"fundamental_anos_iniciais"`, `"fundamental_anos_finais"`,
 #'     `"fundamental"`, `"medio"`, `"superior"`.}
 #'   \item{network}{`character`. Administrative dependency.
 #'     Always `"total"` in this source (no network breakdown available).}
-#'   \item{dim_race}{`character`. Race/colour dimension using the educabr
+#'   \item{dim_race}{`character`. Race/colour dimension using the educabr2
 #'     vocabulary (`"white"`, `"black"`, `"brown"`, `"asian"`,
 #'     `"indigenous"`). `"total"` when not disaggregated. Race breakdown
 #'     is available at BR level for 1960–2010 only.}

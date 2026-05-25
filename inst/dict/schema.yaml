@@ -1,6 +1,6 @@
 schema_version: "0.1.0"
 description: >
-  Canonical tidy-long schema for all data tables returned by educabr.
+  Canonical tidy-long schema for all data tables returned by educabr2.
   One row per observation. Alternative sources for the same indicator
   appear as separate rows (filterable via the `source` column), never as
   separate columns. Aggregation levels (e.g. "total" for a dimension) are

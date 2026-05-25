@@ -11,7 +11,7 @@ parallel packages" to "shared ecosystem" or "merged package".
 
 ## Side-by-side
 
-| Dimension | `educabr` (Mançano) | `educabR` (Bissoli) |
+| Dimension | `educabr2` (Mançano) | `educabR` (Bissoli) |
 |---|---|---|
 | **Status** | 0.1.0, pre-CRAN | 0.9.0, on CRAN, stable |
 | **License** | GPL (>= 3) | MIT |
@@ -37,7 +37,7 @@ parallel packages" to "shared ecosystem" or "merged package".
 
 ### 1. Licence incompatibility
 
-`educabR` is MIT, `educabr` is GPL-3. A merged codebase can use either
+`educabR` is MIT, `educabr2` is GPL-3. A merged codebase can use either
 license, but **GPL is "infectious"** — combining MIT code with GPL
 code produces a GPL deliverable. This forces all existing MIT users
 to accept the stricter copyleft terms, which they didn't sign up for.
@@ -52,7 +52,7 @@ The two packages organise the API along **orthogonal** axes:
 
 - `educabR::get_ideb(year=2023, level="estado", stage="anos_iniciais")`
   → wraps INEP's IDEB download; columns mirror INEP.
-- `educabr::get_enrollment(level="fundamental", indicator="rate")`
+- `educabr2::get_enrollment(level="fundamental", indicator="rate")`
   → harmonised across **multiple** sources; columns mirror our schema.
 
 A merged API would need to expose both "give me the INEP IDEB table
@@ -64,17 +64,17 @@ same word `get_*()`.
 
 `educabR` returns tibbles with source-native columns
 (`uf_sigla`, `municipio_codigo`, `rede`, `indicador`, `valor`).
-`educabr` returns the canonical schema documented in
+`educabr2` returns the canonical schema documented in
 `inst/dict/schema.yaml`: `geo_level`, `geo_code`, `geo_name`,
 `network`, `indicator`, `value`, `source`, `unit`, `dim_*`.
 
 For a merge, one of three options:
 
-- (i) Adopt the `educabr` canonical schema; rewrite `educabR`'s 14
+- (i) Adopt the `educabr2` canonical schema; rewrite `educabR`'s 14
   functions to emit it. **Most consistent**, biggest refactor.
 - (ii) Adopt source-native schemas; drop the canonical layer.
   **Easiest** but loses the cross-source comparability that motivates
-  `educabr`.
+  `educabr2`.
 - (iii) Two output modes per function (`tidy = TRUE` default,
   `tidy = FALSE` for native). **Compromise** but doubles the test
   surface.
@@ -86,9 +86,9 @@ For a merge, one of three options:
 Two packages, no shared code. Cross-reference each other in READMEs.
 **Cost**: zero. **Benefit**: each can move at its own pace.
 
-### Scenario B — `educabr` Suggests `educabR`
+### Scenario B — `educabr2` Suggests `educabR`
 
-`educabr` ships `get_*()` functions that, for recent years, delegate
+`educabr2` ships `get_*()` functions that, for recent years, delegate
 to `educabR::get_*()` for the raw fetch and then transform to the
 canonical schema. `educabR` listed in `Suggests:`, lazy-loaded only
 when the user asks for an indicator that needs INEP microdata.
@@ -96,7 +96,7 @@ when the user asks for an indicator that needs INEP microdata.
 **Pros**: no duplication of download/parse code; user installs
 `educabR` only if they need post-2014 indicators.
 **Cons**: dependency on someone else's release cadence; need a
-`educabR ↔ educabr` schema adapter (~200 lines).
+`educabR ↔ educabr2` schema adapter (~200 lines).
 
 ### Scenario C — Merged package
 
@@ -117,15 +117,15 @@ loses authorship credit on past versions.
    "umbrella" repo. If yes → start Scenario C planning. If no →
    stay on Scenario B.
 3. **v1.0**: if no merge, document the relationship explicitly in
-   both READMEs ("`educabR` for recent INEP downloads, `educabr` for
+   both READMEs ("`educabR` for recent INEP downloads, `educabr2` for
    harmonised long-run series — both speak the same `get_*()`
    convention and can be used together").
 
 ## Open questions
 
 - [ ] Reach out to Sidney before v0.2 release to coordinate naming
-      and avoid user confusion ("educabr" vs "educabR" — one letter,
+      and avoid user confusion ("educabr2" vs "educabR" — one letter,
       same audience).
 - [ ] Should the package consider renaming to disambiguate
-      (`educabr.brasil`? `educabr.historica`?)? Renames are cheap
+      (`educabr2.brasil`? `educabr2.historica`?)? Renames are cheap
       pre-CRAN, expensive post-CRAN.

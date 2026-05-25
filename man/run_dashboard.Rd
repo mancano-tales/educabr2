@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_dashboard.R
 \name{run_dashboard}
 \alias{run_dashboard}
-\title{Launch the educabr Shiny dashboard}
+\title{Launch the educabr2 Shiny dashboard}
 \usage{
 run_dashboard(lang = c("pt", "en"), ...)
 }

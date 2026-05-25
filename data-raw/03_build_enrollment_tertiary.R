@@ -283,7 +283,7 @@ if (n_after < n_before) {
 # 6. Validate
 # ---------------------------------------------------------------------
 
-educabr:::validate_against_schema(enrollment_tertiary, theme = "enrollment")
+educabr2:::validate_against_schema(enrollment_tertiary, theme = "enrollment")
 
 # ---------------------------------------------------------------------
 # 7. Save

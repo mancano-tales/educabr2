@@ -14,13 +14,13 @@ template:
   opengraph:
     image:
       src: man/figures/logo.png
-      alt: educabr logo
+      alt: educabr2 logo
     twitter:
       creator: '@mancano_tales'
       card: summary
 
 home:
-  title: 'educabr: Harmonised Brazilian Education Series'
+  title: 'educabr2: Harmonised Brazilian Education Series'
   description: |
     Curated long-run series on Brazilian formal education — enrollment by
     stage and network, mean years of schooling, attainment — compiled
@@ -43,7 +43,7 @@ navbar:
   components:
     intro:
       text: Get started
-      href: articles/01-introduction.html
+      href: articles/introduction.html
     dashboard:
       icon: fa-chart-line
       href: https://qx3hly-tales-man0ano.shinyapps.io/educabr/
@@ -90,14 +90,14 @@ reference:
   - progression_kang_fgv
 
 - title: Package
-  contents: educabr-package
+  contents: educabr2-package
 
 articles:
 - title: Tutorials
   navbar: ~
   contents:
-  - "01-introduction"
-  - "02-introducao-pt"
+  - "introduction"
+  - "introducao-pt"
 
 news:
   releases:

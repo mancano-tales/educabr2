@@ -54,7 +54,7 @@ raw <- raw |>
 
 # ---------------------------------------------------------------------
 # TIDY: split into three blocks — one per indicator family — pivot to
-# long, recode level codes to the educabr vocabulary.
+# long, recode level codes to the educabr2 vocabulary.
 # ---------------------------------------------------------------------
 
 level_recode <- c(
@@ -134,7 +134,7 @@ expenditure_kang_fgv <- dplyr::bind_rows(share_gdp, per_student, double_ratio) |
 cat("Built rows:", nrow(expenditure_kang_fgv), "\n")
 print(dplyr::count(expenditure_kang_fgv, indicator, level))
 
-educabr:::validate_against_schema(expenditure_kang_fgv, theme = "expenditure")
+educabr2:::validate_against_schema(expenditure_kang_fgv, theme = "expenditure")
 
 # ---------------------------------------------------------------------
 # ANNOTATE + WRITE

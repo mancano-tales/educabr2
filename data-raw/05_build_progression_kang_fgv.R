@@ -109,7 +109,7 @@ progression_kang_fgv <- dplyr::bind_rows(build_br(), build_uf()) |>
 cat("Built rows:", nrow(progression_kang_fgv), "\n")
 print(dplyr::count(progression_kang_fgv, geo_level))
 
-educabr:::validate_against_schema(progression_kang_fgv, theme = "progression")
+educabr2:::validate_against_schema(progression_kang_fgv, theme = "progression")
 
 attr(progression_kang_fgv, "educabr_meta") <- list(
   build_script   = "data-raw/05_build_progression_kang_fgv.R",

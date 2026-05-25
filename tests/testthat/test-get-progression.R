@@ -21,16 +21,16 @@ with_prog_fixture <- function(code) {
   env <- new.env(parent = emptyenv())
   assign("progression_kang_fgv", make_prog_fixture(), envir = env)
 
-  orig <- educabr:::.load_progression_panel
+  orig <- educabr2:::.load_progression_panel
   local_panel <- function() orig(env = env)
 
-  unlockBinding(".load_progression_panel", asNamespace("educabr"))
+  unlockBinding(".load_progression_panel", asNamespace("educabr2"))
   assign(".load_progression_panel",
          function(env = NULL) local_panel(),
-         envir = asNamespace("educabr"))
+         envir = asNamespace("educabr2"))
   on.exit({
-    assign(".load_progression_panel", orig, envir = asNamespace("educabr"))
-    lockBinding(".load_progression_panel", asNamespace("educabr"))
+    assign(".load_progression_panel", orig, envir = asNamespace("educabr2"))
+    lockBinding(".load_progression_panel", asNamespace("educabr2"))
   }, add = TRUE)
 
   force(code)
@@ -106,7 +106,7 @@ test_that("lang='pt' translates level labels", {
 test_that(".load_progression_panel errors with friendly message when nothing built", {
   empty_env <- new.env(parent = emptyenv())
   expect_error(
-    educabr:::.load_progression_panel(env = empty_env),
+    educabr2:::.load_progression_panel(env = empty_env),
     "No progression dataset"
   )
 })

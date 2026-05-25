@@ -1,8 +1,8 @@
 ---
-title: "Introdução ao educabr (PT-BR)"
+title: "Introdução ao educabr2 (PT-BR)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introdução ao educabr (PT-BR)}
+  %\VignetteIndexEntry{Introdução ao educabr2 (PT-BR)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,15 +18,15 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, message = FALSE}
-library(educabr)
+library(educabr2)
 ```
 
 > Versão em português da vignette principal. Para a versão em inglês
-> e canônica, veja **`vignette("01-introduction", "educabr")`**.
+> e canônica, veja **`vignette("introduction", "educabr2")`**.
 
 ## Sobre o pacote
 
-O **educabr** disponibiliza, sob um único esquema *tidy* canônico,
+O **educabr2** disponibiliza, sob um único esquema *tidy* canônico,
 o conjunto mais extenso de séries históricas harmonizadas sobre
 educação brasileira disponível em formato analítico:
 
@@ -106,7 +106,7 @@ níveis mais altos.
 O ensino superior brasileiro foi reconstituído por **diversos
 autores** com metodologias ligeiramente diferentes, sobretudo para
 o longo período 1933-2000 em que as fontes oficiais são esparsas.
-O `educabr` mantém **todas as estimativas concorrentes** lado a lado,
+O `educabr2` mantém **todas as estimativas concorrentes** lado a lado,
 permitindo comparação direta:
 
 ```{r}
@@ -141,7 +141,7 @@ cálculo.
 A partir de 2009, os microdados do CENSUP já agregam presencial e
 EAD no mesmo cadastro, e o problema se resolve.
 
-Para esse intervalo de transição, o `educabr` disponibiliza
+Para esse intervalo de transição, o `educabr2` disponibiliza
 **totais reconstruídos** (*reconstructed enrollment totals*) que
 somam o componente presencial de cada fonte ao EAD publicado pelo
 INEP. Essas linhas têm `is_derived = TRUE` e ficam fora do resultado
@@ -168,7 +168,7 @@ vem da primeira fonte e o **componente EAD** vem da segunda. O
 
 > Convenção de citação sugerida: "Total reconstruído computado a
 > partir de \{fonte\_presencial\} (presencial) e INEP Sinopse CENSUP
-> (EAD), conforme metodologia documentada em `educabr` (Mançano 2026)."
+> (EAD), conforme metodologia documentada em `educabr2` (Mançano 2026)."
 
 ## Caso 4 — anos médios de escolaridade por sexo
 
@@ -248,12 +248,12 @@ tema (Enrollment, Tertiary Education, Educational Attainment,
 Public Expenditure, Grade Progression):
 
 ```r
-educabr::run_dashboard()
+educabr2::run_dashboard()
 ```
 
 O painel reproduz toda a comparação multi-fonte do ensino superior
 e as novas séries de despesa e progressão de forma interativa, com
-um botão "View R code" em cada aba que gera o código `educabr` +
+um botão "View R code" em cada aba que gera o código `educabr2` +
 `ggplot2` para reproduzir a visualização no seu ambiente R local —
 uma ponte direta entre exploração no painel e análise reprodutível
 em script.
@@ -261,9 +261,9 @@ em script.
 ## Fontes e citação
 
 A lista completa de fontes com DOIs e links está na vignette principal
-em inglês (`vignette("01-introduction", "educabr")`). Para citar o
+em inglês (`vignette("introduction", "educabr2")`). Para citar o
 pacote em si:
 
-> Mançano, T. (2026). *educabr: Harmonized Historical Series on
+> Mançano, T. (2026). *educabr2: Harmonized Historical Series on
 > Brazilian Education* (versão 0.0.0.9000).
 > <https://github.com/mancano-tales/educabr>

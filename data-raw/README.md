@@ -1,4 +1,4 @@
-# `data-raw/` — ETL pipeline for educabr
+# `data-raw/` — ETL pipeline for educabr2
 
 This directory is **not shipped with the installed package** (see
 `.Rbuildignore`). It contains the raw source files (Excel/CSV) and the
@@ -56,7 +56,7 @@ tidy <- raw |>
 
 # 3. VALIDATE -----------------------------------------------------------
 # Check column types, factor domains, year range, no duplicate keys.
-educabr:::validate_against_schema(tidy)  # to be implemented in M2
+educabr2:::validate_against_schema(tidy)  # to be implemented in M2
 
 # 4. ANNOTATE -----------------------------------------------------------
 attr(tidy, "educabr_meta") <- list(

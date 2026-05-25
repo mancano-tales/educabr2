@@ -1,4 +1,4 @@
-#' educabr: Harmonized Historical Series on Brazilian Education
+#' educabr2: Harmonized Historical Series on Brazilian Education
 #'
 #' Curated long-run series on Brazilian formal education — enrollment and
 #' educational attainment — compiled from heterogeneous official and

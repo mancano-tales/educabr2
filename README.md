@@ -1,4 +1,4 @@
-# educabr <img src="man/figures/logo.png" align="right" height="139" alt="educabr logo" />
+# educabr2 <img src="man/figures/logo.png" align="right" height="139" alt="educabr2 logo" />
 
 > Harmonised historical series on Brazilian education — enrollment and
 > educational attainment, compiled and reconciled across decades of
@@ -9,7 +9,7 @@
 [![pkgdown](https://github.com/mancano-tales/educabr/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr/)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
-`educabr` provides curated long-run series on Brazilian formal
+`educabr2` provides curated long-run series on Brazilian formal
 education — enrollment by stage and network, years of schooling,
 literacy and attainment — compiled and reconciled from heterogeneous
 official and academic sources (Censo Escolar, PNAD, Censo Demográfico,
@@ -17,10 +17,10 @@ Anuário Estatístico do IBGE, INEP CENSUP, Kang/FGV-IBRE, Walter & Kang,
 among others) into a single tidy schema with explicit per-row
 provenance.
 
-**🇧🇷** `educabr` reúne séries históricas tratadas sobre educação
+**🇧🇷** `educabr2` reúne séries históricas tratadas sobre educação
 formal no Brasil — matrículas, anos de estudo, atingimento educacional
 — em um único schema *tidy*, com proveniência explícita. Veja a
-[vinheta em português](https://mancano-tales.github.io/educabr/articles/02-introducao-pt.html).
+[vinheta em português](https://mancano-tales.github.io/educabr/articles/introducao-pt.html).
 
 ---
 
@@ -30,7 +30,7 @@ formal no Brasil — matrículas, anos de estudo, atingimento educacional
   function reference, articles, news
 - 📊 **[Live dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr/)**
   — interactive multi-source comparison on shinyapps.io
-- 📝 **[Get started](https://mancano-tales.github.io/educabr/articles/01-introduction.html)**
+- 📝 **[Get started](https://mancano-tales.github.io/educabr/articles/introduction.html)**
   — 10-minute tour of the API
 - 🐛 **[Issues](https://github.com/mancano-tales/educabr/issues)**
 
@@ -38,7 +38,7 @@ formal no Brasil — matrículas, anos de estudo, atingimento educacional
 
 ## Installation
 
-`educabr` is not yet on CRAN. Install the development version from
+`educabr2` is not yet on CRAN. Install the development version from
 GitHub:
 
 ```r
@@ -59,7 +59,7 @@ bundled dashboard launcher.
 > school perspective.*
 
 ```r
-library(educabr)
+library(educabr2)
 
 # Gross enrollment rate for ensino fundamental, Brazil, all years
 get_enrollment(
@@ -133,7 +133,7 @@ get_progression(geo_level = "UF",
 ### `run_dashboard()` — interactive Shiny app
 
 ```r
-educabr::run_dashboard()
+educabr2::run_dashboard()
 ```
 
 Five navbar tabs:
@@ -153,7 +153,7 @@ Five navbar tabs:
   primary system), BR and 20 UFs, 1955–2010
 
 Every chart has a "View R code" button that prints a self-contained
-snippet (educabr + ggplot2 + plotly) you can paste into RStudio to
+snippet (educabr2 + ggplot2 + plotly) you can paste into RStudio to
 reproduce the interactive chart locally.
 
 ---
@@ -192,7 +192,7 @@ for every factor level in
 
 ## Related work
 
-`educabr` is complementary to
+`educabr2` is complementary to
 [`educabR`](https://github.com/SidneyBissoli/educabR) (Sidney Bissoli),
 which organises access **by official source** (`get_ideb()`,
 `get_enem()`, `get_censo_escolar()`, …). Here the axis is **by theme
@@ -215,7 +215,7 @@ Cite both the package (for the harmonisation work) and the
 bundled source:
 
 ```r
-citation("educabr")                              # cite the package
+citation("educabr2")                              # cite the package
 
 educabr_cite("kang_paese_felix_2021")            # cite one source
 educabr_cite(c("walter_kang_2023",               # cite many

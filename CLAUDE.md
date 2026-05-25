@@ -63,10 +63,10 @@ Five datasets are bundled, across four themes:
 - **progression** — `progression_kang_fgv` (BR+20 UFs, 1955-2010, Kang/Paese/Felix)
 
 ### ETL pipeline (`data-raw/`)
-Scripts follow a five-step pattern: **READ → TIDY → VALIDATE → ANNOTATE → WRITE**. Run them with `devtools::load_all()` active so `educabr:::validate_against_schema()` is accessible. Each script writes one `.rda` to `data/`. After running, update `data-raw/_manifest.yaml`.
+Scripts follow a five-step pattern: **READ → TIDY → VALIDATE → ANNOTATE → WRITE**. Run them with `devtools::load_all()` active so `educabr2:::validate_against_schema()` is accessible. Each script writes one `.rda` to `data/`. After running, update `data-raw/_manifest.yaml`.
 
 ### Dashboard (`inst/dashboard/`)
-The Shiny app (`app.R` + `global.R`) consumes only the public API and has five navbar tabs — Enrollment, Tertiary Education, Educational Attainment, Public Expenditure, Grade Progression. It is deployed to shinyapps.io at https://qx3hly-tales-man0ano.shinyapps.io/educabr/. During development run it with `shiny::runApp("inst/dashboard")` rather than `run_dashboard()` (which requires the package to be installed). To redeploy after changes: `rsconnect::deployApp("inst/dashboard", appName = "educabr")`.
+The Shiny app (`app.R` + `global.R`) consumes only the public API and has five navbar tabs — Enrollment, Tertiary Education, Educational Attainment, Public Expenditure, Grade Progression. It is deployed to shinyapps.io at https://qx3hly-tales-man0ano.shinyapps.io/educabr/. During development run it with `shiny::runApp("inst/dashboard")` rather than `run_dashboard()` (which requires the package to be installed). To redeploy after changes: `rsconnect::deployApp("inst/dashboard", appName = "educabr2")`.
 
 ## Key conventions
 

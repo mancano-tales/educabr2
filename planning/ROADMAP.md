@@ -64,6 +64,6 @@ and rationale.
       `experimental` → `stable`
 - [ ] PT-BR vignettes for every EN vignette (currently only the intro
       is bilingual)
-- [ ] Zenodo DOI for the release; `citation("educabr")` cites it
+- [ ] Zenodo DOI for the release; `citation("educabr2")` cites it
 - [ ] Decision point on `educabR` (Sidney) integration — see
       [`integration-educabR.md`](integration-educabR.md)

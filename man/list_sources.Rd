@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_sources.R
 \name{list_sources}
 \alias{list_sources}
-\title{List the data sources bundled with educabr}
+\title{List the data sources bundled with educabr2}
 \usage{
 list_sources()
 }

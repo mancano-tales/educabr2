@@ -40,7 +40,7 @@ levels and indicator labels are translated via
 \code{inst/dict/i18n.yaml}.}
 }
 \value{
-A tibble in the canonical educabr long schema (see
+A tibble in the canonical educabr2 long schema (see
 \code{inst/dict/schema.yaml}). Columns: \code{year}, \code{geo_level}, \code{geo_code},
 \code{geo_name}, \code{level}, \code{network}, \code{dim_race}, \code{age_group},
 \code{indicator}, \code{value}, \code{unit}, \code{source}, \code{source_note}.

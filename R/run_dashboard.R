@@ -1,4 +1,4 @@
-#' Launch the educabr Shiny dashboard
+#' Launch the educabr2 Shiny dashboard
 #'
 #' Opens a local Shiny app that explores the data shipped by the
 #' package. The app consumes only the public API ([get_enrollment()])
@@ -19,10 +19,10 @@ run_dashboard <- function(lang = c("pt", "en"), ...) {
 
   rlang::check_installed(
     c("shiny", "bslib", "ggplot2", "plotly", "scales", "DT"),
-    reason = "to launch the educabr dashboard"
+    reason = "to launch the educabr2 dashboard"
   )
 
-  app_dir <- system.file("dashboard", package = "educabr")
+  app_dir <- system.file("dashboard", package = "educabr2")
   if (!nzchar(app_dir)) {
     cli::cli_abort(c(
       "Dashboard files not found.",
@@ -30,7 +30,7 @@ run_dashboard <- function(lang = c("pt", "en"), ...) {
     ))
   }
 
-  old <- options(educabr.dashboard.lang = lang)
+  old <- options(educabr2.dashboard.lang = lang)
   on.exit(options(old), add = TRUE)
 
   shiny::runApp(app_dir, ...)

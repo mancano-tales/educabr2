@@ -54,16 +54,16 @@ with_ter_fixture <- function(code) {
 
   # Capture the ORIGINAL before replacing it in the namespace — otherwise
   # the closure below would call the replacement and recurse infinitely.
-  orig <- educabr:::.load_enrollment_panel
+  orig <- educabr2:::.load_enrollment_panel
   local_panel <- function() orig(env = env)
 
-  unlockBinding(".load_enrollment_panel", asNamespace("educabr"))
+  unlockBinding(".load_enrollment_panel", asNamespace("educabr2"))
   assign(".load_enrollment_panel",
          function(env = NULL) local_panel(),
-         envir = asNamespace("educabr"))
+         envir = asNamespace("educabr2"))
   on.exit({
-    assign(".load_enrollment_panel", orig, envir = asNamespace("educabr"))
-    lockBinding(".load_enrollment_panel", asNamespace("educabr"))
+    assign(".load_enrollment_panel", orig, envir = asNamespace("educabr2"))
+    lockBinding(".load_enrollment_panel", asNamespace("educabr2"))
   }, add = TRUE)
 
   force(code)
@@ -133,18 +133,18 @@ test_that("loader normalises a dataset that lacks the new optional columns", {
                                     "source","source_note")]
   assign("enrollment_tertiary", legacy, envir = env)
 
-  orig <- educabr:::.load_enrollment_panel
-  unlockBinding(".load_enrollment_panel", asNamespace("educabr"))
+  orig <- educabr2:::.load_enrollment_panel
+  unlockBinding(".load_enrollment_panel", asNamespace("educabr2"))
   assign(".load_enrollment_panel",
-         function(env = NULL) educabr:::.normalise_enrollment_piece(
+         function(env = NULL) educabr2:::.normalise_enrollment_piece(
            get("enrollment_tertiary", envir = env)),
-         envir = asNamespace("educabr"))
+         envir = asNamespace("educabr2"))
   on.exit({
-    assign(".load_enrollment_panel", orig, envir = asNamespace("educabr"))
-    lockBinding(".load_enrollment_panel", asNamespace("educabr"))
+    assign(".load_enrollment_panel", orig, envir = asNamespace("educabr2"))
+    lockBinding(".load_enrollment_panel", asNamespace("educabr2"))
   }, add = TRUE)
 
-  panel <- educabr:::.load_enrollment_panel(env = env)
+  panel <- educabr2:::.load_enrollment_panel(env = env)
   expect_true(all(c("institution_type","modality","is_derived") %in% names(panel)))
   expect_true(all(panel$institution_type == "total"))
   expect_true(all(panel$modality == "total"))

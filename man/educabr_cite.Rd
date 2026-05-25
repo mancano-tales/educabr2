@@ -2,7 +2,7 @@
 % Please edit documentation in R/educabr_cite.R
 \name{educabr_cite}
 \alias{educabr_cite}
-\title{Generate citations for educabr data sources}
+\title{Generate citations for educabr2 data sources}
 \usage{
 educabr_cite(source_key = NULL, style = c("bibentry", "text", "bibtex"))
 }
@@ -28,7 +28,7 @@ A \code{bibentry} object (default), a character vector, or a
 }
 \description{
 Builds \code{\link[utils:bibentry]{utils::bibentry()}} objects for the primary sources whose data
-is harmonised in \code{educabr}. Use this whenever you publish analyses
+is harmonised in \code{educabr2}. Use this whenever you publish analyses
 built on a \verb{get_*()} call — cite the originating source(s), not only
 the package itself.
 }

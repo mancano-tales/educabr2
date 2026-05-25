@@ -41,7 +41,7 @@
 #'   levels and indicator labels are translated via
 #'   `inst/dict/i18n.yaml`.
 #'
-#' @return A tibble in the canonical educabr long schema (see
+#' @return A tibble in the canonical educabr2 long schema (see
 #'   `inst/dict/schema.yaml`). Columns: `year`, `geo_level`, `geo_code`,
 #'   `geo_name`, `level`, `network`, `dim_race`, `age_group`,
 #'   `indicator`, `value`, `unit`, `source`, `source_note`.
@@ -98,7 +98,7 @@ get_expenditure <- function(level     = NULL,
 #' @noRd
 .load_expenditure_panel <- function(env = NULL) {
   env_provided <- !is.null(env)
-  if (is.null(env)) env <- asNamespace("educabr")
+  if (is.null(env)) env <- asNamespace("educabr2")
   names_ <- .expenditure_datasets()
 
   pieces <- list()
@@ -107,7 +107,7 @@ get_expenditure <- function(level     = NULL,
       pieces[[nm]] <- get(nm, envir = env, inherits = FALSE)
     } else if (!env_provided) {
       tmp <- new.env()
-      try(utils::data(list = nm, package = "educabr", envir = tmp), silent = TRUE)
+      try(utils::data(list = nm, package = "educabr2", envir = tmp), silent = TRUE)
       if (exists(nm, envir = tmp, inherits = FALSE)) {
         pieces[[nm]] <- get(nm, envir = tmp, inherits = FALSE)
       }

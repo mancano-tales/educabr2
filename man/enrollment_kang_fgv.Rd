@@ -14,12 +14,12 @@ A tibble with 6 238 rows and 13 columns:
 IBGE 2-letter UF abbreviation (e.g. \code{"SP"}, \code{"BA"}) for states.}
 \item{geo_name}{\code{character}. Human-readable geographic name in
 Portuguese (e.g. \code{"Brasil"}, \code{"São Paulo"}).}
-\item{level}{\code{character}. Education stage using the educabr vocabulary:
+\item{level}{\code{character}. Education stage using the educabr2 vocabulary:
 \code{"fundamental_anos_iniciais"}, \code{"fundamental_anos_finais"},
 \code{"fundamental"}, \code{"medio"}, \code{"superior"}.}
 \item{network}{\code{character}. Administrative dependency.
 Always \code{"total"} in this source (no network breakdown available).}
-\item{dim_race}{\code{character}. Race/colour dimension using the educabr
+\item{dim_race}{\code{character}. Race/colour dimension using the educabr2
 vocabulary (\code{"white"}, \code{"black"}, \code{"brown"}, \code{"asian"},
 \code{"indigenous"}). \code{"total"} when not disaggregated. Race breakdown
 is available at BR level for 1960–2010 only.}

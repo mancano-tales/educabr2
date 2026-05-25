@@ -21,3 +21,4 @@
 ^_.*\.R$
 ^planning$
 ^CLAUDE\.md$
+^rename_package\.py$

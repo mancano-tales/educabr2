@@ -22,16 +22,16 @@ with_sch_fixture <- function(code) {
 
   # Capture the ORIGINAL before replacing it in the namespace — otherwise
   # the closure below would call the replacement and recurse infinitely.
-  orig <- educabr:::.load_schooling_panel
+  orig <- educabr2:::.load_schooling_panel
   local_panel <- function() orig(env = env)
 
-  unlockBinding(".load_schooling_panel", asNamespace("educabr"))
+  unlockBinding(".load_schooling_panel", asNamespace("educabr2"))
   assign(".load_schooling_panel",
          function(env = NULL) local_panel(),
-         envir = asNamespace("educabr"))
+         envir = asNamespace("educabr2"))
   on.exit({
-    assign(".load_schooling_panel", orig, envir = asNamespace("educabr"))
-    lockBinding(".load_schooling_panel", asNamespace("educabr"))
+    assign(".load_schooling_panel", orig, envir = asNamespace("educabr2"))
+    lockBinding(".load_schooling_panel", asNamespace("educabr2"))
   }, add = TRUE)
 
   force(code)
@@ -107,7 +107,7 @@ test_that("lang='pt' translates dim_sex and dim_race", {
 test_that(".load_schooling_panel errors with friendly message when nothing built", {
   empty_env <- new.env(parent = emptyenv())
   expect_error(
-    educabr:::.load_schooling_panel(env = empty_env),
+    educabr2:::.load_schooling_panel(env = empty_env),
     "No schooling dataset"
   )
 })

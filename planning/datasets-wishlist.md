@@ -52,7 +52,7 @@ For each candidate, the format is:
 ### IDEB (INEP) via `educabR::get_ideb()`
 
 - **Adds**: school-quality indicator 2017-onward; complements the
-  enrollment-volume focus of `educabr` with a learning-outcome axis.
+  enrollment-volume focus of `educabr2` with a learning-outcome axis.
 - **License**: INEP public data.
 - **Ingestion**: via Sidney Bissoli's `educabR` (CRAN) as a Suggested
   dependency — avoids reimplementing download/parse logic.
@@ -68,7 +68,7 @@ For each candidate, the format is:
   Escolar would mirror that for basic education.
 - **License**: INEP public data (CC BY).
 - **Ingestion**: via `educabR::get_censo_escolar()` (microdata, large)
-  + aggregation step shipped with `educabr`.
+  + aggregation step shipped with `educabr2`.
 - **Status**: not-started.
 
 ### SAEB (INEP)

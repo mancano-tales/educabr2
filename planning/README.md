@@ -1,7 +1,7 @@
 # Planning
 
 This folder holds the **project-level planning artefacts** for
-`educabr` — roadmap, CRAN-submission checklist, dataset wishlist, and
+`educabr2` — roadmap, CRAN-submission checklist, dataset wishlist, and
 design notes for forthcoming integrations.
 
 It is **not shipped** with the package (see `.Rbuildignore`); it lives

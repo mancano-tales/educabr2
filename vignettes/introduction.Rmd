@@ -1,8 +1,8 @@
 ---
-title: "Introduction to educabr"
+title: "Introduction to educabr2"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to educabr}
+  %\VignetteIndexEntry{Introduction to educabr2}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,12 +18,12 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, message = FALSE}
-library(educabr)
+library(educabr2)
 ```
 
 ## About the package
 
-**educabr** provides, under a single canonical tidy schema, the most
+**educabr2** provides, under a single canonical tidy schema, the most
 extensive set of harmonised historical series on Brazilian education
 available in analytic format:
 
@@ -105,7 +105,7 @@ compulsory levels alongside persistent inequality at higher levels.
 Brazilian tertiary enrollment has been reconstructed by **multiple
 authors** with slightly different methodologies, especially for the
 long 1933–2000 period when official sources are sparse. The
-**educabr** package keeps **all competing estimates** side by side,
+**educabr2** package keeps **all competing estimates** side by side,
 enabling direct comparison:
 
 ```{r}
@@ -139,7 +139,7 @@ enrollments in 2008 by our reckoning.
 From 2009 onwards the CENSUP microdata already aggregate in-person
 and EAD in the same registry, and the problem resolves itself.
 
-For this transition interval, **educabr** ships **reconstructed
+For this transition interval, **educabr2** ships **reconstructed
 totals** that combine the in-person component of each source with
 INEP's published EAD figures. These rows carry `is_derived = TRUE`
 and are excluded from the default `get_enrollment()` output; pass
@@ -166,7 +166,7 @@ first source and the **EAD component** comes from the second. The
 
 > Suggested citation convention: "Reconstructed total computed from
 > {in-person source} (in-person) and INEP CENSUP Synopsis (EAD),
-> following the methodology documented in `educabr` (Mançano 2026)."
+> following the methodology documented in `educabr2` (Mançano 2026)."
 
 ## Case 4 — mean years of schooling by sex
 
@@ -245,12 +245,12 @@ theme (Enrollment, Tertiary Education, Educational Attainment,
 Public Expenditure, Grade Progression):
 
 ```r
-educabr::run_dashboard()
+educabr2::run_dashboard()
 ```
 
 The dashboard replicates the multi-source tertiary comparison and
 the new expenditure / progression series interactively. Each tab has
-a **"View R code"** button that emits the `educabr` + `ggplot2`
+a **"View R code"** button that emits the `educabr2` + `ggplot2`
 snippet needed to reproduce the visualisation in your local R
 session — a direct bridge between dashboard exploration and
 reproducible scripted analysis.
@@ -288,6 +288,6 @@ sources are:
 
 To cite the package itself:
 
-> Mançano, T. (2026). *educabr: Harmonized Historical Series on
+> Mançano, T. (2026). *educabr2: Harmonized Historical Series on
 > Brazilian Education* (version 0.0.0.9000).
 > <https://github.com/mancano-tales/educabr>

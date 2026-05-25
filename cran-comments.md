@@ -1,6 +1,6 @@
 ## Submission
 
-This is the first CRAN submission of `educabr` (version 0.1.0).
+This is the first CRAN submission of `educabr2` (version 0.1.0).
 
 The package provides curated long-run series on Brazilian formal
 education (enrollment by stage and network 1871–2010 from the

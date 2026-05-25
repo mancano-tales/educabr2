@@ -7,7 +7,7 @@ their own file when they get traction; delete them when they go cold.
 
 - [ ] **Quarto blog or pkgdown article** showing how one might
   reproduce a published education paper (e.g. Kang/Paese/Felix 2021)
-  end-to-end using only `educabr`. Strong story, doubles as marketing
+  end-to-end using only `educabr2`. Strong story, doubles as marketing
   and as a validation of the harmonised series.
 
 - [ ] **`educabr_summary(df)`** — generic summariser for any
@@ -34,7 +34,7 @@ their own file when they get traction; delete them when they go cold.
   bootstrap** — for inequality gaps, point estimates without bands
   are misleading.
 
-- [ ] **Onboarding script** — `educabr::welcome()` that prints a
+- [ ] **Onboarding script** — `educabr2::welcome()` that prints a
   one-screen orientation: what's in the package, three example
   calls, link to the vignette.
 

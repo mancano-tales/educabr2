@@ -1,4 +1,4 @@
 library(testthat)
-library(educabr)
+library(educabr2)
 
-test_check("educabr")
+test_check("educabr2")

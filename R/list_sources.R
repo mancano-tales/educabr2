@@ -1,4 +1,4 @@
-#' List the data sources bundled with educabr
+#' List the data sources bundled with educabr2
 #'
 #' Returns a tibble describing every entry in the controlled source
 #' vocabulary

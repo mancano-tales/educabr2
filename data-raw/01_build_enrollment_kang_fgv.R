@@ -15,7 +15,7 @@
 #   source("data-raw/01_build_enrollment_kang_fgv.R")
 #
 # Requires the package itself to be installed (or loaded via
-# `devtools::load_all()`) so that `educabr:::validate_against_schema()`
+# `devtools::load_all()`) so that `educabr2:::validate_against_schema()`
 # is available.
 
 library(dplyr)
@@ -350,7 +350,7 @@ print(dplyr::count(enrollment_kang_fgv, geo_level, level, indicator))
 
 # Validate against the canonical schema before saving. Requires
 # `devtools::load_all()` to have been run in this session.
-educabr:::validate_against_schema(enrollment_kang_fgv, theme = "enrollment")
+educabr2:::validate_against_schema(enrollment_kang_fgv, theme = "enrollment")
 
 attr(enrollment_kang_fgv, "educabr_meta") <- list(
   build_script   = "data-raw/01_build_enrollment_kang_fgv.R",
