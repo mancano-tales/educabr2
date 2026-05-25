@@ -77,7 +77,7 @@ A tibble in the canonical educabr2 long schema (see
 GDR6 was reconstructed by Kang, Paese & Felix (2021) for the BR national
 level and for 20 federation units (UFs), 1955-2010. The dataset behind
 this function is
-[progression_kang_fgv](https://mancano-tales.github.io/educabr/dev/reference/progression_kang_fgv.md).
+[progression_kang_fgv](https://mancano-tales.github.io/educabr2/dev/reference/progression_kang_fgv.md).
 
 ## Examples
 

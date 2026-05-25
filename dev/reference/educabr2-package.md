@@ -18,22 +18,22 @@ on the roadmap for a future release.
 
 v0 lays out the data schema, ETL pipeline and package skeleton. The
 first user-facing functions —
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 and
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md)
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md)
 — and the bundled Shiny dashboard
-([`run_dashboard()`](https://mancano-tales.github.io/educabr/dev/reference/run_dashboard.md))
+([`run_dashboard()`](https://mancano-tales.github.io/educabr2/dev/reference/run_dashboard.md))
 are scheduled for the v0.2–v0.4 milestones. See `NEWS.md` once released.
 
 ## See also
 
 Useful links:
 
-- <https://github.com/mancano-tales/educabr>
+- <https://github.com/mancano-tales/educabr2>
 
-- <https://mancano-tales.github.io/educabr/>
+- <https://mancano-tales.github.io/educabr2/>
 
-- Report bugs at <https://github.com/mancano-tales/educabr/issues>
+- Report bugs at <https://github.com/mancano-tales/educabr2/issues>
 
 ## Author
 

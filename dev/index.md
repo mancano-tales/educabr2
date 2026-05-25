@@ -5,9 +5,9 @@
 > heterogeneous official and academic sources.
 
 [![License: GPL (\>=
-3)](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://mancano-tales.github.io/educabr/dev/LICENSE.md)
-[![R-CMD-check](https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mancano-tales/educabr/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/mancano-tales/educabr/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr/)
+3)](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://mancano-tales.github.io/educabr2/dev/LICENSE.md)
+[![R-CMD-check](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr2/)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
@@ -22,21 +22,21 @@ provenance.
 **🇧🇷** `educabr2` reúne séries históricas tratadas sobre educação formal
 no Brasil — matrículas, anos de estudo, atingimento educacional — em um
 único schema *tidy*, com proveniência explícita. Veja a [vinheta em
-português](https://mancano-tales.github.io/educabr/dev/articles/introducao-pt.html).
+português](https://mancano-tales.github.io/educabr2/dev/articles/introducao-pt.html).
 
 ------------------------------------------------------------------------
 
 ## Quick links
 
-- 📖 **[Reference site](https://mancano-tales.github.io/educabr/)** —
+- 📖 **[Reference site](https://mancano-tales.github.io/educabr2/)** —
   function reference, articles, news
 - 📊 **[Live
   dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr/)** —
   interactive multi-source comparison on shinyapps.io
 - 📝 **[Get
-  started](https://mancano-tales.github.io/educabr/dev/articles/introduction.html)**
+  started](https://mancano-tales.github.io/educabr2/dev/articles/introduction.html)**
   — 10-minute tour of the API
-- 🐛 **[Issues](https://github.com/mancano-tales/educabr/issues)**
+- 🐛 **[Issues](https://github.com/mancano-tales/educabr2/issues)**
 
 ------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ GitHub:
 ``` r
 
 # install.packages("remotes")
-remotes::install_github("mancano-tales/educabr")
+remotes::install_github("mancano-tales/educabr2")
 ```
 
 ------------------------------------------------------------------------
@@ -190,13 +190,13 @@ per-source filters and translates labels.
 
 All `get_*()` functions return a `tibble` in the canonical tidy-long
 schema documented in
-[`inst/dict/schema.yaml`](https://mancano-tales.github.io/educabr/dev/inst/dict/schema.yaml):
+[`inst/dict/schema.yaml`](https://mancano-tales.github.io/educabr2/dev/inst/dict/schema.yaml):
 one row per observation, alternative sources for the same indicator as
 **separate rows** (column `source`), aggregations as an explicit factor
 level (`"total"`) rather than `NA`. Controlled vocabularies live in
-[`inst/dict/vocabularies/`](https://mancano-tales.github.io/educabr/dev/inst/dict/vocabularies),
+[`inst/dict/vocabularies/`](https://mancano-tales.github.io/educabr2/dev/inst/dict/vocabularies),
 and PT-BR labels for every factor level in
-[`inst/dict/i18n.yaml`](https://mancano-tales.github.io/educabr/dev/inst/dict/i18n.yaml).
+[`inst/dict/i18n.yaml`](https://mancano-tales.github.io/educabr2/dev/inst/dict/i18n.yaml).
 
 ------------------------------------------------------------------------
 
@@ -221,7 +221,7 @@ Design inspirations: [`geobr`](https://github.com/ipeaGIT/geobr)
 
 Cite both the package (for the harmonisation work) and the **originating
 sources** for any data you actually use. The
-[`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md)
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md)
 helper builds APA / BibTeX entries for every bundled source:
 
 ``` r
@@ -254,6 +254,6 @@ licence — before submitting a PR.
 
 Code under **GPL (\>= 3)**. Data redistributed under **CC BY 4.0**
 (except where the original source imposes restrictions; see
-[`inst/dict/vocabularies/sources.yaml`](https://mancano-tales.github.io/educabr/dev/inst/dict/vocabularies/sources.yaml)).
+[`inst/dict/vocabularies/sources.yaml`](https://mancano-tales.github.io/educabr2/dev/inst/dict/vocabularies/sources.yaml)).
 See
-[`LICENSE.md`](https://mancano-tales.github.io/educabr/dev/LICENSE.md).
+[`LICENSE.md`](https://mancano-tales.github.io/educabr2/dev/LICENSE.md).

@@ -80,7 +80,7 @@ A tibble in the canonical educabr2 long schema (see
 
 All series are national (BR), 1933-2010. The data behind this function
 is the internal dataset
-[expenditure_kang_fgv](https://mancano-tales.github.io/educabr/dev/reference/expenditure_kang_fgv.md).
+[expenditure_kang_fgv](https://mancano-tales.github.io/educabr2/dev/reference/expenditure_kang_fgv.md).
 
 ## Examples
 

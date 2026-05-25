@@ -4,7 +4,7 @@ Long-run Brazilian public expenditure on education, compiled by Kang &
 Menetrier (2024) from a combination of national-accounts sources
 (Anuário Estatístico, IPEA, FGV-IBRE) and educational statistics. The
 dataset is the internal backing store consumed by
-[`get_expenditure()`](https://mancano-tales.github.io/educabr/dev/reference/get_expenditure.md);
+[`get_expenditure()`](https://mancano-tales.github.io/educabr2/dev/reference/get_expenditure.md);
 end-users should call that function rather than loading this object
 directly.
 

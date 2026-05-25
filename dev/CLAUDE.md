@@ -39,24 +39,24 @@ shiny::runApp("inst/dashboard")
 
 Four user-facing data functions expose the internal datasets, plus
 citation/discovery helpers: -
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 — school enrollment (counts and gross rates), backed by
 `enrollment_kang_fgv` + `enrollment_tertiary` -
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md)
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md)
 — mean years of schooling, backed by `schooling_kang_fgv` -
-[`get_expenditure()`](https://mancano-tales.github.io/educabr/dev/reference/get_expenditure.md)
+[`get_expenditure()`](https://mancano-tales.github.io/educabr2/dev/reference/get_expenditure.md)
 — public expenditure on education (% GDP, per-student % GDP per capita,
 “double ratio” indicators), backed by `expenditure_kang_fgv` -
-[`get_progression()`](https://mancano-tales.github.io/educabr/dev/reference/get_progression.md)
+[`get_progression()`](https://mancano-tales.github.io/educabr2/dev/reference/get_progression.md)
 — grade-progression indicators (GDR6), backed by
 `progression_kang_fgv` -
-[`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md)
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md)
 — builds `bibentry`/APA/BibTeX citations for any source key from
 `source` column values -
-[`list_sources()`](https://mancano-tales.github.io/educabr/dev/reference/list_sources.md)
+[`list_sources()`](https://mancano-tales.github.io/educabr2/dev/reference/list_sources.md)
 — tibble of every entry in the source vocabulary (discovery counterpart
 to
-[`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md))
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md))
 
 All `get_*()` functions return tibbles in the same **canonical tidy-long
 schema**: one row per observation, alternative sources as separate rows
@@ -76,14 +76,14 @@ before
 
 Supporting dictionaries: - `inst/dict/vocabularies/sources.yaml` —
 source keys + citation metadata (drives
-[`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md)) -
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md)) -
 `inst/dict/vocabularies/indicators.yaml` — indicator key registry -
 `inst/dict/i18n.yaml` — PT-BR label translations applied when
 `lang = "pt"`
 
 ### Data loading pattern
 
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 calls `.load_enrollment_panel()`, which iterates
 `.enrollment_datasets()` (a registry of dataset names), fetches each
 from the package namespace, fills any missing optional columns with
@@ -120,7 +120,7 @@ Attainment, Public Expenditure, Grade Progression. It is deployed to
 shinyapps.io at <https://qx3hly-tales-man0ano.shinyapps.io/educabr/>.
 During development run it with `shiny::runApp("inst/dashboard")` rather
 than
-[`run_dashboard()`](https://mancano-tales.github.io/educabr/dev/reference/run_dashboard.md)
+[`run_dashboard()`](https://mancano-tales.github.io/educabr2/dev/reference/run_dashboard.md)
 (which requires the package to be installed). To redeploy after changes:
 `rsconnect::deployApp("inst/dashboard", appName = "educabr2")`.
 

@@ -7,12 +7,12 @@ depends on what you have in mind.
 
 | You want to… | Best path |
 |----|----|
-| Report a bug in a `get_*()` function | Open an [issue](https://github.com/mancano-tales/educabr/issues/new) with a minimal reprex |
+| Report a bug in a `get_*()` function | Open an [issue](https://github.com/mancano-tales/educabr2/issues/new) with a minimal reprex |
 | Suggest a new data source | Open an issue first (see “Adding a dataset” below) — please **do not** open a PR cold |
 | Propose a UX change to the dashboard | Open an issue with a screenshot or sketch |
 | Fix a typo / improve docs | Send a PR straight away, no issue needed |
 | Add tests for an existing function | Send a PR straight away |
-| Discuss compatibility with [`educabR`](https://github.com/SidneyBissoli/educabR) | See [`planning/integration-educabR.md`](https://mancano-tales.github.io/educabr/planning/integration-educabR.md) and chime in via issue |
+| Discuss compatibility with [`educabR`](https://github.com/SidneyBissoli/educabR) | See [`planning/integration-educabR.md`](https://mancano-tales.github.io/educabr2/planning/integration-educabR.md) and chime in via issue |
 
 The `planning/` folder lists everything queued for the package (roadmap,
 CRAN checklist, datasets wishlist, integration designs). Skim it before
@@ -31,7 +31,7 @@ welcome but they need:
     permission from the authors (paste correspondence in the issue).
 3.  **A bibliographic citation** added to
     `inst/dict/vocabularies/sources.yaml` (the helper
-    [`educabr_cite()`](https://mancano-tales.github.io/educabr/reference/educabr_cite.html)
+    [`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.html)
     reads from there).
 4.  **An ETL script** under `data-raw/NN_build_<dataset>.R` that takes
     the raw file, harmonises it to the canonical schema documented in

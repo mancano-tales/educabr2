@@ -3,7 +3,7 @@
 National-level (BR) Brazilian higher-education enrollment from 1907 to
 2024, harmonised across seven different primary sources. The dataset is
 consumed by
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 when `level = "superior"`. Multiple sources for the same
 `(year, network)` are kept on purpose so users can compare competing
 estimates — pass `source = "..."` to lock in a specific series.
@@ -52,7 +52,7 @@ columns are:
   enrollment from INEP, used to fix the 2000-2008 transition gap where
   the original sources excluded EAD from their nominal totals. Filtered
   out by
-  [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+  [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
   unless `include_derived = TRUE`.
 
 ## Source

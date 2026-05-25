@@ -3,7 +3,7 @@
 Long-run Brazilian mean years of schooling reconstructed by Walter &
 Kang (2023) from Censuses and household surveys. The dataset is the
 internal backing store consumed by
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md);
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md);
 end-users should call that function rather than loading this object
 directly.
 

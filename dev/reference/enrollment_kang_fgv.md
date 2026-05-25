@@ -3,7 +3,7 @@
 Long-run Brazilian school enrollment data compiled and harmonized by
 Kang, Paese & Felix (2021) and refreshed by FGV/IBRE in April 2023. The
 dataset is the internal backing store consumed by
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md);
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md);
 end-users should call that function rather than loading this object
 directly, as it applies filters, label translation, and optional
 pivoting.

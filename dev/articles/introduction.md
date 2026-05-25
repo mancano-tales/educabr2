@@ -37,7 +37,7 @@ Every transformation is auditable: each output row carries a canonical
 ``` r
 
 # From GitHub
-remotes::install_github("mancano-tales/educabr")
+remotes::install_github("mancano-tales/educabr2")
 ```
 
 ## A four-function API
@@ -202,7 +202,7 @@ ter_1980[, c("source", "value", "source_note")]
 For 1980 several sources converge on the same value (~1.38 million),
 which suggests a stabilised figure in the literature. For other years
 estimates diverge — passing `source = "..."` to
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 is the recommended way to pin down a single series for secondary
 analysis.
 
@@ -222,7 +222,7 @@ For this transition interval, **educabr2** ships **reconstructed
 totals** that combine the in-person component of each source with INEP’s
 published EAD figures. These rows carry `is_derived = TRUE` and are
 excluded from the default
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 output; pass `include_derived = TRUE` to inspect them:
 
 ``` r
@@ -415,4 +415,4 @@ To cite the package itself:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
 > Brazilian Education* (version 0.0.0.9000).
-> <https://github.com/mancano-tales/educabr>
+> <https://github.com/mancano-tales/educabr2>

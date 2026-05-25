@@ -61,7 +61,7 @@ get_schooling(
   Logical. If `TRUE`, pivots the result to wide form. For this indicator
   the effect is minimal (only one indicator column), but the parameter
   is provided for API consistency with
-  [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md).
+  [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md).
   Default `FALSE`.
 
 - lang:

@@ -19,9 +19,9 @@ educabr_cite(source_key = NULL, style = c("bibentry", "text", "bibtex"))
   `"walter_kang_2023"`). `NULL` (default) returns citations for **all**
   sources. To discover which sources contributed rows to a particular
   query, inspect the `source` column of the tibble returned by
-  [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+  [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
   or
-  [`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md).
+  [`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md).
 
 - style:
 
@@ -48,14 +48,14 @@ A `bibentry` object (default), a character vector, or a `Bibtex` object
 
 Citation metadata is read from `inst/dict/vocabularies/sources.yaml`,
 the same controlled vocabulary that backs the `source` column of
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 and
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md).
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md).
 
 ## See also
 
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md),
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md),
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md),
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md),
 [`utils::bibentry()`](https://rdrr.io/r/utils/bibentry.html),
 [`utils::toBibtex()`](https://rdrr.io/r/utils/toLatex.html).
 

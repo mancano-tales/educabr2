@@ -2,7 +2,7 @@
 
 Opens a local Shiny app that explores the data shipped by the package.
 The app consumes only the public API
-([`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md))
+([`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md))
 so any improvement to the data flows through it automatically.
 
 ## Usage

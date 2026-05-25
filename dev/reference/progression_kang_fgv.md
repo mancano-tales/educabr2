@@ -6,7 +6,7 @@ Ratio for grade 6, defined as the ratio of enrollment in grades 4-6 to
 enrollment in grades 1-3 of the old eight-year primary system), reported
 for BR and 20 federation units, 1955-2010. The dataset is the internal
 backing store consumed by
-[`get_progression()`](https://mancano-tales.github.io/educabr/dev/reference/get_progression.md).
+[`get_progression()`](https://mancano-tales.github.io/educabr2/dev/reference/get_progression.md).
 
 ## Usage
 

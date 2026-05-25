@@ -13,9 +13,9 @@ or to `enrollment_kang_fgv` / `schooling_kang_fgv` contents.
   pattern triggered an `R CMD check --as-cran` WARNING about invalid
   file names in `inst/doc`, which had been breaking the CI matrix since
   the dashboard-tabs push.
-  [`vignette("introduction", "educabr2")`](https://mancano-tales.github.io/educabr/dev/articles/introduction.md)
+  [`vignette("introduction", "educabr2")`](https://mancano-tales.github.io/educabr2/dev/articles/introduction.md)
   and
-  [`vignette("introducao-pt", "educabr2")`](https://mancano-tales.github.io/educabr/dev/articles/introducao-pt.md)
+  [`vignette("introducao-pt", "educabr2")`](https://mancano-tales.github.io/educabr2/dev/articles/introducao-pt.md)
   are now the canonical entry points (the pkgdown URLs follow the new
   names too).
 - `inst/WORDLIST` extended with the new technical vocabulary (`GDR6`,
@@ -36,14 +36,14 @@ or to `enrollment_kang_fgv` / `schooling_kang_fgv` contents.
 
 ### New public API
 
-- [`get_expenditure()`](https://mancano-tales.github.io/educabr/dev/reference/get_expenditure.md)
+- [`get_expenditure()`](https://mancano-tales.github.io/educabr2/dev/reference/get_expenditure.md)
   — long-format access to the public-expenditure series. Supports
   indicator aliases (`"share_gdp"`, `"per_student"`,
   `"double_ratio_es_ef1"`, `"double_ratio_es_ef_em"`).
-- [`get_progression()`](https://mancano-tales.github.io/educabr/dev/reference/get_progression.md)
+- [`get_progression()`](https://mancano-tales.github.io/educabr2/dev/reference/get_progression.md)
   — long-format access to grade-progression indicators. Supports
   indicator alias `"gdr6"`. Filters by `geo_level` / `geo` like
-  [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md).
+  [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md).
 
 ### Schema additions (additive only)
 
@@ -59,9 +59,9 @@ or to `enrollment_kang_fgv` / `schooling_kang_fgv` contents.
 
 - Two new navbar tabs: **Public Expenditure** and **Grade Progression**,
   built on top of
-  [`get_expenditure()`](https://mancano-tales.github.io/educabr/dev/reference/get_expenditure.md)
+  [`get_expenditure()`](https://mancano-tales.github.io/educabr2/dev/reference/get_expenditure.md)
   and
-  [`get_progression()`](https://mancano-tales.github.io/educabr/dev/reference/get_progression.md).
+  [`get_progression()`](https://mancano-tales.github.io/educabr2/dev/reference/get_progression.md).
   Each tab carries the standard educabr2 layout — sidebar filters,
   series plot (plotly), table view (DT), source cards, CSV download, and
   a “View R code” modal that emits a reproducible educabr2 + ggplot2 +
@@ -69,14 +69,14 @@ or to `enrollment_kang_fgv` / `schooling_kang_fgv` contents.
 
 ### Other changes
 
-- [`list_sources()`](https://mancano-tales.github.io/educabr/dev/reference/list_sources.md)
+- [`list_sources()`](https://mancano-tales.github.io/educabr2/dev/reference/list_sources.md)
   — new helper returning a tibble of every entry in the source
   vocabulary (key, short_name, type, coverage, DOI, URL, notes).
   Discovery counterpart to
-  [`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md).
-- [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+  [`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md).
+- [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
   /
-  [`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md):
+  [`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md):
   examples now run during `R CMD check` (previously skipped with
   `@examplesIf FALSE`).
 - CI: added `windows-latest, r: 'devel'` to the R-CMD-check matrix —
@@ -114,30 +114,30 @@ Brazilian education plus a bundled Shiny dashboard.
 
 ### API
 
-- [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+- [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
   — long-format access to enrollment series with filters for `level`,
   `network`, `institution_type`, `modality`, `year`, `geo_level`/`geo`,
   `dimension`, `indicator`, `source`, `include_derived`. Returns the
   canonical schema with English labels (`lang = "en"`) or PT-BR labels
   (`lang = "pt"`).
 
-- [`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md)
+- [`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md)
   — long-format access to the mean-years-of-schooling series with
   filters for `year`, `geo_level`/`geo`, `dimension`, `source`, `lang`.
 
-- [`run_dashboard()`](https://mancano-tales.github.io/educabr/dev/reference/run_dashboard.md)
+- [`run_dashboard()`](https://mancano-tales.github.io/educabr2/dev/reference/run_dashboard.md)
   — launches the bundled Shiny dashboard locally.
 
-- [`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md)
+- [`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md)
   — builds `bibentry` objects (or APA-style prose, or BibTeX) for any of
   the harmonised data sources, driven by the controlled vocabulary in
   `inst/dict/vocabularies/sources.yaml`.
 
-- [`list_sources()`](https://mancano-tales.github.io/educabr/dev/reference/list_sources.md)
+- [`list_sources()`](https://mancano-tales.github.io/educabr2/dev/reference/list_sources.md)
   — returns a tibble describing every entry in the source vocabulary
   (key, type, temporal/geographic coverage, DOI, URL). Discovery
   counterpart to
-  [`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md).
+  [`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md).
 
 ### Dashboard
 
@@ -175,10 +175,10 @@ Brazilian education plus a bundled Shiny dashboard.
 ### Tests
 
 - 9 tests for
-  [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+  [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
   (core filters and pivots).
 - 9 tests for
-  [`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md).
+  [`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md).
 - 7 tests for the tertiary-specific arguments (`institution_type`,
   `modality`, `include_derived`, composite source keys, loader
   normalisation of legacy datasets).

@@ -7,7 +7,7 @@ library(educabr2)
 
 > Versão em português da vignette principal. Para a versão em inglês e
 > canônica, veja
-> **[`vignette("introduction", "educabr2")`](https://mancano-tales.github.io/educabr/dev/articles/introduction.md)**.
+> **[`vignette("introduction", "educabr2")`](https://mancano-tales.github.io/educabr2/dev/articles/introduction.md)**.
 
 ## Sobre o pacote
 
@@ -42,7 +42,7 @@ referência exata da tabela ou capítulo de origem.
 ``` r
 
 # via GitHub
-remotes::install_github("mancano-tales/educabr")
+remotes::install_github("mancano-tales/educabr2")
 ```
 
 ## API em quatro funções
@@ -208,7 +208,7 @@ es_1980[, c("source", "value", "source_note")]
 Note que para 1980 várias fontes convergem para o mesmo valor (~1,38
 milhão), o que sugere uma estimativa estabilizada na literatura. Para
 outros anos as estimativas divergem — passar `source = "..."` no
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 é o caminho recomendado para fixar uma série única em análises
 secundárias.
 
@@ -229,7 +229,7 @@ Para esse intervalo de transição, o `educabr2` disponibiliza **totais
 reconstruídos** (*reconstructed enrollment totals*) que somam o
 componente presencial de cada fonte ao EAD publicado pelo INEP. Essas
 linhas têm `is_derived = TRUE` e ficam fora do resultado padrão de
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md);
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md);
 para inspecioná-las basta passar `include_derived = TRUE`:
 
 ``` r
@@ -392,9 +392,9 @@ entre exploração no painel e análise reprodutível em script.
 
 A lista completa de fontes com DOIs e links está na vignette principal
 em inglês
-([`vignette("introduction", "educabr2")`](https://mancano-tales.github.io/educabr/dev/articles/introduction.md)).
+([`vignette("introduction", "educabr2")`](https://mancano-tales.github.io/educabr2/dev/articles/introduction.md)).
 Para citar o pacote em si:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
 > Brazilian Education* (versão 0.0.0.9000).
-> <https://github.com/mancano-tales/educabr>
+> <https://github.com/mancano-tales/educabr2>

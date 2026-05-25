@@ -5,11 +5,11 @@ vocabulary (`inst/dict/vocabularies/sources.yaml`). One row per source
 key, carrying short name, type, temporal/geographic coverage, DOI, URL
 and free-text notes. Use this to discover which sources are available
 before calling
-[`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md)
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md)
 or filtering
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
 /
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md)
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md)
 with the `source` argument.
 
 ## Usage
@@ -25,9 +25,9 @@ A `tibble` with columns:
 - `key`:
 
   the source key used in the `source` column of
-  [`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md)
+  [`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md)
   /
-  [`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md)
+  [`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md)
   output.
 
 - `short_name`:
@@ -63,9 +63,9 @@ A `tibble` with columns:
 
 ## See also
 
-[`educabr_cite()`](https://mancano-tales.github.io/educabr/dev/reference/educabr_cite.md),
-[`get_enrollment()`](https://mancano-tales.github.io/educabr/dev/reference/get_enrollment.md),
-[`get_schooling()`](https://mancano-tales.github.io/educabr/dev/reference/get_schooling.md).
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md),
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_enrollment.md),
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/dev/reference/get_schooling.md).
 
 ## Examples
 
