@@ -60,6 +60,7 @@ reference:
   - get_schooling
   - get_expenditure
   - get_progression
+  - get_attainment
 
 - title: Citations and provenance
   desc: >
@@ -88,6 +89,7 @@ reference:
   - schooling_kang_fgv
   - expenditure_kang_fgv
   - progression_kang_fgv
+  - lee_lee_2016
 
 - title: Package
   contents: educabr2-package
