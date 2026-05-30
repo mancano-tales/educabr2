@@ -8,8 +8,10 @@
 # `progression_kang_fgv` saved to data/progression_kang_fgv.rda.
 #
 # Coverage:
-#   * BR national, 1955-2010
-#   * UF level (all 27 federation units), 1955-2010
+#   * BR national, 1955-2010 (gaps at 1988-1990 and 1994 due to grade-
+#     structure transitions in the official statistics)
+#   * UF level, 20 of 27 federation units, 1955-2010.
+#     Missing UFs (not in Kang's source): AC, AP, DF, MS, RO, RR, TO.
 #
 # Run from the package root:
 #   source("data-raw/05_build_progression_kang_fgv.R")
