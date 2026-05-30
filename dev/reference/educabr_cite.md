@@ -160,6 +160,12 @@ educabr_cite()
 #> paper, 2023.].” doi:10.1080/20780389.2024.2417268
 #> <https://doi.org/10.1080/20780389.2024.2417268>.
 #> <https://doi.org/10.1080/20780389.2024.2417268>.
+#> 
+#> (2016). “Lee, J.-W., & Lee, H. (2016). Human capital in the long run.
+#> Journal of Development Economics, 122, 147–169.”
+#> doi:10.1016/j.jdeveco.2016.05.006
+#> <https://doi.org/10.1016/j.jdeveco.2016.05.006>.
+#> <https://barrolee.github.io/BarroLeeDataSet/DataLeeLee.html>.
 
 # Typical workflow: query, then cite only what you used
 if (FALSE) { # \dontrun{

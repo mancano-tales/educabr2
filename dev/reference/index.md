@@ -13,6 +13,8 @@ the canonical tidy-long schema documented in `inst/dict/schema.yaml`.
   : Brazilian public expenditure on education
 - [`get_progression()`](https://mancano-tales.github.io/educabr2/dev/reference/get_progression.md)
   : Brazilian grade-progression series
+- [`get_attainment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_attainment.md)
+  : Comparative international educational-attainment series
 
 ## Citations and provenance
 
@@ -51,6 +53,8 @@ filters and translates labels.
 - [`progression_kang_fgv`](https://mancano-tales.github.io/educabr2/dev/reference/progression_kang_fgv.md)
   : Grade-progression series (GDR6) — Kang, Paese & Felix 2021
   compilation
+- [`lee_lee_2016`](https://mancano-tales.github.io/educabr2/dev/reference/lee_lee_2016.md)
+  : Comparative international educational attainment — Lee & Lee 2016
 
 ## Package
 

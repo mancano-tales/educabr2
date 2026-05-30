@@ -124,7 +124,7 @@ provenance. Includes a bundled Shiny dashboard.
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>The package exposes five top-level data-access functions plus the bundled dashboard launcher.</p>
+<p>The package exposes six top-level data-access functions, two utility functions, and the bundled dashboard launcher.</p>
 <div class="section level3">
 <h3 id="get_enrollment--school-enrollment">
 <code>get_enrollment()</code> — school enrollment<a class="anchor" aria-label="anchor" href="#get_enrollment--school-enrollment"></a>
@@ -207,10 +207,45 @@ provenance. Includes a bundled Shiny dashboard.
 <span>                year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1980</span>, <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="get_attainment--comparative-international-attainment">
+<code>get_attainment()</code> — comparative international attainment<a class="anchor" aria-label="anchor" href="#get_attainment--comparative-international-attainment"></a>
+</h3>
+<blockquote>
+<p>Share of the population aged 15–64 who completed at least a given education level. <em>Accumulated stock, cross-country perspective.</em> Source: Lee &amp; Lee (2016), ~111 countries, 1870–2010.</p>
+</blockquote>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Tertiary completion in Brazil over time</span></span>
+<span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"tertiary"</span>, geo <span class="op">=</span> <span class="st">"BRA"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Primary completion across Latin America, post-1950</span></span>
+<span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"primary"</span>,</span>
+<span>               geo   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BRA"</span>, <span class="st">"ARG"</span>, <span class="st">"CHL"</span>, <span class="st">"MEX"</span>, <span class="st">"URY"</span><span class="op">)</span>,</span>
+<span>               year  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1950</span>, <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compare male vs female secondary completion in Brazil</span></span>
+<span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"secondary"</span>, geo <span class="op">=</span> <span class="st">"BRA"</span>, dimension <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="list_sources--list-bundled-data-sources">
+<code>list_sources()</code> — list bundled data sources<a class="anchor" aria-label="anchor" href="#list_sources--list-bundled-data-sources"></a>
+</h3>
+<blockquote>
+<p>Returns a tibble describing every source in the controlled vocabulary, with short name, type, temporal/geographic coverage, DOI and URL.</p>
+</blockquote>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">src</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_sources.html">list_sources</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filter to academic papers only</span></span>
+<span><span class="va">src</span><span class="op">[</span><span class="va">src</span><span class="op">$</span><span class="va">type</span> <span class="op">==</span> <span class="st">"academic"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"key"</span>, <span class="st">"short_name"</span>, <span class="st">"doi"</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Sources that include UF-level coverage</span></span>
+<span><span class="va">src</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"UF"</span>, <span class="va">src</span><span class="op">$</span><span class="va">geo</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"key"</span>, <span class="st">"year_start"</span>, <span class="st">"year_end"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="run_dashboard--interactive-shiny-app">
 <code>run_dashboard()</code> — interactive Shiny app<a class="anchor" aria-label="anchor" href="#run_dashboard--interactive-shiny-app"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Five navbar tabs:</p>
 <ul>
@@ -232,7 +267,7 @@ provenance. Includes a bundled Shiny dashboard.
 <div class="section level2">
 <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h2>
-<p>Five internal datasets back the public functions:</p>
+<p>Six internal datasets back the public functions:</p>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="23%">
@@ -277,6 +312,12 @@ provenance. Includes a bundled Shiny dashboard.
 <td>BR + 20 UFs, GDR6 grade-progression ratio, 1955–2010</td>
 <td>Kang, Paese &amp; Felix (2021)</td>
 </tr>
+<tr>
+<td><code>lee_lee_2016</code></td>
+<td align="right">~29,000</td>
+<td>111 countries, primary/secondary/tertiary attainment, 1870–2010 (5-year steps), by sex</td>
+<td>Lee &amp; Lee (2016)</td>
+</tr>
 </tbody>
 </table>
 <p>End users should call the <code>get_*()</code> functions. The datasets are exposed for inspection but the public API normalises schema differences, applies per-source filters and translates labels.</p>
@@ -299,7 +340,7 @@ provenance. Includes a bundled Shiny dashboard.
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>Cite both the package (for the harmonisation work) and the <strong>originating sources</strong> for any data you actually use. The <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> helper builds APA / BibTeX entries for every bundled source:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr2"</span><span class="op">)</span>                              <span class="co"># cite the package</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="st">"kang_paese_felix_2021"</span><span class="op">)</span>            <span class="co"># cite one source</span></span>
@@ -310,7 +351,6 @@ provenance. Includes a bundled Shiny dashboard.
 <span><span class="co"># Typical workflow — query first, then cite only what you used</span></span>
 <span><span class="va">d</span>   <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"fundamental"</span>, indicator <span class="op">=</span> <span class="st">"rate"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">source</span><span class="op">)</span>, style <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span></code></pre></div>
-<p>A Zenodo DOI will accompany the first tagged release.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -323,6 +363,27 @@ provenance. Includes a bundled Shiny dashboard.
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
 <p>Code under <strong>GPL (&gt;= 3)</strong>. Data redistributed under <strong>CC BY 4.0</strong> (except where the original source imposes restrictions; see <a href="inst/dict/vocabularies/sources.yaml"><code>inst/dict/vocabularies/sources.yaml</code></a>). See <a href="LICENSE.html"><code>LICENSE.md</code></a>.</p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="como-citar--how-to-cite">Como citar / How to cite<a class="anchor" aria-label="anchor" href="#como-citar--how-to-cite"></a>
+</h2>
+<p>Se você usar este pacote em uma publicação, cite tanto o pacote quanto as fontes originais dos dados que utilizou. Para obter a entrada BibTeX ou a referência APA do pacote, use:</p>
+<p>If you use this package in a publication, cite both the package and the original data sources you drew from. To get the BibTeX entry or APA reference for the package, run:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr2"</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Referência sugerida / Suggested citation:</strong></p>
+<p>Mançano, T., Alcantara, V., &amp; Damião, A. (2026). <em>educabr2: Harmonized Historical Series on Brazilian Education</em> (R package version 0.1.0.9000). GitHub. <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
+<p><strong>BibTeX:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="va">@Manual</span>{<span class="ot">educabr2</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="dt">title</span>  = {educabr2: Harmonized Historical Series on Brazilian Education},</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="dt">author</span> = {Tales Mançano and Victor Alcantara and Artur Damião},</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="dt">note</span>   = {R package version 0.1.0.9000},</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="dt">url</span>    = {https://github.com/mancano-tales/educabr2},</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>}</span></code></pre></div>
+<p>Cite also the <strong>originating sources</strong> for any data you actually use. The <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> helper builds APA / BibTeX entries for every bundled source (see <a href="#citation">Citation</a> above).</p>
+<p>Um DOI Zenodo acompanhará o primeiro lançamento marcado com uma <em>tag</em> de versão. / A Zenodo DOI will accompany the first tagged release.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

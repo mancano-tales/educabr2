@@ -55,8 +55,8 @@ remotes::install_github("mancano-tales/educabr2")
 
 ## Usage
 
-The package exposes five top-level data-access functions plus the
-bundled dashboard launcher.
+The package exposes six top-level data-access functions, two utility
+functions, and the bundled dashboard launcher.
 
 ### `get_enrollment()` — school enrollment
 
@@ -139,6 +139,42 @@ get_progression(geo_level = "UF",
                 year = c(1980, 2010))
 ```
 
+### `get_attainment()` — comparative international attainment
+
+> Share of the population aged 15–64 who completed at least a given
+> education level. *Accumulated stock, cross-country perspective.*
+> Source: Lee & Lee (2016), ~111 countries, 1870–2010.
+
+``` r
+
+# Tertiary completion in Brazil over time
+get_attainment(level = "tertiary", geo = "BRA")
+
+# Primary completion across Latin America, post-1950
+get_attainment(level = "primary",
+               geo   = c("BRA", "ARG", "CHL", "MEX", "URY"),
+               year  = c(1950, 2010))
+
+# Compare male vs female secondary completion in Brazil
+get_attainment(level = "secondary", geo = "BRA", dimension = "sex")
+```
+
+### `list_sources()` — list bundled data sources
+
+> Returns a tibble describing every source in the controlled vocabulary,
+> with short name, type, temporal/geographic coverage, DOI and URL.
+
+``` r
+
+src <- list_sources()
+
+# Filter to academic papers only
+src[src$type == "academic", c("key", "short_name", "doi")]
+
+# Sources that include UF-level coverage
+src[grepl("UF", src$geo), c("key", "year_start", "year_end")]
+```
+
 ### `run_dashboard()` — interactive Shiny app
 
 ``` r
@@ -170,7 +206,7 @@ reproduce the interactive chart locally.
 
 ## Datasets
 
-Five internal datasets back the public functions:
+Six internal datasets back the public functions:
 
 | Dataset | Rows | Coverage | Source(s) |
 |----|---:|----|----|
@@ -179,6 +215,7 @@ Five internal datasets back the public functions:
 | `schooling_kang_fgv` | 2,287 | BR + region + UF, mean years of schooling, 1925–2015, with race and sex breakdowns | Walter & Kang (2024) |
 | `expenditure_kang_fgv` | 1,170 | BR, public expenditure on education (% GDP, per-student, “double ratios”), 1933–2010 | Kang & Menetrier (2024) |
 | `progression_kang_fgv` | 1,090 | BR + 20 UFs, GDR6 grade-progression ratio, 1955–2010 | Kang, Paese & Felix (2021) |
+| `lee_lee_2016` | ~29,000 | 111 countries, primary/secondary/tertiary attainment, 1870–2010 (5-year steps), by sex | Lee & Lee (2016) |
 
 End users should call the `get_*()` functions. The datasets are exposed
 for inspection but the public API normalises schema differences, applies
@@ -238,8 +275,6 @@ d   <- get_enrollment(level = "fundamental", indicator = "rate")
 educabr_cite(unique(d$source), style = "text")
 ```
 
-A Zenodo DOI will accompany the first tagged release.
-
 ------------------------------------------------------------------------
 
 ## Contributing
@@ -258,6 +293,49 @@ Code under **GPL (\>= 3)**. Data redistributed under **CC BY 4.0**
 See
 [`LICENSE.md`](https://mancano-tales.github.io/educabr2/dev/LICENSE.md).
 
+------------------------------------------------------------------------
+
+## Como citar / How to cite
+
+Se você usar este pacote em uma publicação, cite tanto o pacote quanto
+as fontes originais dos dados que utilizou. Para obter a entrada BibTeX
+ou a referência APA do pacote, use:
+
+If you use this package in a publication, cite both the package and the
+original data sources you drew from. To get the BibTeX entry or APA
+reference for the package, run:
+
+``` r
+
+citation("educabr2")
+```
+
+**Referência sugerida / Suggested citation:**
+
+Mançano, T., Alcantara, V., & Damião, A. (2026). *educabr2: Harmonized
+Historical Series on Brazilian Education* (R package version
+0.1.0.9000). GitHub. <https://github.com/mancano-tales/educabr2>
+
+**BibTeX:**
+
+``` bibtex
+@Manual{educabr2,
+  title  = {educabr2: Harmonized Historical Series on Brazilian Education},
+  author = {Tales Mançano and Victor Alcantara and Artur Damião},
+  year   = {2026},
+  note   = {R package version 0.1.0.9000},
+  url    = {https://github.com/mancano-tales/educabr2},
+}
+```
+
+Cite also the **originating sources** for any data you actually use. The
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/dev/reference/educabr_cite.md)
+helper builds APA / BibTeX entries for every bundled source (see
+[Citation](#citation) above).
+
+Um DOI Zenodo acompanhará o primeiro lançamento marcado com uma *tag* de
+versão. / A Zenodo DOI will accompany the first tagged release.
+
 # Package index
 
 ## Data access
@@ -273,6 +351,8 @@ the canonical tidy-long schema documented in `inst/dict/schema.yaml`.
   : Brazilian public expenditure on education
 - [`get_progression()`](https://mancano-tales.github.io/educabr2/dev/reference/get_progression.md)
   : Brazilian grade-progression series
+- [`get_attainment()`](https://mancano-tales.github.io/educabr2/dev/reference/get_attainment.md)
+  : Comparative international educational-attainment series
 
 ## Citations and provenance
 
@@ -311,6 +391,8 @@ filters and translates labels.
 - [`progression_kang_fgv`](https://mancano-tales.github.io/educabr2/dev/reference/progression_kang_fgv.md)
   : Grade-progression series (GDR6) — Kang, Paese & Felix 2021
   compilation
+- [`lee_lee_2016`](https://mancano-tales.github.io/educabr2/dev/reference/lee_lee_2016.md)
+  : Comparative international educational attainment — Lee & Lee 2016
 
 ## Package
 

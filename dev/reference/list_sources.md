@@ -84,7 +84,7 @@ head(src)
 
 # Filter to academic papers only
 src[src$type == "academic", c("key", "short_name", "doi")]
-#> # A tibble: 6 × 3
+#> # A tibble: 7 × 3
 #>   key                       short_name                     doi                  
 #>   <chr>                     <chr>                          <chr>                
 #> 1 paglayan_2022             Paglayan                       10.7910/DVN/LKE1WQ   
@@ -93,6 +93,7 @@ src[src$type == "academic", c("key", "short_name", "doi")]
 #> 4 kang_menetrier_comim_2024 Kang, Menetrier & Comim (2024) 10.1017/S02126109240…
 #> 5 durham_2005               Durham (2005)                  NA                   
 #> 6 walter_kang_2023          Walter & Kang (2024)           10.1080/20780389.202…
+#> 7 lee_lee_2016              Lee & Lee (2016)               10.1016/j.jdeveco.20…
 
 # Sources that include UF-level coverage
 src[grepl("UF", src$geo), c("key", "year_start", "year_end")]
