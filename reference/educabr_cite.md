@@ -171,9 +171,8 @@ educabr_cite()
 #> <https://barrolee.github.io/BarroLeeDataSet/DataLeeLee.html>.
 
 # Typical workflow: query, then cite only what you used
-if (FALSE) { # \dontrun{
 d   <- get_enrollment(level = "fundamental", indicator = "rate")
 src <- unique(d$source)
 educabr_cite(src, style = "text")
-} # }
+#> [1] "(2021). “Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late\nand unequal: Enrolments and retention in Brazilian education,\n1933-2010. Revista de Historia Económica / Journal of Iberian and Latin\nAmerican Economic History, 39(2), 191–218.”\ndoi:10.1017/S0212610921000112\n<https://doi.org/10.1017/S0212610921000112>.\n<https://doi.org/10.1017/S0212610921000112>."
 ```

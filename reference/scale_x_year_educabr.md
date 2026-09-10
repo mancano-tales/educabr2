@@ -40,7 +40,7 @@ always four-digit years.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 library(ggplot2)
 library(educabr2)
 
@@ -51,5 +51,6 @@ ggplot(df, aes(x = year, y = value, colour = source)) +
   geom_line() +
   scale_x_year_educabr(df$year) +
   theme_educabr()
-} # }
+
+# }
 ```

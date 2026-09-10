@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,15 +46,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0.9000" id="educabr2-0109000-development-version">educabr2 0.1.0.9000 (development version)<a class="anchor" aria-label="anchor" href="#educabr2-0109000-development-version"></a></h2>
-<p>CRAN-readiness polish plus two new themes (public expenditure and grade-progression). No breaking changes to existing <code>get_*()</code> signatures or to <code>enrollment_kang_fgv</code> / <code>schooling_kang_fgv</code> contents.</p>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="educabr2-010">educabr2 0.1.0<a class="anchor" aria-label="anchor" href="#educabr2-010"></a></h2>
+<p>First CRAN release. Six themes (enrollment, tertiary enrollment, schooling, expenditure, progression, attainment), the visualization toolkit (<code><a href="../reference/theme_educabr.html">theme_educabr()</a></code>, Okabe-Ito scales, <code><a href="../reference/scale_x_year_educabr.html">scale_x_year_educabr()</a></code>), citation helpers (<code><a href="../reference/educabr_cite.html">educabr_cite()</a></code>, <code><a href="../reference/list_sources.html">list_sources()</a></code>), and the bundled Shiny dashboard.</p>
 <div class="section level3">
-<h3 id="overview-tab-and-documentation-corrections-0-1-0-9000">Overview tab and documentation corrections (2026-07-12)<a class="anchor" aria-label="anchor" href="#overview-tab-and-documentation-corrections-0-1-0-9000"></a></h3>
+<h3 id="overview-tab-and-documentation-corrections-0-1-0">Overview tab and documentation corrections (2026-07-12)<a class="anchor" aria-label="anchor" href="#overview-tab-and-documentation-corrections-0-1-0"></a></h3>
 <ul><li>New curated <strong>Overview</strong> tab in the Shiny dashboard, now the landing tab: four fixed story charts for non-technical audiences (secular expansion 1908-2024; public vs. private networks with the 1997/2005 regulatory landmarks annotated; the EAD share reaching majority in 2024; the 1983 gender reversal in schooling), with active titles, direct line labels, and no controls. The exploratory apparatus remains in the six thematic tabs.</li>
 <li>Documentation correction (fact-checked against Walter &amp; Kang 2024, Economic History of Developing Regions): the mean-years-of-schooling series refers to the population <strong>aged 15 to 64</strong> (not 25+); <code><a href="../reference/get_schooling.html">get_schooling()</a></code> and <code>schooling_kang_fgv</code> docs updated, and the state/region coverage (1950-2015) made explicit.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="ci-and-documentation-convergence-second-round-0-1-0-9000">CI and documentation convergence (2026-07-11, second round)<a class="anchor" aria-label="anchor" href="#ci-and-documentation-convergence-second-round-0-1-0-9000"></a></h3>
+<h3 id="ci-and-documentation-convergence-second-round-0-1-0">CI and documentation convergence (2026-07-11, second round)<a class="anchor" aria-label="anchor" href="#ci-and-documentation-convergence-second-round-0-1-0"></a></h3>
 <ul><li>Fixed the failing CI: <code>showtext</code> and <code>sysfonts</code> (used conditionally by <code><a href="../reference/theme_educabr.html">theme_educabr()</a></code>) are now declared in Suggests; <code>ggplot2</code> was promoted from Suggests to Imports (the visualization components are public API); the <code>%+replace%</code> operator is now namespace-qualified.</li>
 <li>Fixed the failing pkgdown build: the visualization functions (<code>theme_educabr</code>, <code>scale_educabr</code>, <code>scale_x_year_educabr</code>) are now listed in a “Visualization” group of the reference index.</li>
 <li>New vignette <code>visualization.Rmd</code> documenting the plotting toolkit (theme, <code>plot_titles</code>, Okabe-Ito scales, historical year axis, palette reference).</li>
@@ -62,48 +62,48 @@
 <li>README: six dashboard tabs, deduplication hierarchy and validation notes, fixed moved/404 URLs; dashboard About now points to the documentation site and mentions the visualization system and citation helpers.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="visualization-system-0-1-0-9000">Visualization system (2026-07-11)<a class="anchor" aria-label="anchor" href="#visualization-system-0-1-0-9000"></a></h3>
+<h3 id="visualization-system-0-1-0">Visualization system (2026-07-11)<a class="anchor" aria-label="anchor" href="#visualization-system-0-1-0"></a></h3>
 <ul><li>New exported scale <code><a href="../reference/scale_x_year_educabr.html">scale_x_year_educabr()</a></code> — a year-axis scale for the century-long historical series that are the norm in the package. Break spacing follows the span of the data plotted (every 20 years beyond six decades, every 10 years for spans of 25–60 years, <code><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty()</a></code> breaks below that); the first and last year present in the series are always labelled, and grid breaks that would collide with those extremes are dropped (tolerance proportional to the span).</li>
 <li>The Shiny dashboard (live charts and the “View R code” snippets) now uses the package’s own visualization system — <code><a href="../reference/theme_educabr.html">theme_educabr()</a></code>, <code><a href="../reference/scale_educabr.html">scale_colour_educabr()</a></code> (Okabe-Ito, applied where the colour dimension has at most 8 levels), and <code><a href="../reference/scale_x_year_educabr.html">scale_x_year_educabr()</a></code> — instead of <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal()</a></code> and generic pretty breaks.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="source-key-aliases-0-1-0-9000">Source-key aliases (2026-07-11)<a class="anchor" aria-label="anchor" href="#source-key-aliases-0-1-0-9000"></a></h3>
+<h3 id="source-key-aliases-0-1-0">Source-key aliases (2026-07-11)<a class="anchor" aria-label="anchor" href="#source-key-aliases-0-1-0"></a></h3>
 <ul><li>
 <code>walter_kang_2024</code> is now accepted everywhere <code>walter_kang_2023</code> is (all <code>get_*()</code> source filters and <code><a href="../reference/educabr_cite.html">educabr_cite()</a></code>), resolving to the same source. The peer-reviewed article is Walter &amp; Kang (2024, <em>Economic History of Developing Regions</em>); the legacy <code>2023</code> key — minted when the source was still an FGV-IBRE working paper — remains the key carried by the data until the physical rename planned in <code>planning/cran-checklist.md</code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="ci--build-0-1-0-9000">CI / build<a class="anchor" aria-label="anchor" href="#ci--build-0-1-0-9000"></a></h3>
+<h3 id="ci--build-0-1-0">CI / build<a class="anchor" aria-label="anchor" href="#ci--build-0-1-0"></a></h3>
 <ul><li>Renamed vignettes from <code>01-introduction.Rmd</code> / <code>02-introducao-pt.Rmd</code> to <code>introduction.Rmd</code> / <code>introducao-pt.Rmd</code> — the numeric-prefix pattern triggered an <code>R CMD check --as-cran</code> WARNING about invalid file names in <code>inst/doc</code>, which had been breaking the CI matrix since the dashboard-tabs push. <code><a href="../articles/introduction.html">vignette("introduction", "educabr2")</a></code> and <code><a href="../articles/introducao-pt.html">vignette("introducao-pt", "educabr2")</a></code> are now the canonical entry points (the pkgdown URLs follow the new names too).</li>
 <li>
 <code>inst/WORDLIST</code> extended with the new technical vocabulary (<code>GDR6</code>, <code>regressivity</code>, <code>Unitless</code>, …) and the PT-BR terms introduced in Case 5 / Case 6 of the vignettes — spell check is clean again.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-themes--datasets-0-1-0-9000">New themes &amp; datasets<a class="anchor" aria-label="anchor" href="#new-themes--datasets-0-1-0-9000"></a></h3>
+<h3 id="new-themes--datasets-0-1-0">New themes &amp; datasets<a class="anchor" aria-label="anchor" href="#new-themes--datasets-0-1-0"></a></h3>
 <ul><li>
 <code>expenditure_kang_fgv</code> — 1,170 rows. Public expenditure on education, Brazil, 1933-2010 (Kang &amp; Menetrier 2024). Four indicators: <code>expenditure_share_gdp</code>, <code>expenditure_per_student_pct_gdp_pc</code>, and the two “double ratio” indicators of fiscal regressivity (<code>expenditure_double_ratio_es_ef1</code>, <code>expenditure_double_ratio_es_ef_em</code>).</li>
 <li>
 <code>progression_kang_fgv</code> — 1,090 rows. Grade-progression ratio GDR6 (enrollment in grades 4-6 / grades 1-3 of the old eight-year primary system), BR + 20 UFs, 1955-2010 (Kang, Paese &amp; Felix 2021).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-public-api-0-1-0-9000">New public API<a class="anchor" aria-label="anchor" href="#new-public-api-0-1-0-9000"></a></h3>
+<h3 id="new-public-api-0-1-0">New public API<a class="anchor" aria-label="anchor" href="#new-public-api-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/get_expenditure.html">get_expenditure()</a></code> — long-format access to the public-expenditure series. Supports indicator aliases (<code>"share_gdp"</code>, <code>"per_student"</code>, <code>"double_ratio_es_ef1"</code>, <code>"double_ratio_es_ef_em"</code>).</li>
 <li>
 <code><a href="../reference/get_progression.html">get_progression()</a></code> — long-format access to grade-progression indicators. Supports indicator alias <code>"gdr6"</code>. Filters by <code>geo_level</code> / <code>geo</code> like <code><a href="../reference/get_enrollment.html">get_enrollment()</a></code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="schema-additions-additive-only-0-1-0-9000">Schema additions (additive only)<a class="anchor" aria-label="anchor" href="#schema-additions-additive-only-0-1-0-9000"></a></h3>
+<h3 id="schema-additions-additive-only-0-1-0">Schema additions (additive only)<a class="anchor" aria-label="anchor" href="#schema-additions-additive-only-0-1-0"></a></h3>
 <ul><li>New <code>level</code> value: <code>fundamental_medio</code> (EF + EM combined; appears in expenditure data).</li>
 <li>New <code>unit</code> values: <code>percent_gdp</code> and <code>percent_gdp_per_capita</code> (alongside the existing <code>percent</code>, <code>ratio</code>, <code>years</code>, <code>count</code>).</li>
 <li>
 <code>inst/dict/vocabularies/indicators.yaml</code> gains entries for every indicator emitted by the new datasets, with PT-BR translations surfaced in <code>inst/dict/i18n.yaml</code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="dashboard-0-1-0-9000">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard-0-1-0-9000"></a></h3>
+<h3 id="dashboard-0-1-0">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard-0-1-0"></a></h3>
 <ul><li>Two new navbar tabs: <strong>Public Expenditure</strong> and <strong>Grade Progression</strong>, built on top of <code><a href="../reference/get_expenditure.html">get_expenditure()</a></code> and <code><a href="../reference/get_progression.html">get_progression()</a></code>. Each tab carries the standard educabr2 layout — sidebar filters, series plot (plotly), table view (DT), source cards, CSV download, and a “View R code” modal that emits a reproducible educabr2 + ggplot2 + plotly snippet.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="other-changes-0-1-0-9000">Other changes<a class="anchor" aria-label="anchor" href="#other-changes-0-1-0-9000"></a></h3>
+<h3 id="other-changes-0-1-0">Other changes<a class="anchor" aria-label="anchor" href="#other-changes-0-1-0"></a></h3>
 <ul><li>
 <code><a href="../reference/list_sources.html">list_sources()</a></code> — new helper returning a tibble of every entry in the source vocabulary (key, short_name, type, coverage, DOI, URL, notes). Discovery counterpart to <code><a href="../reference/educabr_cite.html">educabr_cite()</a></code>.</li>
 <li>
@@ -113,7 +113,7 @@
 </ul></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="educabr2-010">educabr2 0.1.0<a class="anchor" aria-label="anchor" href="#educabr2-010"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="educabr2-010-1">educabr2 0.1.0<a class="anchor" aria-label="anchor" href="#educabr2-010-1"></a></h2>
 <p>First public release. Initial set of harmonised long-run series on Brazilian education plus a bundled Shiny dashboard.</p>
 <div class="section level3">
 <h3 id="datasets-0-1-0">Datasets<a class="anchor" aria-label="anchor" href="#datasets-0-1-0"></a></h3>
@@ -130,7 +130,7 @@
 <li><p><code><a href="../reference/list_sources.html">list_sources()</a></code> — returns a tibble describing every entry in the source vocabulary (key, type, temporal/geographic coverage, DOI, URL). Discovery counterpart to <code><a href="../reference/educabr_cite.html">educabr_cite()</a></code>.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="dashboard-0-1-0">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard-0-1-0"></a></h3>
+<h3 id="dashboard-0-1-0-1">Dashboard<a class="anchor" aria-label="anchor" href="#dashboard-0-1-0-1"></a></h3>
 <ul><li>Three-theme navbar (English UI): Enrollment, Tertiary Education, Educational Attainment.</li>
 <li>Tertiary Education tab features multi-source comparison with interaction-based colour palette (each source × modality combination gets a unique colour shade), shape-by-source, and linetype-by-modality encoding.</li>
 <li>“View R code” button on every tab generates a self-contained, copy-pasteable R snippet (educabr2 + ggplot2) that reproduces the current chart locally.</li>

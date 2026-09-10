@@ -66,7 +66,7 @@ figures and presentations that are friendly to Colorblind people*.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 library(ggplot2)
 library(educabr2)
 
@@ -79,10 +79,12 @@ ggplot(df, aes(x = year, y = value, fill = dim_race)) +
   theme_educabr(plot_titles = TRUE) +
   scale_fill_educabr()
 
+
 # Academic plot without titles inside the image
 ggplot(df, aes(x = year, y = value, fill = dim_race)) +
   geom_area() +
   theme_educabr(plot_titles = FALSE) +
   scale_fill_educabr()
-} # }
+
+# }
 ```
