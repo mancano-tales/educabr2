@@ -1,9 +1,10 @@
-# educabr2 0.1.0.9000 (development version)
+# educabr2 0.1.0
 
-CRAN-readiness polish plus two new themes (public expenditure and
-grade-progression). No breaking changes to existing `get_*()`
-signatures or to `enrollment_kang_fgv` / `schooling_kang_fgv`
-contents.
+First CRAN release. Six themes (enrollment, tertiary enrollment,
+schooling, expenditure, progression, attainment), the visualization
+toolkit (`theme_educabr()`, Okabe-Ito scales, `scale_x_year_educabr()`),
+citation helpers (`educabr_cite()`, `list_sources()`), and the bundled
+Shiny dashboard.
 
 ## Overview tab and documentation corrections (2026-07-12)
 

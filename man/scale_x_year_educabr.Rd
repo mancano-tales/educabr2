@@ -29,7 +29,7 @@ Break spacing by span of the series: more than 60 years, every 20 years;
 are always four-digit years.
 }
 \examples{
-\dontrun{
+\donttest{
 library(ggplot2)
 library(educabr2)
 

@@ -40,7 +40,7 @@ are missing, the theme falls back gracefully to the system's default \code{"seri
 }
 
 \examples{
-\dontrun{
+\donttest{
 library(ggplot2)
 library(educabr2)
 

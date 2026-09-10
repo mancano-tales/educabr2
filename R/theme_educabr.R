@@ -37,7 +37,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(ggplot2)
 #' library(educabr2)
 #'
@@ -165,7 +165,7 @@ theme_educabr <- function(base_size = 9.5, base_family = "serif", plot_titles = 
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(ggplot2)
 #' library(educabr2)
 #'

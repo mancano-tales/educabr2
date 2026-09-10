@@ -55,11 +55,9 @@ educabr_cite("paglayan_2022", style = "bibtex")
 educabr_cite()
 
 # Typical workflow: query, then cite only what you used
-\dontrun{
 d   <- get_enrollment(level = "fundamental", indicator = "rate")
 src <- unique(d$source)
 educabr_cite(src, style = "text")
-}
 
 }
 \seealso{
