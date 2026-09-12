@@ -352,8 +352,7 @@ sources are:
 * Durham, E. R. (2005). Educação superior, pública e privada. In
   Schwartzman (ed.), *Os desafios da educação no Brasil*, pp. 191-233.
 * Maduro Junior, P. R. R. M. (2007). *Taxas de matrícula e gastos em
-  educação no Brasil* [MSc dissertation, FGV/EPGE].
-  [hdl:10438/110](https://hdl.handle.net/10438/110)
+  educação no Brasil* [MSc dissertation, FGV/EPGE, hdl:10438/110].
 * IBGE (2007). *Estatísticas do Século XX*.
   [seculoxx.ibge.gov.br](https://seculoxx.ibge.gov.br/)
 * INEP/MEC. *Sinopse Estatística da Educação Superior* (1995-2008).
