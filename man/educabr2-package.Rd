@@ -27,6 +27,17 @@ first user-facing functions — \code{get_enrollment()} and \code{get_schooling(
 for the v0.2–v0.4 milestones. See \code{NEWS.md} once released.
 }
 
+\section{Related work}{
+
+\code{educabr2} ships a curated, static long-run panel — not a live
+connection to INEP. For current-year microdata (IDEB, ENEM, Censo
+Escolar, SAEB, and other INEP indicators fetched and cached on
+demand), see \href{https://github.com/SidneyBissoli/educabR}{educabR}
+instead. The two packages are complementary — organised along
+different axes (by theme and historical series here; by official
+source there) — and can be used side by side.
+}
+
 \seealso{
 Useful links:
 \itemize{

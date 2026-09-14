@@ -18,5 +18,14 @@
 #' — and the bundled Shiny dashboard (`run_dashboard()`) are scheduled
 #' for the v0.2–v0.4 milestones. See `NEWS.md` once released.
 #'
+#' @section Related work:
+#' `educabr2` ships a curated, static long-run panel — not a live
+#' connection to INEP. For current-year microdata (IDEB, ENEM, Censo
+#' Escolar, SAEB, and other INEP indicators fetched and cached on
+#' demand), see [educabR](https://github.com/SidneyBissoli/educabR)
+#' instead. The two packages are complementary — organised along
+#' different axes (by theme and historical series here; by official
+#' source there) — and can be used side by side.
+#'
 #' @keywords internal
 "_PACKAGE"
