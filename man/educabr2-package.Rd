@@ -58,7 +58,6 @@ Authors:
 Other contributors:
 \itemize{
   \item Victor Alcantara \email{victorgalcantara@usp.br} (\href{https://orcid.org/0000-0001-8846-9652}{ORCID}) [contributor]
-  \item Artur Damião \email{artur.cardoso@usp.br} (\href{https://orcid.org/0000-0002-8628-1653}{ORCID}) [contributor]
 }
 
 }

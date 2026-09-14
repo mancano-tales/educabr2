@@ -1,6 +1,6 @@
 Package: educabr2
 Title: Harmonized Historical Series on Brazilian Education
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Tales", "Mançano",
            email = "mancano.tales@usp.br",
@@ -9,11 +9,7 @@ Authors@R: c(
     person("Victor", "Alcantara",
            email = "victorgalcantara@usp.br",
            role = "ctb",
-           comment = c(ORCID = "0000-0001-8846-9652")),
-    person("Artur", "Damião",
-           email = "artur.cardoso@usp.br",
-           role = "ctb",
-           comment = c(ORCID = "0000-0002-8628-1653")))
+           comment = c(ORCID = "0000-0001-8846-9652")))
 Description: Provides curated long-run series on Brazilian formal education,
     with a focus on school enrollment, educational attainment (years of
     schooling, literacy, level completion), public expenditure and grade
