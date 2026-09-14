@@ -95,6 +95,6 @@ cross-country comparisons:
 
 - `level = "tertiary"` value = lhc
 
-By construction, primary ≥ secondary ≥ tertiary for any (country, year,
-sex). To recover Lee & Lee's original non-cumulative values, subtract:
-e.g. "primary only (highest)" = `primary - secondary`.
+By construction, primary \>= secondary \>= tertiary for any (country,
+year, sex). To recover Lee & Lee's original non-cumulative values,
+subtract: e.g. "primary only (highest)" = `primary - secondary`.

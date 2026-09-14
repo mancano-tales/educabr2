@@ -8,22 +8,19 @@
 - **Victor Alcantara**. Contributor.
   [](https://orcid.org/0000-0001-8846-9652)
 
-- **Artur Damião**. Contributor.
-  [](https://orcid.org/0000-0002-8628-1653)
-
 ## Citation
 
 Source:
 [`DESCRIPTION`](https://github.com/mancano-tales/educabr2/blob/main/DESCRIPTION)
 
 Mançano T (2026). *educabr2: Harmonized Historical Series on Brazilian
-Education*. R package version 0.1.0,
+Education*. R package version 0.1.1,
 <https://github.com/mancano-tales/educabr2>.
 
     @Manual{,
       title = {educabr2: Harmonized Historical Series on Brazilian Education},
       author = {Tales Mançano},
       year = {2026},
-      note = {R package version 0.1.0},
+      note = {R package version 0.1.1},
       url = {https://github.com/mancano-tales/educabr2},
     }

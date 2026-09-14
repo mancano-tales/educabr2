@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,15 @@
       <small>Source: <a href="https://github.com/mancano-tales/educabr2/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.1" id="educabr2-011">educabr2 0.1.1<a class="anchor" aria-label="anchor" href="#educabr2-011"></a></h2>
+<p>CRAN resubmission after the 0.1.0 incoming pre-test.</p>
+<ul><li>Fixed the PDF manual build: two roxygen comments used the Unicode glyph <code>≥</code> (U+2265), which R’s Rd-to-LaTeX converter cannot map; replaced with ASCII <code>&gt;=</code>. A new test (<code>test-rd-latex-safe.R</code>) scans the Rd database for LaTeX-unsafe math glyphs so this cannot recur.</li>
+<li>README now links the licence to the GPL-3 page instead of the <code>LICENSE.md</code> file that <code>.Rbuildignore</code> excludes from the tarball (CRAN flagged the dangling relative URI).</li>
+<li>Authorship: Artur Damião is no longer listed as a contributor; the README citation block was updated accordingly.</li>
+<li>
+<code>DESCRIPTION</code> now cites the four academic compilations in CRAN’s <code>authors (year) &lt;doi:...&gt;</code> form, and the <code>enrollment_kang_fgv</code> help page points to the correct DOI for Kang, Paese &amp; Felix (2021).</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="educabr2-010">educabr2 0.1.0<a class="anchor" aria-label="anchor" href="#educabr2-010"></a></h2>
 <p>First CRAN release. Six themes (enrollment, tertiary enrollment, schooling, expenditure, progression, attainment), the visualization toolkit (<code><a href="../reference/theme_educabr.html">theme_educabr()</a></code>, Okabe-Ito scales, <code><a href="../reference/scale_x_year_educabr.html">scale_x_year_educabr()</a></code>), citation helpers (<code><a href="../reference/educabr_cite.html">educabr_cite()</a></code>, <code><a href="../reference/list_sources.html">list_sources()</a></code>), and the bundled Shiny dashboard.</p>

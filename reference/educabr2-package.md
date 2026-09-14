@@ -59,6 +59,3 @@ Other contributors:
 
 - Victor Alcantara <victorgalcantara@usp.br>
   ([ORCID](https://orcid.org/0000-0001-8846-9652)) \[contributor\]
-
-- Artur Damião <artur.cardoso@usp.br>
-  ([ORCID](https://orcid.org/0000-0002-8628-1653)) \[contributor\]

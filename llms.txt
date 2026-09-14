@@ -5,7 +5,7 @@
 > heterogeneous official and academic sources.
 
 [![License: GPL (\>=
-3)](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://mancano-tales.github.io/educabr2/LICENSE.md)
+3)](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![R-CMD-check](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr2/)
 [![Lifecycle:
@@ -404,7 +404,7 @@ licence — before submitting a PR.
 Code under **GPL (\>= 3)**. Data redistributed under **CC BY 4.0**
 (except where the original source imposes restrictions; see
 [`inst/dict/vocabularies/sources.yaml`](https://mancano-tales.github.io/educabr2/inst/dict/vocabularies/sources.yaml)).
-See [`LICENSE.md`](https://mancano-tales.github.io/educabr2/LICENSE.md).
+See the [GPL-3 licence text](https://www.gnu.org/licenses/gpl-3.0.html).
 
 ------------------------------------------------------------------------
 
@@ -425,18 +425,18 @@ citation("educabr2")
 
 **Referência sugerida / Suggested citation:**
 
-Mançano, T., Alcantara, V., & Damião, A. (2026). *educabr2: Harmonized
-Historical Series on Brazilian Education* (R package version
-0.1.0.9000). GitHub. <https://github.com/mancano-tales/educabr2>
+Mançano, T., & Alcantara, V. (2026). *educabr2: Harmonized Historical
+Series on Brazilian Education* (R package version 0.1.1). GitHub.
+<https://github.com/mancano-tales/educabr2>
 
 **BibTeX:**
 
 ``` bibtex
 @Manual{educabr2,
   title  = {educabr2: Harmonized Historical Series on Brazilian Education},
-  author = {Tales Mançano and Victor Alcantara and Artur Damião},
+  author = {Tales Mançano and Victor Alcantara},
   year   = {2026},
-  note   = {R package version 0.1.0.9000},
+  note   = {R package version 0.1.1},
   url    = {https://github.com/mancano-tales/educabr2},
 }
 ```

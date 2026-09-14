@@ -1,5 +1,22 @@
 # Changelog
 
+## educabr2 0.1.1
+
+CRAN resubmission after the 0.1.0 incoming pre-test.
+
+- Fixed the PDF manual build: two roxygen comments used the Unicode
+  glyph `≥` (U+2265), which R’s Rd-to-LaTeX converter cannot map;
+  replaced with ASCII `>=`. A new test (`test-rd-latex-safe.R`) scans
+  the Rd database for LaTeX-unsafe math glyphs so this cannot recur.
+- README now links the licence to the GPL-3 page instead of the
+  `LICENSE.md` file that `.Rbuildignore` excludes from the tarball (CRAN
+  flagged the dangling relative URI).
+- Authorship: Artur Damião is no longer listed as a contributor; the
+  README citation block was updated accordingly.
+- `DESCRIPTION` now cites the four academic compilations in CRAN’s
+  `authors (year) <doi:...>` form, and the `enrollment_kang_fgv` help
+  page points to the correct DOI for Kang, Paese & Felix (2021).
+
 ## educabr2 0.1.0
 
 First CRAN release. Six themes (enrollment, tertiary enrollment,

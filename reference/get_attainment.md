@@ -85,7 +85,8 @@ publish the data in non-cumulative form ("highest attained level =
 primary/secondary/tertiary"); the bundled dataset sums the upper
 categories so that, for any (country, year, sex):
 
-- `level = "primary"` ≥ `level = "secondary"` ≥ `level = "tertiary"`.
+- `level = "primary"` \>= `level = "secondary"` \>=
+  `level = "tertiary"`.
 
 This matches the conventional "share of adults who reached at least X"
 reported in comparative work.
