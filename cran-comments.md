@@ -27,16 +27,20 @@ and NOTEs. Changes in response:
 
 ## Test environments
 
-* Local Windows 11, R 4.6.0 (release), `R CMD check --as-cran` with
-  the PDF manual — 0 errors, 0 warnings, 0 notes
-* GitHub Actions:
+* Local Windows 11, R 4.6.0 (release): `R CMD build` +
+  `R CMD check --as-cran` on the tarball, PDF manual built with TinyTeX
+  — 0 errors, 0 warnings, 1 note ("New submission")
+* GitHub Actions (all with `--no-manual`):
   - ubuntu-latest (devel, release, oldrel-1)
   - macos-latest (release)
   - windows-latest (devel, release)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
+
+* "New submission" (CRAN incoming feasibility). The same check will
+  also list the proper-noun spellings discussed above.
 
 ## Reverse dependencies
 
