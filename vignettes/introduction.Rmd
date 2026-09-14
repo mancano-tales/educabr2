@@ -385,5 +385,5 @@ the package (for the harmonization) and the original compilations
 To cite the package itself:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (version 0.1.0).
+> Brazilian Education* (version `r packageVersion("educabr2")`).
 > <https://github.com/mancano-tales/educabr2>

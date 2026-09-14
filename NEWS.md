@@ -9,8 +9,11 @@ CRAN resubmission after the 0.1.0 incoming pre-test.
 * README now links the licence to the GPL-3 page instead of the
   `LICENSE.md` file that `.Rbuildignore` excludes from the tarball
   (CRAN flagged the dangling relative URI).
-* Authorship: Artur Damião is no longer listed as a contributor;
-  `citation("educabr2")` and the README citation block were updated.
+* Authorship: Artur Damião is no longer listed as a contributor; the
+  README citation block was updated accordingly.
+* `DESCRIPTION` now cites the four academic compilations in CRAN's
+  `authors (year) <doi:...>` form, and the `enrollment_kang_fgv` help
+  page points to the correct DOI for Kang, Paese & Felix (2021).
 
 # educabr2 0.1.0
 

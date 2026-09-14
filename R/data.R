@@ -54,10 +54,10 @@
 #' that schema every time it is rebuilt (see
 #' `data-raw/01_build_enrollment_kang_fgv.R`).
 #'
-#' @source Kang, T., Paese, A., & Felix, R. (2021). Late and Unequal:
-#'   Historical Enrollment Rates in Brazil, 1871–2010. *Revista de
-#'   Historia Económica*, 39(2), 191–218.
-#'   \doi{10.1017/S0212610920000099}.
+#' @source Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and
+#'   unequal: Enrolments and retention in Brazilian education, 1933-2010.
+#'   *Revista de Historia Económica*, 39(2), 191–218.
+#'   \doi{10.1017/S0212610921000112}.
 #'   Data compilation: FGV/IBRE (April 2023 revision).
 #'   ETL script: `data-raw/01_build_enrollment_kang_fgv.R`.
 "enrollment_kang_fgv"

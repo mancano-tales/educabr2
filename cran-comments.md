@@ -9,19 +9,21 @@ and NOTEs. Changes in response:
   the Rd-to-LaTeX converter cannot map. Replaced with ASCII `>=` in the
   roxygen sources; a regression test now scans the Rd database for
   LaTeX-unsafe math glyphs. `R CMD Rd2pdf` and `R CMD check --as-cran`
-  (with manual) now pass locally.
+  (with manual) now pass locally. This also clears the Debian NOTE about
+  the leftover `educabr2-manual.tex`.
 * **Invalid file URI `LICENSE.md` from `README.md` (NOTE).** The README
   now links to <https://www.gnu.org/licenses/gpl-3.0.html>; the local
   `LICENSE.md` is excluded from the tarball by `.Rbuildignore`.
-* **Non-standard file `educabr2-manual.tex` (NOTE, Debian).** Left
-  behind by the failed manual build; resolved by the fix above.
 * **Possibly misspelled words in DESCRIPTION (NOTE).** All flagged words
   are proper nouns: Brazilian statistical sources and institutions
   (Censo Escolar, PNAD, Censo Demográfico, Anuário Estatístico, IBGE,
-  INEP, CENSUP, FGV, IBRE) and author surnames (Kang). The Windows
-  flavour additionally reports fragments ("fico", "rio", "stico") that
-  are the same accented words split at the non-ASCII character.
-* Authorship: one contributor was removed at his own request.
+  INEP, CENSUP) and author surnames (Kang, Paese, Menetrier). The
+  Windows flavour additionally reports fragments ("fico", "rio",
+  "stico") that are the same accented words split at the non-ASCII
+  character.
+* `DESCRIPTION` now gives the academic sources in the
+  `authors (year) <doi:...>` form.
+* `Authors@R`: contributor list updated (one `ctb` entry removed).
 
 ## Test environments
 
