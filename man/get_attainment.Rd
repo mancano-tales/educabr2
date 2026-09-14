@@ -69,7 +69,7 @@ publish the data in non-cumulative form ("highest attained level =
 primary/secondary/tertiary"); the bundled dataset sums the upper
 categories so that, for any (country, year, sex):
 \itemize{
-\item \code{level = "primary"} ≥ \code{level = "secondary"} ≥ \code{level = "tertiary"}.
+\item \code{level = "primary"} >= \code{level = "secondary"} >= \code{level = "tertiary"}.
 }
 
 This matches the conventional "share of adults who reached at least
