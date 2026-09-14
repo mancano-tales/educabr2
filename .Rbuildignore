@@ -23,3 +23,5 @@
 ^CLAUDE\.md$
 ^rename_package\.py$
 ^rename_repo_refs\.py$
+^inst/dashboard/manifest\.json$
+^inst/dashboard/rsconnect$
