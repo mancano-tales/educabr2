@@ -425,8 +425,8 @@ citation("educabr2")
 
 **Referência sugerida / Suggested citation:**
 
-Mançano, T., & Alcantara, V. (2026). *educabr2: Harmonized Historical
-Series on Brazilian Education* (R package version 0.1.1). GitHub.
+Mançano, T. (2026). *educabr2: Harmonized Historical Series on Brazilian
+Education* (R package version 0.1.1). GitHub.
 <https://github.com/mancano-tales/educabr2>
 
 **BibTeX:**
@@ -434,7 +434,7 @@ Series on Brazilian Education* (R package version 0.1.1). GitHub.
 ``` bibtex
 @Manual{educabr2,
   title  = {educabr2: Harmonized Historical Series on Brazilian Education},
-  author = {Tales Mançano and Victor Alcantara},
+  author = {Tales Mançano},
   year   = {2026},
   note   = {R package version 0.1.1},
   url    = {https://github.com/mancano-tales/educabr2},
