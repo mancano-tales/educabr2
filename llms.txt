@@ -353,6 +353,13 @@ which organises access **by official source** (`get_ideb()`,
 historical series**: single indicators compiled across multiple sources
 over long time spans.
 
+In practice: need **current-year microdata** (IDEB, ENEM, Censo Escolar,
+SAEB, and other INEP indicators fetched and cached on demand)? Use
+`educabR`. Need a **harmonised long-run series** with explicit per-row
+provenance, going back decades before INEP’s own microdata exists? Use
+`educabr2`. The two are designed to be used side by side, not as
+alternatives to each other.
+
 Design inspirations: [`geobr`](https://github.com/ipea/geobr) (coherent
 function family),
 [`PNADCperiods`](https://cran.r-project.org/package=PNADCperiods)

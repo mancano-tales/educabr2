@@ -378,6 +378,7 @@ provenance. Includes a bundled Shiny dashboard.
 <h2 id="related-work">Related work<a class="anchor" aria-label="anchor" href="#related-work"></a>
 </h2>
 <p><code>educabr2</code> is complementary to <a href="https://github.com/SidneyBissoli/educabR" class="external-link"><code>educabR</code></a> (Sidney Bissoli), which organises access <strong>by official source</strong> (<code>get_ideb()</code>, <code>get_enem()</code>, <code>get_censo_escolar()</code>, …). Here the axis is <strong>by theme and historical series</strong>: single indicators compiled across multiple sources over long time spans.</p>
+<p>In practice: need <strong>current-year microdata</strong> (IDEB, ENEM, Censo Escolar, SAEB, and other INEP indicators fetched and cached on demand)? Use <code>educabR</code>. Need a <strong>harmonised long-run series</strong> with explicit per-row provenance, going back decades before INEP’s own microdata exists? Use <code>educabr2</code>. The two are designed to be used side by side, not as alternatives to each other.</p>
 <p>Design inspirations: <a href="https://github.com/ipea/geobr" class="external-link"><code>geobr</code></a> (coherent function family), <a href="https://cran.r-project.org/package=PNADCperiods" class="external-link"><code>PNADCperiods</code></a> (embedded dashboard + methodological delivery), and the <a href="https://github.com/ipea/brverse" class="external-link"><code>brverse</code></a> ecosystem.</p>
 <hr>
 </div>
