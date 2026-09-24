@@ -81,9 +81,9 @@ A tibble in the canonical educabr2 long schema (see
 
 The indicator is the **cumulative** share of the population aged 15–64
 that has completed at least the level indicated by `level`. Lee & Lee
-publish the data in non-cumulative form ("highest attained level =
-primary/secondary/tertiary"); the bundled dataset sums the upper
-categories so that, for any (country, year, sex):
+publish the data in non-cumulative form (share by highest level
+attended, each with a "completed" subset); the bundled dataset combines
+them so that, for any (country, year, sex):
 
 - `level = "primary"` \>= `level = "secondary"` \>=
   `level = "tertiary"`.
@@ -127,16 +127,16 @@ get_attainment(level = "primary",
 #> # A tibble: 65 × 12
 #>     year geo_level geo_code geo_name  level   dim_sex age_group indicator  value
 #>    <int> <chr>     <chr>    <chr>     <chr>   <chr>   <chr>     <chr>      <dbl>
-#>  1  1950 country   ARG      Argentina primary total   15-64     attainmen…  45.0
-#>  2  1955 country   ARG      Argentina primary total   15-64     attainmen…  49.8
-#>  3  1960 country   ARG      Argentina primary total   15-64     attainmen…  57.0
-#>  4  1965 country   ARG      Argentina primary total   15-64     attainmen…  62.1
-#>  5  1970 country   ARG      Argentina primary total   15-64     attainmen…  69.3
-#>  6  1975 country   ARG      Argentina primary total   15-64     attainmen…  78.6
-#>  7  1980 country   ARG      Argentina primary total   15-64     attainmen…  86.9
-#>  8  1985 country   ARG      Argentina primary total   15-64     attainmen…  96.6
-#>  9  1990 country   ARG      Argentina primary total   15-64     attainmen… 105. 
-#> 10  1995 country   ARG      Argentina primary total   15-64     attainmen… 112. 
+#>  1  1950 country   ARG      Argentina primary total   15-64     attainmen…  40.3
+#>  2  1955 country   ARG      Argentina primary total   15-64     attainmen…  43.4
+#>  3  1960 country   ARG      Argentina primary total   15-64     attainmen…  48.3
+#>  4  1965 country   ARG      Argentina primary total   15-64     attainmen…  51.7
+#>  5  1970 country   ARG      Argentina primary total   15-64     attainmen…  56.4
+#>  6  1975 country   ARG      Argentina primary total   15-64     attainmen…  62.9
+#>  7  1980 country   ARG      Argentina primary total   15-64     attainmen…  68.0
+#>  8  1985 country   ARG      Argentina primary total   15-64     attainmen…  74.4
+#>  9  1990 country   ARG      Argentina primary total   15-64     attainmen…  79.3
+#> 10  1995 country   ARG      Argentina primary total   15-64     attainmen…  84.0
 #> # ℹ 55 more rows
 #> # ℹ 3 more variables: unit <chr>, source <chr>, source_note <chr>
 
@@ -145,16 +145,16 @@ get_attainment(level = "secondary", geo = "BRA", dimension = "sex")
 #> # A tibble: 58 × 12
 #>     year geo_level geo_code geo_name level    dim_sex age_group indicator  value
 #>    <int> <chr>     <chr>    <chr>    <chr>    <chr>   <chr>     <chr>      <dbl>
-#>  1  1870 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0370
-#>  2  1875 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0379
-#>  3  1880 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0393
-#>  4  1885 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0413
-#>  5  1890 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0440
-#>  6  1895 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0476
-#>  7  1900 country   BRA      Brazil   seconda… female  15-64     attainme… 0.208 
-#>  8  1905 country   BRA      Brazil   seconda… female  15-64     attainme… 0.304 
-#>  9  1910 country   BRA      Brazil   seconda… female  15-64     attainme… 0.714 
-#> 10  1915 country   BRA      Brazil   seconda… female  15-64     attainme… 0.737 
+#>  1  1870 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0267
+#>  2  1875 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0276
+#>  3  1880 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0290
+#>  4  1885 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0310
+#>  5  1890 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0337
+#>  6  1895 country   BRA      Brazil   seconda… female  15-64     attainme… 0.0373
+#>  7  1900 country   BRA      Brazil   seconda… female  15-64     attainme… 0.198 
+#>  8  1905 country   BRA      Brazil   seconda… female  15-64     attainme… 0.292 
+#>  9  1910 country   BRA      Brazil   seconda… female  15-64     attainme… 0.694 
+#> 10  1915 country   BRA      Brazil   seconda… female  15-64     attainme… 0.711 
 #> # ℹ 48 more rows
 #> # ℹ 3 more variables: unit <chr>, source <chr>, source_note <chr>
 ```

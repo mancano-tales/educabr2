@@ -15,7 +15,7 @@ attainment back to the 19th century."><meta property="og:image" content="https:/
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,9 +138,9 @@ English regardless — they come from the upstream source.</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The indicator is the <strong>cumulative</strong> share of the population aged 15–64
 that has completed at least the level indicated by <code>level</code>. Lee &amp; Lee
-publish the data in non-cumulative form ("highest attained level =
-primary/secondary/tertiary"); the bundled dataset sums the upper
-categories so that, for any (country, year, sex):</p><ul><li><p><code>level = "primary"</code> &gt;= <code>level = "secondary"</code> &gt;= <code>level = "tertiary"</code>.</p></li>
+publish the data in non-cumulative form (share by highest level
+attended, each with a "completed" subset); the bundled dataset
+combines them so that, for any (country, year, sex):</p><ul><li><p><code>level = "primary"</code> &gt;= <code>level = "secondary"</code> &gt;= <code>level = "tertiary"</code>.</p></li>
 </ul><p>This matches the conventional "share of adults who reached at least
 X" reported in comparative work.</p>
 <p>Coverage is comparative-international: ISCED-style <code>primary</code> /
@@ -177,16 +177,16 @@ definitions differ.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 65 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year geo_level geo_code geo_name  level   dim_sex age_group indicator  value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>950 country   ARG      Argentina primary total   15-64     attainmen…  45.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>955 country   ARG      Argentina primary total   15-64     attainmen…  49.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>960 country   ARG      Argentina primary total   15-64     attainmen…  57.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>965 country   ARG      Argentina primary total   15-64     attainmen…  62.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>970 country   ARG      Argentina primary total   15-64     attainmen…  69.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">1</span>975 country   ARG      Argentina primary total   15-64     attainmen…  78.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">1</span>980 country   ARG      Argentina primary total   15-64     attainmen…  86.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">1</span>985 country   ARG      Argentina primary total   15-64     attainmen…  96.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">1</span>990 country   ARG      Argentina primary total   15-64     attainmen… 105. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">1</span>995 country   ARG      Argentina primary total   15-64     attainmen… 112. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>950 country   ARG      Argentina primary total   15-64     attainmen…  40.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>955 country   ARG      Argentina primary total   15-64     attainmen…  43.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>960 country   ARG      Argentina primary total   15-64     attainmen…  48.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>965 country   ARG      Argentina primary total   15-64     attainmen…  51.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>970 country   ARG      Argentina primary total   15-64     attainmen…  56.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">1</span>975 country   ARG      Argentina primary total   15-64     attainmen…  62.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">1</span>980 country   ARG      Argentina primary total   15-64     attainmen…  68.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">1</span>985 country   ARG      Argentina primary total   15-64     attainmen…  74.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">1</span>990 country   ARG      Argentina primary total   15-64     attainmen…  79.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">1</span>995 country   ARG      Argentina primary total   15-64     attainmen…  84.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 55 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: unit &lt;chr&gt;, source &lt;chr&gt;, source_note &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
@@ -195,16 +195,16 @@ definitions differ.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year geo_level geo_code geo_name level    dim_sex age_group indicator  value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>870 country   BRA      Brazil   seconda… female  15-64     attainme… 0.037<span style="text-decoration: underline;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>875 country   BRA      Brazil   seconda… female  15-64     attainme… 0.037<span style="text-decoration: underline;">9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>880 country   BRA      Brazil   seconda… female  15-64     attainme… 0.039<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>885 country   BRA      Brazil   seconda… female  15-64     attainme… 0.041<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>890 country   BRA      Brazil   seconda… female  15-64     attainme… 0.044<span style="text-decoration: underline;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">1</span>895 country   BRA      Brazil   seconda… female  15-64     attainme… 0.047<span style="text-decoration: underline;">6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">1</span>900 country   BRA      Brazil   seconda… female  15-64     attainme… 0.208 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">1</span>905 country   BRA      Brazil   seconda… female  15-64     attainme… 0.304 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">1</span>910 country   BRA      Brazil   seconda… female  15-64     attainme… 0.714 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">1</span>915 country   BRA      Brazil   seconda… female  15-64     attainme… 0.737 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>870 country   BRA      Brazil   seconda… female  15-64     attainme… 0.026<span style="text-decoration: underline;">7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>875 country   BRA      Brazil   seconda… female  15-64     attainme… 0.027<span style="text-decoration: underline;">6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>880 country   BRA      Brazil   seconda… female  15-64     attainme… 0.029<span style="text-decoration: underline;">0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>885 country   BRA      Brazil   seconda… female  15-64     attainme… 0.031<span style="text-decoration: underline;">0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>890 country   BRA      Brazil   seconda… female  15-64     attainme… 0.033<span style="text-decoration: underline;">7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">1</span>895 country   BRA      Brazil   seconda… female  15-64     attainme… 0.037<span style="text-decoration: underline;">3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">1</span>900 country   BRA      Brazil   seconda… female  15-64     attainme… 0.198 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">1</span>905 country   BRA      Brazil   seconda… female  15-64     attainme… 0.292 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">1</span>910 country   BRA      Brazil   seconda… female  15-64     attainme… 0.694 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">1</span>915 country   BRA      Brazil   seconda… female  15-64     attainme… 0.711 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 48 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: unit &lt;chr&gt;, source &lt;chr&gt;, source_note &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>

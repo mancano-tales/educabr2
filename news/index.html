@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,25 @@
       <small>Source: <a href="https://github.com/mancano-tales/educabr2/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.2" id="educabr2-012">educabr2 0.1.2<a class="anchor" aria-label="anchor" href="#educabr2-012"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-1-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-2"></a></h3>
+<ul><li>
+<code>lee_lee_2016</code> (and therefore <code><a href="../reference/get_attainment.html">get_attainment()</a></code>) overstated the primary and secondary attainment shares for every country, year and sex. The build script treated Lee &amp; Lee’s “completed” columns (<code>lpc</code>, <code>lsc</code>, <code>lhc</code>) as categories separate from the highest-level-attended shares (<code>lp</code>, <code>ls</code>, <code>lh</code>), when they are subsets of them, so completers were counted twice. Shares are now computed as primary = <code>lpc + ls + lh</code>, secondary = <code>lsc + lh</code>, tertiary = <code>lhc</code>. Tertiary values are unchanged. Some countries previously showed values above 100; all values now lie in [0, 100]. For Brazil (total, 15-64) primary in 1990/2000/2010 falls from 63.6/92.2/118.6 to 52.6/70.6/83.7, and secondary from 16.4/28.2/44.7 to 12.9/23.9/38.2.</li>
+<li>The build script now checks that <code>lu + lp + ls + lh</code> sums to 100 and that every built share is in [0, 100]; a new test asserts the bounds and that primary &gt;= secondary &gt;= tertiary.</li>
+<li>
+<code>get_enrollment(level = "superior")</code> returned every 1933-2010 value from Kang, Paese &amp; Felix (2021) twice: the series was bundled both in <code>enrollment_kang_fgv</code> and in <code>enrollment_tertiary</code>. It now lives only in <code>enrollment_kang_fgv</code>; <code>enrollment_tertiary</code> keeps Kang only as the in-person component of derived rows.</li>
+<li>Kang’s tertiary counts for 2000-2008 cover in-person enrollment only (they match INEP Sinopse’s presencial figures exactly). These rows in <code>enrollment_kang_fgv</code> now carry <code>modality = "presencial"</code> instead of <code>"total"</code>.</li>
+<li>
+<code>enrollment_tertiary</code> repeated the INEP Sinopse figures for 1999 and 2001 under two table references. The repeated rows are merged, with both references kept in <code>source_note</code>. The 2001 duplicate had halved the EAD share shown in the dashboard’s Overview tab.</li>
+<li>INEP microdata rows for 2012-2024 counted “Especial” institutions (art. 242 CF) as private. INEP’s Power BI panel counts them as public municipal. They are now moved to <code>municipal</code> and <code>publica</code>, so <code>privada = privada_lucrativa + privada_nao_lucrativa</code> holds and the microdata agree with the Power BI panel cell by cell (e.g. public enrollment in 2012 rises from 1 775 359 to 1 897 818).</li>
+<li>Durham (2005) is no longer bundled in <code>enrollment_tertiary</code>. It is a secondary source whose Table 1 does not add up as printed (public + private != total in 1945, 1960, 1965 and 2001; the 1965 total, 352 096, is more than twice every other source’s 155 781), and every year it covers is also covered by the primary sources it compiles. Derived rows built on Durham were dropped with it, and the <code>durham_2005</code> key was removed from the source vocabulary.</li>
+<li>
+<code>validate_against_schema()</code> now rejects <code>NA</code> and negative values. New tests assert that the enrollment panel has no duplicate observations and that INEP tertiary networks add up.</li>
+<li>Documentation: <code>schooling_kang_fgv</code> covers 20 UFs, not 27; the <code>enrollment_kang_fgv</code> page now lists its 16 columns and its three real source keys.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="educabr2-011">educabr2 0.1.1<a class="anchor" aria-label="anchor" href="#educabr2-011"></a></h2>
 <p>CRAN resubmission after the 0.1.0 incoming pre-test.</p>

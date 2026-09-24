@@ -234,15 +234,15 @@ per-source filters and translates labels.
 **Deduplication hierarchy.** When the same year and sector are covered
 by multiple sources, the recommended order of precedence is: INEP CENSUP
 microdata (2009–2024) → INEP statistical synopses (1995–2008) → Kang,
-Paese & Felix (1990–1994) → Maduro Junior → Durham → IBGE *Estatísticas
-do Século XX*. The most disaggregated and official source available
-always wins; all competing estimates remain in the panel for auditing.
+Paese & Felix (1990–1994) → Maduro Junior → IBGE *Estatísticas do Século
+XX*. The most disaggregated and official source available always wins;
+all competing estimates remain in the panel for auditing.
 
 **Validation.** Overlapping windows are preserved deliberately so the
 sources can be checked against each other: in 1995, for example, the
-INEP synopsis, Durham (2005) and Kang et al. (2021) all report exactly
-1,759,703 tertiary enrollments — a perfect triangulation of the academic
-reconstructions against the official record.
+INEP synopsis, Maduro Junior (2007) and Kang et al. (2021) all report
+exactly 1,759,703 tertiary enrollments — a perfect triangulation of the
+academic reconstructions against the official record.
 
 ------------------------------------------------------------------------
 

@@ -12,9 +12,9 @@ extensive set of harmonised historical series on Brazilian education
 available in analytic format:
 
 - **Tertiary (higher-education) enrollment** — 1907 to 2024, **118
-  years** of coverage, drawing on seven distinct primary sources (IBGE
-  *Statistics of the 20th Century*, Durham, Maduro Junior, Kang, INEP
-  Synopsis, INEP Microdata, and the INEP CENSUP Power BI panel).
+  years** of coverage, drawing on six distinct sources (IBGE *Statistics
+  of the 20th Century*, Maduro Junior, Kang, INEP Synopsis, INEP
+  Microdata, and the INEP CENSUP Power BI panel).
 - **Compulsory (fundamental) and upper-secondary enrollment** — 1933 to
   2010, with **race/colour** disaggregation from 1960 onwards (Kang,
   Paese & Felix 2021).
@@ -84,7 +84,7 @@ str(get_enrollment(level = "fundamental", year = 1950))
 #>  $ is_derived      : logi [1:2] FALSE FALSE
 #>  - attr(*, "educabr_meta")=List of 4
 #>   ..$ build_script   : chr "data-raw/01_build_enrollment_kang_fgv.R"
-#>   ..$ built_at       : POSIXct[1:1], format: "2026-05-18 09:38:50"
+#>   ..$ built_at       : POSIXct[1:1], format: "2026-09-24 13:26:38"
 #>   ..$ primary_sources: chr [1:4] "kang_menetrier_comim_2024" "kang_paese_felix_2021" "kang_paese_felix_2021" "kang_menetrier_2024"
 #>   ..$ raw_files      : chr [1:4] "data-raw/sources/kang_fgv_ibre_2023/1._matricula_primario_1871_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/2._matriculas_txmatriculas_porcor_1960_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/4._matricula_txmatriculas_1933_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/6._matricula_txmatriculas_estado_1955_2010_v_abril2023.xlsx"
 str(get_schooling(year = 1950))
@@ -161,13 +161,13 @@ str(get_attainment(geo = "BRA", year = 1950))
 #>  $ dim_sex    : chr [1:3] "total" "total" "total"
 #>  $ age_group  : chr [1:3] "15-64" "15-64" "15-64"
 #>  $ indicator  : chr [1:3] "attainment_share_completed" "attainment_share_completed" "attainment_share_completed"
-#>  $ value      : num [1:3] 23.611 4.345 0.519
+#>  $ value      : num [1:3] 19.979 3.826 0.519
 #>  $ unit       : chr [1:3] "percent" "percent" "percent"
 #>  $ source     : chr [1:3] "lee_lee_2016" "lee_lee_2016" "lee_lee_2016"
 #>  $ source_note: chr [1:3] "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__ "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__ "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__
 #>  - attr(*, "educabr_meta")=List of 5
 #>   ..$ build_script  : chr "data-raw/06_build_lee_lee_2016.R"
-#>   ..$ built_at      : POSIXct[1:1], format: "2026-05-25 16:54:26"
+#>   ..$ built_at      : POSIXct[1:1], format: "2026-09-24 12:45:40"
 #>   ..$ primary_source: chr "lee_lee_2016"
 #>   ..$ citation      : chr "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__
 #>   ..$ raw_files     : chr "https://barrolee.github.io/BarroLeeDataSet/LeeLee/LeeLee_v1.dta"
@@ -249,13 +249,11 @@ ter_1980 <- get_enrollment(
 )
 
 ter_1980[, c("source", "value", "source_note")]
-#> # A tibble: 4 × 3
+#> # A tibble: 2 × 3
 #>   source                  value source_note                                     
 #>   <chr>                   <dbl> <chr>                                           
 #> 1 kang_paese_felix_2021 1377286 Kang, Paese & Felix (2021). RHE 39(2):191-218. …
-#> 2 durham_2005           1377286 Durham (2005). Educação superior, pública e pri…
-#> 3 kang_paese_felix_2021 1377286 Kang, Paese & Felix (2021), RHE 39(2):191-218. …
-#> 4 maduro_junior_2007    1377286 Maduro Junior (2007). Taxas de matrícula e gast…
+#> 2 maduro_junior_2007    1377286 Maduro Junior (2007). Taxas de matrícula e gast…
 ```
 
 For 1980 several sources converge on the same value (~1.38 million),
@@ -270,8 +268,8 @@ side-by-side panel, the package’s documented **deduplication hierarchy**
 gives the recommended order of precedence for overlapping years: INEP
 CENSUP microdata (2009-2024), then the INEP statistical synopses
 (1995-2008), then Kang, Paese & Felix (1990-1994), then Maduro Junior,
-then Durham, and finally the IBGE *Statistics of the 20th Century*. The
-most disaggregated and official source available always wins.
+and finally the IBGE *Statistics of the 20th Century*. The most
+disaggregated and official source available always wins.
 
 ## Case 3 — the reconstructed totals problem (2000-2008)
 
@@ -279,7 +277,7 @@ Between 2000 and 2008 INEP began collecting distance-learning (EAD)
 enrollment in a separate CENSUP table (`tabela7.x`), but **did not add**
 it to the total of in-person enrollment published in `tabela5.x`. This
 means that headline “total” series for that interval published by Kang,
-Durham, Maduro Junior, and INEP’s own synopsis are **systematically
+Maduro Junior, and INEP’s own synopsis are **systematically
 undercounted** — by up to ~700,000 enrollments in 2008 by our reckoning.
 
 From 2009 onwards the CENSUP microdata already aggregate in-person and
@@ -304,20 +302,29 @@ recon <- get_enrollment(
 )
 
 recon[recon$is_derived, c("year", "source", "value")]
-#> # A tibble: 23 × 3
+#> # A tibble: 20 × 3
 #>     year source                                      value
 #>    <int> <chr>                                       <dbl>
-#>  1  2000 durham_2005+inep_sinopse_censup           2695927
-#>  2  2000 inep_sinopse_censup+inep_sinopse_censup   2695927
-#>  3  2000 kang_paese_felix_2021+inep_sinopse_censup 2695927
-#>  4  2000 maduro_junior_2007+inep_sinopse_censup    2695927
-#>  5  2001 durham_2005+inep_sinopse_censup           3045113
-#>  6  2001 inep_sinopse_censup+inep_sinopse_censup   3036113
-#>  7  2001 inep_sinopse_censup+inep_sinopse_censup   3036113
-#>  8  2001 kang_paese_felix_2021+inep_sinopse_censup 3036113
-#>  9  2001 maduro_junior_2007+inep_sinopse_censup    3036113
-#> 10  2003 inep_sinopse_censup+inep_sinopse_censup   3936933
-#> # ℹ 13 more rows
+#>  1  2000 inep_sinopse_censup+inep_sinopse_censup   2695927
+#>  2  2000 kang_paese_felix_2021+inep_sinopse_censup 2695927
+#>  3  2000 maduro_junior_2007+inep_sinopse_censup    2695927
+#>  4  2001 inep_sinopse_censup+inep_sinopse_censup   3036113
+#>  5  2001 kang_paese_felix_2021+inep_sinopse_censup 3036113
+#>  6  2001 maduro_junior_2007+inep_sinopse_censup    3036113
+#>  7  2003 inep_sinopse_censup+inep_sinopse_censup   3936933
+#>  8  2003 kang_paese_felix_2021+inep_sinopse_censup 3871734
+#>  9  2003 maduro_junior_2007+inep_sinopse_censup    3871734
+#> 10  2004 inep_sinopse_censup+inep_sinopse_censup   4223344
+#> 11  2004 kang_paese_felix_2021+inep_sinopse_censup 4223344
+#> 12  2004 maduro_junior_2007+inep_sinopse_censup    4223344
+#> 13  2005 inep_sinopse_censup+inep_sinopse_censup   4567798
+#> 14  2005 kang_paese_felix_2021+inep_sinopse_censup 4567798
+#> 15  2006 inep_sinopse_censup+inep_sinopse_censup   4883852
+#> 16  2006 kang_paese_felix_2021+inep_sinopse_censup 4883852
+#> 17  2007 inep_sinopse_censup+inep_sinopse_censup   5250147
+#> 18  2007 kang_paese_felix_2021+inep_sinopse_censup 5250147
+#> 19  2008 inep_sinopse_censup+inep_sinopse_censup   5808017
+#> 20  2008 kang_paese_felix_2021+inep_sinopse_censup 5808017
 ```
 
 The composite `source` key (e.g.
@@ -524,8 +531,8 @@ analysis.
 ## Sources and citation
 
 Every series carries a canonical source key (`source`) with the full
-reference catalogued in `inst/dict/vocabularies/sources.yaml`. The seven
-primary tertiary sources are:
+reference catalogued in `inst/dict/vocabularies/sources.yaml`. The
+primary sources are:
 
 - Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and
   unequal. *Revista de Historia Económica* 39(2), 191-218.
@@ -540,8 +547,6 @@ primary tertiary sources are:
   schooling in Brazil. *Economic History of Developing Regions* 39(3),
   307-336.
   [doi:10.1080/20780389.2024.2417268](https://doi.org/10.1080/20780389.2024.2417268)
-- Durham, E. R. (2005). Educação superior, pública e privada. In
-  Schwartzman (ed.), *Os desafios da educação no Brasil*, pp. 191-233.
 - Maduro Junior, P. R. R. M. (2007). *Taxas de matrícula e gastos em
   educação no Brasil* \[MSc dissertation, FGV/EPGE, hdl:10438/110\].
 - IBGE (2007). *Estatísticas do Século XX*.
@@ -570,5 +575,5 @@ archival work that produced the numbers).
 To cite the package itself:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (version 0.1.1).
+> Brazilian Education* (version 0.1.2).
 > <https://github.com/mancano-tales/educabr2>

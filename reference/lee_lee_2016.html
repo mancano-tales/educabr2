@@ -17,7 +17,7 @@ backing store consumed by get_attainment()."><meta property="og:image" content="
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,19 +130,21 @@ ETL script: <code>data-raw/06_build_lee_lee_2016.R</code>.</p>
     <h2 id="cumulative-encoding">Cumulative encoding<a class="anchor" aria-label="anchor" href="#cumulative-encoding"></a></h2>
 
 
-<p>Lee &amp; Lee publish <em>non-cumulative</em> shares (<code>lpc</code>, <code>lsc</code>, <code>lhc</code>):
-fraction of the population whose <strong>highest</strong> completed level is
-primary / secondary / tertiary. The ETL script
-(<code>data-raw/06_build_lee_lee_2016.R</code>) sums the upper categories to
-express the more conventional "share who completed at least X" used
-in cross-country comparisons:</p>
-<ul><li><p><code>level = "primary"</code> value = lpc + ls + lsc + lh + lhc</p></li>
-<li><p><code>level = "secondary"</code> value = lsc + lh + lhc</p></li>
+<p>Lee &amp; Lee follow the Barro-Lee convention: four mutually exclusive
+shares by <strong>highest level attended</strong> (<code>lu</code> no schooling, <code>lp</code>
+primary, <code>ls</code> secondary, <code>lh</code> tertiary; <code>lu + lp + ls + lh = 100</code>),
+each with a "completed" subset (<code>lpc</code> within <code>lp</code>, <code>lsc</code> within
+<code>ls</code>, <code>lhc</code> within <code>lh</code>). The ETL script
+(<code>data-raw/06_build_lee_lee_2016.R</code>) combines them into the more
+conventional "share who completed at least X" used in
+cross-country comparisons:</p>
+<ul><li><p><code>level = "primary"</code> value = lpc + ls + lh</p></li>
+<li><p><code>level = "secondary"</code> value = lsc + lh</p></li>
 <li><p><code>level = "tertiary"</code> value = lhc</p></li>
-</ul><p>By construction, primary &gt;= secondary &gt;= tertiary for any
-(country, year, sex). To recover Lee &amp; Lee's original
-non-cumulative values, subtract: e.g. "primary only (highest)"
-= <code>primary - secondary</code>.</p>
+</ul><p>By construction, 100 &gt;= primary &gt;= secondary &gt;= tertiary &gt;= 0 for
+any (country, year, sex). Versions of educabr2 before 0.1.2
+double-counted the completed subsets and overstated primary and
+secondary shares; tertiary was unaffected.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

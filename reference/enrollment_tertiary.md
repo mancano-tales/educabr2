@@ -16,7 +16,7 @@ enrollment_tertiary
 
 ## Format
 
-A tibble with approximately 1 350 rows and 16 columns matching the
+A tibble with approximately 1 200 rows and 16 columns matching the
 canonical schema (`inst/dict/schema.yaml`). The tertiary-specific
 columns are:
 
@@ -31,7 +31,9 @@ columns are:
   (`privada_particular` /
   `privada_comunitaria_confessional_filantropica` pre-2009,
   `privada_lucrativa` / `privada_nao_lucrativa` post-2009), `especial`,
-  `total`.
+  `total`. `especial` (INEP category "Especial", art. 242 CF; microdata
+  2012-2024) is an "of which" breakdown of `municipal`, following INEP's
+  own classification.
 
 - institution_type:
 
@@ -66,11 +68,11 @@ ETL: `data-raw/03_build_enrollment_tertiary.R`.
 
 - `ibge_seculo_xx` — Anuários Estatísticos 1908-1980.
 
-- `durham_2005` — Durham (2005).
-
 - `maduro_junior_2007` — Maduro Junior MSc dissertation.
 
-- `kang_paese_felix_2021` — Kang, Paese & Felix RHE paper.
+- `kang_paese_felix_2021` — only as the in-person component of derived
+  rows; the Kang series itself is in
+  [enrollment_kang_fgv](https://mancano-tales.github.io/educabr2/reference/enrollment_kang_fgv.md).
 
 - `inep_sinopse_censup` — INEP Sinopse 1995-2008.
 

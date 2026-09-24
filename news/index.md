@@ -1,5 +1,58 @@
 # Changelog
 
+## educabr2 0.1.2
+
+### Bug fixes
+
+- `lee_lee_2016` (and therefore
+  [`get_attainment()`](https://mancano-tales.github.io/educabr2/reference/get_attainment.md))
+  overstated the primary and secondary attainment shares for every
+  country, year and sex. The build script treated Lee & Lee’s
+  “completed” columns (`lpc`, `lsc`, `lhc`) as categories separate from
+  the highest-level-attended shares (`lp`, `ls`, `lh`), when they are
+  subsets of them, so completers were counted twice. Shares are now
+  computed as primary = `lpc + ls + lh`, secondary = `lsc + lh`,
+  tertiary = `lhc`. Tertiary values are unchanged. Some countries
+  previously showed values above 100; all values now lie in \[0, 100\].
+  For Brazil (total, 15-64) primary in 1990/2000/2010 falls from
+  63.6/92.2/118.6 to 52.6/70.6/83.7, and secondary from 16.4/28.2/44.7
+  to 12.9/23.9/38.2.
+- The build script now checks that `lu + lp + ls + lh` sums to 100 and
+  that every built share is in \[0, 100\]; a new test asserts the bounds
+  and that primary \>= secondary \>= tertiary.
+- `get_enrollment(level = "superior")` returned every 1933-2010 value
+  from Kang, Paese & Felix (2021) twice: the series was bundled both in
+  `enrollment_kang_fgv` and in `enrollment_tertiary`. It now lives only
+  in `enrollment_kang_fgv`; `enrollment_tertiary` keeps Kang only as the
+  in-person component of derived rows.
+- Kang’s tertiary counts for 2000-2008 cover in-person enrollment only
+  (they match INEP Sinopse’s presencial figures exactly). These rows in
+  `enrollment_kang_fgv` now carry `modality = "presencial"` instead of
+  `"total"`.
+- `enrollment_tertiary` repeated the INEP Sinopse figures for 1999 and
+  2001 under two table references. The repeated rows are merged, with
+  both references kept in `source_note`. The 2001 duplicate had halved
+  the EAD share shown in the dashboard’s Overview tab.
+- INEP microdata rows for 2012-2024 counted “Especial” institutions
+  (art. 242 CF) as private. INEP’s Power BI panel counts them as public
+  municipal. They are now moved to `municipal` and `publica`, so
+  `privada = privada_lucrativa + privada_nao_lucrativa` holds and the
+  microdata agree with the Power BI panel cell by cell (e.g. public
+  enrollment in 2012 rises from 1 775 359 to 1 897 818).
+- Durham (2005) is no longer bundled in `enrollment_tertiary`. It is a
+  secondary source whose Table 1 does not add up as printed (public +
+  private != total in 1945, 1960, 1965 and 2001; the 1965 total, 352
+  096, is more than twice every other source’s 155 781), and every year
+  it covers is also covered by the primary sources it compiles. Derived
+  rows built on Durham were dropped with it, and the `durham_2005` key
+  was removed from the source vocabulary.
+- `validate_against_schema()` now rejects `NA` and negative values. New
+  tests assert that the enrollment panel has no duplicate observations
+  and that INEP tertiary networks add up.
+- Documentation: `schooling_kang_fgv` covers 20 UFs, not 27; the
+  `enrollment_kang_fgv` page now lists its 16 columns and its three real
+  source keys.
+
 ## educabr2 0.1.1
 
 CRAN resubmission after the 0.1.0 incoming pre-test.

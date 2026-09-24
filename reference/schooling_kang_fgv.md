@@ -87,4 +87,4 @@ schooling in Brazil, 1925-2015. Economic History of Developing Regions,
 | BR — by sex              | 1925–2015 | male, female   |
 | BR — by race             | 1925–2015 | 4 categories   |
 | Macro-region (5 regiões) | 1950–2015 | —              |
-| UF (27 estados)          | 1950–2015 | —              |
+| UF (20 estados)          | 1950–2015 | —              |

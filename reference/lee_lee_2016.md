@@ -82,19 +82,21 @@ ETL script: `data-raw/06_build_lee_lee_2016.R`.
 
 ## Cumulative encoding
 
-Lee & Lee publish *non-cumulative* shares (`lpc`, `lsc`, `lhc`):
-fraction of the population whose **highest** completed level is primary
-/ secondary / tertiary. The ETL script
-(`data-raw/06_build_lee_lee_2016.R`) sums the upper categories to
-express the more conventional "share who completed at least X" used in
+Lee & Lee follow the Barro-Lee convention: four mutually exclusive
+shares by **highest level attended** (`lu` no schooling, `lp` primary,
+`ls` secondary, `lh` tertiary; `lu + lp + ls + lh = 100`), each with a
+"completed" subset (`lpc` within `lp`, `lsc` within `ls`, `lhc` within
+`lh`). The ETL script (`data-raw/06_build_lee_lee_2016.R`) combines them
+into the more conventional "share who completed at least X" used in
 cross-country comparisons:
 
-- `level = "primary"` value = lpc + ls + lsc + lh + lhc
+- `level = "primary"` value = lpc + ls + lh
 
-- `level = "secondary"` value = lsc + lh + lhc
+- `level = "secondary"` value = lsc + lh
 
 - `level = "tertiary"` value = lhc
 
-By construction, primary \>= secondary \>= tertiary for any (country,
-year, sex). To recover Lee & Lee's original non-cumulative values,
-subtract: e.g. "primary only (highest)" = `primary - secondary`.
+By construction, 100 \>= primary \>= secondary \>= tertiary \>= 0 for
+any (country, year, sex). Versions of educabr2 before 0.1.2
+double-counted the completed subsets and overstated primary and
+secondary shares; tertiary was unaffected.

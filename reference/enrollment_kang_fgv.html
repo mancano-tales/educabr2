@@ -17,7 +17,7 @@ translation, and optional pivoting."><meta property="og:image" content="https://
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@ translation, and optional pivoting.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble with 6 238 rows and 13 columns:</p><dl><dt>year</dt>
+    <p>A tibble with 6 238 rows and 16 columns (the canonical enrollment columns, including <code>institution_type</code>, <code>modality</code> and <code>is_derived</code>, which take their defaults except as noted under <code>modality</code>):</p><dl><dt>year</dt>
 <dd><p><code>integer</code>. Reference year of the observation (1871–2010).</p></dd>
 
 <dt>geo_level</dt>
@@ -119,9 +119,18 @@ indicators, which are headcounts not tied to a population bracket.</p></dd>
 <dd><p><code>character</code>. Unit of measurement: <code>"count"</code> or
 <code>"percent"</code>.</p></dd>
 
+<dt>modality</dt>
+<dd><p><code>character</code>. <code>"total"</code>, except the tertiary
+(<code>superior</code>) rows for 2000-2008, which are <code>"presencial"</code>: Kang's
+series for those years counts in-person enrollment only and matches
+INEP Sinopse's presencial figures.</p></dd>
+
 <dt>source</dt>
-<dd><p><code>character</code>. Compact source key: <code>"kang_fgv_ibre_2023"</code>.
-Full metadata in <code>inst/dict/vocabularies/sources.yaml</code>.</p></dd>
+<dd><p><code>character</code>. Compact source key, one per FGV/IBRE file:
+<code>"kang_menetrier_comim_2024"</code> (primary 1871-1932),
+<code>"kang_paese_felix_2021"</code> (all stages 1933-2010 and by race),
+<code>"kang_menetrier_2024"</code> (UF). Full metadata in
+<code>inst/dict/vocabularies/sources.yaml</code>.</p></dd>
 
 <dt>source_note</dt>
 <dd><p><code>character</code>. Inline bibliographic reference.</p></dd>

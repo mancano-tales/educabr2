@@ -16,9 +16,9 @@ conjunto mais extenso de séries históricas harmonizadas sobre educação
 brasileira disponível em formato analítico:
 
 - **Matrículas no ensino superior** — 1907 a 2024, **118 anos** de
-  cobertura, articulando sete fontes primárias distintas (IBGE
-  Estatísticas do Século XX, Durham, Maduro Junior, Kang, INEP Sinopse,
-  INEP Microdados e o painel CENSUP do INEP).
+  cobertura, articulando seis fontes distintas (IBGE Estatísticas do
+  Século XX, Maduro Junior, Kang, INEP Sinopse, INEP Microdados e o
+  painel CENSUP do INEP).
 - **Matrículas no ensino fundamental e médio** — 1933 a 2010, com
   desagregação por **cor/raça** a partir de 1960 (Kang, Paese & Felix
   2021).
@@ -78,7 +78,7 @@ str(get_enrollment(level = "fundamental", year = 1950))
 #>  $ is_derived      : logi [1:2] FALSE FALSE
 #>  - attr(*, "educabr_meta")=List of 4
 #>   ..$ build_script   : chr "data-raw/01_build_enrollment_kang_fgv.R"
-#>   ..$ built_at       : POSIXct[1:1], format: "2026-05-18 09:38:50"
+#>   ..$ built_at       : POSIXct[1:1], format: "2026-09-24 13:26:38"
 #>   ..$ primary_sources: chr [1:4] "kang_menetrier_comim_2024" "kang_paese_felix_2021" "kang_paese_felix_2021" "kang_menetrier_2024"
 #>   ..$ raw_files      : chr [1:4] "data-raw/sources/kang_fgv_ibre_2023/1._matricula_primario_1871_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/2._matriculas_txmatriculas_porcor_1960_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/4._matricula_txmatriculas_1933_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/6._matricula_txmatriculas_estado_1955_2010_v_abril2023.xlsx"
 str(get_schooling(year = 1950))
@@ -155,13 +155,13 @@ str(get_attainment(geo = "BRA", year = 1950))
 #>  $ dim_sex    : chr [1:3] "total" "total" "total"
 #>  $ age_group  : chr [1:3] "15-64" "15-64" "15-64"
 #>  $ indicator  : chr [1:3] "attainment_share_completed" "attainment_share_completed" "attainment_share_completed"
-#>  $ value      : num [1:3] 23.611 4.345 0.519
+#>  $ value      : num [1:3] 19.979 3.826 0.519
 #>  $ unit       : chr [1:3] "percent" "percent" "percent"
 #>  $ source     : chr [1:3] "lee_lee_2016" "lee_lee_2016" "lee_lee_2016"
 #>  $ source_note: chr [1:3] "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__ "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__ "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__
 #>  - attr(*, "educabr_meta")=List of 5
 #>   ..$ build_script  : chr "data-raw/06_build_lee_lee_2016.R"
-#>   ..$ built_at      : POSIXct[1:1], format: "2026-05-25 16:54:26"
+#>   ..$ built_at      : POSIXct[1:1], format: "2026-09-24 12:45:40"
 #>   ..$ primary_source: chr "lee_lee_2016"
 #>   ..$ citation      : chr "Lee, J.-W., & Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__
 #>   ..$ raw_files     : chr "https://barrolee.github.io/BarroLeeDataSet/LeeLee/LeeLee_v1.dta"
@@ -244,13 +244,11 @@ es_1980 <- get_enrollment(
 )
 
 es_1980[, c("source", "value", "source_note")]
-#> # A tibble: 4 × 3
+#> # A tibble: 2 × 3
 #>   source                  value source_note                                     
 #>   <chr>                   <dbl> <chr>                                           
 #> 1 kang_paese_felix_2021 1377286 Kang, Paese & Felix (2021). RHE 39(2):191-218. …
-#> 2 durham_2005           1377286 Durham (2005). Educação superior, pública e pri…
-#> 3 kang_paese_felix_2021 1377286 Kang, Paese & Felix (2021), RHE 39(2):191-218. …
-#> 4 maduro_junior_2007    1377286 Maduro Junior (2007). Taxas de matrícula e gast…
+#> 2 maduro_junior_2007    1377286 Maduro Junior (2007). Taxas de matrícula e gast…
 ```
 
 Note que para 1980 várias fontes convergem para o mesmo valor (~1,38
@@ -264,9 +262,9 @@ Quando o que se quer é uma série única contínua (e não o painel lado a
 lado), a **hierarquia de deduplicação** documentada do pacote dá a ordem
 de precedência recomendada para anos sobrepostos: microdados do
 CENSUP/INEP (2009-2024) → sinopses estatísticas do INEP (1995-2008) →
-Kang, Paese & Felix (1990-1994) → Maduro Junior → Durham → IBGE
-*Estatísticas do Século XX*. A fonte mais desagregada e oficial
-disponível sempre prevalece.
+Kang, Paese & Felix (1990-1994) → Maduro Junior → IBGE *Estatísticas do
+Século XX*. A fonte mais desagregada e oficial disponível sempre
+prevalece.
 
 ## Caso 3 — o problema dos totais reconstruídos (2000-2008)
 
@@ -274,9 +272,9 @@ Entre 2000 e 2008 o INEP começou a coletar matrículas em **EAD (educação
 a distância)** em uma tabela específica do CENSUP (`tabela7.x`), porém
 **não as somou** ao total das matrículas presenciais publicadas na
 `tabela5.x`. Isso significa que séries “totais” desse intervalo
-publicadas por Kang, Durham, Maduro Junior e pela própria sinopse do
-INEP estão **sistematicamente subestimadas** — em até 700 mil matrículas
-em 2008, segundo nosso cálculo.
+publicadas por Kang, Maduro Junior e pela própria sinopse do INEP estão
+**sistematicamente subestimadas** — em até 700 mil matrículas em 2008,
+segundo nosso cálculo.
 
 A partir de 2009, os microdados do CENSUP já agregam presencial e EAD no
 mesmo cadastro, e o problema se resolve.
@@ -300,20 +298,29 @@ recon <- get_enrollment(
 )
 
 recon[recon$is_derived, c("year", "source", "value")]
-#> # A tibble: 23 × 3
+#> # A tibble: 20 × 3
 #>     year source                                      value
 #>    <int> <chr>                                       <dbl>
-#>  1  2000 durham_2005+inep_sinopse_censup           2695927
-#>  2  2000 inep_sinopse_censup+inep_sinopse_censup   2695927
-#>  3  2000 kang_paese_felix_2021+inep_sinopse_censup 2695927
-#>  4  2000 maduro_junior_2007+inep_sinopse_censup    2695927
-#>  5  2001 durham_2005+inep_sinopse_censup           3045113
-#>  6  2001 inep_sinopse_censup+inep_sinopse_censup   3036113
-#>  7  2001 inep_sinopse_censup+inep_sinopse_censup   3036113
-#>  8  2001 kang_paese_felix_2021+inep_sinopse_censup 3036113
-#>  9  2001 maduro_junior_2007+inep_sinopse_censup    3036113
-#> 10  2003 inep_sinopse_censup+inep_sinopse_censup   3936933
-#> # ℹ 13 more rows
+#>  1  2000 inep_sinopse_censup+inep_sinopse_censup   2695927
+#>  2  2000 kang_paese_felix_2021+inep_sinopse_censup 2695927
+#>  3  2000 maduro_junior_2007+inep_sinopse_censup    2695927
+#>  4  2001 inep_sinopse_censup+inep_sinopse_censup   3036113
+#>  5  2001 kang_paese_felix_2021+inep_sinopse_censup 3036113
+#>  6  2001 maduro_junior_2007+inep_sinopse_censup    3036113
+#>  7  2003 inep_sinopse_censup+inep_sinopse_censup   3936933
+#>  8  2003 kang_paese_felix_2021+inep_sinopse_censup 3871734
+#>  9  2003 maduro_junior_2007+inep_sinopse_censup    3871734
+#> 10  2004 inep_sinopse_censup+inep_sinopse_censup   4223344
+#> 11  2004 kang_paese_felix_2021+inep_sinopse_censup 4223344
+#> 12  2004 maduro_junior_2007+inep_sinopse_censup    4223344
+#> 13  2005 inep_sinopse_censup+inep_sinopse_censup   4567798
+#> 14  2005 kang_paese_felix_2021+inep_sinopse_censup 4567798
+#> 15  2006 inep_sinopse_censup+inep_sinopse_censup   4883852
+#> 16  2006 kang_paese_felix_2021+inep_sinopse_censup 4883852
+#> 17  2007 inep_sinopse_censup+inep_sinopse_censup   5250147
+#> 18  2007 kang_paese_felix_2021+inep_sinopse_censup 5250147
+#> 19  2008 inep_sinopse_censup+inep_sinopse_censup   5808017
+#> 20  2008 kang_paese_felix_2021+inep_sinopse_censup 5808017
 ```
 
 O nome composto do `source` (ex.:
@@ -538,5 +545,5 @@ originais (pelo trabalho de arquivo que produziu os números). Para citar
 o pacote em si:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (versão 0.1.1).
+> Brazilian Education* (versão 0.1.2).
 > <https://github.com/mancano-tales/educabr2>

@@ -17,7 +17,7 @@ to lock in a specific series.'><meta property="og:image" content="https://mancan
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@ to lock in a specific series.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble with approximately 1 350 rows and 16 columns
+    <p>A tibble with approximately 1 200 rows and 16 columns
 matching the canonical schema (<code>inst/dict/schema.yaml</code>). The
 tertiary-specific columns are:</p><dl><dt>level</dt>
 <dd><p>Always <code>"superior"</code>.</p></dd>
@@ -82,7 +82,9 @@ tertiary-specific columns are:</p><dl><dt>level</dt>
 <code>municipal</code>, <code>publica</code>, <code>privada</code>, plus the private sub-categories
 (<code>privada_particular</code> / <code>privada_comunitaria_confessional_filantropica</code>
 pre-2009, <code>privada_lucrativa</code> / <code>privada_nao_lucrativa</code> post-2009),
-<code>especial</code>, <code>total</code>.</p></dd>
+<code>especial</code>, <code>total</code>. <code>especial</code> (INEP category "Especial",
+art. 242 CF; microdata 2012-2024) is an "of which" breakdown of
+<code>municipal</code>, following INEP's own classification.</p></dd>
 
 <dt>institution_type</dt>
 <dd><p>INEP/MEC institutional category:
@@ -118,9 +120,10 @@ ETL: <code>data-raw/03_build_enrollment_tertiary.R</code>.</p>
 
 
 <ul><li><p><code>ibge_seculo_xx</code> — Anuários Estatísticos 1908-1980.</p></li>
-<li><p><code>durham_2005</code> — Durham (2005).</p></li>
 <li><p><code>maduro_junior_2007</code> — Maduro Junior MSc dissertation.</p></li>
-<li><p><code>kang_paese_felix_2021</code> — Kang, Paese &amp; Felix RHE paper.</p></li>
+<li><p><code>kang_paese_felix_2021</code> — only as the in-person component
+of derived rows; the Kang series itself is in
+<a href="enrollment_kang_fgv.html">enrollment_kang_fgv</a>.</p></li>
 <li><p><code>inep_sinopse_censup</code> — INEP Sinopse 1995-2008.</p></li>
 <li><p><code>inep_microdados_censup</code> — INEP microdata 2009-2024.</p></li>
 <li><p><code>inep_censup_powerbi</code> — INEP Power BI panel.</p></li>

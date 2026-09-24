@@ -19,7 +19,7 @@ get_enrollment() / get_schooling() with the source argument."><meta property="og
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,16 +127,15 @@ levels covered (<code>"BR"</code>, <code>"region"</code>, <code>"UF"</code>).</p
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Filter to academic papers only</span></span></span>
 <span class="r-in"><span><span class="va">src</span><span class="op">[</span><span class="va">src</span><span class="op">$</span><span class="va">type</span> <span class="op">==</span> <span class="st">"academic"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"key"</span>, <span class="st">"short_name"</span>, <span class="st">"doi"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   key                       short_name                     doi                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> paglayan_2022             Paglayan                       10.7910/DVN/LKE1WQ   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> kang_paese_felix_2021     Kang, Paese &amp; Felix (2021)     10.1017/S02126109210…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> kang_menetrier_2024       Kang &amp; Menetrier (2024)        10.1590/1980-5357543…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> kang_menetrier_comim_2024 Kang, Menetrier &amp; Comim (2024) 10.1017/S02126109240…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> durham_2005               Durham (2005)                  <span style="color: #BB0000;">NA</span>                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> walter_kang_2023          Walter &amp; Kang (2024)           10.1080/20780389.202…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> lee_lee_2016              Lee &amp; Lee (2016)               10.1016/j.jdeveco.20…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> walter_kang_2023          Walter &amp; Kang (2024)           10.1080/20780389.202…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> lee_lee_2016              Lee &amp; Lee (2016)               10.1016/j.jdeveco.20…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Sources that include UF-level coverage</span></span></span>
 <span class="r-in"><span><span class="va">src</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"UF"</span>, <span class="va">src</span><span class="op">$</span><span class="va">geo</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"key"</span>, <span class="st">"year_start"</span>, <span class="st">"year_end"</span><span class="op">)</span><span class="op">]</span></span></span>

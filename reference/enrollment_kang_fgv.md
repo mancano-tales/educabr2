@@ -16,7 +16,9 @@ enrollment_kang_fgv
 
 ## Format
 
-A tibble with 6 238 rows and 13 columns:
+A tibble with 6 238 rows and 16 columns (the canonical enrollment
+columns, including `institution_type`, `modality` and `is_derived`,
+which take their defaults except as noted under `modality`):
 
 - year:
 
@@ -74,10 +76,20 @@ A tibble with 6 238 rows and 13 columns:
 
   `character`. Unit of measurement: `"count"` or `"percent"`.
 
+- modality:
+
+  `character`. `"total"`, except the tertiary (`superior`) rows for
+  2000-2008, which are `"presencial"`: Kang's series for those years
+  counts in-person enrollment only and matches INEP Sinopse's presencial
+  figures.
+
 - source:
 
-  `character`. Compact source key: `"kang_fgv_ibre_2023"`. Full metadata
-  in `inst/dict/vocabularies/sources.yaml`.
+  `character`. Compact source key, one per FGV/IBRE file:
+  `"kang_menetrier_comim_2024"` (primary 1871-1932),
+  `"kang_paese_felix_2021"` (all stages 1933-2010 and by race),
+  `"kang_menetrier_2024"` (UF). Full metadata in
+  `inst/dict/vocabularies/sources.yaml`.
 
 - source_note:
 

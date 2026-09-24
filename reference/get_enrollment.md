@@ -142,7 +142,7 @@ get_enrollment(level = "fundamental", geo_level = "BR")
 
 # Tertiary enrollment, all sources, compare them
 get_enrollment(level = "superior", network = "total", modality = "total")
-#> # A tibble: 370 × 16
+#> # A tibble: 274 × 16
 #>     year geo_level geo_code geo_name level    network institution_type modality
 #>    <int> <chr>     <chr>    <chr>    <chr>    <chr>   <chr>            <chr>   
 #>  1  1940 BR        BR       Brasil   superior total   total            total   
@@ -155,14 +155,14 @@ get_enrollment(level = "superior", network = "total", modality = "total")
 #>  8  1947 BR        BR       Brasil   superior total   total            total   
 #>  9  1948 BR        BR       Brasil   superior total   total            total   
 #> 10  1949 BR        BR       Brasil   superior total   total            total   
-#> # ℹ 360 more rows
+#> # ℹ 264 more rows
 #> # ℹ 8 more variables: dim_race <chr>, age_group <chr>, indicator <chr>,
 #> #   value <dbl>, unit <chr>, source <chr>, source_note <chr>, is_derived <lgl>
 
 # Tertiary private particular only, post-2000
 get_enrollment(level = "superior", network = "privada_particular",
                year = c(2000, 2024))
-#> # A tibble: 50 × 16
+#> # A tibble: 49 × 16
 #>     year geo_level geo_code geo_name level    network  institution_type modality
 #>    <int> <chr>     <chr>    <chr>    <chr>    <chr>    <chr>            <chr>   
 #>  1  2000 BR        BR       Brasil   superior privada… faculty_school_… presenc…
@@ -174,28 +174,28 @@ get_enrollment(level = "superior", network = "privada_particular",
 #>  7  2001 BR        BR       Brasil   superior privada… integrated_facu… presenc…
 #>  8  2001 BR        BR       Brasil   superior privada… technology_cent… presenc…
 #>  9  2001 BR        BR       Brasil   superior privada… total            presenc…
-#> 10  2001 BR        BR       Brasil   superior privada… total            presenc…
-#> # ℹ 40 more rows
+#> 10  2001 BR        BR       Brasil   superior privada… university       presenc…
+#> # ℹ 39 more rows
 #> # ℹ 8 more variables: dim_race <chr>, age_group <chr>, indicator <chr>,
 #> #   value <dbl>, unit <chr>, source <chr>, source_note <chr>, is_derived <lgl>
 
 # Compare with derived rows included
 get_enrollment(level = "superior", network = "total",
                year = c(2000, 2008), include_derived = TRUE)
-#> # A tibble: 113 × 16
-#>     year geo_level geo_code geo_name level    network institution_type modality
-#>    <int> <chr>     <chr>    <chr>    <chr>    <chr>   <chr>            <chr>   
-#>  1  2000 BR        BR       Brasil   superior total   total            total   
-#>  2  2001 BR        BR       Brasil   superior total   total            total   
-#>  3  2002 BR        BR       Brasil   superior total   total            total   
-#>  4  2003 BR        BR       Brasil   superior total   total            total   
-#>  5  2004 BR        BR       Brasil   superior total   total            total   
-#>  6  2005 BR        BR       Brasil   superior total   total            total   
-#>  7  2006 BR        BR       Brasil   superior total   total            total   
-#>  8  2007 BR        BR       Brasil   superior total   total            total   
-#>  9  2008 BR        BR       Brasil   superior total   total            total   
-#> 10  2000 BR        BR       Brasil   superior total   total            total   
-#> # ℹ 103 more rows
+#> # A tibble: 98 × 16
+#>     year geo_level geo_code geo_name level    network institution_type modality 
+#>    <int> <chr>     <chr>    <chr>    <chr>    <chr>   <chr>            <chr>    
+#>  1  2000 BR        BR       Brasil   superior total   total            presenci…
+#>  2  2001 BR        BR       Brasil   superior total   total            presenci…
+#>  3  2002 BR        BR       Brasil   superior total   total            presenci…
+#>  4  2003 BR        BR       Brasil   superior total   total            presenci…
+#>  5  2004 BR        BR       Brasil   superior total   total            presenci…
+#>  6  2005 BR        BR       Brasil   superior total   total            presenci…
+#>  7  2006 BR        BR       Brasil   superior total   total            presenci…
+#>  8  2007 BR        BR       Brasil   superior total   total            presenci…
+#>  9  2008 BR        BR       Brasil   superior total   total            presenci…
+#> 10  2000 BR        BR       Brasil   superior total   total            presenci…
+#> # ℹ 88 more rows
 #> # ℹ 8 more variables: dim_race <chr>, age_group <chr>, indicator <chr>,
 #> #   value <dbl>, unit <chr>, source <chr>, source_note <chr>, is_derived <lgl>
 ```

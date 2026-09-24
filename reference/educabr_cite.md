@@ -133,10 +133,6 @@ educabr_cite()
 #> <https://doi.org/10.1017/S0212610924000120>.
 #> <https://doi.org/10.1017/S0212610924000120>.
 #> 
-#> (2005). “Durham, E. R. (2005). Educação superior, pública e privada. In
-#> S. Schwartzman (Ed.), Os desafios da educação no Brasil (pp. 191–233).
-#> Rio de Janeiro: Nova Fronteira.”
-#> 
 #> (2007). “Maduro Junior, P. R. R. M. (2007). Taxas de matrícula e gastos
 #> em educação no Brasil [Dissertação de Mestrado, Fundação Getulio
 #> Vargas, Escola de Pós-Graduação em Economia – EPGE].”

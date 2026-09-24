@@ -46,7 +46,7 @@ provenance. Includes a bundled Shiny dashboard.
 
     <a class="navbar-brand me-2" href="index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -323,8 +323,8 @@ provenance. Includes a bundled Shiny dashboard.
 </tbody>
 </table>
 <p>End users should call the <code>get_*()</code> functions. The datasets are exposed for inspection but the public API normalises schema differences, applies per-source filters and translates labels.</p>
-<p><strong>Deduplication hierarchy.</strong> When the same year and sector are covered by multiple sources, the recommended order of precedence is: INEP CENSUP microdata (2009–2024) → INEP statistical synopses (1995–2008) → Kang, Paese &amp; Felix (1990–1994) → Maduro Junior → Durham → IBGE <em>Estatísticas do Século XX</em>. The most disaggregated and official source available always wins; all competing estimates remain in the panel for auditing.</p>
-<p><strong>Validation.</strong> Overlapping windows are preserved deliberately so the sources can be checked against each other: in 1995, for example, the INEP synopsis, Durham (2005) and Kang et al. (2021) all report exactly 1,759,703 tertiary enrollments — a perfect triangulation of the academic reconstructions against the official record.</p>
+<p><strong>Deduplication hierarchy.</strong> When the same year and sector are covered by multiple sources, the recommended order of precedence is: INEP CENSUP microdata (2009–2024) → INEP statistical synopses (1995–2008) → Kang, Paese &amp; Felix (1990–1994) → Maduro Junior → IBGE <em>Estatísticas do Século XX</em>. The most disaggregated and official source available always wins; all competing estimates remain in the panel for auditing.</p>
+<p><strong>Validation.</strong> Overlapping windows are preserved deliberately so the sources can be checked against each other: in 1995, for example, the INEP synopsis, Maduro Junior (2007) and Kang et al. (2021) all report exactly 1,759,703 tertiary enrollments — a perfect triangulation of the academic reconstructions against the official record.</p>
 <hr>
 </div>
 <div class="section level2">

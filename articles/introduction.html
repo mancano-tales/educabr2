@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,10 +94,10 @@ Brazilian education available in analytic format:</p>
 <ul>
 <li>
 <strong>Tertiary (higher-education) enrollment</strong> — 1907 to
-2024, <strong>118 years</strong> of coverage, drawing on seven distinct
-primary sources (IBGE <em>Statistics of the 20th Century</em>, Durham,
-Maduro Junior, Kang, INEP Synopsis, INEP Microdata, and the INEP CENSUP
-Power BI panel).</li>
+2024, <strong>118 years</strong> of coverage, drawing on six distinct
+sources (IBGE <em>Statistics of the 20th Century</em>, Maduro Junior,
+Kang, INEP Synopsis, INEP Microdata, and the INEP CENSUP Power BI
+panel).</li>
 <li>
 <strong>Compulsory (fundamental) and upper-secondary
 enrollment</strong> — 1933 to 2010, with <strong>race/colour</strong>
@@ -174,7 +174,7 @@ theme, all returning tibbles in the same canonical long schema:</p>
 <span><span class="co">#&gt;  $ is_derived      : logi [1:2] FALSE FALSE</span></span>
 <span><span class="co">#&gt;  - attr(*, "educabr_meta")=List of 4</span></span>
 <span><span class="co">#&gt;   ..$ build_script   : chr "data-raw/01_build_enrollment_kang_fgv.R"</span></span>
-<span><span class="co">#&gt;   ..$ built_at       : POSIXct[1:1], format: "2026-05-18 09:38:50"</span></span>
+<span><span class="co">#&gt;   ..$ built_at       : POSIXct[1:1], format: "2026-09-24 13:26:38"</span></span>
 <span><span class="co">#&gt;   ..$ primary_sources: chr [1:4] "kang_menetrier_comim_2024" "kang_paese_felix_2021" "kang_paese_felix_2021" "kang_menetrier_2024"</span></span>
 <span><span class="co">#&gt;   ..$ raw_files      : chr [1:4] "data-raw/sources/kang_fgv_ibre_2023/1._matricula_primario_1871_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/2._matriculas_txmatriculas_porcor_1960_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/4._matricula_txmatriculas_1933_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/6._matricula_txmatriculas_estado_1955_2010_v_abril2023.xlsx"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">1950</span><span class="op">)</span><span class="op">)</span></span>
@@ -251,13 +251,13 @@ theme, all returning tibbles in the same canonical long schema:</p>
 <span><span class="co">#&gt;  $ dim_sex    : chr [1:3] "total" "total" "total"</span></span>
 <span><span class="co">#&gt;  $ age_group  : chr [1:3] "15-64" "15-64" "15-64"</span></span>
 <span><span class="co">#&gt;  $ indicator  : chr [1:3] "attainment_share_completed" "attainment_share_completed" "attainment_share_completed"</span></span>
-<span><span class="co">#&gt;  $ value      : num [1:3] 23.611 4.345 0.519</span></span>
+<span><span class="co">#&gt;  $ value      : num [1:3] 19.979 3.826 0.519</span></span>
 <span><span class="co">#&gt;  $ unit       : chr [1:3] "percent" "percent" "percent"</span></span>
 <span><span class="co">#&gt;  $ source     : chr [1:3] "lee_lee_2016" "lee_lee_2016" "lee_lee_2016"</span></span>
 <span><span class="co">#&gt;  $ source_note: chr [1:3] "Lee, J.-W., &amp; Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__ "Lee, J.-W., &amp; Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__ "Lee, J.-W., &amp; Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__</span></span>
 <span><span class="co">#&gt;  - attr(*, "educabr_meta")=List of 5</span></span>
 <span><span class="co">#&gt;   ..$ build_script  : chr "data-raw/06_build_lee_lee_2016.R"</span></span>
-<span><span class="co">#&gt;   ..$ built_at      : POSIXct[1:1], format: "2026-05-25 16:54:26"</span></span>
+<span><span class="co">#&gt;   ..$ built_at      : POSIXct[1:1], format: "2026-09-24 12:45:40"</span></span>
 <span><span class="co">#&gt;   ..$ primary_source: chr "lee_lee_2016"</span></span>
 <span><span class="co">#&gt;   ..$ citation      : chr "Lee, J.-W., &amp; Lee, H. (2016). Human capital in the long run. Journal of Development Economics, 122, 147-169. do"| __truncated__</span></span>
 <span><span class="co">#&gt;   ..$ raw_files     : chr "https://barrolee.github.io/BarroLeeDataSet/LeeLee/LeeLee_v1.dta"</span></span></code></pre></div>
@@ -331,13 +331,11 @@ comparison:</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ter_1980</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"source"</span>, <span class="st">"value"</span>, <span class="st">"source_note"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
 <span><span class="co">#&gt;   source                  value source_note                                     </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                           </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> kang_paese_felix_2021 1<span style="text-decoration: underline;">377</span>286 Kang, Paese &amp; Felix (2021). RHE 39(2):191-218. …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> durham_2005           1<span style="text-decoration: underline;">377</span>286 Durham (2005). Educação superior, pública e pri…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> kang_paese_felix_2021 1<span style="text-decoration: underline;">377</span>286 Kang, Paese &amp; Felix (2021), RHE 39(2):191-218. …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> maduro_junior_2007    1<span style="text-decoration: underline;">377</span>286 Maduro Junior (2007). Taxas de matrícula e gast…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> maduro_junior_2007    1<span style="text-decoration: underline;">377</span>286 Maduro Junior (2007). Taxas de matrícula e gast…</span></span></code></pre></div>
 <p>For 1980 several sources converge on the same value (~1.38 million),
 which suggests a stabilised figure in the literature. For other years
 estimates diverge — passing <code>source = "..."</code> to
@@ -348,9 +346,9 @@ side-by-side panel, the package’s documented <strong>deduplication
 hierarchy</strong> gives the recommended order of precedence for
 overlapping years: INEP CENSUP microdata (2009-2024), then the INEP
 statistical synopses (1995-2008), then Kang, Paese &amp; Felix
-(1990-1994), then Maduro Junior, then Durham, and finally the IBGE
-<em>Statistics of the 20th Century</em>. The most disaggregated and
-official source available always wins.</p>
+(1990-1994), then Maduro Junior, and finally the IBGE <em>Statistics of
+the 20th Century</em>. The most disaggregated and official source
+available always wins.</p>
 </div>
 <div class="section level2">
 <h2 id="case-3-the-reconstructed-totals-problem-2000-2008">Case 3 — the reconstructed totals problem (2000-2008)<a class="anchor" aria-label="anchor" href="#case-3-the-reconstructed-totals-problem-2000-2008"></a>
@@ -359,9 +357,9 @@ official source available always wins.</p>
 enrollment in a separate CENSUP table (<code>tabela7.x</code>), but
 <strong>did not add</strong> it to the total of in-person enrollment
 published in <code>tabela5.x</code>. This means that headline “total”
-series for that interval published by Kang, Durham, Maduro Junior, and
-INEP’s own synopsis are <strong>systematically undercounted</strong> —
-by up to ~700,000 enrollments in 2008 by our reckoning.</p>
+series for that interval published by Kang, Maduro Junior, and INEP’s
+own synopsis are <strong>systematically undercounted</strong> — by up to
+~700,000 enrollments in 2008 by our reckoning.</p>
 <p>From 2009 onwards the CENSUP microdata already aggregate in-person
 and EAD in the same registry, and the problem resolves itself.</p>
 <p>For this transition interval, <strong>educabr2</strong> ships
@@ -381,20 +379,29 @@ carry <code>is_derived = TRUE</code> and are excluded from the default
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">recon</span><span class="op">[</span><span class="va">recon</span><span class="op">$</span><span class="va">is_derived</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"source"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 23 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 3</span></span></span>
 <span><span class="co">#&gt;     year source                                      value</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>000 durham_2005+inep_sinopse_censup           2<span style="text-decoration: underline;">695</span>927</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>000 inep_sinopse_censup+inep_sinopse_censup   2<span style="text-decoration: underline;">695</span>927</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>000 kang_paese_felix_2021+inep_sinopse_censup 2<span style="text-decoration: underline;">695</span>927</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>000 maduro_junior_2007+inep_sinopse_censup    2<span style="text-decoration: underline;">695</span>927</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>001 durham_2005+inep_sinopse_censup           3<span style="text-decoration: underline;">045</span>113</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>001 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">036</span>113</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>001 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">036</span>113</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>001 kang_paese_felix_2021+inep_sinopse_censup 3<span style="text-decoration: underline;">036</span>113</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>001 maduro_junior_2007+inep_sinopse_censup    3<span style="text-decoration: underline;">036</span>113</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>003 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">936</span>933</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 13 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>000 inep_sinopse_censup+inep_sinopse_censup   2<span style="text-decoration: underline;">695</span>927</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>000 kang_paese_felix_2021+inep_sinopse_censup 2<span style="text-decoration: underline;">695</span>927</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>000 maduro_junior_2007+inep_sinopse_censup    2<span style="text-decoration: underline;">695</span>927</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>001 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">036</span>113</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>001 kang_paese_felix_2021+inep_sinopse_censup 3<span style="text-decoration: underline;">036</span>113</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>001 maduro_junior_2007+inep_sinopse_censup    3<span style="text-decoration: underline;">036</span>113</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>003 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">936</span>933</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>003 kang_paese_felix_2021+inep_sinopse_censup 3<span style="text-decoration: underline;">871</span>734</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>003 maduro_junior_2007+inep_sinopse_censup    3<span style="text-decoration: underline;">871</span>734</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>004 inep_sinopse_censup+inep_sinopse_censup   4<span style="text-decoration: underline;">223</span>344</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>  <span style="text-decoration: underline;">2</span>004 kang_paese_felix_2021+inep_sinopse_censup 4<span style="text-decoration: underline;">223</span>344</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>  <span style="text-decoration: underline;">2</span>004 maduro_junior_2007+inep_sinopse_censup    4<span style="text-decoration: underline;">223</span>344</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>  <span style="text-decoration: underline;">2</span>005 inep_sinopse_censup+inep_sinopse_censup   4<span style="text-decoration: underline;">567</span>798</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span>  <span style="text-decoration: underline;">2</span>005 kang_paese_felix_2021+inep_sinopse_censup 4<span style="text-decoration: underline;">567</span>798</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span>  <span style="text-decoration: underline;">2</span>006 inep_sinopse_censup+inep_sinopse_censup   4<span style="text-decoration: underline;">883</span>852</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span>  <span style="text-decoration: underline;">2</span>006 kang_paese_felix_2021+inep_sinopse_censup 4<span style="text-decoration: underline;">883</span>852</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span>  <span style="text-decoration: underline;">2</span>007 inep_sinopse_censup+inep_sinopse_censup   5<span style="text-decoration: underline;">250</span>147</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span>  <span style="text-decoration: underline;">2</span>007 kang_paese_felix_2021+inep_sinopse_censup 5<span style="text-decoration: underline;">250</span>147</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span>  <span style="text-decoration: underline;">2</span>008 inep_sinopse_censup+inep_sinopse_censup   5<span style="text-decoration: underline;">808</span>017</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span>  <span style="text-decoration: underline;">2</span>008 kang_paese_felix_2021+inep_sinopse_censup 5<span style="text-decoration: underline;">808</span>017</span></span></code></pre></div>
 <p>The composite <code>source</code> key (e.g.
 <code>kang_paese_felix_2021+inep_sinopse_censup</code>) makes it
 explicit that this is a combination: the <strong>in-person
@@ -597,8 +604,8 @@ dashboard exploration and reproducible scripted analysis.</p>
 </h2>
 <p>Every series carries a canonical source key (<code>source</code>)
 with the full reference catalogued in
-<code>inst/dict/vocabularies/sources.yaml</code>. The seven primary
-tertiary sources are:</p>
+<code>inst/dict/vocabularies/sources.yaml</code>. The primary sources
+are:</p>
 <ul>
 <li>Kang, T. H., Paese, L. H. Z., &amp; Felix, N. F. A. (2021). Late and
 unequal. <em>Revista de Historia Económica</em> 39(2), 191-218. <a href="https://doi.org/10.1017/S0212610921000112" class="external-link">doi:10.1017/S0212610921000112</a>
@@ -613,9 +620,6 @@ of a big push growth strategy. <em>RHE</em> 42(3), 387-414. <a href="https://doi
 years of schooling in Brazil. <em>Economic History of Developing
 Regions</em> 39(3), 307-336. <a href="https://doi.org/10.1080/20780389.2024.2417268" class="external-link">doi:10.1080/20780389.2024.2417268</a>
 </li>
-<li>Durham, E. R. (2005). Educação superior, pública e privada. In
-Schwartzman (ed.), <em>Os desafios da educação no Brasil</em>,
-pp. 191-233.</li>
 <li>Maduro Junior, P. R. R. M. (2007). <em>Taxas de matrícula e gastos
 em educação no Brasil</em> [MSc dissertation, FGV/EPGE,
 hdl:10438/110].</li>
@@ -641,7 +645,7 @@ produced the numbers).</p>
 <p>To cite the package itself:</p>
 <blockquote>
 <p>Mançano, T. (2026). <em>educabr2: Harmonized Historical Series on
-Brazilian Education</em> (version 0.1.1). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
+Brazilian Education</em> (version 0.1.2). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
 </blockquote>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
