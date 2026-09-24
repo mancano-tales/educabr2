@@ -100,6 +100,19 @@ validate_against_schema <- function(df, theme = NULL) {
     }
   }
 
+  if ("value" %in% names(df)) {
+    n_na <- sum(is.na(df$value))
+    if (n_na) {
+      problems <- c(problems, sprintf("%d row(s) with NA `value`.", n_na))
+    }
+    if (isFALSE(schema$constraints$domain$value$allow_negative)) {
+      n_neg <- sum(df$value < 0, na.rm = TRUE)
+      if (n_neg) {
+        problems <- c(problems, sprintf("%d row(s) with negative `value`.", n_neg))
+      }
+    }
+  }
+
   pk <- intersect(unlist(schema$constraints$primary_key), names(df))
   if (length(pk)) {
     dups <- duplicated(df[, pk, drop = FALSE])

@@ -51,14 +51,18 @@ datasets:
   - name: enrollment_tertiary
     theme: enrollment
     description: >
-      National (BR) tertiary enrollment compiled across seven primary
-      sources: IBGE Estatísticas do Século XX, Durham (2005), Maduro
-      Junior (2007), Kang/Paese/Felix (2021), INEP Sinopse CENSUP
+      National (BR) tertiary enrollment compiled across six sources:
+      IBGE Estatísticas do Século XX, Maduro Junior (2007), Kang/Paese/Felix (2021), INEP Sinopse CENSUP
       (1995-2008), INEP Microdados CENSUP (2009-2024) and the INEP
       CENSUP Power BI panel. Multiple sources per `(year, network)`
       are kept on purpose to support cross-source comparison. Derived
       rows (Presencial from one source + EAD from another, 2000-2008)
-      are flagged via `is_derived` and excluded by default.
+      are flagged via `is_derived` and excluded by default. The
+      Kang/Paese/Felix series is served by enrollment_kang_fgv and kept
+      here only inside derived rows; INEP "Especial" institutions are
+      counted as public municipal (as in INEP's Power BI panel). Durham
+      (2005) was dropped in 0.1.2: secondary source whose printed table
+      does not add up.
     processed_file: data/enrollment_tertiary.rda
     build_script: data-raw/03_build_enrollment_tertiary.R
     storage: embedded
@@ -67,7 +71,6 @@ datasets:
     year_range: [1907, 2024]
     sources:
       - ibge_seculo_xx
-      - durham_2005
       - maduro_junior_2007
       - kang_paese_felix_2021
       - inep_sinopse_censup
@@ -180,8 +183,10 @@ datasets:
       (Total/M/F). Reference population: aged 15-64. The bundled
       indicator is the cumulative share who completed at least the
       level indicated by `level` (primary / secondary / tertiary) —
-      re-aggregated from Lee & Lee's non-cumulative `lpc`/`lsc`/`lhc`
-      columns. Brazil appears as `geo_code = "BRA"`.
+      built from Lee & Lee's highest-level-attended shares
+      (`lu`/`lp`/`ls`/`lh`, summing to 100) and their completed subsets
+      (`lpc`/`lsc`/`lhc`) as primary = lpc + ls + lh, secondary =
+      lsc + lh, tertiary = lhc. Brazil appears as `geo_code = "BRA"`.
     processed_file: data/lee_lee_2016.rda
     build_script: data-raw/06_build_lee_lee_2016.R
     storage: embedded

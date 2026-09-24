@@ -5,7 +5,7 @@
 \alias{enrollment_kang_fgv}
 \title{Enrollment series — Kang / FGV-IBRE 2023 compilation}
 \format{
-A tibble with 6 238 rows and 13 columns:
+A tibble with 6 238 rows and 16 columns (the canonical enrollment columns, including \code{institution_type}, \code{modality} and \code{is_derived}, which take their defaults except as noted under \code{modality}):
 \describe{
 \item{year}{\code{integer}. Reference year of the observation (1871–2010).}
 \item{geo_level}{\code{character}. Geographic aggregation level:
@@ -32,8 +32,15 @@ indicators, which are headcounts not tied to a population bracket.}
 \item{value}{\code{double}. Numeric value of the indicator.}
 \item{unit}{\code{character}. Unit of measurement: \code{"count"} or
 \code{"percent"}.}
-\item{source}{\code{character}. Compact source key: \code{"kang_fgv_ibre_2023"}.
-Full metadata in \code{inst/dict/vocabularies/sources.yaml}.}
+\item{modality}{\code{character}. \code{"total"}, except the tertiary
+(\code{superior}) rows for 2000-2008, which are \code{"presencial"}: Kang's
+series for those years counts in-person enrollment only and matches
+INEP Sinopse's presencial figures.}
+\item{source}{\code{character}. Compact source key, one per FGV/IBRE file:
+\code{"kang_menetrier_comim_2024"} (primary 1871-1932),
+\code{"kang_paese_felix_2021"} (all stages 1933-2010 and by race),
+\code{"kang_menetrier_2024"} (UF). Full metadata in
+\code{inst/dict/vocabularies/sources.yaml}.}
 \item{source_note}{\code{character}. Inline bibliographic reference.}
 }
 }

@@ -8,7 +8,7 @@
 # (Mançano, 2026). It harmonises tertiary enrollment from:
 #
 #   * IBGE Estatísticas do Século XX (Anuários 1908-1980)        — long history
-#   * Durham (2005) — Educação superior, pública e privada
+#   * Durham (2005) — dropped in step 5c' (secondary source, inconsistent table)
 #   * Maduro Junior (2007, MSc dissertation, FGV/EPGE)
 #   * Kang, Paese & Felix (2021) — Late and unequal
 #   * INEP Sinopse Estatística CENSUP (1995-2008)
@@ -177,12 +177,10 @@ canonicalise_source <- function(ds) {
       source      = "inep_censup_powerbi",
       source_note = paste(
         "INEP CENSUP Power BI — painel consolidado do INEP (anos 2010-2024).",
-        "Para a maioria das células (modalidade, tipo institucional, categoria",
-        "administrativa) os valores reproduzem a agregação dos microdados; nos",
-        "totais setoriais agregados (publica/privada/municipal sem outras",
-        "decomposições) os valores apresentam pequenas divergências em relação",
-        "ao microdado a partir de 2012, atribuíveis a critérios de aglutinação",
-        "do painel oficial. Mantido como estimativa alternativa do INEP."
+        "Os valores reproduzem a agregação dos microdados; o painel classifica",
+        "a categoria 'Especial' (art. 242 CF) como pública municipal, critério",
+        "também aplicado às linhas de microdados deste pacote.",
+        "Mantido como estimativa alternativa do INEP."
       ),
       is_derived  = FALSE
     ))
@@ -280,6 +278,115 @@ if (n_after < n_before) {
 }
 
 # ---------------------------------------------------------------------
+# 5b. Collapse same-source duplicates that differ only in source_note
+# ---------------------------------------------------------------------
+#
+# For 1999 and 2001 the v6 file carries the same INEP Sinopse figures
+# twice, once per table reference ('CENSUP<yyyy>_tabela...' and
+# 'Sinopse_CENSUP_...'). Identical values for the same cell and source
+# are one observation: keep one row and record both references.
+
+obs_key <- c("year", "network", "institution_type", "modality",
+             "source", "is_derived", "value")
+n_before <- nrow(enrollment_tertiary)
+enrollment_tertiary <- enrollment_tertiary |>
+  dplyr::group_by(dplyr::across(dplyr::all_of(obs_key))) |>
+  dplyr::mutate(source_note = paste(unique(source_note), collapse = " | ")) |>
+  dplyr::slice(1) |>
+  dplyr::ungroup()
+cat(sprintf("\nCollapsed %d same-source row(s) differing only in source_note.\n",
+            n_before - nrow(enrollment_tertiary)))
+
+# ---------------------------------------------------------------------
+# 5c. Drop the Kang/Paese/Felix series (already in enrollment_kang_fgv)
+# ---------------------------------------------------------------------
+#
+# The v6 file copies the tertiary counts of FGV/IBRE file 4 verbatim.
+# That file is bundled as `enrollment_kang_fgv`, so keeping it here made
+# get_enrollment(level = "superior") return every 1933-2010 value twice.
+# Derived rows that use Kang as the Presencial component are kept.
+
+n_before <- nrow(enrollment_tertiary)
+enrollment_tertiary <- enrollment_tertiary |>
+  dplyr::filter(!(source == "kang_paese_felix_2021" & !is_derived))
+cat(sprintf("Dropped %d kang_paese_felix_2021 row(s) (served by enrollment_kang_fgv).\n",
+            n_before - nrow(enrollment_tertiary)))
+
+# ---------------------------------------------------------------------
+# 5c'. Drop Durham (2005)
+# ---------------------------------------------------------------------
+#
+# Durham is a secondary source, and its Table 1 is internally
+# inconsistent as printed: public + private != total in 1945 (-300),
+# 1960 (-6 000), 1965 (+27 014; total 352 096 vs 155 781 in every other
+# source) and 2001 (+9 000). Every year it covers is also covered by
+# the primary sources it compiles, so it is dropped, together with the
+# derived rows that use it as the Presencial component.
+
+n_before <- nrow(enrollment_tertiary)
+enrollment_tertiary <- enrollment_tertiary |>
+  dplyr::filter(!grepl("(^|\\+)durham_2005(\\+|$)", source))
+cat(sprintf("Dropped %d durham_2005 row(s) (natural and derived).\n",
+            n_before - nrow(enrollment_tertiary)))
+
+# ---------------------------------------------------------------------
+# 5d. Reclassify INEP "especial" institutions in the microdata layer
+# ---------------------------------------------------------------------
+#
+# In the v6 microdata aggregation (2012-2024) institutions of category
+# "Especial" (TP_CATEGORIA_ADMINISTRATIVA = 7, art. 242 CF) were summed
+# into `privada`, while INEP's own Power BI panel counts them as public
+# municipal. That left privada != privada_lucrativa + privada_nao_lucrativa
+# and understated publica/municipal by exactly the `especial` value.
+# Follow INEP: move `especial` from privada into municipal and publica.
+# The `especial` row is kept as an "of which" breakdown of municipal.
+
+mdx <- enrollment_tertiary$source == "inep_microdados_censup" &
+  enrollment_tertiary$institution_type == "total" &
+  !enrollment_tertiary$is_derived
+esp <- enrollment_tertiary[mdx & enrollment_tertiary$network == "especial",
+                           c("year", "modality", "value")]
+names(esp)[3] <- "esp"
+
+# Municipal rows missing for a (year, modality) that has `especial`
+# (e.g. 2012 EAD) are created from the corresponding municipal-less cell.
+have_mun <- enrollment_tertiary[mdx & enrollment_tertiary$network == "municipal",
+                                c("year", "modality")]
+new_mun <- dplyr::anti_join(esp, have_mun, by = c("year", "modality"))
+if (nrow(new_mun)) {
+  tmpl <- enrollment_tertiary[mdx & enrollment_tertiary$network == "publica", ] |>
+    dplyr::semi_join(new_mun, by = c("year", "modality")) |>
+    dplyr::mutate(network = "municipal", value = 0)
+  enrollment_tertiary <- dplyr::bind_rows(enrollment_tertiary, tmpl)
+  mdx <- enrollment_tertiary$source == "inep_microdados_censup" &
+    enrollment_tertiary$institution_type == "total" &
+    !enrollment_tertiary$is_derived
+}
+
+enrollment_tertiary <- enrollment_tertiary |>
+  dplyr::mutate(.mdx = mdx) |>
+  dplyr::left_join(esp, by = c("year", "modality")) |>
+  dplyr::mutate(
+    esp   = dplyr::if_else(.mdx & !is.na(esp), esp, 0),
+    value = dplyr::case_when(
+      network %in% c("municipal", "publica") ~ value + esp,
+      network == "privada"                   ~ value - esp,
+      TRUE                                   ~ value
+    ),
+    source_note = dplyr::if_else(
+      esp > 0 & network %in% c("municipal", "publica", "privada"),
+      paste(source_note,
+            "Categoria 'Especial' (art. 242 CF) reclassificada de privada para",
+            "municipal/pública, como no painel Power BI do INEP."),
+      source_note
+    )
+  ) |>
+  dplyr::select(-esp, -.mdx) |>
+  dplyr::arrange(year, network, institution_type, modality, source)
+cat(sprintf("Reclassified 'especial' in %d microdata (year, modality) cell(s).\n",
+            nrow(esp)))
+
+# ---------------------------------------------------------------------
 # 6. Validate
 # ---------------------------------------------------------------------
 
@@ -292,7 +399,7 @@ educabr2:::validate_against_schema(enrollment_tertiary, theme = "enrollment")
 attr(enrollment_tertiary, "educabr_meta") <- list(
   build_script    = "data-raw/03_build_enrollment_tertiary.R",
   built_at        = Sys.time(),
-  primary_sources = c("ibge_seculo_xx", "durham_2005", "maduro_junior_2007",
+  primary_sources = c("ibge_seculo_xx", "maduro_junior_2007",
                       "kang_paese_felix_2021", "inep_sinopse_censup",
                       "inep_microdados_censup", "inep_censup_powerbi"),
   raw_file        = src_file,

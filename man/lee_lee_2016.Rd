@@ -48,23 +48,25 @@ backing store consumed by \code{\link[=get_attainment]{get_attainment()}}.
 }
 \section{Cumulative encoding}{
 
-Lee & Lee publish \emph{non-cumulative} shares (\code{lpc}, \code{lsc}, \code{lhc}):
-fraction of the population whose \strong{highest} completed level is
-primary / secondary / tertiary. The ETL script
-(\verb{data-raw/06_build_lee_lee_2016.R}) sums the upper categories to
-express the more conventional "share who completed at least X" used
-in cross-country comparisons:
+Lee & Lee follow the Barro-Lee convention: four mutually exclusive
+shares by \strong{highest level attended} (\code{lu} no schooling, \code{lp}
+primary, \code{ls} secondary, \code{lh} tertiary; \code{lu + lp + ls + lh = 100}),
+each with a "completed" subset (\code{lpc} within \code{lp}, \code{lsc} within
+\code{ls}, \code{lhc} within \code{lh}). The ETL script
+(\verb{data-raw/06_build_lee_lee_2016.R}) combines them into the more
+conventional "share who completed at least X" used in
+cross-country comparisons:
 
 \itemize{
-\item \code{level = "primary"} value = lpc + ls + lsc + lh + lhc
-\item \code{level = "secondary"} value = lsc + lh + lhc
+\item \code{level = "primary"} value = lpc + ls + lh
+\item \code{level = "secondary"} value = lsc + lh
 \item \code{level = "tertiary"} value = lhc
 }
 
-By construction, primary >= secondary >= tertiary for any
-(country, year, sex). To recover Lee & Lee's original
-non-cumulative values, subtract: e.g. "primary only (highest)"
-= \code{primary - secondary}.
+By construction, 100 >= primary >= secondary >= tertiary >= 0 for
+any (country, year, sex). Versions of educabr2 before 0.1.2
+double-counted the completed subsets and overstated primary and
+secondary shares; tertiary was unaffected.
 }
 
 \keyword{datasets}

@@ -7,7 +7,7 @@
 #' loading this object directly, as it applies filters, label
 #' translation, and optional pivoting.
 #'
-#' @format A tibble with 6 238 rows and 13 columns:
+#' @format A tibble with 6 238 rows and 16 columns (the canonical enrollment columns, including `institution_type`, `modality` and `is_derived`, which take their defaults except as noted under `modality`):
 #' \describe{
 #'   \item{year}{`integer`. Reference year of the observation (1871–2010).}
 #'   \item{geo_level}{`character`. Geographic aggregation level:
@@ -34,8 +34,15 @@
 #'   \item{value}{`double`. Numeric value of the indicator.}
 #'   \item{unit}{`character`. Unit of measurement: `"count"` or
 #'     `"percent"`.}
-#'   \item{source}{`character`. Compact source key: `"kang_fgv_ibre_2023"`.
-#'     Full metadata in `inst/dict/vocabularies/sources.yaml`.}
+#'   \item{modality}{`character`. `"total"`, except the tertiary
+#'     (`superior`) rows for 2000-2008, which are `"presencial"`: Kang's
+#'     series for those years counts in-person enrollment only and matches
+#'     INEP Sinopse's presencial figures.}
+#'   \item{source}{`character`. Compact source key, one per FGV/IBRE file:
+#'     `"kang_menetrier_comim_2024"` (primary 1871-1932),
+#'     `"kang_paese_felix_2021"` (all stages 1933-2010 and by race),
+#'     `"kang_menetrier_2024"` (UF). Full metadata in
+#'     `inst/dict/vocabularies/sources.yaml`.}
 #'   \item{source_note}{`character`. Inline bibliographic reference.}
 #' }
 #'
@@ -71,7 +78,7 @@
 #' so users can compare competing estimates — pass `source = "..."`
 #' to lock in a specific series.
 #'
-#' @format A tibble with approximately 1 350 rows and 16 columns
+#' @format A tibble with approximately 1 200 rows and 16 columns
 #'   matching the canonical schema (`inst/dict/schema.yaml`). The
 #'   tertiary-specific columns are:
 #' \describe{
@@ -80,7 +87,9 @@
 #'     `municipal`, `publica`, `privada`, plus the private sub-categories
 #'     (`privada_particular` / `privada_comunitaria_confessional_filantropica`
 #'     pre-2009, `privada_lucrativa` / `privada_nao_lucrativa` post-2009),
-#'     `especial`, `total`.}
+#'     `especial`, `total`. `especial` (INEP category "Especial",
+#'     art. 242 CF; microdata 2012-2024) is an "of which" breakdown of
+#'     `municipal`, following INEP's own classification.}
 #'   \item{institution_type}{INEP/MEC institutional category:
 #'     `university`, `university_center`, `faculty`,
 #'     `faculty_school_institute`, `integrated_faculty`,
@@ -100,9 +109,10 @@
 #' @section Primary sources:
 #' \itemize{
 #'   \item `ibge_seculo_xx` — Anuários Estatísticos 1908-1980.
-#'   \item `durham_2005` — Durham (2005).
 #'   \item `maduro_junior_2007` — Maduro Junior MSc dissertation.
-#'   \item `kang_paese_felix_2021` — Kang, Paese & Felix RHE paper.
+#'   \item `kang_paese_felix_2021` — only as the in-person component
+#'     of derived rows; the Kang series itself is in
+#'     [enrollment_kang_fgv].
 #'   \item `inep_sinopse_censup` — INEP Sinopse 1995-2008.
 #'   \item `inep_microdados_censup` — INEP microdata 2009-2024.
 #'   \item `inep_censup_powerbi` — INEP Power BI panel.
@@ -157,7 +167,7 @@
 #'   BR — by sex             \tab 1925–2015  \tab male, female    \cr
 #'   BR — by race            \tab 1925–2015  \tab 4 categories    \cr
 #'   Macro-region (5 regiões)\tab 1950–2015  \tab —               \cr
-#'   UF (27 estados)         \tab 1950–2015  \tab —               \cr
+#'   UF (20 estados)         \tab 1950–2015  \tab —               \cr
 #' }
 #'
 #' @source Walter, J., & Kang, T. H. (2024). A new dataset of average
@@ -294,23 +304,25 @@
 #' }
 #'
 #' @section Cumulative encoding:
-#' Lee & Lee publish *non-cumulative* shares (`lpc`, `lsc`, `lhc`):
-#' fraction of the population whose **highest** completed level is
-#' primary / secondary / tertiary. The ETL script
-#' (`data-raw/06_build_lee_lee_2016.R`) sums the upper categories to
-#' express the more conventional "share who completed at least X" used
-#' in cross-country comparisons:
+#' Lee & Lee follow the Barro-Lee convention: four mutually exclusive
+#' shares by **highest level attended** (`lu` no schooling, `lp`
+#' primary, `ls` secondary, `lh` tertiary; `lu + lp + ls + lh = 100`),
+#' each with a "completed" subset (`lpc` within `lp`, `lsc` within
+#' `ls`, `lhc` within `lh`). The ETL script
+#' (`data-raw/06_build_lee_lee_2016.R`) combines them into the more
+#' conventional "share who completed at least X" used in
+#' cross-country comparisons:
 #'
 #' \itemize{
-#'   \item `level = "primary"` value = lpc + ls + lsc + lh + lhc
-#'   \item `level = "secondary"` value = lsc + lh + lhc
+#'   \item `level = "primary"` value = lpc + ls + lh
+#'   \item `level = "secondary"` value = lsc + lh
 #'   \item `level = "tertiary"` value = lhc
 #' }
 #'
-#' By construction, primary >= secondary >= tertiary for any
-#' (country, year, sex). To recover Lee & Lee's original
-#' non-cumulative values, subtract: e.g. "primary only (highest)"
-#' = `primary - secondary`.
+#' By construction, 100 >= primary >= secondary >= tertiary >= 0 for
+#' any (country, year, sex). Versions of educabr2 before 0.1.2
+#' double-counted the completed subsets and overstated primary and
+#' secondary shares; tertiary was unaffected.
 #'
 #' @source Lee, J.-W., & Lee, H. (2016). Human capital in the long run.
 #'   *Journal of Development Economics*, 122, 147–169.

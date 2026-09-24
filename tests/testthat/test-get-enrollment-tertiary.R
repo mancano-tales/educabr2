@@ -150,3 +150,38 @@ test_that("loader normalises a dataset that lacks the new optional columns", {
   expect_true(all(panel$modality == "total"))
   expect_false(any(panel$is_derived))
 })
+
+test_that("bundled enrollment panel has no duplicate observations", {
+  # Same cell + same source must be one row, whatever the source_note:
+  # guards against the Kang tertiary series being bundled twice and
+  # against INEP Sinopse figures repeated under two table references.
+  panel <- educabr2:::.load_enrollment_panel()
+  key <- c("year", "geo_level", "geo_code", "level", "network",
+           "institution_type", "modality", "dim_race", "age_group",
+           "indicator", "source")
+  expect_false(any(duplicated(panel[, key])))
+})
+
+test_that("bundled tertiary networks add up within each INEP source", {
+  d <- educabr2::enrollment_tertiary
+  d <- d[!d$is_derived & d$institution_type == "total" &
+           startsWith(d$source, "inep_"), ]
+  w <- stats::reshape(
+    as.data.frame(d[, c("year", "source", "source_note", "modality",
+                        "network", "value")]),
+    idvar = c("year", "source", "source_note", "modality"),
+    timevar = "network", direction = "wide"
+  )
+  v <- function(n) if (n %in% names(w)) w[[n]] else rep(NA_real_, nrow(w))
+  mun <- v("value.municipal"); mun[is.na(mun)] <- 0
+
+  pub <- v("value.publica") - (v("value.federal") + v("value.estadual") + mun)
+  tot <- v("value.total") - (v("value.publica") + v("value.privada"))
+  prv <- v("value.privada") -
+    (v("value.privada_lucrativa") + v("value.privada_nao_lucrativa"))
+
+  expect_gt(sum(!is.na(tot)), 0)
+  expect_true(all(abs(pub) <= 1, na.rm = TRUE))
+  expect_true(all(abs(tot) <= 1, na.rm = TRUE))
+  expect_true(all(abs(prv) <= 1, na.rm = TRUE))
+})

@@ -31,8 +31,8 @@ o conjunto mais extenso de séries históricas harmonizadas sobre
 educação brasileira disponível em formato analítico:
 
 * **Matrículas no ensino superior** — 1907 a 2024, **118 anos** de
-  cobertura, articulando sete fontes primárias distintas (IBGE
-  Estatísticas do Século XX, Durham, Maduro Junior, Kang, INEP
+  cobertura, articulando seis fontes distintas (IBGE
+  Estatísticas do Século XX, Maduro Junior, Kang, INEP
   Sinopse, INEP Microdados e o painel CENSUP do INEP).
 * **Matrículas no ensino fundamental e médio** — 1933 a 2010, com
   desagregação por **cor/raça** a partir de 1960 (Kang, Paese & Felix
@@ -146,7 +146,7 @@ lado a lado), a **hierarquia de deduplicação** documentada do pacote
 dá a ordem de precedência recomendada para anos sobrepostos:
 microdados do CENSUP/INEP (2009-2024) → sinopses estatísticas do
 INEP (1995-2008) → Kang, Paese & Felix (1990-1994) → Maduro Junior →
-Durham → IBGE *Estatísticas do Século XX*. A fonte mais desagregada
+IBGE *Estatísticas do Século XX*. A fonte mais desagregada
 e oficial disponível sempre prevalece.
 
 ## Caso 3 — o problema dos totais reconstruídos (2000-2008)
@@ -155,7 +155,7 @@ Entre 2000 e 2008 o INEP começou a coletar matrículas em **EAD
 (educação a distância)** em uma tabela específica do CENSUP
 (`tabela7.x`), porém **não as somou** ao total das matrículas
 presenciais publicadas na `tabela5.x`. Isso significa que séries
-"totais" desse intervalo publicadas por Kang, Durham, Maduro Junior
+"totais" desse intervalo publicadas por Kang, Maduro Junior
 e pela própria sinopse do INEP estão **sistematicamente
 subestimadas** — em até 700 mil matrículas em 2008, segundo nosso
 cálculo.

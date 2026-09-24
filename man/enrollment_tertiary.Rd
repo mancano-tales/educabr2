@@ -5,7 +5,7 @@
 \alias{enrollment_tertiary}
 \title{Tertiary (ensino superior) enrollment — multi-source compilation}
 \format{
-A tibble with approximately 1 350 rows and 16 columns
+A tibble with approximately 1 200 rows and 16 columns
 matching the canonical schema (\code{inst/dict/schema.yaml}). The
 tertiary-specific columns are:
 \describe{
@@ -14,7 +14,9 @@ tertiary-specific columns are:
 \code{municipal}, \code{publica}, \code{privada}, plus the private sub-categories
 (\code{privada_particular} / \code{privada_comunitaria_confessional_filantropica}
 pre-2009, \code{privada_lucrativa} / \code{privada_nao_lucrativa} post-2009),
-\code{especial}, \code{total}.}
+\code{especial}, \code{total}. \code{especial} (INEP category "Especial",
+art. 242 CF; microdata 2012-2024) is an "of which" breakdown of
+\code{municipal}, following INEP's own classification.}
 \item{institution_type}{INEP/MEC institutional category:
 \code{university}, \code{university_center}, \code{faculty},
 \code{faculty_school_institute}, \code{integrated_faculty},
@@ -52,9 +54,10 @@ to lock in a specific series.
 
 \itemize{
 \item \code{ibge_seculo_xx} — Anuários Estatísticos 1908-1980.
-\item \code{durham_2005} — Durham (2005).
 \item \code{maduro_junior_2007} — Maduro Junior MSc dissertation.
-\item \code{kang_paese_felix_2021} — Kang, Paese & Felix RHE paper.
+\item \code{kang_paese_felix_2021} — only as the in-person component
+of derived rows; the Kang series itself is in
+\link{enrollment_kang_fgv}.
 \item \code{inep_sinopse_censup} — INEP Sinopse 1995-2008.
 \item \code{inep_microdados_censup} — INEP microdata 2009-2024.
 \item \code{inep_censup_powerbi} — INEP Power BI panel.

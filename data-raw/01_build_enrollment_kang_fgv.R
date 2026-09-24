@@ -331,9 +331,15 @@ enrollment_kang_fgv <- dplyr::bind_rows(
   # (introduced for the tertiary panel). Kang's series do not vary on
   # those dimensions, so they take the documented defaults — but we
   # write them explicitly so the .rda doesn't rely on loader fill.
+  #
+  # Exception: Kang's tertiary series for 2000-2008 counts in-person
+  # (presencial) enrollment only — it matches INEP Sinopse's presencial
+  # figures exactly and excludes EAD — so those rows are tagged
+  # `modality = "presencial"` rather than "total".
   dplyr::mutate(
     institution_type = "total",
-    modality         = "total",
+    modality         = dplyr::if_else(level == "superior" & year %in% 2000:2008,
+                                      "presencial", "total"),
     is_derived       = FALSE
   ) |>
   dplyr::select(

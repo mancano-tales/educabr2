@@ -53,7 +53,7 @@ BR — total              \tab 1925–2015  \tab —               \cr
 BR — by sex             \tab 1925–2015  \tab male, female    \cr
 BR — by race            \tab 1925–2015  \tab 4 categories    \cr
 Macro-region (5 regiões)\tab 1950–2015  \tab —               \cr
-UF (27 estados)         \tab 1950–2015  \tab —               \cr
+UF (20 estados)         \tab 1950–2015  \tab —               \cr
 }
 }
 

@@ -28,8 +28,8 @@ extensive set of harmonised historical series on Brazilian education
 available in analytic format:
 
 * **Tertiary (higher-education) enrollment** — 1907 to 2024, **118
-  years** of coverage, drawing on seven distinct primary sources
-  (IBGE *Statistics of the 20th Century*, Durham, Maduro Junior,
+  years** of coverage, drawing on six distinct sources
+  (IBGE *Statistics of the 20th Century*, Maduro Junior,
   Kang, INEP Synopsis, INEP Microdata, and the INEP CENSUP Power BI
   panel).
 * **Compulsory (fundamental) and upper-secondary enrollment** — 1933
@@ -157,7 +157,7 @@ side-by-side panel, the package's documented **deduplication
 hierarchy** gives the recommended order of precedence for overlapping
 years: INEP CENSUP microdata (2009-2024), then the INEP statistical
 synopses (1995-2008), then Kang, Paese & Felix (1990-1994), then
-Maduro Junior, then Durham, and finally the IBGE *Statistics of the
+Maduro Junior, and finally the IBGE *Statistics of the
 20th Century*. The most disaggregated and official source available
 always wins.
 
@@ -167,7 +167,7 @@ Between 2000 and 2008 INEP began collecting distance-learning (EAD)
 enrollment in a separate CENSUP table (`tabela7.x`), but **did not
 add** it to the total of in-person enrollment published in
 `tabela5.x`. This means that headline "total" series for that
-interval published by Kang, Durham, Maduro Junior, and INEP's own
+interval published by Kang, Maduro Junior, and INEP's own
 synopsis are **systematically undercounted** — by up to ~700,000
 enrollments in 2008 by our reckoning.
 
@@ -344,7 +344,7 @@ exploration and reproducible scripted analysis.
 
 Every series carries a canonical source key (`source`) with the
 full reference catalogued in
-`inst/dict/vocabularies/sources.yaml`. The seven primary tertiary
+`inst/dict/vocabularies/sources.yaml`. The primary
 sources are:
 
 * Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and
@@ -360,8 +360,6 @@ sources are:
   years of schooling in Brazil. *Economic History of Developing
   Regions* 39(3), 307-336.
   [doi:10.1080/20780389.2024.2417268](https://doi.org/10.1080/20780389.2024.2417268)
-* Durham, E. R. (2005). Educação superior, pública e privada. In
-  Schwartzman (ed.), *Os desafios da educação no Brasil*, pp. 191-233.
 * Maduro Junior, P. R. R. M. (2007). *Taxas de matrícula e gastos em
   educação no Brasil* [MSc dissertation, FGV/EPGE, hdl:10438/110].
 * IBGE (2007). *Estatísticas do Século XX*.

@@ -104,19 +104,6 @@ sources:
     coverage: { years: [1871, 2010], geo: [BR] }
     notes: Historical primary (ensino primário / anos iniciais) enrollment, 1871-2010.
 
-  durham_2005:
-    short_name: Durham (2005)
-    full_name: >
-      Durham, E. R. (2005). Educação superior, pública e privada. In
-      S. Schwartzman (Ed.), Os desafios da educação no Brasil
-      (pp. 191–233). Rio de Janeiro: Nova Fronteira.
-    type: academic
-    coverage: { years: [1933, 2003], geo: [BR] }
-    notes: >
-      Historical tertiary enrollment series (Public/Private). Used as
-      one of the alternative sources for 1933-onwards totals in the
-      `enrollment_tertiary` dataset.
-
   maduro_junior_2007:
     short_name: Maduro Junior (2007)
     full_name: >
@@ -219,8 +206,9 @@ sources:
       Comparative cross-country dataset of long-run educational
       attainment, reconstructed every five years from 1870 to 2010 for
       ~146 countries by sex (MF/M/F) and age bracket (5-year cuts from
-      15-19 to 75+, plus 15+ and 25+ aggregates). Variables `lpc`, `lsc`,
-      `lhc` give the share of the reference population that has
-      completed primary / secondary / tertiary education. See the
+      15-19 to 75+, plus 15+ and 25+ aggregates). `lu`, `lp`, `ls`,
+      `lh` are mutually exclusive shares by highest level attended (they
+      sum to 100); `lpc`, `lsc`, `lhc` are the completed subsets of
+      `lp`, `ls`, `lh`, not additional categories. See the
       Barro–Lee Long-Run Education Dataset page for the original `.dta`
       and documentation.

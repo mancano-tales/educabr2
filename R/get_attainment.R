@@ -8,9 +8,9 @@
 #'
 #' The indicator is the **cumulative** share of the population aged 15–64
 #' that has completed at least the level indicated by `level`. Lee & Lee
-#' publish the data in non-cumulative form ("highest attained level =
-#' primary/secondary/tertiary"); the bundled dataset sums the upper
-#' categories so that, for any (country, year, sex):
+#' publish the data in non-cumulative form (share by highest level
+#' attended, each with a "completed" subset); the bundled dataset
+#' combines them so that, for any (country, year, sex):
 #'
 #' - `level = "primary"` >= `level = "secondary"` >= `level = "tertiary"`.
 #'

@@ -65,9 +65,9 @@ attainment back to the 19th century.
 \details{
 The indicator is the \strong{cumulative} share of the population aged 15–64
 that has completed at least the level indicated by \code{level}. Lee & Lee
-publish the data in non-cumulative form ("highest attained level =
-primary/secondary/tertiary"); the bundled dataset sums the upper
-categories so that, for any (country, year, sex):
+publish the data in non-cumulative form (share by highest level
+attended, each with a "completed" subset); the bundled dataset
+combines them so that, for any (country, year, sex):
 \itemize{
 \item \code{level = "primary"} >= \code{level = "secondary"} >= \code{level = "tertiary"}.
 }

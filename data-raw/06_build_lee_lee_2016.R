@@ -14,9 +14,10 @@
 # Output indicator: `attainment_share_completed` — the cumulative share
 # of the population aged 15-64 who completed at least the level
 # indicated by `level` (primary / secondary / tertiary). Lee & Lee
-# publish *non-cumulative* shares (highest-attained = X); we sum the
-# upper categories to express the more conventional "share who reached
-# at least X" used in cross-country comparative work.
+# publish *non-cumulative* shares by highest level attended (lu, lp, ls,
+# lh), each with a "completed" subset (lpc, lsc, lhc); we combine them
+# into the more conventional "share who completed at least X" used in
+# cross-country comparative work.
 #
 # Run from the package root (requires internet on first run; subsequent
 # runs reuse the in-memory tibble if you keep the session open):
@@ -51,28 +52,37 @@ cat("Raw dimensions: ", paste(dim(raw), collapse = " x "), "\n", sep = "")
 # ---------------------------------------------------------------------
 
 # Keep only the columns we need to build the three cumulative completion
-# indicators. Lee-Lee's non-cumulative split:
+# indicators. Lee & Lee follow the Barro-Lee convention: four mutually
+# exclusive categories by highest level *attended*,
 #   lu  = % no schooling
-#   lp  = % some primary
-#   lpc = % primary complete (highest)
-#   ls  = % some secondary
-#   lsc = % secondary complete (highest)
-#   lh  = % some tertiary
-#   lhc = % tertiary complete (highest)
-# These seven columns sum to ~100 per country-year-sex.
+#   lp  = % primary (highest level attended; complete or incomplete)
+#   ls  = % secondary (highest level attended; complete or incomplete)
+#   lh  = % tertiary (highest level attended; complete or incomplete)
+# with lu + lp + ls + lh = ~100 per country-year-sex. The "completed"
+# columns are SUBSETS of these, not additional categories:
+#   lpc = % primary complete        (subset of lp)
+#   lsc = % secondary complete      (subset of ls)
+#   lhc = % tertiary complete       (subset of lh)
 #
 # Cumulative "completed at least X":
-#   primary   = lpc + ls + lsc + lh + lhc
-#   secondary = lsc + lh + lhc
+#   primary   = lpc + ls + lh   (everyone who reached secondary finished primary)
+#   secondary = lsc + lh
 #   tertiary  = lhc
 
-cum <- raw |>
-  dplyr::select(country, year, sex, lp, lpc, ls, lsc, lh, lhc) |>
-  dplyr::filter(!is.na(lpc) | !is.na(lsc) | !is.na(lhc)) |>
+sel <- raw |>
+  dplyr::select(country, year, sex, lu, lp, lpc, ls, lsc, lh, lhc) |>
+  dplyr::filter(!is.na(lpc) | !is.na(lsc) | !is.na(lhc))
+
+# Sanity check on the source convention: the four highest-attended
+# categories must partition the population.
+tot4 <- with(sel, lu + lp + ls + lh)
+stopifnot(all(abs(tot4[!is.na(tot4)] - 100) < 0.5))
+
+cum <- sel |>
   dplyr::mutate(
-    primary   = lpc + ls + lsc + lh + lhc,
-    secondary =       lsc + lh + lhc,
-    tertiary  =                  lhc
+    primary   = lpc + ls + lh,
+    secondary = lsc + lh,
+    tertiary  = lhc
   ) |>
   dplyr::select(country, year, sex, primary, secondary, tertiary)
 
@@ -133,6 +143,10 @@ lee_lee_2016 <- long |>
   ) |>
   dplyr::arrange(geo_code, level, dim_sex, year) |>
   tibble::as_tibble()
+
+stopifnot(
+  all(lee_lee_2016$value >= 0 & lee_lee_2016$value <= 100 + 1e-6)
+)
 
 cat("Built rows: ", nrow(lee_lee_2016), "\n", sep = "")
 print(dplyr::count(lee_lee_2016, level, dim_sex))

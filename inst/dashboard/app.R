@@ -97,7 +97,6 @@ TER_SOURCE_CHOICES <- c(
   "Kang, Paese & Felix (2021)"          = "kang_paese_felix_2021",
   "Kang & Menetrier (2024)"             = "kang_menetrier_2024",
   "Kang, Menetrier & Comim (2024)"      = "kang_menetrier_comim_2024",
-  "Durham (2005)"                       = "durham_2005",
   "Maduro Junior (2007)"                = "maduro_junior_2007",
   "IBGE Statistics of the 20th Century" = "ibge_seculo_xx",
   "INEP CENSUP Synopsis (1995-2008)"    = "inep_sinopse_censup",
@@ -118,7 +117,6 @@ TER_SOURCE_SHAPES <- c(
   "kang_paese_felix_2021"     = 17,  # solid up-triangle
   "kang_menetrier_2024"       = 2,   # open up-triangle
   "kang_menetrier_comim_2024" = 25,  # solid down-triangle
-  "durham_2005"               = 18,  # solid diamond
   "maduro_junior_2007"        = 5,   # open diamond
   "ibge_seculo_xx"            = 15,  # solid square
   "inep_sinopse_censup"       = 22,  # crossed square
@@ -143,7 +141,6 @@ TER_SOURCE_COLORS <- c(
   "kang_paese_felix_2021"     = "#e41a1c",  # red
   "kang_menetrier_2024"       = "#984ea3",  # purple
   "kang_menetrier_comim_2024" = "#f781bf",  # pink
-  "durham_2005"               = "#377eb8",  # blue
   "maduro_junior_2007"        = "#4daf4a",  # green
   "ibge_seculo_xx"            = "#a65628",  # brown
   "inep_sinopse_censup"       = "#ff7f00",  # orange
@@ -405,7 +402,7 @@ sources_card_ui <- function(source_keys, yaml_path) {
 
 OV_PREC <- c(inep_microdados_censup = 1, inep_sinopse_censup = 2,
              kang_paese_felix_2021 = 3, maduro_junior_2007 = 4,
-             durham_2005 = 5, ibge_seculo_xx = 6)
+             ibge_seculo_xx = 5)
 
 ov_splice <- function(df) {
   df <- df[df$source %in% names(OV_PREC), ]
@@ -484,11 +481,11 @@ ui <- bslib::page_navbar(
         ov_card("From three thousand to ten million students",
                 "Total tertiary enrollment, 1908–2024, spliced from nine sources",
                 "ov_expansion",
-                "Source: IBGE, Durham, Maduro Jr., Kang et al., INEP — via educabr2."),
+                "Source: IBGE, Maduro Jr., Kang et al., INEP — via educabr2."),
         ov_card("Four of every five students study in private institutions",
                 "Enrollment by administrative network, with the 1997 and 2005 regulatory landmarks",
                 "ov_network",
-                "Source: IBGE, Durham, Maduro Jr., Kang et al., INEP — via educabr2."),
+                "Source: IBGE, Maduro Jr., Kang et al., INEP — via educabr2."),
         ov_card("Distance education became the majority in 2024",
                 "EAD share of total tertiary enrollment, 2000–2024",
                 "ov_ead",
@@ -820,7 +817,7 @@ ui <- bslib::page_navbar(
       tags$ul(
         tags$li(tags$strong("Overview"), " — a curated, no-controls entry point: four story charts summarizing a century of Brazilian higher education (secular expansion, public vs. private networks with the 1997/2005 regulatory landmarks, the rise of distance education, and the gender reversal in schooling)."),
         tags$li(tags$strong("Enrollment"), " — enrollment counts and gross rates by level, race and state (1871–2010, Kang/FGV-IBRE)."),
-        tags$li(tags$strong("Tertiary Education"), " — higher-education enrollment 1907–2024, multi-source compilation (IBGE 20th-Century Statistics, Durham, Maduro Junior, Kang et al., INEP Synopsis, INEP Microdata, INEP Power BI). Lets you compare estimates from different sources side by side."),
+        tags$li(tags$strong("Tertiary Education"), " — higher-education enrollment 1907–2024, multi-source compilation (IBGE 20th-Century Statistics, Maduro Junior, Kang et al., INEP Synopsis, INEP Microdata, INEP Power BI). Lets you compare estimates from different sources side by side."),
         tags$li(tags$strong("Educational Attainment"), " — mean years of schooling by sex, race and state (1925–2015, Walter & Kang)."),
         tags$li(tags$strong("Public Expenditure"), " — public spending on education as share of GDP, per-student in % of GDP per capita, and the Kang & Menetrier (2024) double-ratio indicators of fiscal regressivity (Brazil, 1933–2010)."),
         tags$li(tags$strong("Grade Progression"), " — GDR6 grade-progression ratio (enrollment grades 4-6 / grades 1-3), at BR and 20 UFs (1955–2010, Kang/Paese/Felix)."),

@@ -124,3 +124,18 @@ test_that(".load_attainment_panel errors with friendly message when nothing buil
     "No attainment dataset"
   )
 })
+
+test_that("bundled lee_lee_2016 shares are valid and nested", {
+  d <- educabr2::lee_lee_2016
+  expect_true(all(d$value >= 0 & d$value <= 100 + 1e-6))
+
+  w <- stats::reshape(
+    as.data.frame(d[, c("geo_code", "year", "dim_sex", "level", "value")]),
+    idvar = c("geo_code", "year", "dim_sex"),
+    timevar = "level", direction = "wide"
+  )
+  w <- w[stats::complete.cases(w), ]
+  expect_gt(nrow(w), 0)
+  expect_true(all(w$value.primary + 1e-6 >= w$value.secondary))
+  expect_true(all(w$value.secondary + 1e-6 >= w$value.tertiary))
+})
