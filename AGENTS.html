@@ -47,7 +47,7 @@
 
 <div id="agentsmd--educabr2" class="section level1">
 
-<!-- BEGIN governanca-comum v2026-09-26c (fonte: hub, tools/governanca-comum; não editar aqui) -->
+<!-- BEGIN governanca-comum v2026-09-26d (fonte: hub, tools/governanca-comum; não editar aqui) -->
 <div class="section level2">
 <h2 id="governança-comum-do-ecossistema">Governança comum do ecossistema<a class="anchor" aria-label="anchor" href="#governan%C3%A7a-comum-do-ecossistema"></a></h2>
 <blockquote>
@@ -69,7 +69,11 @@
 <strong>Branch e PR são opcionais</strong>: commit direto na <code>main</code> é o normal quando há plano ativo. Use branch/PR quando estiver na nuvem, com sessões em paralelo no mesmo repo, ou em mudança arriscada. Commits citam <code>refs #N</code>; <code>Closes #N</code> num PR fecha a issue. <strong>Mergear PR exige o autor.</strong>
 </li>
 <li>
+<strong>Push logo depois do commit</strong> (autor, 2026-09-26: “não precisa segurar pushes”): commit local parado cria desencontro com agentes na nuvem, que só veem o GitHub. Se o remoto tiver commits novos, integre antes (merge, nunca <code>force-push</code>) e depois envie.</li>
+<li>
 <strong><code>NEWS.md</code> junto com a mudança</strong>: toda mudança relevante vai no mesmo commit que a entrada no <code>NEWS.md</code> (<code>## YYYY-MM-DD — Título</code>). <strong>Só a data, sem hora</strong>: o horário exato é o do commit. Não estime nem corrija horários.</li>
+<li>
+<strong><code>NEWS.md</code> como base de dados</strong>: <code>python tools/news_db.py</code> liga cada entrada ao commit que a criou (hash, hora exata, arquivos e mensagem reais) e mostra o que não confere; <code>--saida x.sqlite|.csv|.json</code> gera a base. Por isso o commit do <code>NEWS.md</code> junto com a mudança é o que dá consistência ao histórico.</li>
 <li>
 <strong>Staging por arquivo</strong>: nunca <code>git add .</code>, <code>-A</code> ou <code>-u</code>; adicione só os arquivos da sua tarefa. Não commite mudanças de outra sessão que estejam no mesmo arquivo.</li>
 <li>
