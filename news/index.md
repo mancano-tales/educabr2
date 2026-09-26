@@ -2,6 +2,25 @@
 
 ## educabr2 0.1.2
 
+### 2026-09-26 — CLAUDE.md vira ponteiro; o conteúdo dele foi para o AGENTS.md
+
+Decisão do autor (plano
+`repo-governance/plan/2026-09-26_Plano_AGENTS_Enxutos_e_Export_Sob_Demanda.md`
+do `mancano-repo-hub` (issue
+[\#27](https://github.com/mancano-tales/educabr2/issues/27) de lá)). O
+`CLAUDE.md` tinha o `@AGENTS.md` seguido do conteúdo antigo, que só o
+Claude Code via. Os comandos, a arquitetura (API `get_*()`, contrato de
+schema, padrão de carga, ETL, dashboard) e as convenções foram para a
+seção “Específico deste repositório” do `AGENTS.md`, sem mudança de
+texto, só com um nível a mais nos títulos. O `CLAUDE.md` ficou só com
+`@AGENTS.md`. Saiu a regra de hard link, que é obsoleta.
+
+**Metadados de Execução**: - **Data**: 2026-09-26 - **Agente**: Claude
+Code / Claude Opus 5.5 / Claude Code on the web - **Mensagem do
+Commit**: “docs(agents): AGENTS.md unico e enxuto; CLAUDE.md vira
+[@AGENTS](https://github.com/AGENTS).md” - **Arquivos afetados**:
+`AGENTS.md`, `CLAUDE.md`, `NEWS.md`
+
 ### 2026-09-26 — Governança comum do ecossistema (v2026-09-26c)
 
 Aplicado o bloco de governança comum mantido no hub
