@@ -1,6 +1,6 @@
 # AGENTS.md — educabr2
 
-<!-- BEGIN governanca-comum v2026-09-26 (fonte: hub, tools/governanca-comum; não editar aqui) -->
+<!-- BEGIN governanca-comum v2026-09-26.2 (fonte: hub, tools/governanca-comum; não editar aqui) -->
 ## Governança comum do ecossistema
 
 > Bloco mantido no hub (`mancano-tales/mancano-repo-hub`, `tools/governanca-comum/`) e copiado para
@@ -29,9 +29,15 @@
 - **Branch e PR são opcionais**: commit direto na `main` é o normal quando há plano ativo. Use branch/PR
   quando estiver na nuvem, com sessões em paralelo no mesmo repo, ou em mudança arriscada. Commits
   citam `refs #N`; `Closes #N` num PR fecha a issue. **Mergear PR exige o autor.**
+- **Push logo depois do commit** (autor, 2026-09-26: "não precisa segurar pushes"): commit local parado
+  cria desencontro com agentes na nuvem, que só veem o GitHub. Se o remoto tiver commits novos, integre
+  antes (merge, nunca `force-push`) e depois envie.
 - **`NEWS.md` junto com a mudança**: toda mudança relevante vai no mesmo commit que a entrada no
   `NEWS.md` (`## YYYY-MM-DD — Título`). **Só a data, sem hora**: o horário exato é o do commit. Não
   estime nem corrija horários.
+- **`NEWS.md` como base de dados**: `python tools/news_db.py` liga cada entrada ao commit que a criou
+  (hash, hora exata, arquivos e mensagem reais) e mostra o que não confere; `--saida x.sqlite|.csv|.json`
+  gera a base. Por isso o commit do `NEWS.md` junto com a mudança é o que dá consistência ao histórico.
 - **Staging por arquivo**: nunca `git add .`, `-A` ou `-u`; adicione só os arquivos da sua tarefa. Não
   commite mudanças de outra sessão que estejam no mesmo arquivo.
 - **Caminhos relativos**, nunca absolutos de máquina (`C:/Users/...`), em código, configuração e
