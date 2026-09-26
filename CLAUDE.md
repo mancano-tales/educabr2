@@ -1,9 +1,11 @@
 # 
 
-- **Hard Link Rule**: AI Agents **MUST NOT waste time** testing,
-  auditing, or manually recreating hard links (mklink). Automated
-  governance scripts (alidate-governance.R / setup) handle this
-  automatically in the background. Focus strictly on your primary task.
+@AGENTS.md
+
+﻿ - **Hard Link Rule**: AI Agents **MUST NOT waste time** testing,
+auditing, or manually recreating hard links (mklink). Automated
+governance scripts (alidate-governance.R / setup) handle this
+automatically in the background. Focus strictly on your primary task.
 
 # CLAUDE.md
 
