@@ -17,6 +17,7 @@ what is in flight, what is queued, and why a given decision was made.
 | [`datasets-wishlist.md`](datasets-wishlist.md) | Data sources to incorporate, ranked by priority |
 | [`integration-educabR.md`](integration-educabR.md) | Compatibility analysis with Sidney Bissoli's `educabR`; merge scenarios |
 | [`integration-pnadc.md`](integration-pnadc.md) | Design notes for the planned `PNADcIBGE` adapter (schooling indicators) |
+| [`proposal-repositioning-2026-09.md`](proposal-repositioning-2026-09.md) | Repositioning in the BRverse: API names, harmonization decision log, educabR/PNADc extensions |
 | [`ideas.md`](ideas.md) | Parking lot for half-baked ideas that don't fit anywhere else yet |
 
 ## How to use this folder
