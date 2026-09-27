@@ -7,7 +7,7 @@ dizendo se confere.
 
 Uso (da raiz de qualquer repo com NEWS.md; só biblioteca padrão):
   python tools/news_db.py                         # resumo de consistência
-  python tools/news_db.py --saida news.sqlite     # base SQLite (tabelas: entradas, arquivos)
+  python tools/news_db.py --saida news.sqlite     # base SQLite (tabelas: entradas, arquivos; hash_news e fragment_id)
   python tools/news_db.py --saida news.csv        # CSV (uma linha por entrada)
   python tools/news_db.py --saida news.json       # JSON
 
@@ -29,8 +29,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+from news_fragments import find_source_commit
+
 ARQ = "NEWS.md"
 SEP = "\x1f"
+FRAGMENT_MARKER = re.compile(r"\s*<!-- NEWS-FRAGMENT:([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}) -->$")
 
 
 def git(*args: str) -> str:
@@ -99,34 +102,66 @@ def construir() -> list[dict]:
             git("show", "--name-only", "--format=", h).splitlines()
         for cab in novas:
             corpo = atual[cab]
+            marker = FRAGMENT_MARKER.search(cab)
+            fragment_id = marker.group(1) if marker else None
+            cabecalho = FRAGMENT_MARKER.sub("", cab).strip()
+            source_hash = h
+            source_data, source_author, source_msg = data, autor, msg
+            source_parents, source_files = pais, arquivos
+            if fragment_id:
+                fragment_path = f"newsfragments/{fragment_id}.md"
+                source_hash = find_source_commit(Path.cwd(), fragment_path)
+                if not source_hash:
+                    raise SystemExit(f"fragmento {fragment_path} não tem commit de origem acessível; use histórico Git completo")
+                if source_hash != h:
+                    info = git("show", "-s", f"--format=%H{SEP}%P{SEP}%aI{SEP}%an{SEP}%s", source_hash).strip().split(SEP, 4)
+                    if len(info) != 5:
+                        raise SystemExit(f"não foi possível ler o commit fonte do fragmento {fragment_id}")
+                    _, parents_text, source_data, source_author, source_msg = info
+                    source_parents = parents_text.split()
+                    source_files = (git("diff", "--name-only", source_parents[0], source_hash) if source_parents else
+                                    git("diff-tree", "--root", "--no-commit-id", "--name-only", "-r", source_hash)).splitlines()
+            # A fragment ID is the stable identity if a generated heading is corrected later.
+            existing_key = next((key for key, value in registros.items()
+                                 if fragment_id and value.get("fragment_id") == fragment_id), None)
+            if existing_key is not None:
+                reg = registros.pop(existing_key)
+                reg["edicoes"].append({"hash": h, "data": data, "cabecalho_anterior": reg["cabecalho"]})
+                reg["cabecalho"], reg["titulo"], reg["texto"] = cabecalho, cabecalho, corpo
+                reg["hash_news"] = h
+                registros[cab] = reg
+                sumidas[:] = [item for item in sumidas if item != existing_key]
+                continue
             # Cabeçalho corrigido (ex.: horário) com corpo igual: é edição de uma entrada existente.
-            origem = next((s for s in sumidas if parecido(antes[s], corpo)), None)
+            origem = next((s for s in sumidas if parecido(antes[s], corpo)), None) if not fragment_id else None
             if origem and origem in registros:
                 reg = registros.pop(origem)
                 reg["edicoes"].append({"hash": h, "data": data, "cabecalho_anterior": origem})
-                reg["cabecalho"], reg["texto"] = cab, corpo
+                reg["cabecalho"], reg["texto"] = cabecalho, corpo
                 registros[cab] = reg
                 sumidas.remove(origem)
                 continue
-            data_cab = re.match(r"(\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))?", cab)
-            titulo = re.sub(r"^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2})?\s*[—–-]\s*", "", cab)
+            data_cab = re.match(r"(\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))?", cabecalho)
+            titulo = re.sub(r"^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2})?\s*[—–-]\s*", "", cabecalho)
             agente = campo(corpo, "Agente")
             declarada = campo(corpo, "Mensagem do Commit")
             registros[cab] = {
-                "hash": h, "data_commit": data, "autor_git": autor, "mensagem_commit": msg,
-                "cabecalho": cab, "titulo": titulo,
+                "hash": source_hash, "hash_news": h if fragment_id else source_hash,
+                "fragment_id": fragment_id, "fragment_path": f"newsfragments/{fragment_id}.md" if fragment_id else None,
+                "data_commit": source_data, "autor_git": source_author, "mensagem_commit": source_msg,
+                "cabecalho": cabecalho, "titulo": titulo,
                 "data_cabecalho": data_cab.group(1) if data_cab else None,
                 "hora_cabecalho": data_cab.group(2) if data_cab else None,
                 "agente": agente, "harness": harness(agente),
                 "mensagem_declarada": declarada,
-                "mensagem_confere": (declarada == msg) if declarada else None,
-                "data_confere": (data_cab.group(1) == data[:10]) if data_cab else None,
-                "arquivos_commit": arquivos, "arquivos_declarados": campo(corpo, "Arquivos afetados"),
-                "texto": corpo, "edicoes": [], "merge": len(pais) > 1,
+                "mensagem_confere": (declarada == source_msg) if declarada else None,
+                "data_confere": (data_cab.group(1) == source_data[:10]) if data_cab else None,
+                "arquivos_commit": source_files, "arquivos_declarados": campo(corpo, "Arquivos afetados"),
+                "texto": corpo, "edicoes": [], "merge": len(source_parents) > 1,
             }
     hoje = entradas(news_em("HEAD"))
-    for reg in registros.values():
-        reg["no_news_atual"] = reg["cabecalho"] in hoje  # False = apagada ou reescrita por inteiro depois
+    for chave, reg in registros.items():
+        reg["no_news_atual"] = chave in hoje  # False = apagada ou reescrita por inteiro depois
     # Entradas que existem hoje mas não foram atribuídas (ex.: escritas antes do NEWS.md entrar no git).
     for cab, corpo in hoje.items():
         if cab not in registros:
@@ -160,9 +195,10 @@ def gravar(regs: list[dict], destino: Path) -> None:
     if destino.suffix == ".json":
         destino.write_text(json.dumps(regs, ensure_ascii=False, indent=1), encoding="utf-8")
     elif destino.suffix == ".csv":
-        cols = ["hash", "data_commit", "autor_git", "mensagem_commit", "titulo", "data_cabecalho", "hora_cabecalho",
-                "agente", "harness", "mensagem_declarada", "mensagem_confere", "data_confere", "merge", "no_news_atual",
-                "arquivos_commit", "arquivos_declarados", "edicoes", "texto"]
+        cols = ["hash", "hash_news", "fragment_id", "fragment_path", "data_commit", "autor_git", "mensagem_commit",
+                "titulo", "data_cabecalho", "hora_cabecalho", "agente", "harness", "mensagem_declarada",
+                "mensagem_confere", "data_confere", "merge", "no_news_atual", "arquivos_commit",
+                "arquivos_declarados", "edicoes", "texto"]
         with destino.open("w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
             w.writeheader()
@@ -172,14 +208,16 @@ def gravar(regs: list[dict], destino: Path) -> None:
     elif destino.suffix in {".sqlite", ".db"}:
         destino.unlink(missing_ok=True)
         con = sqlite3.connect(destino)
-        con.execute("""CREATE TABLE entradas (hash TEXT, data_commit TEXT, autor_git TEXT, mensagem_commit TEXT,
-            titulo TEXT, cabecalho TEXT, data_cabecalho TEXT, hora_cabecalho TEXT, agente TEXT, harness TEXT,
-            mensagem_declarada TEXT, mensagem_confere INTEGER, data_confere INTEGER, merge INTEGER, no_news_atual INTEGER,
+        con.execute("""CREATE TABLE entradas (hash TEXT, hash_news TEXT, fragment_id TEXT, fragment_path TEXT,
+            data_commit TEXT, autor_git TEXT, mensagem_commit TEXT, titulo TEXT, cabecalho TEXT,
+            data_cabecalho TEXT, hora_cabecalho TEXT, agente TEXT, harness TEXT, mensagem_declarada TEXT,
+            mensagem_confere INTEGER, data_confere INTEGER, merge INTEGER, no_news_atual INTEGER,
             arquivos_declarados TEXT, edicoes TEXT, texto TEXT)""")
         con.execute("CREATE TABLE arquivos (hash TEXT, caminho TEXT)")
         for r in regs:
-            con.execute("INSERT INTO entradas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
-                r.get("hash"), r.get("data_commit"), r.get("autor_git"), r.get("mensagem_commit"), r.get("titulo"),
+            con.execute("INSERT INTO entradas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
+                r.get("hash"), r.get("hash_news"), r.get("fragment_id"), r.get("fragment_path"),
+                r.get("data_commit"), r.get("autor_git"), r.get("mensagem_commit"), r.get("titulo"),
                 r.get("cabecalho"), r.get("data_cabecalho"), r.get("hora_cabecalho"), r.get("agente"), r.get("harness"),
                 r.get("mensagem_declarada"), r.get("mensagem_confere"), r.get("data_confere"), r.get("merge"), r.get("no_news_atual"),
                 r.get("arquivos_declarados"), json.dumps(r.get("edicoes", []), ensure_ascii=False), r.get("texto")))

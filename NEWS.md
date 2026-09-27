@@ -1,5 +1,8 @@
 # educabr2 0.1.2
 
+<!-- NEWS-FRAGMENTS:BEGIN -->
+<!-- NEWS-FRAGMENTS:END -->
+
 ## 2026-09-26 — Governança comum do ecossistema (v2026-09-26d)
 
 Aplicado o bloco de governança comum mantido no hub (`mancano-tales/mancano-repo-hub`, `tools/governanca-comum/`): planos com issue (`tools/plano_issue.py`), base do `NEWS.md` derivada do git (`tools/news_db.py`), aprovação só no chat e no plano, mensagens de agentes como pedido, cabeçalho de agente, branch/PR opcionais, `NEWS.md` junto com a mudança, **datas sem hora** e **exportar conversa só quando o autor pedir**. O bloco fica entre marcadores no `AGENTS.md`; o que é específico deste repositório foi preservado.

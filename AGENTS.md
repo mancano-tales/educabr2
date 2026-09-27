@@ -1,6 +1,6 @@
 # AGENTS.md — educabr2
 
-<!-- BEGIN governanca-comum v2026-09-26d (fonte: hub, tools/governanca-comum; não editar aqui) -->
+<!-- BEGIN governanca-comum v2026-09-27a (fonte: hub, tools/governanca-comum; não editar aqui) -->
 ## Governança comum do ecossistema
 
 > Bloco mantido no hub (`mancano-tales/mancano-repo-hub`, `tools/governanca-comum/`) e copiado para
@@ -32,12 +32,17 @@
 - **Push logo depois do commit** (autor, 2026-09-26: "não precisa segurar pushes"): commit local parado
   cria desencontro com agentes na nuvem, que só veem o GitHub. Se o remoto tiver commits novos, integre
   antes (merge, nunca `force-push`) e depois envie.
-- **`NEWS.md` junto com a mudança**: toda mudança relevante vai no mesmo commit que a entrada no
-  `NEWS.md` (`## YYYY-MM-DD — Título`). **Só a data, sem hora**: o horário exato é o do commit. Não
-  estime nem corrija horários.
-- **`NEWS.md` como base de dados**: `python tools/news_db.py` liga cada entrada ao commit que a criou
-  (hash, hora exata, arquivos e mensagem reais) e mostra o que não confere; `--saida x.sqlite|.csv|.json`
-  gera a base. Por isso o commit do `NEWS.md` junto com a mudança é o que dá consistência ao histórico.
+- **NEWS sem colisão de branches**: em repositórios com `<!-- NEWS-FRAGMENTS:BEGIN -->`, crie um
+  fragmento exclusivo por mudança relevante com `python tools/news_fragments.py create --title "..." --agent "Nome / modelo / plataforma"` e
+  co-commite `newsfragments/<UUID>.md` com a mudança. Preencha o texto (subtítulos a partir de `###`), mantenha o fragmento imutável e
+  não edite manualmente a região delimitada em `NEWS.md`; se `newsfragments/` estiver ignorado, libere-o
+  no `.gitignore` antes. A Action propõe a consolidação em um PR
+  revisável. A região legada permanece intacta. Em repositórios ainda sem esses marcadores, continue
+  seguindo o procedimento local até a migração.
+- **`NEWS.md` como base de dados**: `python tools/news_db.py` liga entradas legadas ao commit que as
+  criou e fragmentos pelo UUID ao commit que introduziu o arquivo fonte; registra também o commit que
+  consolidou a entrada em `NEWS.md`. `--saida x.sqlite|.csv|.json` gera a base derivada. **Só a data, sem
+  hora**, aparece no NEWS; hora, arquivos e mensagem vêm do Git.
 - **Staging por arquivo**: nunca `git add .`, `-A` ou `-u`; adicione só os arquivos da sua tarefa. Não
   commite mudanças de outra sessão que estejam no mesmo arquivo.
 - **Caminhos relativos**, nunca absolutos de máquina (`C:/Users/...`), em código, configuração e

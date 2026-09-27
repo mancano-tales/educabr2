@@ -1,0 +1,44 @@
+name: Consolidate NEWS fragments
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "newsfragments/*.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: news-consolidation
+  queue: max
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - name: Render and validate NEWS.md
+        run: |
+          python tools/news_fragments.py render
+          python tools/news_fragments.py render --check
+      - name: Propose the consolidation
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: automation/news-consolidation
+          base: main
+          add-paths: NEWS.md
+          commit-message: "docs(news): consolidate fragments"
+          title: "Consolidate NEWS fragments"
+          body: |
+            Automated, deterministic rendering of committed NEWS fragments.
+
+            Please review and merge this PR to publish the generated NEWS region.
