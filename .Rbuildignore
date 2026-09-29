@@ -25,3 +25,6 @@
 ^rename_repo_refs\.py$
 ^inst/dashboard/manifest\.json$
 ^inst/dashboard/rsconnect$
+^tools$
+^repo-governance$
+^AGENTS\.md$
