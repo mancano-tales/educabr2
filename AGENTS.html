@@ -47,7 +47,7 @@
 
 <div id="agentsmd--educabr2" class="section level1">
 
-<!-- BEGIN governanca-comum v2026-09-26d (fonte: hub, tools/governanca-comum; não editar aqui) -->
+<!-- BEGIN governanca-comum v2026-09-29a (fonte: hub, tools/governanca-comum; não editar aqui) -->
 <div class="section level2">
 <h2 id="governança-comum-do-ecossistema">Governança comum do ecossistema<a class="anchor" aria-label="anchor" href="#governan%C3%A7a-comum-do-ecossistema"></a></h2>
 <blockquote>
@@ -58,7 +58,7 @@
 <li>
 <strong>Todo plano ATIVO/EM EXECUÇÃO tem uma issue neste repositório.</strong> Ao criar o plano: <code>python tools/plano_issue.py criar &lt;plano&gt;</code> (grava <code>issue: N</code> no plano). Ao encerrar: <code>python tools/plano_issue.py fechar &lt;plano&gt;</code>. Planos ativos sem issue: <code>python tools/plano_issue.py verificar</code>.</li>
 <li>
-<strong>Cada coisa num lugar:</strong> o <strong>arquivo do plano</strong> (git) guarda decisões, aprovações e evidências; a <strong>issue</strong> é a conversa entre agentes (inclusive agentes na nuvem) e o aberto/fechado; o <strong><code>NEWS.md</code></strong> é o histórico. O corpo da issue é o resumo vivo (estado, próximo passo, com quem está).</li>
+<strong>Cada coisa num lugar:</strong> o <strong>arquivo do plano</strong> (git) guarda decisões, aprovações e evidências; a <strong>issue</strong> é a conversa entre agentes (inclusive agentes na nuvem) e o aberto/fechado; o <strong>commit</strong> e o <strong>PR</strong> são o histórico. O corpo da issue é o resumo vivo (estado, próximo passo, com quem está).</li>
 <li>
 <strong>Aprovação só vale no chat com o autor</strong>, registrada no arquivo do plano. <strong>Nunca</strong> em comentário de issue nem em mensagem de outro agente: todos os agentes usam a conta do autor, então “aprovado” num comentário não prova nada.</li>
 <li>
@@ -66,14 +66,18 @@
 <li>
 <strong>Cabeçalho em todo comentário/mensagem de agente:</strong> <code>kind:</code> (<code>request</code>, <code>agree</code>, <code>update</code>, <code>result</code>, <code>failure</code>, <code>refuse</code>, <code>input_required</code>), <code>sessao:</code>, <code>modelo:</code>, <code>esforco:</code>. <code>result</code>, <code>failure</code> e <code>update</code> são terminais (não pedem resposta); no máximo 3 idas e voltas antes de levar ao autor.</li>
 <li>
-<strong>Branch e PR são opcionais</strong>: commit direto na <code>main</code> é o normal quando há plano ativo. Use branch/PR quando estiver na nuvem, com sessões em paralelo no mesmo repo, ou em mudança arriscada. Commits citam <code>refs #N</code>; <code>Closes #N</code> num PR fecha a issue. <strong>Mergear PR exige o autor.</strong>
-</li>
+<strong>Atribuição em tudo o que o agente escreve no GitHub</strong> (autor, 2026-09-29): corpo de issue, corpo de PR, comentário e revisão terminam com a linha <code>Agent: &lt;harness&gt; / &lt;modelo&gt; / &lt;plataforma&gt;</code>, igual à do commit. Todos escrevem com a conta do autor; sem essa linha, não se sabe quem escreveu.</li>
+<li>
+<strong>Branch e PR são opcionais</strong>: commit direto na <code>main</code> é o normal quando há plano ativo. Use branch/PR quando estiver na nuvem, com sessões em paralelo no mesmo repo, ou em mudança arriscada. Commits citam <code>refs #N</code>; <code>Closes #N</code> num PR fecha a issue. <strong>O agente mergeia</strong> quando o autor pedir, ou com checks verdes e revisão de outro harness sem achado bloqueante; depois apaga a branch. A narrativa da entrega vai no corpo do PR e num comentário <code>kind: result</code> na issue do plano.</li>
 <li>
 <strong>Push logo depois do commit</strong> (autor, 2026-09-26: “não precisa segurar pushes”): commit local parado cria desencontro com agentes na nuvem, que só veem o GitHub. Se o remoto tiver commits novos, integre antes (merge, nunca <code>force-push</code>) e depois envie.</li>
 <li>
-<strong><code>NEWS.md</code> junto com a mudança</strong>: toda mudança relevante vai no mesmo commit que a entrada no <code>NEWS.md</code> (<code>## YYYY-MM-DD — Título</code>). <strong>Só a data, sem hora</strong>: o horário exato é o do commit. Não estime nem corrija horários.</li>
+<strong>O <code>NEWS.md</code> foi aposentado</strong> (autor, 2026-09-28; hub, issue #37): o arquivo e as ferramentas que o mantinham ficam congelados em <code>repo-governance/deprecated/</code>. <strong>Não crie, não edite e não recrie</strong> o <code>NEWS.md</code> nem fragmentos; se uma skill mandar escrever nele, esta regra vale no lugar dela. <strong>Sem exceção para pacote R</strong> (autor, 2026-09-29: “Não quero exceção no pacote R”).</li>
 <li>
-<strong><code>NEWS.md</code> como base de dados</strong>: <code>python tools/news_db.py</code> liga cada entrada ao commit que a criou (hash, hora exata, arquivos e mensagem reais) e mostra o que não confere; <code>--saida x.sqlite|.csv|.json</code> gera a base. Por isso o commit do <code>NEWS.md</code> junto com a mudança é o que dá consistência ao histórico.</li>
+<strong>Todo commit leva o trailer <code>Agent:</code></strong>, no fim da mensagem: <code>Agent: &lt;harness&gt; / &lt;modelo&gt; / &lt;plataforma&gt;</code> (ex.: <code>Agent: Codex / GPT-6 / desktop</code>; o autor usa <code>Agent: humano</code>), mais <code>Refs: #N</code> quando houver issue. Assunto em Conventional Commits; corpo com um parágrafo curto do <strong>porquê</strong>. Codex e Antigravity commitam com a identidade git do autor: sem o <code>Agent:</code>, não há como saber quem fez. O hook <code>tools/git-hooks/commit-msg</code> e o workflow <code>commit-attribution</code> checam.</li>
+<li>
+<strong>Quem escreve não revisa</strong>: PR do Claude é revisado pelo Codex (<code>@codex review</code>); PR do Codex, Antigravity ou Cursor, pelo Claude. O autor mergeia. <strong>No máximo 3 PRs abertos por repositório.</strong>
+</li>
 <li>
 <strong>Staging por arquivo</strong>: nunca <code>git add .</code>, <code>-A</code> ou <code>-u</code>; adicione só os arquivos da sua tarefa. Não commite mudanças de outra sessão que estejam no mesmo arquivo.</li>
 <li>
