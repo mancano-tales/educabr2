@@ -1,0 +1,51 @@
+name: Commit attribution
+
+# Every non-merge commit must carry an "Agent:" trailer (AGENTS.md, "Registro de cada rodada").
+# On pull requests the check fails the PR; on pushes to main it only reports, since the push already happened.
+# Plan: repo-governance/plan/2026-09-28_Plano_Limpeza_Coordenacao_Agentes_e_Fim_do_NEWS.md (D2).
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  agent-trailer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check Agent trailer on every commit
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          PUSH_AFTER: ${{ github.event.after }}
+        run: |
+          if [ "$EVENT" = "pull_request" ]; then
+            range="$PR_BASE..$PR_HEAD"
+          elif [ -z "$PUSH_BEFORE" ] || [ "$PUSH_BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            range="$PUSH_AFTER~1..$PUSH_AFTER"
+          else
+            range="$PUSH_BEFORE..$PUSH_AFTER"
+          fi
+          missing=0
+          for c in $(git rev-list --no-merges "$range"); do
+            author=$(git log -1 --format='%ae' "$c")
+            case "$author" in *'[bot]'*) continue ;; esac
+            if ! git log -1 --format='%B' "$c" | grep -qE '^Agent:[[:space:]]*[^[:space:]]'; then
+              echo "::error::$(git log -1 --format='%h %s' "$c") — sem trailer 'Agent:'"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ "$missing" -gt 0 ]; then
+            echo "$missing commit(s) sem 'Agent:'. O trailer precisa estar em cada commit:"
+            echo "em branch própria, refaça a mensagem (amend/rebase) antes do merge; na main, a falha só fica registrada."
+            [ "$EVENT" = "pull_request" ] && exit 1
+          fi
+          echo "OK: todos os commits em $range têm 'Agent:' (ou são de bot/merge)."

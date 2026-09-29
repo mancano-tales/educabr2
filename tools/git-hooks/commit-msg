@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# commit-msg — exige o trailer "Agent:" em todo commit (plano 2026-09-28_Plano_Limpeza_Coordenacao_Agentes_e_Fim_do_NEWS, D2).
+#
+# Formato (uma linha, em qualquer ponto do fim da mensagem):
+#   Agent: Codex / GPT-6 / desktop
+#   Agent: Claude Code / claude-opus-5-5 / web
+#   Agent: humano
+#
+# Ativar numa máquina (uma vez por clone):  git config core.hooksPath tools/git-hooks
+# Pular num caso excepcional (fica registrado no próprio commit como ausência): git commit --no-verify
+set -euo pipefail
+
+msg_file="$1"
+
+# Merge e revert gerados pelo git não passam pela regra: a mensagem é automática.
+git_dir=$(git rev-parse --git-dir)
+[ -f "$git_dir/MERGE_HEAD" ] && exit 0
+
+if grep -qE '^Agent:[[:space:]]*[^[:space:]]' "$msg_file"; then
+  exit 0
+fi
+
+cat >&2 <<'EOF'
+
+[commit-msg] Falta o trailer "Agent:" na mensagem do commit.
+Acrescente no fim da mensagem uma linha como:
+
+  Agent: Codex / GPT-6 / desktop        (harness / modelo / plataforma)
+  Agent: humano                         (commit feito pelo autor)
+
+Regra: AGENTS.md, seção "Registro de cada rodada".
+EOF
+exit 1

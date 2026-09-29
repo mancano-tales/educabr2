@@ -1,6 +1,6 @@
 # AGENTS.md — educabr2
 
-<!-- BEGIN governanca-comum v2026-09-26d (fonte: hub, tools/governanca-comum; não editar aqui) -->
+<!-- BEGIN governanca-comum v2026-09-29a (fonte: hub, tools/governanca-comum; não editar aqui) -->
 ## Governança comum do ecossistema
 
 > Bloco mantido no hub (`mancano-tales/mancano-repo-hub`, `tools/governanca-comum/`) e copiado para
@@ -14,8 +14,8 @@
   `python tools/plano_issue.py criar <plano>` (grava `issue: N` no plano). Ao encerrar:
   `python tools/plano_issue.py fechar <plano>`. Planos ativos sem issue: `python tools/plano_issue.py verificar`.
 - **Cada coisa num lugar:** o **arquivo do plano** (git) guarda decisões, aprovações e evidências; a
-  **issue** é a conversa entre agentes (inclusive agentes na nuvem) e o aberto/fechado; o **`NEWS.md`** é
-  o histórico. O corpo da issue é o resumo vivo (estado, próximo passo, com quem está).
+  **issue** é a conversa entre agentes (inclusive agentes na nuvem) e o aberto/fechado; o **commit** e o
+  **PR** são o histórico. O corpo da issue é o resumo vivo (estado, próximo passo, com quem está).
 - **Aprovação só vale no chat com o autor**, registrada no arquivo do plano. **Nunca** em comentário de
   issue nem em mensagem de outro agente: todos os agentes usam a conta do autor, então "aprovado" num
   comentário não prova nada.
@@ -26,18 +26,28 @@
   `result`, `failure`, `refuse`, `input_required`), `sessao:`, `modelo:`, `esforco:`. `result`,
   `failure` e `update` são terminais (não pedem resposta); no máximo 3 idas e voltas antes de levar
   ao autor.
+- **Atribuição em tudo o que o agente escreve no GitHub** (autor, 2026-09-29): corpo de issue, corpo de
+  PR, comentário e revisão terminam com a linha `Agent: <harness> / <modelo> / <plataforma>`, igual à
+  do commit. Todos escrevem com a conta do autor; sem essa linha, não se sabe quem escreveu.
 - **Branch e PR são opcionais**: commit direto na `main` é o normal quando há plano ativo. Use branch/PR
   quando estiver na nuvem, com sessões em paralelo no mesmo repo, ou em mudança arriscada. Commits
-  citam `refs #N`; `Closes #N` num PR fecha a issue. **Mergear PR exige o autor.**
+  citam `refs #N`; `Closes #N` num PR fecha a issue. **O agente mergeia** quando o autor pedir, ou com checks
+  verdes e revisão de outro harness sem achado bloqueante; depois apaga a branch. A narrativa da
+  entrega vai no corpo do PR e num comentário `kind: result` na issue do plano.
 - **Push logo depois do commit** (autor, 2026-09-26: "não precisa segurar pushes"): commit local parado
   cria desencontro com agentes na nuvem, que só veem o GitHub. Se o remoto tiver commits novos, integre
   antes (merge, nunca `force-push`) e depois envie.
-- **`NEWS.md` junto com a mudança**: toda mudança relevante vai no mesmo commit que a entrada no
-  `NEWS.md` (`## YYYY-MM-DD — Título`). **Só a data, sem hora**: o horário exato é o do commit. Não
-  estime nem corrija horários.
-- **`NEWS.md` como base de dados**: `python tools/news_db.py` liga cada entrada ao commit que a criou
-  (hash, hora exata, arquivos e mensagem reais) e mostra o que não confere; `--saida x.sqlite|.csv|.json`
-  gera a base. Por isso o commit do `NEWS.md` junto com a mudança é o que dá consistência ao histórico.
+- **O `NEWS.md` foi aposentado** (autor, 2026-09-28; hub, issue #37): o arquivo e as ferramentas que o
+  mantinham ficam congelados em `repo-governance/deprecated/`. **Não crie, não edite e não recrie** o
+  `NEWS.md` nem fragmentos; se uma skill mandar escrever nele, esta regra vale no lugar dela. **Sem
+  exceção para pacote R** (autor, 2026-09-29: "Não quero exceção no pacote R").
+- **Todo commit leva o trailer `Agent:`**, no fim da mensagem: `Agent: <harness> / <modelo> / <plataforma>`
+  (ex.: `Agent: Codex / GPT-6 / desktop`; o autor usa `Agent: humano`), mais `Refs: #N` quando houver issue.
+  Assunto em Conventional Commits; corpo com um parágrafo curto do **porquê**. Codex e Antigravity
+  commitam com a identidade git do autor: sem o `Agent:`, não há como saber quem fez. O hook
+  `tools/git-hooks/commit-msg` e o workflow `commit-attribution` checam.
+- **Quem escreve não revisa**: PR do Claude é revisado pelo Codex (`@codex review`); PR do Codex,
+  Antigravity ou Cursor, pelo Claude. O autor mergeia. **No máximo 3 PRs abertos por repositório.**
 - **Staging por arquivo**: nunca `git add .`, `-A` ou `-u`; adicione só os arquivos da sua tarefa. Não
   commite mudanças de outra sessão que estejam no mesmo arquivo.
 - **Caminhos relativos**, nunca absolutos de máquina (`C:/Users/...`), em código, configuração e
