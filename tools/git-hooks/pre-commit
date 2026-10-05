@@ -3,10 +3,14 @@
 # Plano: repo-governance/plan/2026-09-28_Plano_Limpeza_Coordenacao_Agentes_e_Fim_do_NEWS.md
 #
 # 1. Não recria o NEWS.md aposentado nem fragmentos (sem exceção, nem para pacote R).
-# 2. Não edita nada em */deprecated/ (histórico congelado). Permite criar só o README inicial.
+# 2. Não cria, edita, apaga, move nem renomeia nada em */deprecated/ (histórico congelado). Permite
+#    criar só o README inicial e mover arquivos de fora para dentro sem alterá-los (a migração).
 # 3. Não acrescenta caminho absoluto de máquina (AGENTS.md §5) em linhas novas de texto.
 #
-# Ativação: git config core.hooksPath tools/git-hooks (as sessões do Claude Code e do Codex fazem sozinhas).
+# Ativação, uma vez por clone: se o repo NÃO tem hooks próprios, git config core.hooksPath tools/git-hooks.
+# Se já tem (core.hooksPath = hooks, como bbsia-radar, tese, cha e skills), NÃO troque: o hook próprio
+# chama este script (ex.: no fim de hooks/pre-commit, `tools/git-hooks/pre-commit || exit 1`).
+# `python tools/sync_governanca.py` (no hub) relata o estado de cada repo e nunca muda o core.hooksPath.
 # Exceção deliberada, que fica visível na revisão do PR: PULAR_GOVERNANCA=1 git commit ...
 set -euo pipefail
 
@@ -16,26 +20,43 @@ git_dir=$(git rev-parse --git-dir)
 
 falhas=()
 
+# Os caminhos vêm com -z (separados por NUL): sem -z, o git põe entre aspas os que têm acento
+# ("deprecated/caf\303\251.txt"), e a aspa inicial impede o case de casar.
+
 # 1. NEWS aposentado
-while IFS= read -r f; do
+while IFS= read -r -d '' f; do
   case "$f" in
     NEWS.md) falhas+=("NEWS.md foi aposentado (AGENTS.md §4): registre no corpo do commit, no PR e na issue") ;;
     newsfragments/*) falhas+=("$f: fragmentos de NEWS foram aposentados") ;;
   esac
-done < <(git diff --cached --name-only --diff-filter=AM)
+done < <(git diff --cached --name-only -z --diff-filter=AM)
 
-# 2. deprecated/ congelado: a migração cria um README explicativo uma vez.
-while IFS= read -r f; do
-  case "$f" in
-    */deprecated/README.md|deprecated/README.md) ;;
-    */deprecated/*|deprecated/*) falhas+=("$f: pasta deprecated/ é histórico congelado; não se edita") ;;
+# 2. deprecated/ congelado: não se cria, edita, apaga, move nem renomeia nada lá dentro. Exceções da
+#    migração: o README explicativo, criado uma vez, e mover para dentro (git mv de fora → deprecated/).
+em_deprecated() { case "$1" in */deprecated/*|deprecated/*) return 0 ;; *) return 1 ;; esac; }
+# Registro -z: status NUL caminho NUL; renomeação: status NUL origem NUL destino NUL.
+while IFS= read -r -d '' st; do
+  IFS= read -r -d '' origem
+  destino=""
+  case "$st" in R*|C*) IFS= read -r -d '' destino ;; esac
+  case "$st" in
+    A)
+      case "$origem" in
+        */deprecated/README.md|deprecated/README.md) ;;
+        */deprecated/*|deprecated/*) falhas+=("$origem: pasta deprecated/ é histórico congelado; não se cria arquivo novo") ;;
+      esac ;;
+    M|T)
+      if em_deprecated "$origem"; then falhas+=("$origem: pasta deprecated/ é histórico congelado; não se edita"); fi ;;
+    D)
+      if em_deprecated "$origem"; then falhas+=("$origem: pasta deprecated/ é histórico congelado; não se apaga"); fi ;;
+    R*)
+      if em_deprecated "$origem"; then
+        falhas+=("$origem → $destino: pasta deprecated/ é histórico congelado; não se move nem renomeia")
+      elif em_deprecated "$destino" && [ "${st#R}" != 100 ]; then
+        falhas+=("$destino: só se move para deprecated/ sem alterar o conteúdo")
+      fi ;;
   esac
-done < <(git diff --cached --name-only --diff-filter=A)
-while IFS= read -r f; do
-  case "$f" in
-    */deprecated/*|deprecated/*) falhas+=("$f: pasta deprecated/ é histórico congelado; não se edita") ;;
-  esac
-done < <(git diff --cached --name-only --diff-filter=M)
+done < <(git diff --cached --name-status -z -M)
 
 # 3. Caminho absoluto de máquina em linhas adicionadas (ignora históricos e conversas exportadas)
 padrao='([A-Za-z]:[\\/]+Users[\\/]|/Users/[A-Za-z]|/home/[a-z][a-z0-9_-]*/|MancanoSync[\\/])'

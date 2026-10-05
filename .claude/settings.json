@@ -1,26 +1,5 @@
 {
   "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$CLAUDE_PROJECT_DIR/tools/plano_issue.py\" hook",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$CLAUDE_PROJECT_DIR/tools/plano_issue.py\" hook",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
+    "PostToolUse": []
   }
 }

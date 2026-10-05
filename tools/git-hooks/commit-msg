@@ -6,7 +6,8 @@
 #   Agent: Claude Code / claude-opus-5-5 / web
 #   Agent: humano
 #
-# Ativar numa máquina (uma vez por clone):  git config core.hooksPath tools/git-hooks
+# Ativar numa máquina (uma vez por clone), se o repo NÃO tem hooks próprios: git config core.hooksPath tools/git-hooks
+# Se já tem (core.hooksPath = hooks), não troque: o hooks/commit-msg do repo chama este script com "$1".
 # Pular num caso excepcional (fica registrado no próprio commit como ausência): git commit --no-verify
 set -euo pipefail
 
