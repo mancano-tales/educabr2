@@ -11,13 +11,12 @@
 #' [get_schooling()].
 #'
 #' @param source_key Character vector of source keys (e.g.
-#'   `"kang_paese_felix_2021"`, `"walter_kang_2023"`). `NULL` (default)
+#'   `"kang_paese_felix_2021"`, `"walter_kang_2024"`). `NULL` (default)
 #'   returns citations for **all** sources. To discover which sources
 #'   contributed rows to a particular query, inspect the `source` column
 #'   of the tibble returned by [get_enrollment()] or [get_schooling()].
-#'   The alias `"walter_kang_2024"` (the year of the peer-reviewed
-#'   article) is accepted and resolves to the same source as
-#'   `"walter_kang_2023"` (the legacy key still carried by the data).
+#'   The legacy key `"walter_kang_2023"` (from the 2023 working paper)
+#'   is still accepted and resolves to `"walter_kang_2024"`.
 #' @param style One of:
 #'   * `"bibentry"` (default) — a [utils::bibentry()] object you can
 #'     further format via [utils::toBibtex()] or [format()];
@@ -33,7 +32,7 @@
 #' educabr_cite("kang_paese_felix_2021")
 #'
 #' # Plain APA-style prose
-#' educabr_cite("walter_kang_2023", style = "text")
+#' educabr_cite("walter_kang_2024", style = "text")
 #'
 #' # BibTeX entry, ready to paste into a .bib file
 #' educabr_cite("paglayan_2022", style = "bibtex")

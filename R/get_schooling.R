@@ -26,9 +26,9 @@
 #'   Race and sub-national breakdowns are only available at `geo_level =
 #'   "BR"`.
 #' @param source Character vector of source keys. `NULL` returns all
-#'   available sources (currently only `"walter_kang_2023"`). The alias
-#'   `"walter_kang_2024"` (year of the peer-reviewed article) is accepted
-#'   and resolves to the same source.
+#'   available sources (currently only `"walter_kang_2024"`). The legacy
+#'   key `"walter_kang_2023"` (from the 2023 working paper) is still
+#'   accepted and resolves to the same source.
 #' @param wide Logical. If `TRUE`, pivots the result to wide form. For
 #'   this indicator the effect is minimal (only one indicator column),
 #'   but the parameter is provided for API consistency with

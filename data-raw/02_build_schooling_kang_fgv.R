@@ -20,7 +20,7 @@ library(readxl)
 stopifnot(file.exists("DESCRIPTION"))
 
 src_file    <- "data-raw/sources/kang_fgv_ibre_2023/3._anos_estudo_1925_2015_v_abril2023.xlsx"
-SOURCE_KEY  <- "walter_kang_2023"
+SOURCE_KEY  <- "walter_kang_2024"
 SOURCE_NOTE <- paste(
   "Walter, J., & Kang, T. H. (2024).",
   "A new dataset of average years of schooling in Brazil, 1925-2015.",

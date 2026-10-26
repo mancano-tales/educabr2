@@ -157,7 +157,7 @@
 #'   \item{value}{`double`. Mean years of schooling of the adult
 #'     population.}
 #'   \item{unit}{`character`. Always `"years"`.}
-#'   \item{source}{`character`. Always `"walter_kang_2023"`.}
+#'   \item{source}{`character`. Always `"walter_kang_2024"` (`"walter_kang_2023"` until 0.1.1).}
 #'   \item{source_note}{`character`. Inline bibliographic reference.}
 #' }
 #'

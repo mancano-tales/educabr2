@@ -11,7 +11,7 @@ test_that("educabr_cite returns all bundled sources by default", {
 })
 
 test_that("educabr_cite accepts multiple source keys", {
-  out <- educabr_cite(c("kang_paese_felix_2021", "walter_kang_2023"))
+  out <- educabr_cite(c("kang_paese_felix_2021", "walter_kang_2024"))
   expect_length(out, 2L)
 })
 
@@ -19,10 +19,10 @@ test_that("educabr_cite errors on unknown key with helpful message", {
   expect_error(educabr_cite("not_a_real_source"), "Unknown source")
 })
 
-test_that("educabr_cite accepts the walter_kang_2024 alias", {
-  legacy <- educabr_cite("walter_kang_2023")
-  alias  <- educabr_cite("walter_kang_2024")
-  expect_identical(format(alias), format(legacy))
+test_that("educabr_cite accepts the legacy walter_kang_2023 key", {
+  current <- educabr_cite("walter_kang_2024")
+  legacy  <- educabr_cite("walter_kang_2023")
+  expect_identical(format(legacy), format(current))
 })
 
 test_that("educabr_cite carries DOI when the YAML has one", {
@@ -31,7 +31,7 @@ test_that("educabr_cite carries DOI when the YAML has one", {
 })
 
 test_that("educabr_cite extracts year from the prose", {
-  bib <- educabr_cite("walter_kang_2023")
+  bib <- educabr_cite("walter_kang_2024")
   expect_equal(bib$year, "2024")  # full_name says "(2024)"
 })
 

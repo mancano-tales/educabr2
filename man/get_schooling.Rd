@@ -37,9 +37,9 @@ Race and sub-national breakdowns are only available at \code{geo_level = "BR"}.
 }}
 
 \item{source}{Character vector of source keys. \code{NULL} returns all
-available sources (currently only \code{"walter_kang_2023"}). The alias
-\code{"walter_kang_2024"} (year of the peer-reviewed article) is accepted
-and resolves to the same source.}
+available sources (currently only \code{"walter_kang_2024"}). The legacy
+key \code{"walter_kang_2023"} (from the 2023 working paper) is still
+accepted and resolves to the same source.}
 
 \item{wide}{Logical. If \code{TRUE}, pivots the result to wide form. For
 this indicator the effect is minimal (only one indicator column),

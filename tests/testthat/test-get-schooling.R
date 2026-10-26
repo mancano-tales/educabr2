@@ -10,7 +10,7 @@ make_sch_fixture <- function() {
     indicator   = rep("mean_years_schooling", 9),
     value       = c(1.13, 1.52, 0.41, 1.34, 2.80, 2.80, 1.10, 3.50, 3.20),
     unit        = rep("years", 9),
-    source      = rep("walter_kang_2023", 9),
+    source      = rep("walter_kang_2024", 9),
     source_note = rep("fixture", 9),
     stringsAsFactors = FALSE
   )
@@ -104,21 +104,21 @@ test_that("lang='pt' translates dim_sex and dim_race", {
   })
 })
 
-test_that("source filter accepts both walter_kang_2023 and the 2024 alias", {
+test_that("source filter accepts walter_kang_2024 and the legacy 2023 key", {
   with_sch_fixture({
-    legacy <- get_schooling(source = "walter_kang_2023")
-    alias  <- get_schooling(source = "walter_kang_2024")
-    expect_identical(alias, legacy)
-    expect_gt(nrow(alias), 0L)
+    current <- get_schooling(source = "walter_kang_2024")
+    legacy  <- get_schooling(source = "walter_kang_2023")
+    expect_identical(legacy, current)
+    expect_gt(nrow(current), 0L)
   })
 })
 
 test_that(".normalise_source_keys maps aliases and passes others through", {
   norm <- educabr2:::.normalise_source_keys
   expect_null(norm(NULL))
-  expect_identical(norm("walter_kang_2024"), "walter_kang_2023")
+  expect_identical(norm("walter_kang_2023"), "walter_kang_2024")
   expect_identical(norm(c("walter_kang_2024", "walter_kang_2023")),
-                   "walter_kang_2023")
+                   "walter_kang_2024")
   expect_identical(norm("kang_paese_felix_2021"), "kang_paese_felix_2021")
 })
 

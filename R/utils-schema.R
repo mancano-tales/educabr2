@@ -1,19 +1,19 @@
-#' Source-key aliases (canonical name -> legacy key carried by the data)
+#' Source-key aliases (legacy key -> key carried by the data)
 #'
 #' Walter & Kang circulated as a 2023 FGV-IBRE working paper when the
-#' internal key was minted, but the peer-reviewed article came out in 2024
-#' (Economic History of Developing Regions). Until the physical rename of
-#' the .rda/ETL key (post-defense), both spellings must resolve to the
-#' legacy key that the data rows still carry.
+#' internal key was minted; the peer-reviewed article came out in 2024
+#' (Economic History of Developing Regions), and since 0.1.2 the data carry
+#' `walter_kang_2024`. The old key keeps working so existing scripts do not
+#' break.
 #' @noRd
 .SOURCE_KEY_ALIASES <- c(
-  "walter_kang_2024" = "walter_kang_2023"
+  "walter_kang_2023" = "walter_kang_2024"
 )
 
 #' Normalise user-supplied source keys to the keys carried by the data.
 #'
-#' Accepts the canonical (new) spelling of aliased keys and maps it to the
-#' legacy key present in the bundled datasets, leaving all other keys
+#' Accepts the legacy spelling of aliased keys and maps it to the key
+#' present in the bundled datasets, leaving all other keys
 #' untouched. `NULL` passes through so "no source filter" keeps meaning
 #' "all sources".
 #' @noRd

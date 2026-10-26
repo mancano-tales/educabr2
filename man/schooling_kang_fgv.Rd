@@ -26,7 +26,7 @@ for schema compatibility.}
 \item{value}{\code{double}. Mean years of schooling of the adult
 population.}
 \item{unit}{\code{character}. Always \code{"years"}.}
-\item{source}{\code{character}. Always \code{"walter_kang_2023"}.}
+\item{source}{\code{character}. Always \code{"walter_kang_2024"} (\code{"walter_kang_2023"} until 0.1.1).}
 \item{source_note}{\code{character}. Inline bibliographic reference.}
 }
 }

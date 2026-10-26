@@ -8,13 +8,12 @@ educabr_cite(source_key = NULL, style = c("bibentry", "text", "bibtex"))
 }
 \arguments{
 \item{source_key}{Character vector of source keys (e.g.
-\code{"kang_paese_felix_2021"}, \code{"walter_kang_2023"}). \code{NULL} (default)
+\code{"kang_paese_felix_2021"}, \code{"walter_kang_2024"}). \code{NULL} (default)
 returns citations for \strong{all} sources. To discover which sources
 contributed rows to a particular query, inspect the \code{source} column
 of the tibble returned by \code{\link[=get_enrollment]{get_enrollment()}} or \code{\link[=get_schooling]{get_schooling()}}.
-The alias \code{"walter_kang_2024"} (the year of the peer-reviewed
-article) is accepted and resolves to the same source as
-\code{"walter_kang_2023"} (the legacy key still carried by the data).}
+The legacy key \code{"walter_kang_2023"} (from the 2023 working paper)
+is still accepted and resolves to \code{"walter_kang_2024"}.}
 
 \item{style}{One of:
 \itemize{
@@ -46,7 +45,7 @@ that backs the \code{source} column of \code{\link[=get_enrollment]{get_enrollme
 educabr_cite("kang_paese_felix_2021")
 
 # Plain APA-style prose
-educabr_cite("walter_kang_2023", style = "text")
+educabr_cite("walter_kang_2024", style = "text")
 
 # BibTeX entry, ready to paste into a .bib file
 educabr_cite("paglayan_2022", style = "bibtex")
