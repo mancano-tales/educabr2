@@ -185,3 +185,11 @@ test_that("bundled tertiary networks add up within each INEP source", {
   expect_true(all(abs(tot) <= 1, na.rm = TRUE))
   expect_true(all(abs(prv) <= 1, na.rm = TRUE))
 })
+
+test_that("redundant and dropped sources are not bundled", {
+  # Power BI equals the microdata cell by cell; Durham does not add up.
+  dropped <- c("inep_censup_powerbi", "durham_2005")
+  expect_false(any(grepl(paste(dropped, collapse = "|"),
+                         enrollment_tertiary$source)))
+  expect_false(any(dropped %in% list_sources()$key))
+})

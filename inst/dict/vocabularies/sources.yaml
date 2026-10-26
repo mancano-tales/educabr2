@@ -158,25 +158,12 @@ sources:
       4=Privada com fins lucrativos, 5=Privada sem fins lucrativos,
       6=Particular, 7=Especial, 8=Comunitária, 9=Confessional). A
       categorização privada muda em 2010 (lucrativa vs não-lucrativa)
-      em relação a 2009 (particular vs comunitária/confessional).
-
-  inep_censup_powerbi:
-    short_name: INEP CENSUP Power BI
-    full_name: >
-      INEP/MEC. Painel Power BI do Censo da Educação Superior.
-    type: administrative
-    url: https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior
-    coverage: { years: [2010, 2024], geo: [BR] }
-    notes: >
-      Painel interativo consolidado do INEP. Até a v0.1.1, os totais
-      setoriais (publica/privada/municipal) divergiam da agregação dos
-      microdados a partir de 2012, porque a agregação punha as
-      instituições "Especiais" (art. 242 da CF) na rede privada e o
-      painel as conta como municipais. Desde a v0.1.2 a agregação
-      segue o painel, e todas as células em comum (2010–2024)
-      coincidem. Mantido neste pacote como estimativa alternativa do
-      INEP — útil para validação cruzada e para acompanhar revisões
-      pós-publicação dos microdados.
+      em relação a 2009 (particular vs comunitária/confessional). As
+      instituições "Especiais" (art. 242 da CF) são contadas como
+      públicas municipais, como no painel Power BI do INEP. Até a
+      v0.1.1 o pacote trazia também esse painel (2010–2024); como todas
+      as suas células coincidem com esta agregação, ele foi retirado na
+      v0.1.2.
 
   walter_kang_2023:
     short_name: Walter & Kang (2024)

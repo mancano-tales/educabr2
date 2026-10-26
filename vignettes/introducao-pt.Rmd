@@ -31,9 +31,9 @@ o conjunto mais extenso de séries históricas harmonizadas sobre
 educação brasileira disponível em formato analítico:
 
 * **Matrículas no ensino superior** — 1907 a 2024, **118 anos** de
-  cobertura, articulando seis fontes distintas (IBGE
+  cobertura, articulando cinco fontes distintas (IBGE
   Estatísticas do Século XX, Maduro Junior, Kang, INEP
-  Sinopse, INEP Microdados e o painel CENSUP do INEP).
+  Sinopse e INEP Microdados).
 * **Matrículas no ensino fundamental e médio** — 1933 a 2010, com
   desagregação por **cor/raça** a partir de 1960 (Kang, Paese & Felix
   2021).

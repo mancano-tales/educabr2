@@ -100,8 +100,7 @@ TER_SOURCE_CHOICES <- c(
   "Maduro Junior (2007)"                = "maduro_junior_2007",
   "IBGE Statistics of the 20th Century" = "ibge_seculo_xx",
   "INEP CENSUP Synopsis (1995-2008)"    = "inep_sinopse_censup",
-  "INEP CENSUP Microdata (2009-2024)"   = "inep_microdados_censup",
-  "INEP CENSUP Power BI (2010-2024)"    = "inep_censup_powerbi"
+  "INEP CENSUP Microdata (2009-2024)"   = "inep_microdados_censup"
 )
 
 TER_COLOR_BY_CHOICES <- c(
@@ -120,8 +119,7 @@ TER_SOURCE_SHAPES <- c(
   "maduro_junior_2007"        = 5,   # open diamond
   "ibge_seculo_xx"            = 15,  # solid square
   "inep_sinopse_censup"       = 22,  # crossed square
-  "inep_microdados_censup"    = 16,  # solid circle
-  "inep_censup_powerbi"       = 1    # open circle
+  "inep_microdados_censup"    = 16   # solid circle
 )
 
 # Modality drives the line dash pattern (solid for in-person & total,
@@ -144,8 +142,7 @@ TER_SOURCE_COLORS <- c(
   "maduro_junior_2007"        = "#4daf4a",  # green
   "ibge_seculo_xx"            = "#a65628",  # brown
   "inep_sinopse_censup"       = "#ff7f00",  # orange
-  "inep_microdados_censup"    = "#000000",  # black
-  "inep_censup_powerbi"       = "#999999"   # gray
+  "inep_microdados_censup"    = "#000000"   # black
 )
 
 TER_NETWORK_COLORS <- c(
@@ -574,8 +571,7 @@ ui <- bslib::page_navbar(
                                     "maduro_junior_2007",
                                     "ibge_seculo_xx",
                                     "inep_sinopse_censup",
-                                    "inep_microdados_censup",
-                                    "inep_censup_powerbi"),
+                                    "inep_microdados_censup"),
                        options = list(plugins = list("remove_button"))),
         radioButtons("ter_color_by", "Colour lines by",
                      choices = TER_COLOR_BY_CHOICES,
@@ -817,7 +813,7 @@ ui <- bslib::page_navbar(
       tags$ul(
         tags$li(tags$strong("Overview"), " — a curated, no-controls entry point: four story charts summarizing a century of Brazilian higher education (secular expansion, public vs. private networks with the 1997/2005 regulatory landmarks, the rise of distance education, and the gender reversal in schooling)."),
         tags$li(tags$strong("Enrollment"), " — enrollment counts and gross rates by level, race and state (1871–2010, Kang/FGV-IBRE)."),
-        tags$li(tags$strong("Tertiary Education"), " — higher-education enrollment 1907–2024, multi-source compilation (IBGE 20th-Century Statistics, Maduro Junior, Kang et al., INEP Synopsis, INEP Microdata, INEP Power BI). Lets you compare estimates from different sources side by side."),
+        tags$li(tags$strong("Tertiary Education"), " — higher-education enrollment 1907–2024, multi-source compilation (IBGE 20th-Century Statistics, Maduro Junior, Kang et al., INEP Synopsis, INEP Microdata). Lets you compare estimates from different sources side by side."),
         tags$li(tags$strong("Educational Attainment"), " — mean years of schooling by sex, race and state (1925–2015, Walter & Kang)."),
         tags$li(tags$strong("Public Expenditure"), " — public spending on education as share of GDP, per-student in % of GDP per capita, and the Kang & Menetrier (2024) double-ratio indicators of fiscal regressivity (Brazil, 1933–2010)."),
         tags$li(tags$strong("Grade Progression"), " — GDR6 grade-progression ratio (enrollment grades 4-6 / grades 1-3), at BR and 20 UFs (1955–2010, Kang/Paese/Felix)."),

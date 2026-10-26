@@ -51,10 +51,9 @@ datasets:
   - name: enrollment_tertiary
     theme: enrollment
     description: >
-      National (BR) tertiary enrollment compiled across six sources:
+      National (BR) tertiary enrollment compiled across five sources:
       IBGE Estatísticas do Século XX, Maduro Junior (2007), Kang/Paese/Felix (2021), INEP Sinopse CENSUP
-      (1995-2008), INEP Microdados CENSUP (2009-2024) and the INEP
-      CENSUP Power BI panel. Multiple sources per `(year, network)`
+      (1995-2008) and INEP Microdados CENSUP (2009-2024). Multiple sources per `(year, network)`
       are kept on purpose to support cross-source comparison. Derived
       rows (Presencial from one source + EAD from another, 2000-2008)
       are flagged via `is_derived` and excluded by default. The
@@ -62,7 +61,8 @@ datasets:
       here only inside derived rows; INEP "Especial" institutions are
       counted as public municipal (as in INEP's Power BI panel). Durham
       (2005) was dropped in 0.1.2: secondary source whose printed table
-      does not add up.
+      does not add up. The INEP Power BI panel was dropped in 0.1.2:
+      every one of its cells equals the microdata aggregation.
     processed_file: data/enrollment_tertiary.rda
     build_script: data-raw/03_build_enrollment_tertiary.R
     storage: embedded
@@ -75,7 +75,6 @@ datasets:
       - kang_paese_felix_2021
       - inep_sinopse_censup
       - inep_microdados_censup
-      - inep_censup_powerbi
     indicators: [enrollment_count]
     levels: [superior]
     networks:

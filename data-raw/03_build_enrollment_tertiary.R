@@ -13,7 +13,7 @@
 #   * Kang, Paese & Felix (2021) — Late and unequal
 #   * INEP Sinopse Estatística CENSUP (1995-2008)
 #   * INEP Microdados CENSUP (2009-2024)
-#   * INEP CENSUP Power BI panel
+#   * INEP CENSUP Power BI panel — dropped in step 5e (identical to microdata)
 #
 # Multiple sources for the same (year, level, network) are kept on
 # purpose so users can compare/contrast competing estimates via the
@@ -387,6 +387,31 @@ cat(sprintf("Reclassified 'especial' in %d microdata (year, modality) cell(s).\n
             nrow(esp)))
 
 # ---------------------------------------------------------------------
+# 5e. Drop the INEP Power BI panel (redundant with the microdata)
+# ---------------------------------------------------------------------
+#
+# After 5d, every Power BI cell (2010-2024) has a microdata cell with
+# the same value, and the panel has no cell of its own. Keeping it only
+# doubled the rows. The check below stops the build if a future raw
+# file breaks that equivalence, so the panel is never dropped silently.
+
+key_cols <- c("year", "geo_level", "geo_code", "level", "network",
+              "institution_type", "modality", "dim_race", "indicator")
+pbi <- enrollment_tertiary[enrollment_tertiary$source == "inep_censup_powerbi", ]
+mic <- enrollment_tertiary[enrollment_tertiary$source == "inep_microdados_censup", ]
+pbi_vs_mic <- dplyr::left_join(pbi, mic, by = key_cols,
+                               suffix = c("_pbi", "_mic"))
+stopifnot(
+  "Power BI has cells the microdata lack" = !anyNA(pbi_vs_mic$value_mic),
+  "Power BI and microdata disagree" =
+    all(pbi_vs_mic$value_pbi == pbi_vs_mic$value_mic)
+)
+enrollment_tertiary <- enrollment_tertiary |>
+  dplyr::filter(source != "inep_censup_powerbi")
+cat(sprintf("Dropped %d inep_censup_powerbi row(s) (identical to microdata).\n",
+            nrow(pbi)))
+
+# ---------------------------------------------------------------------
 # 6. Validate
 # ---------------------------------------------------------------------
 
@@ -401,7 +426,7 @@ attr(enrollment_tertiary, "educabr_meta") <- list(
   built_at        = Sys.time(),
   primary_sources = c("ibge_seculo_xx", "maduro_junior_2007",
                       "kang_paese_felix_2021", "inep_sinopse_censup",
-                      "inep_microdados_censup", "inep_censup_powerbi"),
+                      "inep_microdados_censup"),
   raw_file        = src_file,
   notes           = paste(
     "Multi-source compilation built for academic transparency.",
