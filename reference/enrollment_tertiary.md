@@ -76,9 +76,9 @@ ETL: `data-raw/03_build_enrollment_tertiary.R`.
 
 - `inep_sinopse_censup` — INEP Sinopse 1995-2008.
 
-- `inep_microdados_censup` — INEP microdata 2009-2024.
-
-- `inep_censup_powerbi` — INEP Power BI panel.
+- `inep_microdados_censup` — INEP microdata 2009-2024. The INEP Power BI
+  panel, bundled until 0.1.1, was dropped in 0.1.2 because every cell
+  equals this aggregation.
 
 For derived rows the `source` column is the concatenation
 `"<presencial_key>+<ead_key>"`; the exact composition is documented in

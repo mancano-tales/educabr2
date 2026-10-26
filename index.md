@@ -221,7 +221,7 @@ Six internal datasets back the public functions:
 | Dataset | Rows | Coverage | Source(s) |
 |----|---:|----|----|
 | `enrollment_kang_fgv` | 6,238 | BR + UF, EF1/EF2/EF/EM/ES, 1933–2010 (+ race breakdown 1960–2010) | Kang, Paese & Felix (2021); Kang & Menetrier (2024); Kang, Menetrier & Comim (2024) |
-| `enrollment_tertiary` | 1,341 | BR, ensino superior, 1907–2024, by network/institution/modality | IBGE *Século XX*; Maduro Jr. (2007); Kang/Paese/Felix (2021); INEP CENSUP Synopsis / Microdata / Power BI |
+| `enrollment_tertiary` | 1,096 | BR, ensino superior, 1907–2024, by network/institution/modality | IBGE *Século XX*; Maduro Jr. (2007); INEP CENSUP Synopsis / Microdata (Kang/Paese/Felix only inside reconstructed totals) |
 | `schooling_kang_fgv` | 2,287 | BR + region + UF, mean years of schooling, 1925–2015, with race and sex breakdowns | Walter & Kang (2024) |
 | `expenditure_kang_fgv` | 1,170 | BR, public expenditure on education (% GDP, per-student, “double ratios”), 1933–2010 | Kang & Menetrier (2024) |
 | `progression_kang_fgv` | 1,090 | BR + 20 UFs, GDR6 grade-progression ratio, 1955–2010 | Kang, Paese & Felix (2021) |

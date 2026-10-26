@@ -125,8 +125,9 @@ ETL: <code>data-raw/03_build_enrollment_tertiary.R</code>.</p>
 of derived rows; the Kang series itself is in
 <a href="enrollment_kang_fgv.html">enrollment_kang_fgv</a>.</p></li>
 <li><p><code>inep_sinopse_censup</code> — INEP Sinopse 1995-2008.</p></li>
-<li><p><code>inep_microdados_censup</code> — INEP microdata 2009-2024.</p></li>
-<li><p><code>inep_censup_powerbi</code> — INEP Power BI panel.</p></li>
+<li><p><code>inep_microdados_censup</code> — INEP microdata 2009-2024. The
+INEP Power BI panel, bundled until 0.1.1, was dropped in 0.1.2
+because every cell equals this aggregation.</p></li>
 </ul><p>For derived rows the <code>source</code> column is the concatenation
 <code>"&lt;presencial_key&gt;+&lt;ead_key&gt;"</code>; the exact composition is documented
 in <code>source_note</code>.</p>

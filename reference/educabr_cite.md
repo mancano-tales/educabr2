@@ -144,9 +144,6 @@ educabr_cite()
 #> 2009-2024).”
 #> <https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior>.
 #> 
-#> (n.d.). “INEP/MEC. Painel Power BI do Censo da Educação Superior.”
-#> <https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior>.
-#> 
 #> (2024). “Walter, J. R., & Kang, T. H. (2024). A new dataset of average
 #> years of schooling in Brazil, 1925–2015. Economic History of Developing
 #> Regions, 39(3), 307–336. [Originally circulated as FGV-IBRE working
