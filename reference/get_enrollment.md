@@ -162,7 +162,7 @@ get_enrollment(level = "superior", network = "total", modality = "total")
 # Tertiary private particular only, post-2000
 get_enrollment(level = "superior", network = "privada_particular",
                year = c(2000, 2024))
-#> # A tibble: 49 × 16
+#> # A tibble: 55 × 16
 #>     year geo_level geo_code geo_name level    network  institution_type modality
 #>    <int> <chr>     <chr>    <chr>    <chr>    <chr>    <chr>            <chr>   
 #>  1  2000 BR        BR       Brasil   superior privada… faculty_school_… presenc…
@@ -175,14 +175,14 @@ get_enrollment(level = "superior", network = "privada_particular",
 #>  8  2001 BR        BR       Brasil   superior privada… technology_cent… presenc…
 #>  9  2001 BR        BR       Brasil   superior privada… total            presenc…
 #> 10  2001 BR        BR       Brasil   superior privada… university       presenc…
-#> # ℹ 39 more rows
+#> # ℹ 45 more rows
 #> # ℹ 8 more variables: dim_race <chr>, age_group <chr>, indicator <chr>,
 #> #   value <dbl>, unit <chr>, source <chr>, source_note <chr>, is_derived <lgl>
 
 # Compare with derived rows included
 get_enrollment(level = "superior", network = "total",
                year = c(2000, 2008), include_derived = TRUE)
-#> # A tibble: 98 × 16
+#> # A tibble: 108 × 16
 #>     year geo_level geo_code geo_name level    network institution_type modality 
 #>    <int> <chr>     <chr>    <chr>    <chr>    <chr>   <chr>            <chr>    
 #>  1  2000 BR        BR       Brasil   superior total   total            presenci…
@@ -195,7 +195,7 @@ get_enrollment(level = "superior", network = "total",
 #>  8  2007 BR        BR       Brasil   superior total   total            presenci…
 #>  9  2008 BR        BR       Brasil   superior total   total            presenci…
 #> 10  2000 BR        BR       Brasil   superior total   total            presenci…
-#> # ℹ 88 more rows
+#> # ℹ 98 more rows
 #> # ℹ 8 more variables: dim_race <chr>, age_group <chr>, indicator <chr>,
 #> #   value <dbl>, unit <chr>, source <chr>, source_note <chr>, is_derived <lgl>
 ```

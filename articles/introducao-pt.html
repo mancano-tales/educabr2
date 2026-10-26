@@ -197,12 +197,12 @@ todas devolvendo <em>tibbles</em> no mesmo esquema canônico:</p>
 <span><span class="co">#&gt;  $ indicator  : chr "mean_years_schooling"</span></span>
 <span><span class="co">#&gt;  $ value      : num 1.59</span></span>
 <span><span class="co">#&gt;  $ unit       : chr "years"</span></span>
-<span><span class="co">#&gt;  $ source     : chr "walter_kang_2023"</span></span>
+<span><span class="co">#&gt;  $ source     : chr "walter_kang_2024"</span></span>
 <span><span class="co">#&gt;  $ source_note: chr "Walter, J., &amp; Kang, T. H. (2024). A new dataset of average years of schooling in Brazil, 1925-2015. Economic Hi"| __truncated__</span></span>
 <span><span class="co">#&gt;  - attr(*, "educabr_meta")=List of 5</span></span>
 <span><span class="co">#&gt;   ..$ build_script  : chr "data-raw/02_build_schooling_kang_fgv.R"</span></span>
-<span><span class="co">#&gt;   ..$ built_at      : POSIXct[1:1], format: "2026-07-10 01:00:11"</span></span>
-<span><span class="co">#&gt;   ..$ primary_source: chr "walter_kang_2023"</span></span>
+<span><span class="co">#&gt;   ..$ built_at      : POSIXct[1:1], format: "2026-10-26 20:03:25"</span></span>
+<span><span class="co">#&gt;   ..$ primary_source: chr "walter_kang_2024"</span></span>
 <span><span class="co">#&gt;   ..$ citation      : chr "Walter, J., &amp; Kang, T. H. (2024). A new dataset of average years of schooling in Brazil, 1925-2015. Economic Hi"| __truncated__</span></span>
 <span><span class="co">#&gt;   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/3._anos_estudo_1925_2015_v_abril2023.xlsx"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"total"</span>, indicator <span class="op">=</span> <span class="st">"share_gdp"</span>, year <span class="op">=</span> <span class="fl">1950</span><span class="op">)</span><span class="op">)</span></span>
@@ -385,7 +385,7 @@ ao EAD publicado pelo INEP. Essas linhas têm
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">recon</span><span class="op">[</span><span class="va">recon</span><span class="op">$</span><span class="va">is_derived</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"source"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 23 × 3</span></span></span>
 <span><span class="co">#&gt;     year source                                      value</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>000 inep_sinopse_censup+inep_sinopse_censup   2<span style="text-decoration: underline;">695</span>927</span></span>
@@ -394,20 +394,11 @@ ao EAD publicado pelo INEP. Essas linhas têm
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>001 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">036</span>113</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>001 kang_paese_felix_2021+inep_sinopse_censup 3<span style="text-decoration: underline;">036</span>113</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>001 maduro_junior_2007+inep_sinopse_censup    3<span style="text-decoration: underline;">036</span>113</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>003 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">936</span>933</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>003 kang_paese_felix_2021+inep_sinopse_censup 3<span style="text-decoration: underline;">871</span>734</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>003 maduro_junior_2007+inep_sinopse_censup    3<span style="text-decoration: underline;">871</span>734</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>004 inep_sinopse_censup+inep_sinopse_censup   4<span style="text-decoration: underline;">223</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>  <span style="text-decoration: underline;">2</span>004 kang_paese_felix_2021+inep_sinopse_censup 4<span style="text-decoration: underline;">223</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>  <span style="text-decoration: underline;">2</span>004 maduro_junior_2007+inep_sinopse_censup    4<span style="text-decoration: underline;">223</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>  <span style="text-decoration: underline;">2</span>005 inep_sinopse_censup+inep_sinopse_censup   4<span style="text-decoration: underline;">567</span>798</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span>  <span style="text-decoration: underline;">2</span>005 kang_paese_felix_2021+inep_sinopse_censup 4<span style="text-decoration: underline;">567</span>798</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span>  <span style="text-decoration: underline;">2</span>006 inep_sinopse_censup+inep_sinopse_censup   4<span style="text-decoration: underline;">883</span>852</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span>  <span style="text-decoration: underline;">2</span>006 kang_paese_felix_2021+inep_sinopse_censup 4<span style="text-decoration: underline;">883</span>852</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span>  <span style="text-decoration: underline;">2</span>007 inep_sinopse_censup+inep_sinopse_censup   5<span style="text-decoration: underline;">250</span>147</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span>  <span style="text-decoration: underline;">2</span>007 kang_paese_felix_2021+inep_sinopse_censup 5<span style="text-decoration: underline;">250</span>147</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span>  <span style="text-decoration: underline;">2</span>008 inep_sinopse_censup+inep_sinopse_censup   5<span style="text-decoration: underline;">808</span>017</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span>  <span style="text-decoration: underline;">2</span>008 kang_paese_felix_2021+inep_sinopse_censup 5<span style="text-decoration: underline;">808</span>017</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>002 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">520</span>627</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>002 kang_paese_felix_2021+inep_sinopse_censup 3<span style="text-decoration: underline;">520</span>627</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>002 maduro_junior_2007+inep_sinopse_censup    3<span style="text-decoration: underline;">520</span>627</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>003 inep_sinopse_censup+inep_sinopse_censup   3<span style="text-decoration: underline;">936</span>933</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 13 more rows</span></span></span></code></pre></div>
 <p>O nome composto do <code>source</code> (ex.:
 <code>kang_paese_felix_2021+inep_sinopse_censup</code>) explicita que se
 trata de uma combinação: o <strong>componente presencial</strong> vem da

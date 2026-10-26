@@ -105,12 +105,12 @@ str(get_schooling(year = 1950))
 #>  $ indicator  : chr "mean_years_schooling"
 #>  $ value      : num 1.59
 #>  $ unit       : chr "years"
-#>  $ source     : chr "walter_kang_2023"
+#>  $ source     : chr "walter_kang_2024"
 #>  $ source_note: chr "Walter, J., & Kang, T. H. (2024). A new dataset of average years of schooling in Brazil, 1925-2015. Economic Hi"| __truncated__
 #>  - attr(*, "educabr_meta")=List of 5
 #>   ..$ build_script  : chr "data-raw/02_build_schooling_kang_fgv.R"
-#>   ..$ built_at      : POSIXct[1:1], format: "2026-07-10 01:00:11"
-#>   ..$ primary_source: chr "walter_kang_2023"
+#>   ..$ built_at      : POSIXct[1:1], format: "2026-10-26 20:03:25"
+#>   ..$ primary_source: chr "walter_kang_2024"
 #>   ..$ citation      : chr "Walter, J., & Kang, T. H. (2024). A new dataset of average years of schooling in Brazil, 1925-2015. Economic Hi"| __truncated__
 #>   ..$ raw_files     : chr "data-raw/sources/kang_fgv_ibre_2023/3._anos_estudo_1925_2015_v_abril2023.xlsx"
 str(get_expenditure(level = "total", indicator = "share_gdp", year = 1950))
@@ -310,7 +310,7 @@ recon <- get_enrollment(
 )
 
 recon[recon$is_derived, c("year", "source", "value")]
-#> # A tibble: 20 × 3
+#> # A tibble: 23 × 3
 #>     year source                                      value
 #>    <int> <chr>                                       <dbl>
 #>  1  2000 inep_sinopse_censup+inep_sinopse_censup   2695927
@@ -319,20 +319,11 @@ recon[recon$is_derived, c("year", "source", "value")]
 #>  4  2001 inep_sinopse_censup+inep_sinopse_censup   3036113
 #>  5  2001 kang_paese_felix_2021+inep_sinopse_censup 3036113
 #>  6  2001 maduro_junior_2007+inep_sinopse_censup    3036113
-#>  7  2003 inep_sinopse_censup+inep_sinopse_censup   3936933
-#>  8  2003 kang_paese_felix_2021+inep_sinopse_censup 3871734
-#>  9  2003 maduro_junior_2007+inep_sinopse_censup    3871734
-#> 10  2004 inep_sinopse_censup+inep_sinopse_censup   4223344
-#> 11  2004 kang_paese_felix_2021+inep_sinopse_censup 4223344
-#> 12  2004 maduro_junior_2007+inep_sinopse_censup    4223344
-#> 13  2005 inep_sinopse_censup+inep_sinopse_censup   4567798
-#> 14  2005 kang_paese_felix_2021+inep_sinopse_censup 4567798
-#> 15  2006 inep_sinopse_censup+inep_sinopse_censup   4883852
-#> 16  2006 kang_paese_felix_2021+inep_sinopse_censup 4883852
-#> 17  2007 inep_sinopse_censup+inep_sinopse_censup   5250147
-#> 18  2007 kang_paese_felix_2021+inep_sinopse_censup 5250147
-#> 19  2008 inep_sinopse_censup+inep_sinopse_censup   5808017
-#> 20  2008 kang_paese_felix_2021+inep_sinopse_censup 5808017
+#>  7  2002 inep_sinopse_censup+inep_sinopse_censup   3520627
+#>  8  2002 kang_paese_felix_2021+inep_sinopse_censup 3520627
+#>  9  2002 maduro_junior_2007+inep_sinopse_censup    3520627
+#> 10  2003 inep_sinopse_censup+inep_sinopse_censup   3936933
+#> # ℹ 13 more rows
 ```
 
 O nome composto do `source` (ex.:

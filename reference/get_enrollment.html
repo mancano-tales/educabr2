@@ -223,7 +223,7 @@ column the value defaults to <code>"total"</code> (or <code>FALSE</code> for
 <span class="r-in"><span><span class="co"># Tertiary private particular only, post-2000</span></span></span>
 <span class="r-in"><span><span class="fu">get_enrollment</span><span class="op">(</span>level <span class="op">=</span> <span class="st">"superior"</span>, network <span class="op">=</span> <span class="st">"privada_particular"</span>,</span></span>
 <span class="r-in"><span>               year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2024</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 49 × 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 55 × 16</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year geo_level geo_code geo_name level    network  institution_type modality</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>000 BR        BR       Brasil   superior privada… faculty_school_… presenc…</span>
@@ -236,14 +236,14 @@ column the value defaults to <code>"total"</code> (or <code>FALSE</code> for
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>001 BR        BR       Brasil   superior privada… technology_cent… presenc…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>001 BR        BR       Brasil   superior privada… total            presenc…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>001 BR        BR       Brasil   superior privada… university       presenc…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 39 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 45 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: dim_race &lt;chr&gt;, age_group &lt;chr&gt;, indicator &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   value &lt;dbl&gt;, unit &lt;chr&gt;, source &lt;chr&gt;, source_note &lt;chr&gt;, is_derived &lt;lgl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compare with derived rows included</span></span></span>
 <span class="r-in"><span><span class="fu">get_enrollment</span><span class="op">(</span>level <span class="op">=</span> <span class="st">"superior"</span>, network <span class="op">=</span> <span class="st">"total"</span>,</span></span>
 <span class="r-in"><span>               year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2008</span><span class="op">)</span>, include_derived <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 98 × 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 108 × 16</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year geo_level geo_code geo_name level    network institution_type modality </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>000 BR        BR       Brasil   superior total   total            presenci…</span>
@@ -256,7 +256,7 @@ column the value defaults to <code>"total"</code> (or <code>FALSE</code> for
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>007 BR        BR       Brasil   superior total   total            presenci…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>008 BR        BR       Brasil   superior total   total            presenci…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>000 BR        BR       Brasil   superior total   total            presenci…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 88 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 98 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: dim_race &lt;chr&gt;, age_group &lt;chr&gt;, indicator &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   value &lt;dbl&gt;, unit &lt;chr&gt;, source &lt;chr&gt;, source_note &lt;chr&gt;, is_derived &lt;lgl&gt;</span></span>
 <span class="r-in"><span></span></span>

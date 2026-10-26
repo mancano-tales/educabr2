@@ -16,15 +16,14 @@ educabr_cite(source_key = NULL, style = c("bibentry", "text", "bibtex"))
 - source_key:
 
   Character vector of source keys (e.g. `"kang_paese_felix_2021"`,
-  `"walter_kang_2023"`). `NULL` (default) returns citations for **all**
+  `"walter_kang_2024"`). `NULL` (default) returns citations for **all**
   sources. To discover which sources contributed rows to a particular
   query, inspect the `source` column of the tibble returned by
   [`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
   or
   [`get_schooling()`](https://mancano-tales.github.io/educabr2/reference/get_schooling.md).
-  The alias `"walter_kang_2024"` (the year of the peer-reviewed article)
-  is accepted and resolves to the same source as `"walter_kang_2023"`
-  (the legacy key still carried by the data).
+  The legacy key `"walter_kang_2023"` (from the 2023 working paper) is
+  still accepted and resolves to `"walter_kang_2024"`.
 
 - style:
 
@@ -75,7 +74,7 @@ educabr_cite("kang_paese_felix_2021")
 #> <https://doi.org/10.1017/S0212610921000112>.
 
 # Plain APA-style prose
-educabr_cite("walter_kang_2023", style = "text")
+educabr_cite("walter_kang_2024", style = "text")
 #> [1] "Walter, J. R., & Kang, T. H. (2024). A new dataset of average years of schooling in Brazil, 1925–2015. Economic History of Developing Regions, 39(3), 307–336. [Originally circulated as FGV-IBRE working paper, 2023.] https://doi.org/10.1080/20780389.2024.2417268"
 
 # BibTeX entry, ready to paste into a .bib file

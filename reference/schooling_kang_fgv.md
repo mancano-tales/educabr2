@@ -66,7 +66,8 @@ A tibble with approximately 2 300 rows and 12 columns:
 
 - source:
 
-  `character`. Always `"walter_kang_2023"`.
+  `character`. Always `"walter_kang_2024"` (`"walter_kang_2023"` until
+  0.1.1).
 
 - source_note:
 

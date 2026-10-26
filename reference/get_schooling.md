@@ -56,9 +56,9 @@ get_schooling(
 - source:
 
   Character vector of source keys. `NULL` returns all available sources
-  (currently only `"walter_kang_2023"`). The alias `"walter_kang_2024"`
-  (year of the peer-reviewed article) is accepted and resolves to the
-  same source.
+  (currently only `"walter_kang_2024"`). The legacy key
+  `"walter_kang_2023"` (from the 2023 working paper) is still accepted
+  and resolves to the same source.
 
 - wide:
 
