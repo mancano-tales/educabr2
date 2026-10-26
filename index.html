@@ -95,7 +95,7 @@ provenance. Includes a bundled Shiny dashboard.
 <blockquote>
 <p>Harmonised historical series on Brazilian education — enrollment and educational attainment, compiled and reconciled across decades of heterogeneous official and academic sources.</p>
 </blockquote>
-<p><a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL--3-blue.svg" alt="License: GPL (&gt;= 3)"></a> <a href="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://mancano-tales.github.io/educabr2/"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></p>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL--3-blue.svg" alt="License: GPL (&gt;= 3)"></a> <a href="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://mancano-tales.github.io/educabr2/"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23675602.svg" alt="DOI"></a></p>
 <p><code>educabr2</code> provides curated long-run series on Brazilian formal education — enrollment by stage and network, years of schooling, literacy and attainment — compiled and reconciled from heterogeneous official and academic sources (Censo Escolar, PNAD, Censo Demográfico, Anuário Estatístico do IBGE, INEP CENSUP, Kang/FGV-IBRE, Walter &amp; Kang, among others) into a single tidy schema with explicit per-row provenance.</p>
 <p><strong>🇧🇷</strong> <code>educabr2</code> reúne séries históricas tratadas sobre educação formal no Brasil — matrículas, anos de estudo, atingimento educacional — em um único schema <em>tidy</em>, com proveniência explícita. Veja a <a href="https://mancano-tales.github.io/educabr2/articles/introducao-pt.html">vinheta em português</a>.</p>
 <hr>
@@ -500,17 +500,18 @@ provenance. Includes a bundled Shiny dashboard.
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr2"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Referência sugerida / Suggested citation:</strong></p>
-<p>Mançano, T. (2026). <em>educabr2: Harmonized Historical Series on Brazilian Education</em> (R package version 0.1.1). GitHub. <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
+<p>Mançano, T. (2026). <em>educabr2: Harmonized Historical Series on Brazilian Education</em> (R package version 0.1.2). Zenodo. <a href="https://doi.org/10.5281/zenodo.23675603" class="external-link uri">https://doi.org/10.5281/zenodo.23675603</a></p>
 <p><strong>BibTeX:</strong></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="va">@Manual</span>{<span class="ot">educabr2</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">title</span>  = {educabr2: Harmonized Historical Series on Brazilian Education},</span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="dt">author</span> = {Tales Mançano},</span>
 <span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="dt">note</span>   = {R package version 0.1.1},</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="dt">url</span>    = {https://github.com/mancano-tales/educabr2},</span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="dt">note</span>   = {R package version 0.1.2},</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="dt">doi</span>    = {10.5281/zenodo.23675603},</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="dt">url</span>    = {https://github.com/mancano-tales/educabr2},</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>}</span></code></pre></div>
 <p>Cite also the <strong>originating sources</strong> for any data you actually use. The <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> helper builds APA / BibTeX entries for every bundled source (see <a href="#citation">Citation</a> above).</p>
-<p>Um DOI Zenodo acompanhará o primeiro lançamento marcado com uma <em>tag</em> de versão. / A Zenodo DOI will accompany the first tagged release.</p>
+<p>Cada versão tem um DOI próprio no Zenodo (0.1.2: <a href="https://doi.org/10.5281/zenodo.23675603" class="external-link">10.5281/zenodo.23675603</a>); o DOI <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link">10.5281/zenodo.23675602</a> aponta sempre para a versão mais recente. / Each release has its own Zenodo DOI; 10.5281/zenodo.23675602 always resolves to the latest one.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

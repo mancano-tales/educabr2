@@ -10,6 +10,7 @@
 [![pkgdown](https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr2/)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23675602.svg)](https://doi.org/10.5281/zenodo.23675602)
 
 `educabr2` provides curated long-run series on Brazilian formal
 education — enrollment by stage and network, years of schooling,
@@ -460,8 +461,8 @@ citation("educabr2")
 **Referência sugerida / Suggested citation:**
 
 Mançano, T. (2026). *educabr2: Harmonized Historical Series on Brazilian
-Education* (R package version 0.1.1). GitHub.
-<https://github.com/mancano-tales/educabr2>
+Education* (R package version 0.1.2). Zenodo.
+<https://doi.org/10.5281/zenodo.23675603>
 
 **BibTeX:**
 
@@ -470,7 +471,8 @@ Education* (R package version 0.1.1). GitHub.
   title  = {educabr2: Harmonized Historical Series on Brazilian Education},
   author = {Tales Mançano},
   year   = {2026},
-  note   = {R package version 0.1.1},
+  note   = {R package version 0.1.2},
+  doi    = {10.5281/zenodo.23675603},
   url    = {https://github.com/mancano-tales/educabr2},
 }
 ```
@@ -480,5 +482,8 @@ Cite also the **originating sources** for any data you actually use. The
 helper builds APA / BibTeX entries for every bundled source (see
 [Citation](#citation) above).
 
-Um DOI Zenodo acompanhará o primeiro lançamento marcado com uma *tag* de
-versão. / A Zenodo DOI will accompany the first tagged release.
+Cada versão tem um DOI próprio no Zenodo (0.1.2:
+[10.5281/zenodo.23675603](https://doi.org/10.5281/zenodo.23675603)); o
+DOI [10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
+aponta sempre para a versão mais recente. / Each release has its own
+Zenodo DOI; 10.5281/zenodo.23675602 always resolves to the latest one.
