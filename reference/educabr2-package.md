@@ -30,10 +30,12 @@ are scheduled for the v0.2–v0.4 milestones. See `NEWS.md` once released.
 `educabr2` ships a curated, static long-run panel — not a live
 connection to INEP. For current-year microdata (IDEB, ENEM, Censo
 Escolar, SAEB, and other INEP indicators fetched and cached on demand),
-see [educabR](https://github.com/SidneyBissoli/educabR) instead. The two
-packages are complementary — organised along different axes (by theme
-and historical series here; by official source there) — and can be used
-side by side.
+see the sibling package
+[educabR](https://CRAN.R-project.org/package=educabR) by Sidney Bissoli.
+The two packages are complementary — organised along different axes (by
+theme and historical series here; by official source there) — and can be
+used side by side. If you use both, cite both: `citation("educabR")` and
+`citation("educabr2")`.
 
 ## See also
 

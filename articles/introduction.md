@@ -43,10 +43,11 @@ Every transformation is auditable: each output row carries a canonical
 historical series, not a live connection to INEP. If what you need is
 **current-year microdata** (IDEB, ENEM, Censo Escolar, SAEB, and other
 INEP indicators fetched and cached on demand), use
-[`educabR`](https://github.com/SidneyBissoli/educabR) instead: the two
-packages are complementary, organised along different axes (by theme and
-historical series here; by official source there), and can be used side
-by side.
+[`educabR`](https://CRAN.R-project.org/package=educabR) (Sidney Bissoli,
+on CRAN) instead: the two packages are complementary, organised along
+different axes (by theme and historical series here; by official source
+there), and can be used side by side. If you use both, cite both:
+`citation("educabR")` and `citation("educabr2")`.
 
 ## Installation
 
@@ -563,7 +564,7 @@ into a ready-to-paste reference:
 ``` r
 
 educabr_cite("kang_paese_felix_2021", style = "text")
-#> [1] "(2021). \"Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late\nand unequal: Enrolments and retention in Brazilian education,\n1933-2010. Revista de Historia Económica / Journal of Iberian and Latin\nAmerican Economic History, 39(2), 191–218.\"\ndoi:10.1017/S0212610921000112\n<https://doi.org/10.1017/S0212610921000112>.\n<https://doi.org/10.1017/S0212610921000112>."
+#> [1] "Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and unequal: Enrolments and retention in Brazilian education, 1933-2010. Revista de Historia Económica / Journal of Iberian and Latin American Economic History, 39(2), 191–218. https://doi.org/10.1017/S0212610921000112"
 ```
 
 Use `style = "bibtex"` for a BibTeX entry, or call

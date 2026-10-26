@@ -42,6 +42,19 @@ carrega o `source` (chave canônica em
 `inst/dict/vocabularies/sources.yaml`) e um `source_note` com a
 referência exata da tabela ou capítulo de origem.
 
+### Escopo e pacote irmão: `educabR`
+
+O `educabr2` é um painel histórico, curado e estático: traz as séries
+longas já compiladas, sem conexão ao INEP em tempo de execução. Para
+**microdados e indicadores atuais** (Censo Escolar desde 1995, Censo da
+Educação Superior 2009–2024, ENEM, SAEB, ENADE, IDEB, CPC/IGC, CAPES,
+FUNDEB), use o [`educabR`](https://CRAN.R-project.org/package=educabR),
+de Sidney Bissoli, disponível no CRAN. Os dois são complementares: o
+`educabR` organiza o acesso por fonte oficial e devolve cada ano no
+leiaute da agência; o `educabr2` organiza por tema e série histórica,
+emendando fontes através das quebras de série. Se usar os dois, cite os
+dois: `citation("educabR")` e `citation("educabr2")`.
+
 ## Instalação
 
 ``` r
@@ -537,7 +550,7 @@ resultado) em referência pronta para colar:
 ``` r
 
 educabr_cite("kang_paese_felix_2021", style = "text")
-#> [1] "(2021). \"Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late\nand unequal: Enrolments and retention in Brazilian education,\n1933-2010. Revista de Historia Económica / Journal of Iberian and Latin\nAmerican Economic History, 39(2), 191–218.\"\ndoi:10.1017/S0212610921000112\n<https://doi.org/10.1017/S0212610921000112>.\n<https://doi.org/10.1017/S0212610921000112>."
+#> [1] "Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and unequal: Enrolments and retention in Brazilian education, 1933-2010. Revista de Historia Económica / Journal of Iberian and Latin American Economic History, 39(2), 191–218. https://doi.org/10.1017/S0212610921000112"
 ```
 
 Cite **tanto** o pacote (pela harmonização) **quanto** as compilações
