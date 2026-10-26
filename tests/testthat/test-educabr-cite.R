@@ -46,3 +46,15 @@ test_that("educabr_cite style='bibtex' returns a Bibtex object", {
   expect_s3_class(bib, "Bibtex")
   expect_true(any(grepl("@Misc", bib)))
 })
+
+test_that("educabr_cite style='text' is the clean reference, DOI once", {
+  txt <- educabr_cite("kang_paese_felix_2021", style = "text")
+  expect_match(txt, "^Kang, T[.] H[.]")
+  expect_equal(lengths(regmatches(txt, gregexpr("10.1017/S0212610921000112",
+                                                txt, fixed = TRUE))), 1L)
+})
+
+test_that("educabr_cite never prints a '????' year", {
+  txt <- format(educabr_cite())
+  expect_false(any(grepl("????", txt, fixed = TRUE)))
+})

@@ -168,15 +168,15 @@ sources:
     url: https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior
     coverage: { years: [2010, 2024], geo: [BR] }
     notes: >
-      Painel interativo consolidado do INEP. Para 67% das células
-      (modalidade × tipo institucional × categoria administrativa)
-      os valores reproduzem exatamente a agregação dos microdados; os
-      33% restantes divergem nos totais setoriais agregados
-      (publica/privada/municipal sem outras decomposições) a partir
-      de 2012, refletindo critérios próprios de aglutinação do painel.
-      Mantido neste pacote como estimativa alternativa do INEP — útil
-      para validação cruzada e para acompanhar revisões pós-publicação
-      dos microdados.
+      Painel interativo consolidado do INEP. Até a v0.1.1, os totais
+      setoriais (publica/privada/municipal) divergiam da agregação dos
+      microdados a partir de 2012, porque a agregação punha as
+      instituições "Especiais" (art. 242 da CF) na rede privada e o
+      painel as conta como municipais. Desde a v0.1.2 a agregação
+      segue o painel, e todas as células em comum (2010–2024)
+      coincidem. Mantido neste pacote como estimativa alternativa do
+      INEP — útil para validação cruzada e para acompanhar revisões
+      pós-publicação dos microdados.
 
   walter_kang_2023:
     short_name: Walter & Kang (2024)

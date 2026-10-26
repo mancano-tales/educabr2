@@ -1,10 +1,9 @@
-# educabr2 is not on CRAN — it must be installed from GitHub.
-# This block handles the auto-install so the dashboard works on shinyapps.io
-# and when someone clones the repo and runs the app locally.
-#
-# To install manually:
+# The app never installs packages itself (CRAN policy). shinyapps.io
+# installs educabr2 from the deployment manifest written by rsconnect; to
+# run the app locally, install the package first, e.g.
 #   remotes::install_github("mancano-tales/educabr2")
 if (!requireNamespace("educabr2", quietly = TRUE)) {
-  if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
-  remotes::install_github("mancano-tales/educabr2")
+  stop("The educabr2 package is required to run this dashboard. ",
+       "Install it first, e.g. remotes::install_github(\"mancano-tales/educabr2\").",
+       call. = FALSE)
 }

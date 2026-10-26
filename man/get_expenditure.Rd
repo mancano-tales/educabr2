@@ -70,7 +70,6 @@ All series are national (BR), 1933-2010. The data behind this function
 is the internal dataset \link{expenditure_kang_fgv}.
 }
 \examples{
-\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 # Total public expenditure on education as share of GDP
 get_expenditure(indicator = "share_gdp", level = "total")
 
@@ -82,5 +81,5 @@ get_expenditure(indicator = "double_ratio_es_ef1")
 
 # All indicators for 1933-1950 in wide form
 get_expenditure(year = c(1933, 1950), wide = TRUE)
-\dontshow{\}) # examplesIf}
+
 }

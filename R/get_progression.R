@@ -40,7 +40,7 @@
 #'   always `"fundamental_anos_iniciais"` and `unit` is always
 #'   `"ratio"`.
 #'
-#' @examplesIf FALSE
+#' @examples
 #' # National series, all years
 #' get_progression()
 #'

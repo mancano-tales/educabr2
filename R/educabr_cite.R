@@ -73,7 +73,9 @@ educabr_cite <- function(source_key = NULL,
 
   switch(style,
          bibentry = out,
-         text     = format(out, style = "text"),
+         text     = vapply(source_key,
+                           function(k) .source_to_text(sources[[k]]),
+                           character(1), USE.NAMES = FALSE),
          bibtex   = utils::toBibtex(out))
 }
 
@@ -94,11 +96,35 @@ educabr_cite <- function(source_key = NULL,
     key     = key,
     title   = prose
   )
-  if (!is.null(year))  args$year <- year
-  if (!is.null(s$doi)) args$doi  <- s$doi
-  if (!is.null(s$url)) args$url  <- s$url
+  # Official series have no publication year; "n.d." avoids "(????)".
+  args$year <- if (is.null(year)) "n.d." else year
+  if (!is.null(s$doi)) args$doi <- s$doi
+  # format() already prints the DOI as a link; skip a URL that repeats it.
+  if (!is.null(s$url) && !.url_is_doi(s$url, s$doi)) args$url <- s$url
 
   do.call(utils::bibentry, args)
+}
+
+# The YAML prose already is an APA reference; append only the DOI (or
+# URL) when the prose does not carry it.
+#' @noRd
+.source_to_text <- function(s) {
+  prose <- .collapse_ws(s$full_name)
+  link  <- if (!is.null(s$doi)) {
+    paste0("https://doi.org/", s$doi)
+  } else {
+    s$url
+  }
+  if (is.null(link) || grepl(sub("^https://doi.org/", "", link), prose,
+                             fixed = TRUE)) {
+    return(prose)
+  }
+  paste(prose, link)
+}
+
+#' @noRd
+.url_is_doi <- function(url, doi) {
+  !is.null(doi) && identical(sub("^https?://(dx\\.)?doi\\.org/", "", url), doi)
 }
 
 #' @noRd

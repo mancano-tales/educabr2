@@ -65,7 +65,6 @@ national level and for 20 federation units (UFs), 1955-2010. The
 dataset behind this function is \link{progression_kang_fgv}.
 }
 \examples{
-\dontshow{if (FALSE) withAutoprint(\{ # examplesIf}
 # National series, all years
 get_progression()
 
@@ -76,5 +75,5 @@ get_progression(geo_level = "UF", geo = c("SP", "BA"),
 # Compare BR and the Northeast states
 get_progression(geo_level = "UF",
                 geo = c("BA", "PE", "CE", "PB", "MA", "PI", "RN", "AL", "SE"))
-\dontshow{\}) # examplesIf}
+
 }

@@ -1,29 +1,25 @@
 ## Resubmission
 
-This is a resubmission of `educabr2` (now version 0.1.1) after the
-incoming pre-test of 0.1.0 (2026-09-13) reported 1 ERROR, 1 WARNING
-and NOTEs. Changes in response:
+This is a resubmission of `educabr2` (now version 0.1.2). In response to
+the review of 0.1.1 (Konstanze Lauseker, 2026-09-24):
 
-* **PDF manual (ERROR/WARNING on both flavours).** Two Rd files
-  contained the Unicode glyph U+2265 ("greater than or equal"), which
-  the Rd-to-LaTeX converter cannot map. Replaced with ASCII `>=` in the
-  roxygen sources; a regression test now scans the Rd database for
-  LaTeX-unsafe math glyphs. `R CMD Rd2pdf` and `R CMD check --as-cran`
-  (with manual) now pass locally. This also clears the Debian NOTE about
-  the leftover `educabr2-manual.tex`.
-* **Invalid file URI `LICENSE.md` from `README.md` (NOTE).** The README
-  now links to <https://www.gnu.org/licenses/gpl-3.0.html>; the local
-  `LICENSE.md` is excluded from the tarball by `.Rbuildignore`.
-* **Possibly misspelled words in DESCRIPTION (NOTE).** All flagged words
-  are proper nouns: Brazilian statistical sources and institutions
-  (Censo Escolar, PNAD, Censo Demográfico, Anuário Estatístico, IBGE,
-  INEP, CENSUP) and author surnames (Kang, Paese, Menetrier). The
-  Windows flavour additionally reports fragments ("fico", "rio",
-  "stico") that are the same accented words split at the non-ASCII
-  character.
-* `DESCRIPTION` now gives the academic sources in the
-  `authors (year) <doi:...>` form.
-* `Authors@R`: contributor list updated (one `ctb` entry removed).
+* **Acronyms in the Description.** Every acronym is now spelled out:
+  INEP (National Institute for Educational Studies and Research), PNAD
+  (National Household Sample Survey) and IBGE (Brazilian Institute of
+  Geography and Statistics); the Censo Escolar, Censo da Educação
+  Superior (CENSUP), Censo Demográfico and Anuário Estatístico are given
+  by their English names.
+* **Examples wrapped in `if(FALSE)`.** The examples of
+  `get_expenditure()` and `get_progression()` used `@examplesIf FALSE`;
+  they now run unconditionally (all together take < 0.5 s). No example
+  in the package is wrapped in `if(FALSE)` or `\dontrun{}`.
+* **Installing packages in `inst/dashboard/global.R`.** The dashboard no
+  longer installs anything: if `educabr2` is missing it stops with an
+  error telling the user how to install it.
+
+Other changes since 0.1.1: data corrections (no double counting in the
+Lee & Lee attainment shares and in the tertiary enrollment panel), a
+stricter schema validator, and a cleaner `educabr_cite(style = "text")`.
 
 ## Test environments
 
@@ -39,8 +35,8 @@ and NOTEs. Changes in response:
 
 0 errors | 0 warnings | 1 note
 
-* "New submission" (CRAN incoming feasibility). The same check will
-  also list the proper-noun spellings discussed above.
+* "New submission". The incoming check may also list proper nouns
+  (Kang, Paese, Menetrier, Censo, CENSUP, ...) as possibly misspelled.
 
 ## Reverse dependencies
 

@@ -47,7 +47,7 @@
 #'   `indicator`, `value`, `unit`, `source`, `source_note`.
 #'   `network` is always `"publica"` (public-sector expenditure only).
 #'
-#' @examplesIf FALSE
+#' @examples
 #' # Total public expenditure on education as share of GDP
 #' get_expenditure(indicator = "share_gdp", level = "total")
 #'
