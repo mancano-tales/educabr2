@@ -1,7 +1,7 @@
 # Rascunho: issue para SidneyBissoli/educabR
 
-> Rascunho para o autor revisar. **Não publicado.** Repositório de destino:
-> <https://github.com/SidneyBissoli/educabR/issues/new>
+> Publicado em 2026-10-26 como SidneyBissoli/educabR#29 (texto abaixo). Repositório:
+> <https://github.com/SidneyBissoli/educabR/issues/29>
 
 ---
 

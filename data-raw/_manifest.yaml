@@ -108,7 +108,7 @@ datasets:
     release_pointer: null
     geo_level: [BR, region, UF]
     year_range: [1925, 2015]
-    sources: [walter_kang_2023]
+    sources: [walter_kang_2024]
     indicators: [mean_years_schooling]
     levels: []
     networks: [total]

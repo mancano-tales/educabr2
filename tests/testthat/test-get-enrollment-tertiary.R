@@ -193,3 +193,12 @@ test_that("redundant and dropped sources are not bundled", {
                          enrollment_tertiary$source)))
   expect_false(any(dropped %in% list_sources()$key))
 })
+
+test_that("2000-2008 have INEP Sinopse rows and reconstructed totals", {
+  sin <- enrollment_tertiary[enrollment_tertiary$source == "inep_sinopse_censup", ]
+  expect_true(all(2000:2008 %in% sin$year[sin$modality == "presencial"]))
+  expect_true(all(2000:2008 %in% sin$year[sin$modality == "ead"]))
+  der <- enrollment_tertiary[enrollment_tertiary$is_derived &
+                               enrollment_tertiary$year == 2002, ]
+  expect_equal(unique(der$value), 3479913 + 40714)
+})

@@ -412,6 +412,73 @@ cat(sprintf("Dropped %d inep_censup_powerbi row(s) (identical to microdata).\n",
             nrow(pbi)))
 
 # ---------------------------------------------------------------------
+# 5f. Add the INEP Sinopse 2002 (missing from the v6 file)
+# ---------------------------------------------------------------------
+#
+# The v6 file skips 2002 for the Sinopse, so 2002 had neither Sinopse
+# rows nor a reconstructed Presencial + EAD total. Tables 5.1 and 7.1 of
+# the 2002 Sinopse are extracted by
+# data-raw/sources/tertiary_multisource/extract_sinopse_2002.R. The
+# derived totals follow the 2001/2003 pattern: one per Presencial source
+# (Sinopse, Maduro Junior, Kang/Paese/Felix) plus the Sinopse EAD.
+
+stopifnot(!any(enrollment_tertiary$year == 2002 &
+                 enrollment_tertiary$source == "inep_sinopse_censup"))
+sin02 <- utils::read.csv("data-raw/sources/tertiary_multisource/sinopse_2002_inep.csv",
+                         stringsAsFactors = FALSE)
+sinopse_note <- function(ref) {
+  sprintf("INEP Sinopse Estatística da Educação Superior — referência '%s'.", ref)
+}
+base_row <- function(n) tibble::tibble(
+  year = rep(2002L, n), geo_level = "BR", geo_code = "BR", geo_name = "Brasil",
+  level = "superior", dim_race = "total", age_group = NA_character_,
+  indicator = "enrollment_count", unit = "count"
+)
+natural02 <- dplyr::bind_cols(base_row(nrow(sin02)), tibble::tibble(
+  network = sin02$network, institution_type = sin02$institution_type,
+  modality = sin02$modality, value = sin02$value,
+  source = "inep_sinopse_censup", source_note = sinopse_note(sin02$table_ref),
+  is_derived = FALSE
+))
+
+ead02 <- sin02$value[sin02$modality == "ead"]
+e_kfgv <- new.env()
+load("data/enrollment_kang_fgv.rda", envir = e_kfgv)
+kpf02 <- with(e_kfgv$enrollment_kang_fgv,
+              value[year == 2002 & level == "superior" & dim_race == "total" &
+                      geo_code == "BR" & indicator == "enrollment_count"])
+mad02 <- enrollment_tertiary$value[enrollment_tertiary$year == 2002 &
+                                     enrollment_tertiary$source == "maduro_junior_2007" &
+                                     enrollment_tertiary$network == "total" &
+                                     enrollment_tertiary$institution_type == "total"]
+pres02 <- c(
+  inep_sinopse_censup   = sin02$value[sin02$network == "total" &
+                                        sin02$institution_type == "total" &
+                                        sin02$modality == "presencial"],
+  kang_paese_felix_2021 = kpf02,
+  maduro_junior_2007    = mad02
+)
+stopifnot(length(pres02) == 3, lengths(list(kpf02, mad02)) == 1)
+pres_ref <- c(inep_sinopse_censup   = "CENSUP2002_tabela5_1",
+              kang_paese_felix_2021 = "Kang-Paese-Felix2021_fgv_ibre4",
+              maduro_junior_2007    = "MaduroJunior2007")
+derived02 <- dplyr::bind_cols(base_row(3), tibble::tibble(
+  network = "total", institution_type = "total", modality = "total",
+  value = unname(pres02) + ead02,
+  source = paste0(names(pres02), "+inep_sinopse_censup"),
+  source_note = sprintf(paste(
+    "Derived (computed total): Presencial component from '%s'; EAD component",
+    "from 'CENSUP2002_tabela7_1'. The original source did not publish a",
+    "combined Presencial+EAD figure for this year."), pres_ref[names(pres02)]),
+  is_derived = TRUE
+))
+
+enrollment_tertiary <- dplyr::bind_rows(enrollment_tertiary, natural02, derived02) |>
+  dplyr::arrange(year, network, institution_type, modality, source)
+cat(sprintf("Added %d Sinopse 2002 row(s) and %d derived total(s).\n",
+            nrow(natural02), nrow(derived02)))
+
+# ---------------------------------------------------------------------
 # 6. Validate
 # ---------------------------------------------------------------------
 
