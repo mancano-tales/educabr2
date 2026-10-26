@@ -1,5 +1,85 @@
 # Integration analysis: Sidney Bissoli's `educabR`
 
+> **Reassessment, 2026-10-26** (supersedes the scenarios below where they
+> conflict; the original 2026-05 analysis is kept underneath).
+
+## 2026-10 reassessment: contributing to `educabR` instead of competing
+
+### What changed since May
+
+- `educabR` is now **1.2.0 on CRAN** (lifecycle *stable*, codecov, Zenodo
+  DOI 10.5281/zenodo.19410201), with a single, responsive maintainer:
+  issues are answered and closed within days (#18 accepted a README
+  credit to an older package; #21 became a fix in a week).
+- Its scope statement is explicit: *data comes straight from the agencies
+  at call time*; column names and values stay in Portuguese, as the agency
+  publishes them. The repository has **no `data/` directory**: every
+  function downloads, caches and parses.
+- `educabr2` 0.1.2 is ready for CRAN (the 2026-09-24 review is answered),
+  but it is still a new package with one letter of difference from a
+  stable package aimed at the same users.
+
+### Why the earlier "architectures are incompatible" verdict was too strong
+
+It assumed a **code merge**: one namespace, one schema, every function
+rewritten. That is costly and nobody needs it. The two packages can be
+joined at the **data** level instead, along the line `educabR` already
+draws (download at call time):
+
+1. **Agency data I built for the thesis goes into `educabR` as ordinary
+   `educabR` functions**, in Sidney's style (Portuguese names, download +
+   cache). The obvious first one is the *Sinopse Estatística da Educação
+   Superior* 1995–2008: `get_censo_superior()` starts in 2009, and the
+   Sinopse xlsx files are on INEP's site. Other candidates must pass the
+   same test (published by INEP, FNDE, CAPES or STN): e.g. federal
+   higher-education spending (`2026-10_Gasto-Federal-ES`).
+2. **The harmonised long-run series become a dataset with a DOI**
+   (versioned GitHub release + Zenodo), built by this repository's
+   `data-raw/` ETL. `educabR` gets one function, e.g.
+   `get_series_historicas(tema = "matriculas")`, that downloads and caches
+   that release — exactly how it treats an INEP file. No bundled data, no
+   new heavy dependency, no change to its architecture.
+3. **This repository stays** as the place where the series are built,
+   tested and documented (ETL, schema validation, decision log, dashboard).
+   Whether it also goes to CRAN becomes optional.
+
+### What this costs and what it buys
+
+| | Stay separate (CRAN `educabr2`) | Contribute to `educabR` |
+|---|---|---|
+| Reach | New package, zero installs | Users who already have `educabR` |
+| Naming confusion | `educabR` vs `educabr2` persists | Gone |
+| Maintenance | Two CRAN packages for one field | One; I become `ctb`/`aut` |
+| Control | Full | Sidney decides scope, style, release dates |
+| Credit | Package of my own | Author role in an established package + DOI for the data |
+| Schema | Canonical English tidy-long | Must follow `educabR` conventions (Portuguese) in the functions he hosts; the DOI dataset can keep the canonical schema |
+
+**Licence** is no longer a blocker: I own the `educabr2` code and can
+license what I contribute as MIT (check with Victor Alcantara for any code
+he wrote). The real constraint is the **data**: the Kang et al.
+compilations are redistributed either way, so their terms need to be
+checked once, for both paths.
+
+### Risks
+
+- Sidney may decline: curated academic reconstructions are outside his
+  stated scope ("straight from the agencies"). Item 2 is the one most
+  likely to be refused; item 1 is squarely in scope.
+- Depending on someone else's release calendar near the thesis deposit.
+- The dashboard does not fit in `educabR`; it stays here.
+
+### Recommended sequence
+
+1. Open an issue on `SidneyBissoli/educabR` (in Portuguese) proposing
+   items 1 and 2, with this table and an offer to write and maintain the
+   code. **Needs the author's go-ahead** (outward-facing).
+2. In parallel, keep `educabr2` 0.1.2 ready to resubmit. If Sidney accepts
+   item 2, CRAN becomes optional; if he declines or does not answer in
+   about two weeks, resubmit.
+3. Whatever the answer, start item 1 (Sinopse 1995–2008) as a PR to
+   `educabR`: it is useful to him in any scenario and opens the
+   collaboration with working code rather than a proposal.
+
 > **Repo**: <https://github.com/SidneyBissoli/educabR>
 > **CRAN**: <https://CRAN.R-project.org/package=educabR>
 > **Version inspected**: 0.9.0 (2026-05)

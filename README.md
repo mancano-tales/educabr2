@@ -303,19 +303,52 @@ for every factor level in
 
 ## Related work
 
-`educabr2` is complementary to
-[`educabR`](https://github.com/SidneyBissoli/educabR) (Sidney Bissoli),
-which organises access **by official source** (`get_ideb()`,
-`get_enem()`, `get_censo_escolar()`, …). Here the axis is **by theme
-and historical series**: single indicators compiled across multiple
-sources over long time spans.
+### Sibling package: `educabR`
 
-In practice: need **current-year microdata** (IDEB, ENEM, Censo
-Escolar, SAEB, and other INEP indicators fetched and cached on
-demand)? Use `educabR`. Need a **harmonised long-run series** with
-explicit per-row provenance, going back decades before INEP's own
-microdata exists? Use `educabr2`. The two are designed to be used
-side by side, not as alternatives to each other.
+`educabr2` is the historical companion of
+[**`educabR`**](https://CRAN.R-project.org/package=educabR), by Sidney
+Bissoli ([GitHub](https://github.com/SidneyBissoli/educabR),
+[site](https://sidneybissoli.github.io/educabR/),
+[doi:10.5281/zenodo.19410201](https://doi.org/10.5281/zenodo.19410201)).
+`educabR` is on CRAN and downloads, at call time, what INEP, FNDE,
+CAPES and the National Treasury publish: School Census (since 1995),
+Higher Education Census (2009–2024), ENEM, SAEB, ENADE, ENCCEJA, IDEB,
+CPC/IDD/IGC, CAPES and FUNDEB. It organises access **by official
+source** (`get_censo_escolar()`, `get_censo_superior()`, `get_ideb()`,
+…) and keeps each year in the agency's own layout.
+
+`educabr2` organises access **by theme and historical series**: one
+indicator compiled across several sources and reconciled across series
+breaks, back to the nineteenth century, bundled offline with per-row
+provenance. Neither package replaces the other:
+
+| You need… | Use |
+|---|---|
+| Current-year microdata (a school, a course, a student, an exam) | `educabR` |
+| An official indicator as INEP publishes it (IDEB, CPC, FUNDEB) | `educabR` |
+| A national or state series from before 1995, or one that crosses a series break | `educabr2` |
+| A recent cut that `educabr2` does not ship (municipality, school network) on top of a long series | Both: `educabr2` for the history, `educabR` for the recent detail |
+
+```r
+# Long-run tertiary enrollment (educabr2) ...
+hist <- educabr2::get_enrollment(level = "superior", indicator = "count",
+                                 network = "total", institution_type = "total",
+                                 modality = "total", source = "inep_microdados_censup")
+# ... and the 2023 course-level microdata behind its last points (educabR)
+cursos <- educabR::get_censo_superior(2023, type = "cursos")
+```
+
+If you use both, cite both: `citation("educabR")` and
+`citation("educabr2")`.
+
+### Other related packages
+
+| Package | What it gives you | How it relates |
+|---|---|---|
+| [`censobr`](https://CRAN.R-project.org/package=censobr) (Ipea) | Demographic census microdata, 1960–2022 | Population denominators; schooling by UF in census years |
+| [`PNADcIBGE`](https://CRAN.R-project.org/package=PNADcIBGE) (IBGE) | PNAD Contínua microdata | Years of schooling after 2015 |
+| [`geobr`](https://CRAN.R-project.org/package=geobr) (Ipea) | Official boundaries | Maps of the UF series |
+| [`basedosdados`](https://CRAN.R-project.org/package=basedosdados) | Curated cloud tables (BigQuery) | Cross-domain joins with current data |
 
 Design inspirations:
 [`geobr`](https://github.com/ipea/geobr) (coherent function family),

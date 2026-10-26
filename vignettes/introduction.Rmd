@@ -62,10 +62,11 @@ exact table or chapter of origin.
 historical series, not a live connection to INEP. If what you need is
 **current-year microdata** (IDEB, ENEM, Censo Escolar, SAEB, and other
 INEP indicators fetched and cached on demand), use
-[`educabR`](https://github.com/SidneyBissoli/educabR) instead: the two
-packages are complementary, organised along different axes (by theme
-and historical series here; by official source there), and can be
-used side by side.
+[`educabR`](https://CRAN.R-project.org/package=educabR) (Sidney
+Bissoli, on CRAN) instead: the two packages are complementary,
+organised along different axes (by theme and historical series here;
+by official source there), and can be used side by side. If you use
+both, cite both: `citation("educabR")` and `citation("educabr2")`.
 
 ## Installation
 
