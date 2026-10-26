@@ -1,0 +1,15 @@
+bibentry(
+  bibtype = "Manual",
+  title   = "{educabr2}: Harmonized Historical Series on Brazilian Education",
+  author  = person("Tales", "Mançano",
+                   comment = c(ORCID = "0000-0001-5923-9743")),
+  year    = "2026",
+  note    = paste("R package version", meta$Version),
+  doi     = "10.5281/zenodo.23675602",
+  url     = "https://github.com/mancano-tales/educabr2",
+  textVersion = paste0(
+    "Mançano, T. (2026). educabr2: Harmonized Historical Series on ",
+    "Brazilian Education (R package version ", meta$Version, "). ",
+    "https://doi.org/10.5281/zenodo.23675602"
+  )
+)
