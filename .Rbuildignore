@@ -29,3 +29,4 @@
 ^repo-governance$
 ^AGENTS\.md$
 ^\.zenodo\.json$
+^\.gitattributes$

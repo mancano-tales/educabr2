@@ -14,7 +14,6 @@ data-raw/
 ├── 01_build_<name>.R     # one build script per dataset
 ├── 02_build_<name>.R
 ├── ...
-├── scripts/              # helper scripts (e.g. inspect_xlsx.py)
 └── sources/              # raw files, one subdirectory per source key
     ├── kang_fgv_ibre_2023/
     ├── tertiary_multisource/
@@ -74,17 +73,6 @@ usethis::use_data(<dataset_name>, overwrite = TRUE, compress = "xz")
 
 After running the script, **update `_manifest.yaml`** with the dataset
 entry (or refresh sha256 of raw files).
-
-## Inspect raw spreadsheets without R
-
-`scripts/inspect_xlsx.py` walks a folder and prints sheet names, bounds
-and the first ~20 rows of each sheet (raw cell values). Useful to drive
-the design of an ETL script before writing it.
-
-```sh
-py -3 -m pip install --user openpyxl
-py -3 data-raw/scripts/inspect_xlsx.py data-raw/sources/<source_key>/
-```
 
 ## Running a build script
 

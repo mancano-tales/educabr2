@@ -1,0 +1,17 @@
+# Paths left out of `git archive`, and so out of the GitHub release
+# zipball that Zenodo archives. They stay in the repository: agent
+# governance, planning notes, CI and pkgdown assets are useful here but
+# not to someone reusing the package or its data.
+.claude/            export-ignore
+.github/            export-ignore
+.gitignore          export-ignore
+.gitattributes      export-ignore
+AGENTS.md           export-ignore
+CLAUDE.md           export-ignore
+repo-governance/    export-ignore
+tools/              export-ignore
+planning/           export-ignore
+pkgdown/            export-ignore
+_pkgdown.yml        export-ignore
+cran-comments.md    export-ignore
+educabr.Rproj       export-ignore
