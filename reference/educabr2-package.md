@@ -72,11 +72,13 @@ O pacote complementar
 Bissoli, baixa dados oficiais sob demanda e preserva os leiautes das
 agências; aqui o acesso é por tema e série histórica harmonizada. Se
 usar ambos, cite ambos. A compatibilidade dos esquemas é acompanhada na
-[issue 8](https://github.com/mancano-tales/educabr2/issues/8), vinculada
-à [proposta ao
-educabR](https://github.com/SidneyBissoli/educabR/issues/29). Schema
-compatibility is tracked in the same issues; an adapter is not yet
-implemented.
+[issue 8](https://github.com/mancano-tales/educabr2/issues/8): primeiro
+aprimorar e validar os dados tratados nas funções existentes; depois
+avaliar colaboração. A proposta externa anterior foi retirada. As séries
+pequenas continuam embutidas no pacote, com acesso offline. Planning now
+focuses on improving and validating curated data through existing
+functions before proposing collaboration. The earlier external proposal
+was withdrawn; small series remain bundled for offline access.
 
 ## See also
 
