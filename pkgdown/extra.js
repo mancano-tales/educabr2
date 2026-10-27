@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const labels = new Map([
     ["Skip to contents", "Ir ao conteúdo / Skip to contents"],
     ["Search site", "Buscar no site / Search site"],
+    ["Search for", "Buscar / Search"],
+    ["Copy to clipboard", "Copiar código / Copy to clipboard"],
     ["Toggle navigation", "Alternar navegação / Toggle navigation"],
     ["On this page", "Nesta página / On this page"],
     ["Contents", "Conteúdo / Contents"],
