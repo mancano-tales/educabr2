@@ -28,6 +28,16 @@ Break spacing by span of the series: more than 60 years, every 20 years;
 25 to 60 years, every 10 years; under 25 years, \code{pretty()} breaks. Labels
 are always four-digit years.
 }
+\section{Português}{
+
+Escala temporal que recebe \code{years}, o vetor dos anos efetivamente plotados.
+Usa espaçamento de 20 anos acima de seis décadas, de 10 anos para amplitudes
+intermediárias (25–60 anos) e \code{pretty()} para amplitudes menores. Sempre
+rotula primeiro e último ano e evita marcas que colidam com esses extremos.
+\code{...} passa argumentos a \code{ggplot2::scale_x_continuous()}. Retorna uma escala
+contínua de posição do ggplot2.
+}
+
 \examples{
 \donttest{
 library(ggplot2)

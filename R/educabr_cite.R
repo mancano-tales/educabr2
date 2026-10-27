@@ -24,6 +24,21 @@
 #'   * `"bibtex"` — a [utils::toBibtex()] result ready to paste into a
 #'     `.bib` file.
 #'
+#' @section Português:
+#' Gera referências para as fontes originais dos dados. Cite o pacote pela
+#' harmonização e as fontes utilizadas pela produção dos dados.
+#'
+#' - `source_key`: vetor de chaves; `NULL` (padrão) cita todas as fontes.
+#'   Para citar só as usadas, passe `unique(dados$source)` de uma consulta.
+#'   O alias `"walter_kang_2023"` é resolvido para `"walter_kang_2024"`.
+#' - `style`: `"bibentry"` (padrão, objeto formatável por `format()` ou
+#'   `utils::toBibtex()`), `"text"` (texto estilo APA por fonte) ou
+#'   `"bibtex"` (entrada para arquivo `.bib`).
+#'
+#' Retorna `bibentry`, vetor de texto ou objeto `Bibtex`, conforme o estilo,
+#' com uma entrada por fonte. Autores, títulos e demais metadados de citação
+#' preservam o idioma e a grafia da publicação original.
+#'
 #' @return A `bibentry` object (default), a character vector, or a
 #'   `Bibtex` object — see `style`. Length is 1 per requested source.
 #'

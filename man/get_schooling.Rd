@@ -33,7 +33,7 @@ level.}
 \item \code{"race"} — breakdown by IBGE color/race (\code{white}, \code{black},
 \code{brown}, \code{asian}, \code{indigenous}), totals across sex;
 \item \code{"sex"} — breakdown by sex (\code{male}, \code{female}), totals across race.
-Race and sub-national breakdowns are only available at \code{geo_level = "BR"}.
+Race breakdowns are only available at \code{geo_level = "BR"}.
 }}
 
 \item{source}{Character vector of source keys. \code{NULL} returns all
@@ -66,6 +66,28 @@ Regions; first circulated as a 2023 FGV-IBRE working paper), which
 reconstructs the series from 1925 to 2015 (states and regions from
 1950).
 }
+\section{Português}{
+
+Consulta anos médios de escolaridade da população de 15–64 anos,
+reconstruídos por Walter & Kang (2024; working paper de 2023).
+\itemize{
+\item \code{year}: anos ou intervalo \code{c(inicio, fim)}; \code{NULL} inclui todos.
+\item \code{geo_level}: \code{"BR"} (padrão, desde 1925), \code{"region"} ou \code{"UF"} (desde 1950).
+\item \code{geo}: siglas de UF ou códigos regionais \code{N}, \code{NE}, \code{CO}, \code{SE}, \code{S};
+\code{NULL} inclui todas as unidades do nível escolhido.
+\item \code{dimension}: \code{"none"} (padrão), \code{"race"} (raça/cor, apenas Brasil) ou
+\code{"sex"} (sexo). Cada desagregação usa totais na outra dimensão.
+\item \code{source}: chave \code{"walter_kang_2024"}; o alias \code{"walter_kang_2023"}
+permanece aceito. \code{NULL} inclui todas as fontes disponíveis.
+\item \code{wide}: \code{FALSE} por padrão; \code{TRUE} coloca indicadores em colunas.
+\item \code{lang}: \code{"en"} (padrão) ou \code{"pt"} (rótulos traduzidos).
+}
+
+Retorna tibble com ano, geografia, raça/cor, sexo, faixa etária, indicador,
+valor, unidade e proveniência. Não contém \code{level} e \code{network}, que não se
+aplicam à média populacional. Colunas e chaves de fonte preservam seus nomes.
+}
+
 \examples{
 # National series, all years
 get_schooling()

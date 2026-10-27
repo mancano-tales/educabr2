@@ -15,6 +15,7 @@
 .Rproj.user
 
 # previewing / build outputs
+/check/
 README.html
 data-raw/*.html
 docs

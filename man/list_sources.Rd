@@ -33,6 +33,19 @@ and free-text notes. Use this to discover which sources are
 available before calling \code{\link[=educabr_cite]{educabr_cite()}} or filtering
 \code{\link[=get_enrollment]{get_enrollment()}} / \code{\link[=get_schooling]{get_schooling()}} with the \code{source} argument.
 }
+\section{Português}{
+
+Lista uma linha por chave do vocabulário de fontes, antes de consultar
+os dados ou gerar referências com \code{\link[=educabr_cite]{educabr_cite()}}. Não recebe argumentos.
+
+Retorna tibble com \code{key} (chave usada em \code{source}), \code{short_name} (nome curto),
+\code{type} (tipo de fonte), \code{year_start} e \code{year_end} (anos; fim \code{NA} quando
+contínua), \code{geo} (níveis geográficos separados por vírgula), \code{doi}, \code{url}
+e \code{notes}. Os tipos distinguem artigo, dissertação, pesquisa oficial,
+censo, registro administrativo, microdados administrativos e compilação
+histórica. Metadados bibliográficos preservam o idioma original.
+}
+
 \examples{
 src <- list_sources()
 head(src)

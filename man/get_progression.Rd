@@ -64,6 +64,27 @@ GDR6 was reconstructed by Kang, Paese & Felix (2021) for the BR
 national level and for 20 federation units (UFs), 1955-2010. The
 dataset behind this function is \link{progression_kang_fgv}.
 }
+\section{Português}{
+
+Consulta o GDR6 de Kang, Paese & Felix (2021): matrículas nas séries 4–6
+divididas pelas matrículas nas séries 1–3 do antigo primário de oito anos.
+É uma razão sem unidade, não uma probabilidade individual de progressão.
+\itemize{
+\item \code{indicator}: \code{"gdr6"} ou \code{"gross_distribution_ratio_grade_6"};
+\code{NULL} seleciona o único indicador disponível.
+\item \code{year}: anos ou intervalo \code{c(inicio, fim)}; \code{NULL} inclui todos.
+\item \code{geo_level}: \code{"BR"} (padrão) ou \code{"UF"}; \code{geo}: siglas de UFs.
+\item \code{source}: chaves de fonte; \code{NULL} inclui todas.
+\item \code{wide}: \code{FALSE} por padrão; \code{TRUE} coloca indicadores em colunas.
+\item \code{lang}: \code{"en"} (padrão) ou \code{"pt"} (rótulos traduzidos).
+}
+
+Retorna tibble canônico, com valor, unidade e fonte. A compilação cobre
+1955–2010 e 20 UFs: AL, AM, BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI,
+PR, RJ, RN, RS, SC, SE e SP. AC, AP, DF, MS, RO, RR e TO não constam da
+fonte. Há lacunas nacionais em 1988–1990 e 1994; elas são preservadas.
+}
+
 \examples{
 # National series, all years
 get_progression()

@@ -81,6 +81,29 @@ Brazilian \code{fundamental} / \code{medio} / \code{superior} levels in
 \code{\link[=get_enrollment]{get_enrollment()}} and \code{\link[=get_schooling]{get_schooling()}} because the underlying
 definitions differ.
 }
+\section{Português}{
+
+Consulta a proporção cumulativa da população de 15–64 anos que completou
+pelo menos um nível educacional, conforme Lee & Lee (2016). Cobre 111 países,
+1870–2010, em intervalos de cinco anos. Os níveis são cumulativos:
+primário >= secundário >= terciário; não devem ser somados.
+\itemize{
+\item \code{level}: \code{"primary"}, \code{"secondary"} e/ou \code{"tertiary"}; \code{NULL} inclui todos.
+\item \code{year}: anos ou intervalo \code{c(inicio, fim)}; \code{NULL} inclui todos.
+\item \code{geo_level}: sempre \code{"country"}.
+\item \code{geo}: códigos ISO de três letras (\code{"BRA"}, \code{"ARG"}, etc.);
+\code{NULL} inclui todos os países.
+\item \code{dimension}: \code{"none"} (padrão, total) ou \code{"sex"} (sexo).
+\item \code{source}: chaves de fonte; \code{NULL} inclui todas.
+\item \code{wide}: \code{FALSE} por padrão; \code{TRUE} coloca indicadores em colunas.
+\item \code{lang}: \code{"en"} (padrão) ou \code{"pt"} (rótulos traduzidos).
+}
+
+Retorna tibble canônico com valores percentuais de 0 a 100 e proveniência.
+Os nomes dos países (\code{geo_name}) preservam o inglês da fonte original,
+mesmo com \code{lang = "pt"}; códigos ISO e nomes de colunas permanecem estáveis.
+}
+
 \examples{
 # Tertiary completion in Brazil over time
 get_attainment(level = "tertiary", geo = "BRA")

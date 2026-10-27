@@ -82,4 +82,24 @@ that schema every time it is rebuilt (see
 \verb{data-raw/01_build_enrollment_kang_fgv.R}).
 }
 
+\section{Português}{
+
+Matrículas de Kang/FGV-IBRE: 6.238 linhas, Brasil (1871–2010) e UFs
+(1955–2010), com raça/cor nacional desde 1960. Prefira \code{\link[=get_enrollment]{get_enrollment()}}.
+\code{level} identifica a etapa; \code{network} é \code{"total"}; \code{dim_race} contém as
+categorias de cor/raça do IBGE; \code{age_group} registra o denominador etário
+das taxas (ausente nas contagens). \code{indicator} distingue \code{enrollment_count}
+(contagem) e \code{enrollment_rate} (taxa bruta, escala 0–100). \code{modality} é
+\code{"presencial"} no superior de 2000–2008 e \code{"total"} nos demais casos.
+Fontes: Kang, Paese & Felix (2021), Kang & Menetrier (2024) e Kang,
+Menetrier & Comim (2024). ETL: \verb{data-raw/01_build_enrollment_kang_fgv.R}.
+
+Colunas: \code{year} é o ano; \code{geo_level}, \code{geo_code} e \code{geo_name} identificam
+nível, código e nome geográficos; \code{indicator}, \code{value} e \code{unit} registram
+indicador, valor e unidade; \code{source} é a chave de fonte e \code{source_note}
+a nota bibliográfica. Dimensões usam \code{"total"} para agregados, preservando
+\code{NA} para informação desconhecida. Os dados mantêm identificadores canônicos;
+consulte a função pública com \code{lang = "pt"} para traduzir rótulos.
+}
+
 \keyword{datasets}

@@ -5,7 +5,7 @@
 \alias{schooling_kang_fgv}
 \title{Mean years of schooling — Walter & Kang 2024 compilation}
 \format{
-A tibble with approximately 2 300 rows and 12 columns:
+A tibble with 2 287 rows and 12 columns:
 \describe{
 \item{year}{\code{integer}. Reference year (1925–2015). BR-level series
 starts in 1925; region and UF series start in 1950.}
@@ -55,6 +55,23 @@ BR — by race            \tab 1925–2015  \tab 4 categories    \cr
 Macro-region (5 regiões)\tab 1950–2015  \tab —               \cr
 UF (20 estados)         \tab 1950–2015  \tab —               \cr
 }
+}
+
+\section{Português}{
+
+Anos médios de estudo de Walter & Kang (2024): 2.287 linhas, população
+de 15–64 anos, Brasil desde 1925 e regiões/UFs desde 1950, até 2015.
+Prefira \code{\link[=get_schooling]{get_schooling()}}. \code{dim_race} e \code{dim_sex} registram raça/cor e sexo;
+a desagregação por raça/cor é nacional. \code{age_group} é \code{"15-64"} e
+\code{value} mede anos de estudo. A fonte é \code{walter_kang_2024}; o alias de 2023
+continua aceito pela API. ETL: \verb{data-raw/02_build_schooling_kang_fgv.R}.
+
+Colunas: \code{year} é o ano; \code{geo_level}, \code{geo_code} e \code{geo_name} identificam
+nível, código e nome geográficos; \code{indicator}, \code{value} e \code{unit} registram
+indicador, valor e unidade; \code{source} é a chave de fonte e \code{source_note}
+a nota bibliográfica. Dimensões usam \code{"total"} para agregados, preservando
+\code{NA} para informação desconhecida. Os dados mantêm identificadores canônicos;
+consulte a função pública com \code{lang = "pt"} para traduzir rótulos.
 }
 
 \keyword{datasets}

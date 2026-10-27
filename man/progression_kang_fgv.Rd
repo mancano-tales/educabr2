@@ -53,4 +53,23 @@ at 1988, 1989, 1990 and 1994 reflecting transitions in the official
 grade structure.
 }
 
+\section{Português}{
+
+Progressão escolar de Kang, Paese & Felix (2021): 1.090 linhas,
+1955–2010, Brasil e 20 UFs. Prefira \code{\link[=get_progression]{get_progression()}}. O indicador
+\code{gross_distribution_ratio_grade_6} é a razão entre matrículas nas séries
+4–6 e nas séries 1–3 do antigo primário de oito anos, sem unidade (\code{ratio}).
+As UFs cobertas são AL, AM, BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI,
+PR, RJ, RN, RS, SC, SE e SP; AC, AP, DF, MS, RO, RR e TO não constam da
+fonte. As lacunas nacionais em 1988–1990 e 1994 refletem mudanças na
+estrutura oficial de séries. ETL: \verb{data-raw/05_build_progression_kang_fgv.R}.
+
+Colunas: \code{year} é o ano; \code{geo_level}, \code{geo_code} e \code{geo_name} identificam
+nível, código e nome geográficos; \code{indicator}, \code{value} e \code{unit} registram
+indicador, valor e unidade; \code{source} é a chave de fonte e \code{source_note}
+a nota bibliográfica. Dimensões usam \code{"total"} para agregados, preservando
+\code{NA} para informação desconhecida. Os dados mantêm identificadores canônicos;
+consulte a função pública com \code{lang = "pt"} para traduzir rótulos.
+}
+
 \keyword{datasets}

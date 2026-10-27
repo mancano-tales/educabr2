@@ -22,6 +22,8 @@ library(educabr2)
 library(ggplot2)
 ```
 
+[Versão em português](visualizacao-pt.html).
+
 `educabr2` ships a small, opinionated plotting toolkit so that a
 query becomes a publication-ready figure in a few lines. The design
 follows the principles of Kieran Healy's *Data Visualization: A

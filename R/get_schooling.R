@@ -23,8 +23,7 @@
 #'   - `"race"` — breakdown by IBGE color/race (`white`, `black`,
 #'     `brown`, `asian`, `indigenous`), totals across sex;
 #'   - `"sex"` — breakdown by sex (`male`, `female`), totals across race.
-#'   Race and sub-national breakdowns are only available at `geo_level =
-#'   "BR"`.
+#'   Race breakdowns are only available at `geo_level = "BR"`.
 #' @param source Character vector of source keys. `NULL` returns all
 #'   available sources (currently only `"walter_kang_2024"`). The legacy
 #'   key `"walter_kang_2023"` (from the 2023 working paper) is still
@@ -35,6 +34,25 @@
 #'   [get_enrollment()]. Default `FALSE`.
 #' @param lang One of `"en"` (default) or `"pt"`. When `"pt"`, factor
 #'   levels are translated via `inst/dict/i18n.yaml`.
+#'
+#' @section Português:
+#' Consulta anos médios de escolaridade da população de 15–64 anos,
+#' reconstruídos por Walter & Kang (2024; working paper de 2023).
+#'
+#' - `year`: anos ou intervalo `c(inicio, fim)`; `NULL` inclui todos.
+#' - `geo_level`: `"BR"` (padrão, desde 1925), `"region"` ou `"UF"` (desde 1950).
+#' - `geo`: siglas de UF ou códigos regionais `N`, `NE`, `CO`, `SE`, `S`;
+#'   `NULL` inclui todas as unidades do nível escolhido.
+#' - `dimension`: `"none"` (padrão), `"race"` (raça/cor, apenas Brasil) ou
+#'   `"sex"` (sexo). Cada desagregação usa totais na outra dimensão.
+#' - `source`: chave `"walter_kang_2024"`; o alias `"walter_kang_2023"`
+#'   permanece aceito. `NULL` inclui todas as fontes disponíveis.
+#' - `wide`: `FALSE` por padrão; `TRUE` coloca indicadores em colunas.
+#' - `lang`: `"en"` (padrão) ou `"pt"` (rótulos traduzidos).
+#'
+#' Retorna tibble com ano, geografia, raça/cor, sexo, faixa etária, indicador,
+#' valor, unidade e proveniência. Não contém `level` e `network`, que não se
+#' aplicam à média populacional. Colunas e chaves de fonte preservam seus nomes.
 #'
 #' @return A tibble following the canonical schema in
 #'   `inst/dict/schema.yaml`. Columns: `year`, `geo_level`, `geo_code`,

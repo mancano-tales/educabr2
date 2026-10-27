@@ -95,6 +95,35 @@ type, or teaching modality. Series are pulled from all enrollment
 datasets shipped with the package and concatenated into the canonical
 long-format schema.
 }
+\section{Português}{
+
+Consulta contagens e taxas brutas de matrícula, harmonizadas entre fontes.
+As estimativas concorrentes ficam em linhas separadas, com proveniência.
+\itemize{
+\item \code{level}: vetor de etapas (\code{fundamental_anos_iniciais},
+\code{fundamental_anos_finais}, \code{fundamental}, \code{medio}, \code{superior}).
+\item \code{network}: rede administrativa (\code{federal}, \code{estadual}, \code{municipal},
+\code{publica}, \code{privada}, subcategorias privadas, \code{especial}, \code{total}).
+\item \code{institution_type}: organização acadêmica do ensino superior;
+\code{"total"} seleciona agregados. Vocabulário em \code{inst/dict/schema.yaml}.
+\item \code{modality}: \code{"presencial"}, \code{"ead"} ou \code{"total"}.
+\item \code{year}: anos ou intervalo de dois elementos \code{c(inicio, fim)}.
+\item \code{geo_level}: \code{"BR"} (padrão) ou \code{"UF"}; \code{geo}: siglas de UFs.
+\item \code{dimension}: \code{"none"} (padrão, totais) ou \code{"race"} (raça/cor).
+\item \code{indicator}: \code{"count"} (contagens), \code{"rate"} (taxas) ou \code{NULL} (ambos).
+\item \code{source}: chaves de fonte; fixe uma fonte para obter uma série específica.
+\item \code{include_derived}: \code{FALSE} por padrão; \code{TRUE} inclui totais reconstruídos
+de componentes presenciais e EAD (2000–2008), identificados por
+\code{is_derived}, chaves compostas em \code{source} e composição em \code{source_note}.
+\item \code{wide}: \code{FALSE} por padrão; \code{TRUE} cria uma coluna por indicador.
+\item \code{lang}: \code{"en"} (padrão, valores canônicos) ou \code{"pt"} (rótulos traduzidos).
+}
+
+Filtros \code{NULL} não restringem os dados. Retorna um tibble no esquema de
+\code{inst/dict/schema.yaml}; colunas opcionais usam \code{"total"} ou \code{FALSE} quando
+não há desagregação na fonte. Nomes de colunas e chaves de fonte são estáveis.
+}
+
 \examples{
 # National series, ensino fundamental, all years
 get_enrollment(level = "fundamental", geo_level = "BR")

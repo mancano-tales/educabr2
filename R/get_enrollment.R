@@ -53,6 +53,32 @@
 #' @param lang One of `"en"` (default) or `"pt"`. When `"pt"`, factor
 #'   levels are translated using `inst/dict/i18n.yaml`.
 #'
+#' @section Português:
+#' Consulta contagens e taxas brutas de matrícula, harmonizadas entre fontes.
+#' As estimativas concorrentes ficam em linhas separadas, com proveniência.
+#'
+#' - `level`: vetor de etapas (`fundamental_anos_iniciais`,
+#'   `fundamental_anos_finais`, `fundamental`, `medio`, `superior`).
+#' - `network`: rede administrativa (`federal`, `estadual`, `municipal`,
+#'   `publica`, `privada`, subcategorias privadas, `especial`, `total`).
+#' - `institution_type`: organização acadêmica do ensino superior;
+#'   `"total"` seleciona agregados. Vocabulário em `inst/dict/schema.yaml`.
+#' - `modality`: `"presencial"`, `"ead"` ou `"total"`.
+#' - `year`: anos ou intervalo de dois elementos `c(inicio, fim)`.
+#' - `geo_level`: `"BR"` (padrão) ou `"UF"`; `geo`: siglas de UFs.
+#' - `dimension`: `"none"` (padrão, totais) ou `"race"` (raça/cor).
+#' - `indicator`: `"count"` (contagens), `"rate"` (taxas) ou `NULL` (ambos).
+#' - `source`: chaves de fonte; fixe uma fonte para obter uma série específica.
+#' - `include_derived`: `FALSE` por padrão; `TRUE` inclui totais reconstruídos
+#'   de componentes presenciais e EAD (2000–2008), identificados por
+#'   `is_derived`, chaves compostas em `source` e composição em `source_note`.
+#' - `wide`: `FALSE` por padrão; `TRUE` cria uma coluna por indicador.
+#' - `lang`: `"en"` (padrão, valores canônicos) ou `"pt"` (rótulos traduzidos).
+#'
+#' Filtros `NULL` não restringem os dados. Retorna um tibble no esquema de
+#' `inst/dict/schema.yaml`; colunas opcionais usam `"total"` ou `FALSE` quando
+#' não há desagregação na fonte. Nomes de colunas e chaves de fonte são estáveis.
+#'
 #' @return A tibble following the canonical schema in
 #'   `inst/dict/schema.yaml`. Optional columns (`institution_type`,
 #'   `modality`, `is_derived`) are present whenever any of the loaded

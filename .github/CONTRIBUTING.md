@@ -1,4 +1,53 @@
-# Contributing to educabr2
+# Contribuir / Contributing to educabr2
+
+## Português
+
+Contribuições são bem-vindas. Para relatar erros em `get_*()`, abra uma
+[issue](https://github.com/mancano-tales/educabr2/issues/new) com exemplo
+mínimo reproduzível. Para propor dados, abra uma issue antes do PR. Para
+alterações no painel, inclua captura ou esboço. Correções de texto e novos
+testes de funções existentes podem vir diretamente por PR.
+
+Discussões de compatibilidade com o `educabR`, de Sidney Bissoli, estão na
+[issue #8](https://github.com/mancano-tales/educabr2/issues/8) e em
+`planning/integration-educabR.md`. Consulte `planning/` antes de propor
+algo que já esteja planejado.
+
+### Acrescentar dados
+
+A proposta deve trazer:
+
+1. Proveniência estável: DOI, arquivo permanente ou portal oficial.
+2. Licença clara de redistribuição; fontes restritas exigem permissão
+   explícita dos autores, registrada na issue.
+3. Referência bibliográfica em `inst/dict/vocabularies/sources.yaml`,
+   utilizada por `educabr_cite()`.
+4. Script ETL em `data-raw/NN_build_<dataset>.R`, que harmonize os dados ao
+   esquema de `inst/dict/schema.yaml` e grave `data/<dataset>.rda`.
+5. Validação por `educabr2:::validate_against_schema()` ao fim do ETL.
+6. Teste em `tests/testthat/test-<dataset>.R`, com fixture do carregador.
+
+### Estilo e verificação
+
+Use roxygen2 com Markdown para funções exportadas, `cli::cli_abort()` e
+`cli::cli_warn()` para novos erros/avisos, nomes snake_case e verbos no
+estilo dplyr. Mantenha dependências mínimas; prefira base R e `rlang::%||%`
+a acrescentar pacotes desnecessários.
+
+Antes do PR, execute `devtools::document()`, `devtools::test()`,
+`devtools::check(cran = TRUE)` e `spelling::spell_check_package()`.
+Documente limitações da validação. Para novas funções, use `@export`,
+registre a função em `_pkgdown.yml`, escreva exemplo executável e explique
+o que mudou e por quê no commit/PR. Mantenha a documentação pública
+nos dois idiomas. Para mudanças no painel ou traduções, execute também
+`Rscript tools/check-bilingual.R`.
+
+### Licença
+
+Contribuições de código seguem GPL (>= 3). Dados seguem CC BY 4.0, salvo
+exigência distinta da fonte original, que deve ser informada na issue.
+
+## English
 
 Thanks for considering a contribution. The fastest way to be useful
 depends on what you have in mind.
@@ -61,12 +110,14 @@ devtools::document()                       # roxygen
 devtools::test()                           # all tests pass
 devtools::check(cran = TRUE)               # 0 errors, 0 warnings, 0 notes
 spelling::spell_check_package()            # 0 issues
+# For dashboard or translation changes:
+# Rscript tools/check-bilingual.R
 ```
 
 If you added a new function:
 - export it in roxygen (`@export`)
 - add it to `_pkgdown.yml` under the appropriate reference section
-- add an entry to `NEWS.md` under the development-version heading
+- describe the change and its motivation in the commit and PR; keep public documentation equivalent in Portuguese and English
 - write at least one example in the roxygen block (CRAN runs them)
 
 ## Licensing

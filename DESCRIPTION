@@ -12,7 +12,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0001-8846-9652")))
 Description: Provides curated long-run series on Brazilian formal education,
     with a focus on school enrollment, educational attainment (years of
-    schooling, literacy, level completion), public expenditure and grade
+    schooling and level completion), public expenditure and grade
     progression. Data are compiled and reconciled from heterogeneous official
     sources (the School Census and the Higher Education Census of the
     National Institute for Educational Studies and Research, INEP; the
@@ -24,15 +24,29 @@ Description: Provides curated long-run series on Brazilian formal education,
     <doi:10.1080/20780389.2024.2417268> and Lee and Lee (2016)
     <doi:10.1016/j.jdeveco.2016.05.006>, into a single tidy schema, with
     explicit provenance, enabling descriptive analyses and the study of
-    educational inequality across race, sex, income and location. It
-    complements the 'educabR' package, which downloads current microdata
-    from INEP and other agencies.
+    educational inequality with the available race and sex breakdowns. It
+    complements the 'educabR' package by Sidney Bissoli, which downloads
+    official data on demand from INEP and other agencies.
+    Data are bundled for offline access, with documentation and an interactive
+    dashboard in Portuguese and English. Schema compatibility with 'educabR'
+    is under development.
+    Disponibiliza séries históricas harmonizadas da educação brasileira:
+    matrículas (1871-2024), anos médios de estudo (1925-2015), despesa pública
+    (1933-2010), progressão escolar (1955-2010) e conclusão educacional em
+    111 países (1870-2010). Reúne fontes oficiais do Instituto Nacional de
+    Estudos e Pesquisas Educacionais Anísio Teixeira (INEP) e do Instituto
+    Brasileiro de Geografia e Estatística (IBGE) e compilações acadêmicas
+    em um esquema comum, com proveniência por observação. Os dados
+    acompanham o pacote e podem ser consultados offline; a documentação
+    e o painel interativo são oferecidos em português e inglês. Complementa
+    o pacote 'educabR', de Sidney Bissoli, que baixa dados oficiais sob
+    demanda. A compatibilidade entre os esquemas está em desenvolvimento.
 License: GPL (>= 3)
 URL: https://github.com/mancano-tales/educabr2,
     https://mancano-tales.github.io/educabr2/
 BugReports: https://github.com/mancano-tales/educabr2/issues
 Encoding: UTF-8
-Language: en-US
+Language: en-US, pt-BR
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
 Depends:

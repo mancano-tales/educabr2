@@ -5,7 +5,7 @@
 \alias{lee_lee_2016}
 \title{Comparative international educational attainment — Lee & Lee 2016}
 \format{
-A tibble with approximately 29 000 rows and 12 columns:
+A tibble with 28 971 rows and 12 columns:
 \describe{
 \item{year}{\code{integer}. Reference year (1870–2010, in 5-year steps).}
 \item{geo_level}{\code{character}. Always \code{"country"}.}
@@ -67,6 +67,27 @@ By construction, 100 >= primary >= secondary >= tertiary >= 0 for
 any (country, year, sex). Versions of educabr2 before 0.1.2
 double-counted the completed subsets and overstated primary and
 secondary shares; tertiary was unaffected.
+}
+
+\section{Português}{
+
+Conclusão educacional de Lee & Lee (2016): 28.971 linhas, 111 países,
+1870–2010 em intervalos de cinco anos. Prefira \code{\link[=get_attainment]{get_attainment()}}.
+\code{geo_code} usa ISO de três letras; \code{geo_name} preserva os nomes em inglês
+da fonte. \code{level} distingue \code{primary}, \code{secondary} e \code{tertiary}; \code{dim_sex}
+distingue homens, mulheres e total; \code{age_group} é \code{"15-64"}.
+\code{value} é o percentual cumulativo que completou pelo menos o nível:
+primário = lpc + ls + lh; secundário = lsc + lh; terciário = lhc.
+Assim, 100 >= primário >= secundário >= terciário >= 0. Versões anteriores
+à 0.1.2 contavam subconjuntos completos duas vezes no primário/secundário;
+o terciário não foi afetado. ETL: \verb{data-raw/06_build_lee_lee_2016.R}.
+
+Colunas: \code{year} é o ano; \code{geo_level}, \code{geo_code} e \code{geo_name} identificam
+nível, código e nome geográficos; \code{indicator}, \code{value} e \code{unit} registram
+indicador, valor e unidade; \code{source} é a chave de fonte e \code{source_note}
+a nota bibliográfica. Dimensões usam \code{"total"} para agregados, preservando
+\code{NA} para informação desconhecida. Os dados mantêm identificadores canônicos;
+consulte a função pública com \code{lang = "pt"} para traduzir rótulos.
 }
 
 \keyword{datasets}

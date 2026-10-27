@@ -24,6 +24,17 @@
 #'   LaTeX, or Quarto documents where captions and source notes are managed in the main markdown/TeX
 #'   text (e.g., using `fig-cap` or `fignote` environments) rather than baked into the graphic file.
 #'
+#' @section Português:
+#' Tema serifado minimalista inspirado em Kieran Healy, com legenda inferior,
+#' grade discreta e paleta complementar Okabe-Ito. `base_size` define o tamanho
+#' do texto; `base_family` define a fonte (padrão `"serif"`). Com TinyTeX,
+#' `showtext` e `sysfonts`, registra Latin Modern Roman automaticamente; na
+#' falta da fonte ou dependências, mantém a fonte serifada do sistema.
+#' `plot_titles = TRUE` (padrão) exibe título, subtítulo e legenda de fonte;
+#' `FALSE` remove esses elementos para que o manuscrito LaTeX/Quarto os defina.
+#' Retorna um objeto tema ggplot2. As referências bibliográficas abaixo
+#' mantêm os títulos originais.
+#'
 #' @return A ggplot2 theme object.
 #'
 #' @references
@@ -160,6 +171,14 @@ theme_educabr <- function(base_size = 9.5, base_family = "serif", plot_titles = 
 #'   `data$year`). Used to compute the span and anchor the first/last labels.
 #' @param ... Additional arguments passed on to [ggplot2::scale_x_continuous()].
 #'
+#' @section Português:
+#' Escala temporal que recebe `years`, o vetor dos anos efetivamente plotados.
+#' Usa espaçamento de 20 anos acima de seis décadas, de 10 anos para amplitudes
+#' intermediárias (25–60 anos) e `pretty()` para amplitudes menores. Sempre
+#' rotula primeiro e último ano e evita marcas que colidam com esses extremos.
+#' `...` passa argumentos a `ggplot2::scale_x_continuous()`. Retorna uma escala
+#' contínua de posição do ggplot2.
+#'
 #' @return A ggplot2 continuous position scale.
 #'
 #' @export
@@ -221,7 +240,18 @@ scale_x_year_educabr <- function(years, ...) {
 #'
 #' @param ... Arguments passed on to `ggplot2::scale_colour_manual` or `ggplot2::scale_fill_manual`
 #'
+#' @section Português:
+#' Escalas discretas de cor (`scale_colour_educabr`) e preenchimento
+#' (`scale_fill_educabr`) com a paleta Okabe-Ito, segura para daltonismo.
+#' `...` passa argumentos a `ggplot2::scale_colour_manual()` ou
+#' `ggplot2::scale_fill_manual()`, como `name`, `labels` e `breaks`.
+#' A paleta tem oito cores; mais categorias geram erro. Prefira facetas
+#' ou destaque poucas séries nesses casos. Retorna uma escala ggplot2.
+#'
 #' @return A ggplot2 scale function.
+#' @examples
+#' scale_colour_educabr()
+#' scale_fill_educabr()
 #'
 #' @export
 #' @rdname scale_educabr

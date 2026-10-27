@@ -5,7 +5,7 @@
 \alias{enrollment_tertiary}
 \title{Tertiary (ensino superior) enrollment — multi-source compilation}
 \format{
-A tibble with approximately 1 200 rows and 16 columns
+A tibble with 1 143 rows and 16 columns
 matching the canonical schema (\code{inst/dict/schema.yaml}). The
 tertiary-specific columns are:
 \describe{
@@ -44,7 +44,7 @@ enrollment_tertiary
 }
 \description{
 National-level (BR) Brazilian higher-education enrollment from 1907
-to 2024, harmonised across seven different primary sources. The
+to 2024, harmonised across official records and academic compilations. The
 dataset is consumed by \code{\link[=get_enrollment]{get_enrollment()}} when \code{level = "superior"}.
 Multiple sources for the same \verb{(year, network)} are kept on purpose
 so users can compare competing estimates — pass \code{source = "..."}
@@ -66,6 +66,29 @@ because every cell equals this aggregation.
 For derived rows the \code{source} column is the concatenation
 \code{"<presencial_key>+<ead_key>"}; the exact composition is documented
 in \code{source_note}.
+}
+
+\section{Português}{
+
+Matrículas no ensino superior: 1.143 linhas, Brasil, 1907–2024.
+Prefira \code{\link[=get_enrollment]{get_enrollment()}} com \code{level = "superior"}. \code{network} registra
+rede e subcategorias privadas antes/depois de 2009; \code{institution_type}
+registra organização acadêmica; \code{modality} distingue presencial, EAD e total.
+A categoria \code{especial} (2012–2024) é um subconjunto da municipal, não uma
+parcela a ser somada novamente. Fontes: IBGE Século XX, Maduro Junior (2007),
+INEP Sinopses (1995–2008, incluindo 2002) e Microdados (2009–2024).
+Kang entra como componente presencial de totais derivados. \code{is_derived}
+marca totais reconstruídos (presencial + EAD, 2000–2008), excluídos por
+padrão; \code{source} combina as chaves das fontes e \code{source_note} detalha a
+composição. O painel Power BI do INEP foi retirado por duplicar os microdados.
+ETL: \verb{data-raw/03_build_enrollment_tertiary.R}.
+
+Colunas: \code{year} é o ano; \code{geo_level}, \code{geo_code} e \code{geo_name} identificam
+nível, código e nome geográficos; \code{indicator}, \code{value} e \code{unit} registram
+indicador, valor e unidade; \code{source} é a chave de fonte e \code{source_note}
+a nota bibliográfica. Dimensões usam \code{"total"} para agregados, preservando
+\code{NA} para informação desconhecida. Os dados mantêm identificadores canônicos;
+consulte a função pública com \code{lang = "pt"} para traduzir rótulos.
 }
 
 \keyword{datasets}

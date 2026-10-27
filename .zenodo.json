@@ -2,7 +2,7 @@
   "upload_type": "software",
   "title": "educabr2: Harmonized Historical Series on Brazilian Education",
   "version": "0.1.3",
-  "description": "<p>R package with curated long-run series on Brazilian formal education: school enrollment (1871-2024), mean years of schooling (1925-2015), public expenditure on education (1933-2010), grade progression (1955-2010) and, for international comparison, educational attainment in 111 countries (1870-2010).</p><p>The series are compiled from official sources (INEP School Census, Higher Education Census and its Statistical Synopses; IBGE Statistical Yearbooks and Statistics of the 20th Century) and academic reconstructions (Kang, Paese and Felix 2021; Kang and Menetrier 2024; Kang, Menetrier and Comim 2024; Walter and Kang 2024; Maduro Junior 2007; Lee and Lee 2016), reconciled across sources and series breaks into one tidy schema in which every row records its source. The datasets are bundled with the package and work offline.</p><p>Cite this package for the harmonisation work and the original compilations for the underlying data (see <code>educabr_cite()</code>). Documentation: https://mancano-tales.github.io/educabr2/</p>",
+  "description": "<p><strong>Português.</strong> Pacote R com séries históricas harmonizadas da educação brasileira: matrículas (1871–2024), anos médios de estudo (1925–2015), despesa pública (1933–2010), progressão escolar (1955–2010) e conclusão educacional em 111 países (1870–2010). Reúne registros oficiais do INEP e IBGE e reconstruções acadêmicas de Kang e colaboradores, Walter e Kang, Maduro Junior e Lee e Lee em um esquema comum, com proveniência por observação e dados para consulta offline. Inclui documentação e painel interativo em português e inglês. Cite o pacote pela harmonização e as fontes originais pelos dados (educabr_cite()). Documentação: https://mancano-tales.github.io/educabr2/</p><p><strong>English.</strong> R package with harmonized historical series on Brazilian education: enrollment (1871–2024), mean years of schooling (1925–2015), public expenditure (1933–2010), grade progression (1955–2010) and educational attainment in 111 countries (1870–2010). Combines official INEP and IBGE records and academic reconstructions by Kang and collaborators, Walter and Kang, Maduro Junior and Lee and Lee in a common schema, with observation-level provenance and offline data access. Includes documentation and an interactive dashboard in Portuguese and English. Cite the package for harmonization and the original sources for the underlying data (educabr_cite()). Documentation: https://mancano-tales.github.io/educabr2/</p>",
   "creators": [
     {
       "name": "Mançano, Tales",
@@ -33,13 +33,45 @@
     "data harmonization"
   ],
   "related_identifiers": [
-    {"identifier": "https://github.com/mancano-tales/educabr2", "relation": "isSupplementTo", "scheme": "url"},
-    {"identifier": "https://mancano-tales.github.io/educabr2/", "relation": "isDocumentedBy", "scheme": "url"},
-    {"identifier": "10.1017/S0212610921000112", "relation": "isDerivedFrom", "scheme": "doi"},
-    {"identifier": "10.1590/1980-53575434tkim", "relation": "isDerivedFrom", "scheme": "doi"},
-    {"identifier": "10.1017/S0212610924000120", "relation": "isDerivedFrom", "scheme": "doi"},
-    {"identifier": "10.1080/20780389.2024.2417268", "relation": "isDerivedFrom", "scheme": "doi"},
-    {"identifier": "10.1016/j.jdeveco.2016.05.006", "relation": "isDerivedFrom", "scheme": "doi"},
-    {"identifier": "10438/110", "relation": "isDerivedFrom", "scheme": "handle"}
+    {
+      "identifier": "https://github.com/mancano-tales/educabr2",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://mancano-tales.github.io/educabr2/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.1017/S0212610921000112",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1590/1980-53575434tkim",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1017/S0212610924000120",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1080/20780389.2024.2417268",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1016/j.jdeveco.2016.05.006",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10438/110",
+      "relation": "isDerivedFrom",
+      "scheme": "handle"
+    }
   ]
 }

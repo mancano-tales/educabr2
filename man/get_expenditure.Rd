@@ -69,6 +69,27 @@ and EF+EM combined).
 All series are national (BR), 1933-2010. The data behind this function
 is the internal dataset \link{expenditure_kang_fgv}.
 }
+\section{Português}{
+
+Consulta a despesa pública em educação compilada por Kang & Menetrier
+(2024), Brasil, 1933–2010. Os indicadores incluem participação no PIB,
+gasto por estudante em \% do PIB per capita e razões duplas de regressividade.
+\itemize{
+\item \code{level}: vetor de etapas; inclui \code{total}, \code{fundamental}, anos iniciais
+e finais, \code{medio}, \code{fundamental_medio} e \code{superior}.
+\item \code{indicator}: aceita \code{"share_gdp"}, \code{"per_student"},
+\code{"double_ratio_es_ef1"}, \code{"double_ratio_es_ef_em"} ou chaves completas.
+\item \code{year}: anos ou intervalo \code{c(inicio, fim)}; \code{NULL} inclui todos.
+\item \code{source}: chaves de fonte; \code{NULL} inclui todas.
+\item \code{wide}: \code{FALSE} por padrão; \code{TRUE} cria uma coluna por indicador.
+\item \code{lang}: \code{"en"} (padrão) ou \code{"pt"} (rótulos traduzidos).
+}
+
+Filtros \code{NULL} não restringem os dados. Retorna tibble no esquema canônico,
+com valor, unidade e proveniência. Os dados são nacionais; esta função
+não recebe filtros geográficos nem argumento \code{dimension}.
+}
+
 \examples{
 # Total public expenditure on education as share of GDP
 get_expenditure(indicator = "share_gdp", level = "total")

@@ -39,6 +39,19 @@ installed, it registers them dynamically. If the font files are not found or pac
 are missing, the theme falls back gracefully to the system's default \code{"serif"} family.
 }
 
+\section{Português}{
+
+Tema serifado minimalista inspirado em Kieran Healy, com legenda inferior,
+grade discreta e paleta complementar Okabe-Ito. \code{base_size} define o tamanho
+do texto; \code{base_family} define a fonte (padrão \code{"serif"}). Com TinyTeX,
+\code{showtext} e \code{sysfonts}, registra Latin Modern Roman automaticamente; na
+falta da fonte ou dependências, mantém a fonte serifada do sistema.
+\code{plot_titles = TRUE} (padrão) exibe título, subtítulo e legenda de fonte;
+\code{FALSE} remove esses elementos para que o manuscrito LaTeX/Quarto os defina.
+Retorna um objeto tema ggplot2. As referências bibliográficas abaixo
+mantêm os títulos originais.
+}
+
 \examples{
 \donttest{
 library(ggplot2)

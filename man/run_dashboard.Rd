@@ -25,3 +25,25 @@ so any improvement to the data flows through it automatically.
 The dashboard is also deployed publicly (link in the README) for
 users who prefer not to install R locally.
 }
+\section{Português}{
+
+Abre o painel Shiny local, que usa a API pública para explorar os dados
+distribuídos com o pacote. Há também um painel público, vinculado no README.
+\itemize{
+\item \code{lang}: idioma inicial da interface, \code{"pt"} (padrão) ou \code{"en"}.
+Os links Português/English permitem alternar o idioma, reiniciando filtros.
+A URL \code{?lang=pt} ou \code{?lang=en} tem precedência sobre o idioma inicial.
+\item \code{...}: argumentos de \code{shiny::runApp()}, como \code{port}, \code{host} e \code{launch.browser}.
+}
+
+Inicia a aplicação por efeito colateral e devolve o resultado de
+\code{shiny::runApp()}. Consultas e downloads preservam chaves canônicas;
+controles, gráficos, mensagens e tabelas usam o idioma escolhido.
+}
+
+\examples{
+\dontrun{
+run_dashboard(lang = "pt")
+run_dashboard(lang = "en")
+}
+}

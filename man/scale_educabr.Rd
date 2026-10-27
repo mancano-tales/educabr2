@@ -18,3 +18,18 @@ A ggplot2 scale function.
 \description{
 Colorblind-safe color scales for \code{educabr2} plots, based on the Okabe-Ito palette.
 }
+\section{Português}{
+
+Escalas discretas de cor (\code{scale_colour_educabr}) e preenchimento
+(\code{scale_fill_educabr}) com a paleta Okabe-Ito, segura para daltonismo.
+\code{...} passa argumentos a \code{ggplot2::scale_colour_manual()} ou
+\code{ggplot2::scale_fill_manual()}, como \code{name}, \code{labels} e \code{breaks}.
+A paleta tem oito cores; mais categorias geram erro. Prefira facetas
+ou destaque poucas séries nesses casos. Retorna uma escala ggplot2.
+}
+
+\examples{
+scale_colour_educabr()
+scale_fill_educabr()
+
+}

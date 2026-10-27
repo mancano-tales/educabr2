@@ -40,6 +40,24 @@ Citation metadata is read from
 that backs the \code{source} column of \code{\link[=get_enrollment]{get_enrollment()}} and
 \code{\link[=get_schooling]{get_schooling()}}.
 }
+\section{Português}{
+
+Gera referências para as fontes originais dos dados. Cite o pacote pela
+harmonização e as fontes utilizadas pela produção dos dados.
+\itemize{
+\item \code{source_key}: vetor de chaves; \code{NULL} (padrão) cita todas as fontes.
+Para citar só as usadas, passe \code{unique(dados$source)} de uma consulta.
+O alias \code{"walter_kang_2023"} é resolvido para \code{"walter_kang_2024"}.
+\item \code{style}: \code{"bibentry"} (padrão, objeto formatável por \code{format()} ou
+\code{utils::toBibtex()}), \code{"text"} (texto estilo APA por fonte) ou
+\code{"bibtex"} (entrada para arquivo \code{.bib}).
+}
+
+Retorna \code{bibentry}, vetor de texto ou objeto \code{Bibtex}, conforme o estilo,
+com uma entrada por fonte. Autores, títulos e demais metadados de citação
+preservam o idioma e a grafia da publicação original.
+}
+
 \examples{
 # A single source (default returns a bibentry)
 educabr_cite("kang_paese_felix_2021")

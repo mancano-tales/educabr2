@@ -14,86 +14,96 @@ template:
   opengraph:
     image:
       src: man/figures/logo.png
-      alt: educabr2 logo
+      alt: 'Logo do educabr2 / educabr2 logo'
     twitter:
       creator: '@mancano_tales'
       card: summary
 
 home:
-  title: 'educabr2: Harmonised Brazilian Education Series'
-  description: |
-    Curated long-run series on Brazilian formal education — enrollment by
-    stage and network, mean years of schooling, attainment — compiled
-    and reconciled from heterogeneous official and academic sources
-    (Censo Escolar, PNAD, IBGE, INEP CENSUP, Kang/FGV-IBRE,
-    Walter & Kang) into a single tidy schema with explicit per-row
-    provenance. Includes a bundled Shiny dashboard.
+  title: 'educabr2: Educação brasileira / Brazilian education'
+  description: >
+    Séries históricas harmonizadas da educação brasileira em R: matrículas,
+    escolaridade, despesa pública e progressão escolar, com proveniência e painel.
+    Harmonized historical series on Brazilian education in R: enrollment,
+    schooling, public expenditure and progression, with provenance and a dashboard.
   links:
-  - text: Live dashboard (shinyapps.io)
+  - text: Painel interativo / Interactive dashboard
     href: https://qx3hly-tales-man0ano.shinyapps.io/educabr2/
-  - text: Source on GitHub
+  - text: Código no GitHub / Source on GitHub
     href: https://github.com/mancano-tales/educabr2
-  - text: Report a bug
+  - text: Relatar problema / Report an issue
     href: https://github.com/mancano-tales/educabr2/issues
 
 navbar:
   structure:
-    left:  [intro, reference, articles, news]
+    left: [intro_pt, intro_en, reference, articles]
     right: [search, dashboard, github]
   components:
-    intro:
-      text: Get started
+    intro_pt:
+      text: Português
+      href: articles/introducao-pt.html
+    intro_en:
+      text: English
       href: articles/introduction.html
+    reference:
+      text: Referência / Reference
+      href: reference/index.html
+    articles:
+      text: Artigos / Articles
+      menu:
+      - text: Introdução (PT-BR)
+        href: articles/introducao-pt.html
+      - text: Introduction (EN)
+        href: articles/introduction.html
+      - text: Visualização (PT-BR)
+        href: articles/visualizacao-pt.html
+      - text: Visualization (EN)
+        href: articles/visualization.html
     dashboard:
       icon: fa-chart-line
       href: https://qx3hly-tales-man0ano.shinyapps.io/educabr2/
-      aria-label: Live dashboard
+      aria-label: Painel interativo / Interactive dashboard
 
 reference:
-- title: Data access
+- title: Acesso aos dados / Data access
   desc: >
-    Public API for the harmonised series. Each function returns a tibble
-    in the canonical tidy-long schema documented in
-    `inst/dict/schema.yaml`.
+    API das séries harmonizadas; cada função retorna um tibble no esquema
+    comum de `inst/dict/schema.yaml`. / Harmonized-series API; each function
+    returns a tibble following the common schema in `inst/dict/schema.yaml`.
   contents:
   - get_enrollment
   - get_schooling
   - get_expenditure
   - get_progression
   - get_attainment
-
-- title: Citations and provenance
+- title: Citação e proveniência / Citation and provenance
   desc: >
-    Discover the underlying sources and cite them — not only the
-    package itself.
+    Descubra e cite as fontes originais, além do pacote. /
+    Discover and cite the original sources as well as the package.
   contents:
   - list_sources
   - educabr_cite
-
-- title: Visualization
+- title: Visualização / Visualization
   desc: >
-    Consistent, colorblind-safe plotting components in the style of
-    Healy's *Data Visualization*: a ggplot2 theme, Okabe-Ito colour
-    scales, and a year axis designed for century-long historical series.
+    Tema ggplot2, paleta Okabe-Ito segura para daltonismo e eixo de anos para
+    séries históricas. / A ggplot2 theme, colourblind-safe Okabe-Ito palette
+    and year axis for historical series.
   contents:
   - theme_educabr
   - scale_colour_educabr
   - scale_fill_educabr
   - scale_x_year_educabr
-
-- title: Dashboard
+- title: Painel / Dashboard
   desc: >
-    Launch the bundled Shiny dashboard. A read-only deployment is also
-    [hosted on shinyapps.io](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/).
+    Abra o painel Shiny local ou consulte o [painel público](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/).
+    / Launch the local Shiny app or visit the [public dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/).
   contents:
   - run_dashboard
-
-- title: Backing datasets
+- title: Conjuntos de dados / Backing datasets
   desc: >
-    Internal backing stores for the public `get_*()` functions. End
-    users should call the functions instead of loading these objects
-    directly — the public API normalises schema differences across
-    datasets, applies filters and translates labels.
+    Objetos distribuídos com o pacote. Prefira as funções `get_*()` para
+    filtrar, normalizar o esquema e traduzir rótulos. / Objects bundled with
+    the package. Prefer `get_*()` to filter, normalize the schema and translate labels.
   contents:
   - enrollment_kang_fgv
   - enrollment_tertiary
@@ -101,22 +111,20 @@ reference:
   - expenditure_kang_fgv
   - progression_kang_fgv
   - lee_lee_2016
-
-- title: Package
+- title: Pacote / Package
   contents: educabr2-package
 
 articles:
-- title: Tutorials
+- title: Tutoriais em português / Portuguese tutorials
   navbar: ~
   contents:
-  - "introduction"
-  - "introducao-pt"
-  - "visualization"
-
-news:
-  releases:
-  - text: All releases
-    href: news/index.html
+  - introducao-pt
+  - visualizacao-pt
+- title: Tutorials in English / Tutoriais em inglês
+  navbar: ~
+  contents:
+  - introduction
+  - visualization
 
 development:
   mode: release
@@ -126,6 +134,7 @@ footer:
     left: [developed_by, package]
     right: [built_with]
   components:
-    package: |
-      Code under GPL (>= 3). Data under CC BY 4.0 unless original
-      source restricts it (see `inst/dict/vocabularies/sources.yaml`).
+    package: >
+      Código / Code: GPL (>= 3). Dados / Data: CC BY 4.0, salvo restrições
+      da fonte original / unless restricted by the original source
+      (inst/dict/vocabularies/sources.yaml).

@@ -8,6 +8,17 @@
 #' available before calling [educabr_cite()] or filtering
 #' [get_enrollment()] / [get_schooling()] with the `source` argument.
 #'
+#' @section Português:
+#' Lista uma linha por chave do vocabulário de fontes, antes de consultar
+#' os dados ou gerar referências com [educabr_cite()]. Não recebe argumentos.
+#'
+#' Retorna tibble com `key` (chave usada em `source`), `short_name` (nome curto),
+#' `type` (tipo de fonte), `year_start` e `year_end` (anos; fim `NA` quando
+#' contínua), `geo` (níveis geográficos separados por vírgula), `doi`, `url`
+#' e `notes`. Os tipos distinguem artigo, dissertação, pesquisa oficial,
+#' censo, registro administrativo, microdados administrativos e compilação
+#' histórica. Metadados bibliográficos preservam o idioma original.
+#'
 #' @return A `tibble` with columns:
 #' \describe{
 #'   \item{`key`}{the source key used in the `source` column of

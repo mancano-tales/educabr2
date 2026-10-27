@@ -61,4 +61,21 @@ directly.
 }
 }
 
+\section{Português}{
+
+Despesa pública de Kang & Menetrier (2024): 1.170 linhas, Brasil,
+1933–2010. Prefira \code{\link[=get_expenditure]{get_expenditure()}}. \code{level} registra a etapa educacional;
+os indicadores medem participação no PIB, gasto por estudante em \% do PIB
+per capita e razões duplas de gasto ES/EF1 e ES/(EF+EM). Razões duplas
+comparam gastos por estudante; não são percentuais. A fonte é
+\code{kang_menetrier_2024}. ETL: \verb{data-raw/04_build_expenditure_kang_fgv.R}.
+
+Colunas: \code{year} é o ano; \code{geo_level}, \code{geo_code} e \code{geo_name} identificam
+nível, código e nome geográficos; \code{indicator}, \code{value} e \code{unit} registram
+indicador, valor e unidade; \code{source} é a chave de fonte e \code{source_note}
+a nota bibliográfica. Dimensões usam \code{"total"} para agregados, preservando
+\code{NA} para informação desconhecida. Os dados mantêm identificadores canônicos;
+consulte a função pública com \code{lang = "pt"} para traduzir rótulos.
+}
+
 \keyword{datasets}

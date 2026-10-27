@@ -67,18 +67,36 @@
 #'   \doi{10.1017/S0212610921000112}.
 #'   Data compilation: FGV/IBRE (April 2023 revision).
 #'   ETL script: `data-raw/01_build_enrollment_kang_fgv.R`.
+#' @section Português:
+#' Matrículas de Kang/FGV-IBRE: 6.238 linhas, Brasil (1871–2010) e UFs
+#' (1955–2010), com raça/cor nacional desde 1960. Prefira [get_enrollment()].
+#' `level` identifica a etapa; `network` é `"total"`; `dim_race` contém as
+#' categorias de cor/raça do IBGE; `age_group` registra o denominador etário
+#' das taxas (ausente nas contagens). `indicator` distingue `enrollment_count`
+#' (contagem) e `enrollment_rate` (taxa bruta, escala 0–100). `modality` é
+#' `"presencial"` no superior de 2000–2008 e `"total"` nos demais casos.
+#' Fontes: Kang, Paese & Felix (2021), Kang & Menetrier (2024) e Kang,
+#' Menetrier & Comim (2024). ETL: `data-raw/01_build_enrollment_kang_fgv.R`.
+#'
+#' Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name` identificam
+#' nível, código e nome geográficos; `indicator`, `value` e `unit` registram
+#' indicador, valor e unidade; `source` é a chave de fonte e `source_note`
+#' a nota bibliográfica. Dimensões usam `"total"` para agregados, preservando
+#' `NA` para informação desconhecida. Os dados mantêm identificadores canônicos;
+#' consulte a função pública com `lang = "pt"` para traduzir rótulos.
+#'
 "enrollment_kang_fgv"
 
 #' Tertiary (ensino superior) enrollment — multi-source compilation
 #'
 #' National-level (BR) Brazilian higher-education enrollment from 1907
-#' to 2024, harmonised across seven different primary sources. The
+#' to 2024, harmonised across official records and academic compilations. The
 #' dataset is consumed by [get_enrollment()] when `level = "superior"`.
 #' Multiple sources for the same `(year, network)` are kept on purpose
 #' so users can compare competing estimates — pass `source = "..."`
 #' to lock in a specific series.
 #'
-#' @format A tibble with approximately 1 200 rows and 16 columns
+#' @format A tibble with 1 143 rows and 16 columns
 #'   matching the canonical schema (`inst/dict/schema.yaml`). The
 #'   tertiary-specific columns are:
 #' \describe{
@@ -126,6 +144,27 @@
 #'   from publicly available sources. Raw file:
 #'   `data-raw/sources/tertiary_multisource/data_tertiary_v6_clean.xlsx`.
 #'   ETL: `data-raw/03_build_enrollment_tertiary.R`.
+#' @section Português:
+#' Matrículas no ensino superior: 1.143 linhas, Brasil, 1907–2024.
+#' Prefira [get_enrollment()] com `level = "superior"`. `network` registra
+#' rede e subcategorias privadas antes/depois de 2009; `institution_type`
+#' registra organização acadêmica; `modality` distingue presencial, EAD e total.
+#' A categoria `especial` (2012–2024) é um subconjunto da municipal, não uma
+#' parcela a ser somada novamente. Fontes: IBGE Século XX, Maduro Junior (2007),
+#' INEP Sinopses (1995–2008, incluindo 2002) e Microdados (2009–2024).
+#' Kang entra como componente presencial de totais derivados. `is_derived`
+#' marca totais reconstruídos (presencial + EAD, 2000–2008), excluídos por
+#' padrão; `source` combina as chaves das fontes e `source_note` detalha a
+#' composição. O painel Power BI do INEP foi retirado por duplicar os microdados.
+#' ETL: `data-raw/03_build_enrollment_tertiary.R`.
+#'
+#' Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name` identificam
+#' nível, código e nome geográficos; `indicator`, `value` e `unit` registram
+#' indicador, valor e unidade; `source` é a chave de fonte e `source_note`
+#' a nota bibliográfica. Dimensões usam `"total"` para agregados, preservando
+#' `NA` para informação desconhecida. Os dados mantêm identificadores canônicos;
+#' consulte a função pública com `lang = "pt"` para traduzir rótulos.
+#'
 "enrollment_tertiary"
 
 #' Mean years of schooling — Walter & Kang 2024 compilation
@@ -136,7 +175,7 @@
 #' by [get_schooling()]; end-users should call that function rather than
 #' loading this object directly.
 #'
-#' @format A tibble with approximately 2 300 rows and 12 columns:
+#' @format A tibble with 2 287 rows and 12 columns:
 #' \describe{
 #'   \item{year}{`integer`. Reference year (1925–2015). BR-level series
 #'     starts in 1925; region and UF series start in 1950.}
@@ -174,6 +213,21 @@
 #' @source Walter, J., & Kang, T. H. (2024). A new dataset of average
 #'   years of schooling in Brazil, 1925-2015. Economic History of Developing Regions, 39(3), 307-336.
 #'   ETL script: `data-raw/02_build_schooling_kang_fgv.R`.
+#' @section Português:
+#' Anos médios de estudo de Walter & Kang (2024): 2.287 linhas, população
+#' de 15–64 anos, Brasil desde 1925 e regiões/UFs desde 1950, até 2015.
+#' Prefira [get_schooling()]. `dim_race` e `dim_sex` registram raça/cor e sexo;
+#' a desagregação por raça/cor é nacional. `age_group` é `"15-64"` e
+#' `value` mede anos de estudo. A fonte é `walter_kang_2024`; o alias de 2023
+#' continua aceito pela API. ETL: `data-raw/02_build_schooling_kang_fgv.R`.
+#'
+#' Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name` identificam
+#' nível, código e nome geográficos; `indicator`, `value` e `unit` registram
+#' indicador, valor e unidade; `source` é a chave de fonte e `source_note`
+#' a nota bibliográfica. Dimensões usam `"total"` para agregados, preservando
+#' `NA` para informação desconhecida. Os dados mantêm identificadores canônicos;
+#' consulte a função pública com `lang = "pt"` para traduzir rótulos.
+#'
 "schooling_kang_fgv"
 
 #' Public expenditure on education — Kang & Menetrier 2024 compilation
@@ -226,6 +280,21 @@
 #'   Econômicos (São Paulo)*, 54(3), e53575434.
 #'   \doi{10.1590/1980-53575434tkim}. Compilation: FGV/IBRE (April 2023
 #'   revision). ETL script: `data-raw/04_build_expenditure_kang_fgv.R`.
+#' @section Português:
+#' Despesa pública de Kang & Menetrier (2024): 1.170 linhas, Brasil,
+#' 1933–2010. Prefira [get_expenditure()]. `level` registra a etapa educacional;
+#' os indicadores medem participação no PIB, gasto por estudante em % do PIB
+#' per capita e razões duplas de gasto ES/EF1 e ES/(EF+EM). Razões duplas
+#' comparam gastos por estudante; não são percentuais. A fonte é
+#' `kang_menetrier_2024`. ETL: `data-raw/04_build_expenditure_kang_fgv.R`.
+#'
+#' Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name` identificam
+#' nível, código e nome geográficos; `indicator`, `value` e `unit` registram
+#' indicador, valor e unidade; `source` é a chave de fonte e `source_note`
+#' a nota bibliográfica. Dimensões usam `"total"` para agregados, preservando
+#' `NA` para informação desconhecida. Os dados mantêm identificadores canônicos;
+#' consulte a função pública com `lang = "pt"` para traduzir rótulos.
+#'
 "expenditure_kang_fgv"
 
 #' Grade-progression series (GDR6) — Kang, Paese & Felix 2021 compilation
@@ -270,6 +339,23 @@
 #'   1933-2010. *Revista de Historia Económica*, 39(2), 191–218.
 #'   \doi{10.1017/S0212610921000112}. Compilation: FGV/IBRE (April 2023
 #'   revision). ETL script: `data-raw/05_build_progression_kang_fgv.R`.
+#' @section Português:
+#' Progressão escolar de Kang, Paese & Felix (2021): 1.090 linhas,
+#' 1955–2010, Brasil e 20 UFs. Prefira [get_progression()]. O indicador
+#' `gross_distribution_ratio_grade_6` é a razão entre matrículas nas séries
+#' 4–6 e nas séries 1–3 do antigo primário de oito anos, sem unidade (`ratio`).
+#' As UFs cobertas são AL, AM, BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI,
+#' PR, RJ, RN, RS, SC, SE e SP; AC, AP, DF, MS, RO, RR e TO não constam da
+#' fonte. As lacunas nacionais em 1988–1990 e 1994 refletem mudanças na
+#' estrutura oficial de séries. ETL: `data-raw/05_build_progression_kang_fgv.R`.
+#'
+#' Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name` identificam
+#' nível, código e nome geográficos; `indicator`, `value` e `unit` registram
+#' indicador, valor e unidade; `source` é a chave de fonte e `source_note`
+#' a nota bibliográfica. Dimensões usam `"total"` para agregados, preservando
+#' `NA` para informação desconhecida. Os dados mantêm identificadores canônicos;
+#' consulte a função pública com `lang = "pt"` para traduzir rótulos.
+#'
 "progression_kang_fgv"
 
 #' Comparative international educational attainment — Lee & Lee 2016
@@ -281,7 +367,7 @@
 #' (`primary`, `secondary`, or `tertiary`). The dataset is the internal
 #' backing store consumed by [get_attainment()].
 #'
-#' @format A tibble with approximately 29 000 rows and 12 columns:
+#' @format A tibble with 28 971 rows and 12 columns:
 #' \describe{
 #'   \item{year}{`integer`. Reference year (1870–2010, in 5-year steps).}
 #'   \item{geo_level}{`character`. Always `"country"`.}
@@ -330,4 +416,23 @@
 #'   \doi{10.1016/j.jdeveco.2016.05.006}. Dataset:
 #'   <https://barrolee.github.io/BarroLeeDataSet/DataLeeLee.html>.
 #'   ETL script: `data-raw/06_build_lee_lee_2016.R`.
+#' @section Português:
+#' Conclusão educacional de Lee & Lee (2016): 28.971 linhas, 111 países,
+#' 1870–2010 em intervalos de cinco anos. Prefira [get_attainment()].
+#' `geo_code` usa ISO de três letras; `geo_name` preserva os nomes em inglês
+#' da fonte. `level` distingue `primary`, `secondary` e `tertiary`; `dim_sex`
+#' distingue homens, mulheres e total; `age_group` é `"15-64"`.
+#' `value` é o percentual cumulativo que completou pelo menos o nível:
+#' primário = lpc + ls + lh; secundário = lsc + lh; terciário = lhc.
+#' Assim, 100 >= primário >= secundário >= terciário >= 0. Versões anteriores
+#' à 0.1.2 contavam subconjuntos completos duas vezes no primário/secundário;
+#' o terciário não foi afetado. ETL: `data-raw/06_build_lee_lee_2016.R`.
+#'
+#' Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name` identificam
+#' nível, código e nome geográficos; `indicator`, `value` e `unit` registram
+#' indicador, valor e unidade; `source` é a chave de fonte e `source_note`
+#' a nota bibliográfica. Dimensões usam `"total"` para agregados, preservando
+#' `NA` para informação desconhecida. Os dados mantêm identificadores canônicos;
+#' consulte a função pública com `lang = "pt"` para traduzir rótulos.
+#'
 "lee_lee_2016"

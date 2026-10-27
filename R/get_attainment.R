@@ -45,6 +45,26 @@
 #'   `inst/dict/i18n.yaml`. Country names (`geo_name`) are left in
 #'   English regardless — they come from the upstream source.
 #'
+#' @section Português:
+#' Consulta a proporção cumulativa da população de 15–64 anos que completou
+#' pelo menos um nível educacional, conforme Lee & Lee (2016). Cobre 111 países,
+#' 1870–2010, em intervalos de cinco anos. Os níveis são cumulativos:
+#' primário >= secundário >= terciário; não devem ser somados.
+#'
+#' - `level`: `"primary"`, `"secondary"` e/ou `"tertiary"`; `NULL` inclui todos.
+#' - `year`: anos ou intervalo `c(inicio, fim)`; `NULL` inclui todos.
+#' - `geo_level`: sempre `"country"`.
+#' - `geo`: códigos ISO de três letras (`"BRA"`, `"ARG"`, etc.);
+#'   `NULL` inclui todos os países.
+#' - `dimension`: `"none"` (padrão, total) ou `"sex"` (sexo).
+#' - `source`: chaves de fonte; `NULL` inclui todas.
+#' - `wide`: `FALSE` por padrão; `TRUE` coloca indicadores em colunas.
+#' - `lang`: `"en"` (padrão) ou `"pt"` (rótulos traduzidos).
+#'
+#' Retorna tibble canônico com valores percentuais de 0 a 100 e proveniência.
+#' Os nomes dos países (`geo_name`) preservam o inglês da fonte original,
+#' mesmo com `lang = "pt"`; códigos ISO e nomes de colunas permanecem estáveis.
+#'
 #' @return A tibble in the canonical educabr2 long schema (see
 #'   `inst/dict/schema.yaml`). Columns: `year`, `geo_level`, `geo_code`,
 #'   `geo_name`, `level`, `dim_sex`, `age_group`, `indicator`, `value`,

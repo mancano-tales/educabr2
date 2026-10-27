@@ -22,13 +22,15 @@ library(educabr2)
 ```
 
 > Versão em português da vignette principal. Para a versão em inglês
-> e canônica, veja **`vignette("introduction", "educabr2")`**.
+> veja **`vignette("introduction", "educabr2")`**.
+
+[English version](introduction.html).
 
 ## Sobre o pacote
 
 O **educabr2** disponibiliza, sob um único esquema *tidy* canônico,
-o conjunto mais extenso de séries históricas harmonizadas sobre
-educação brasileira disponível em formato analítico:
+um conjunto de séries históricas harmonizadas sobre
+educação brasileira em formato analítico:
 
 * **Matrículas no ensino superior** — 1907 a 2024, **118 anos** de
   cobertura, articulando cinco fontes distintas (IBGE
@@ -94,10 +96,10 @@ str(get_attainment(geo = "BRA", year = 1950))
 Todas retornam *tibbles* longas seguindo o mesmo esquema canônico
 (`inst/dict/schema.yaml`), com colunas para a unidade geográfica,
 a dimensão de desigualdade (raça, sexo, etc.), a fonte e o valor.
-Os filtros compartilhados (`year`, `geo_level`, `geo`, `source`,
-`wide`, `lang`) funcionam de forma idêntica nas cinco funções.
-Como o conjunto de colunas é o mesmo, resultados de temas diferentes
-podem ser empilhados diretamente com `rbind()`/`bind_rows()`.
+Os filtros `year`, `source`, `wide` e `lang` seguem convenções comuns.
+Os filtros geográficos existem onde se aplicam; `get_expenditure()`
+contém apenas dados nacionais. As colunas variam por tema; confira os
+esquemas antes de combinar resultados com `dplyr::bind_rows()`.
 
 Note que o argumento `dimension` é deliberadamente assimétrico:
 `get_schooling()` oferece raça *e* sexo; `get_enrollment()` apenas
@@ -326,11 +328,11 @@ ggplot(df, aes(year, value, colour = dim_sex)) +
 
 ## Painel interativo
 
-O pacote acompanha um painel Shiny com uma aba **Overview** curada
+O pacote acompanha um painel Shiny com uma aba **Visão geral** curada
 (quatro gráficos-história para público não técnico) e **seis abas
-temáticas** — uma por tema (Enrollment, Tertiary Education,
-Educational Attainment, Public Expenditure, Grade Progression,
-International Comparison):
+temáticas** — uma por tema (Matrículas, Ensino superior,
+Escolaridade, Despesa pública, Progressão escolar,
+Comparação internacional):
 
 ```r
 educabr2::run_dashboard()
@@ -338,7 +340,7 @@ educabr2::run_dashboard()
 
 O painel reproduz toda a comparação multi-fonte do ensino superior
 e as séries de despesa, progressão e comparação internacional de
-forma interativa, com um botão "View R code" em cada aba que gera o
+forma interativa, com um botão "Ver código R" em cada aba que gera o
 código `educabr2` + `ggplot2` para reproduzir a visualização no seu
 ambiente R local — já estilizado com o sistema de visualização do
 próprio pacote — uma ponte direta entre exploração no painel e
@@ -346,8 +348,30 @@ análise reprodutível em script.
 
 ## Fontes e citação
 
-A lista completa de fontes com DOIs e links está na vignette principal
-em inglês (`vignette("introduction", "educabr2")`). A função
+As principais fontes, com os títulos originais, são:
+
+* Kang, T. H., Paese, L. H. Z., & Felix, N. F. A. (2021). Late and
+  unequal. *Revista de Historia Económica* 39(2), 191-218.
+  [doi:10.1017/S0212610921000112](https://doi.org/10.1017/S0212610921000112)
+* Kang, T. H., & Menetrier, I. (2024). Políticas elitistas e
+  despesas públicas em educação. *Estudos Econômicos* 54(3).
+  [doi:10.1590/1980-53575434tkim](https://doi.org/10.1590/1980-53575434tkim)
+* Kang, T. H., Menetrier, I., & Comim, F. (2024). The side effects
+  of a big push growth strategy. *RHE* 42(3), 387-414.
+  [doi:10.1017/S0212610924000120](https://doi.org/10.1017/S0212610924000120)
+* Walter, J. R., & Kang, T. H. (2024). A new dataset of average
+  years of schooling in Brazil. *Economic History of Developing
+  Regions* 39(3), 307-336.
+  [doi:10.1080/20780389.2024.2417268](https://doi.org/10.1080/20780389.2024.2417268)
+* Maduro Junior, P. R. R. M. (2007). *Taxas de matrícula e gastos em
+  educação no Brasil* [MSc dissertation, FGV/EPGE, hdl:10438/110].
+* IBGE (2007). *Estatísticas do Século XX*.
+  [seculoxx.ibge.gov.br](https://seculoxx.ibge.gov.br/)
+* INEP/MEC. *Sinopse Estatística da Educação Superior* (1995-2008).
+* INEP/MEC. *Microdados do Censo da Educação Superior* (2009-2024).
+
+
+A função
 `educabr_cite()` transforma qualquer chave de fonte (ou a coluna
 `source` de um resultado) em referência pronta para colar:
 
@@ -362,3 +386,17 @@ citar o pacote em si:
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
 > Brazilian Education* (versão `r packageVersion("educabr2")`).
 > <https://github.com/mancano-tales/educabr2>
+
+
+## Versão atual e integração
+
+A versão 0.1.3 inclui a Sinopse INEP de 2002, a chave canônica
+`walter_kang_2024` (preservando o alias de 2023) e a remoção da série
+redundante do Power BI do INEP. Cite o DOI da versão
+[10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357)
+com `citation("educabr2")`.
+
+A compatibilidade com o `educabR`, de Sidney Bissoli, está na
+[issue #8](https://github.com/mancano-tales/educabr2/issues/8), vinculada à
+[proposta upstream #29](https://github.com/SidneyBissoli/educabR/issues/29).
+Mapeamentos e validação estão planejados; ainda não há adaptador automático.

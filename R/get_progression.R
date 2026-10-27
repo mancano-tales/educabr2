@@ -33,6 +33,24 @@
 #'   levels and indicator labels are translated via
 #'   `inst/dict/i18n.yaml`.
 #'
+#' @section Português:
+#' Consulta o GDR6 de Kang, Paese & Felix (2021): matrículas nas séries 4–6
+#' divididas pelas matrículas nas séries 1–3 do antigo primário de oito anos.
+#' É uma razão sem unidade, não uma probabilidade individual de progressão.
+#'
+#' - `indicator`: `"gdr6"` ou `"gross_distribution_ratio_grade_6"`;
+#'   `NULL` seleciona o único indicador disponível.
+#' - `year`: anos ou intervalo `c(inicio, fim)`; `NULL` inclui todos.
+#' - `geo_level`: `"BR"` (padrão) ou `"UF"`; `geo`: siglas de UFs.
+#' - `source`: chaves de fonte; `NULL` inclui todas.
+#' - `wide`: `FALSE` por padrão; `TRUE` coloca indicadores em colunas.
+#' - `lang`: `"en"` (padrão) ou `"pt"` (rótulos traduzidos).
+#'
+#' Retorna tibble canônico, com valor, unidade e fonte. A compilação cobre
+#' 1955–2010 e 20 UFs: AL, AM, BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI,
+#' PR, RJ, RN, RS, SC, SE e SP. AC, AP, DF, MS, RO, RR e TO não constam da
+#' fonte. Há lacunas nacionais em 1988–1990 e 1994; elas são preservadas.
+#'
 #' @return A tibble in the canonical educabr2 long schema (see
 #'   `inst/dict/schema.yaml`). Columns: `year`, `geo_level`, `geo_code`,
 #'   `geo_name`, `level`, `network`, `dim_race`, `age_group`,
