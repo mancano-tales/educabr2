@@ -51,6 +51,18 @@ them dynamically. If the font files are not found or packages are
 missing, the theme falls back gracefully to the system's default
 `"serif"` family.
 
+## Português
+
+Tema serifado minimalista inspirado em Kieran Healy, com legenda
+inferior, grade discreta e paleta complementar Okabe-Ito. `base_size`
+define o tamanho do texto; `base_family` define a fonte (padrão
+`"serif"`). Com TinyTeX, `showtext` e `sysfonts`, registra Latin Modern
+Roman automaticamente; na falta da fonte ou dependências, mantém a fonte
+serifada do sistema. `plot_titles = TRUE` (padrão) exibe título,
+subtítulo e legenda de fonte; `FALSE` remove esses elementos para que o
+manuscrito LaTeX/Quarto os defina. Retorna um objeto tema ggplot2. As
+referências bibliográficas abaixo mantêm os títulos originais.
+
 ## References
 
 Healy, K. (2018). *Data Visualization: A Practical Introduction*.

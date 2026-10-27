@@ -6,6 +6,9 @@ library(educabr2)
 library(ggplot2)
 ```
 
+[Versão em
+português](https://mancano-tales.github.io/educabr2/articles/visualizacao-pt.md).
+
 `educabr2` ships a small, opinionated plotting toolkit so that a query
 becomes a publication-ready figure in a few lines. The design follows
 the principles of Kieran Healy’s *Data Visualization: A Practical

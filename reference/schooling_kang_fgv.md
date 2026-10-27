@@ -15,7 +15,7 @@ schooling_kang_fgv
 
 ## Format
 
-A tibble with approximately 2 300 rows and 12 columns:
+A tibble with 2 287 rows and 12 columns:
 
 - year:
 
@@ -89,3 +89,22 @@ schooling in Brazil, 1925-2015. Economic History of Developing Regions,
 | BR — by race             | 1925–2015 | 4 categories   |
 | Macro-region (5 regiões) | 1950–2015 | —              |
 | UF (20 estados)          | 1950–2015 | —              |
+
+## Português
+
+Anos médios de estudo de Walter & Kang (2024): 2.287 linhas, população
+de 15–64 anos, Brasil desde 1925 e regiões/UFs desde 1950, até 2015.
+Prefira
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/reference/get_schooling.md).
+`dim_race` e `dim_sex` registram raça/cor e sexo; a desagregação por
+raça/cor é nacional. `age_group` é `"15-64"` e `value` mede anos de
+estudo. A fonte é `walter_kang_2024`; o alias de 2023 continua aceito
+pela API. ETL: `data-raw/02_build_schooling_kang_fgv.R`.
+
+Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name`
+identificam nível, código e nome geográficos; `indicator`, `value` e
+`unit` registram indicador, valor e unidade; `source` é a chave de fonte
+e `source_note` a nota bibliográfica. Dimensões usam `"total"` para
+agregados, preservando `NA` para informação desconhecida. Os dados
+mantêm identificadores canônicos; consulte a função pública com
+`lang = "pt"` para traduzir rótulos.

@@ -9,7 +9,7 @@ Brazilian school system. The bundled indicator is GDR6 (Gross
 Distribution Ratio for grade 6), defined as enrollment in grades 4-6
 of the old eight-year primary system divided by enrollment in grades
 1-3. Higher values indicate fewer drop-outs and repeaters in the
-early grades of primary education."><meta property="og:image" content="https://mancano-tales.github.io/educabr2/reference/figures/logo.png"><meta property="og:image:alt" content="educabr2 logo"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@mancano_tales"><meta name="twitter:site" content="@mancano_tales"></head><body>
+early grades of primary education."><meta property="og:image" content="https://mancano-tales.github.io/educabr2/reference/figures/logo.png"><meta property="og:image:alt" content="Logo do educabr2 / educabr2 logo"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@mancano_tales"><meta name="twitter:site" content="@mancano_tales"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -25,24 +25,19 @@ early grades of primary education."><meta property="og:image" content="https://m
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/introduction.html">Get started</a></li>
-<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/introducao-pt.html">Português</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/introduction.html">English</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Referência / Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/introduction.html">Introduction to educabr2</a></li>
-    <li><a class="dropdown-item" href="../articles/introducao-pt.html">Introdução ao educabr2 (PT-BR)</a></li>
-    <li><a class="dropdown-item" href="../articles/visualization.html">The educabr2 visualization system</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-news"><li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
-    <li><a class="dropdown-item" href="../news/index.html">All releases</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../news/index.html">Changelog</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-artigos-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artigos / Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-artigos-articles"><li><a class="dropdown-item" href="../articles/introducao-pt.html">Introdução (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="../articles/introduction.html">Introduction (EN)</a></li>
+    <li><a class="dropdown-item" href="../articles/visualizacao-pt.html">Visualização (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="../articles/visualization.html">Visualization (EN)</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Live dashboard"><span class="fa fa-chart-line"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Painel interativo / Interactive dashboard"><span class="fa fa-chart-line"></span></a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/mancano-tales/educabr2/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
@@ -139,6 +134,24 @@ always <code>"fundamental_anos_iniciais"</code> and <code>unit</code> is always
 national level and for 20 federation units (UFs), 1955-2010. The
 dataset behind this function is <a href="progression_kang_fgv.html">progression_kang_fgv</a>.</p>
     </div>
+    <div class="section level2">
+    <h2 id="portugu-s">Português<a class="anchor" aria-label="anchor" href="#portugu-s"></a></h2>
+
+
+<p>Consulta o GDR6 de Kang, Paese &amp; Felix (2021): matrículas nas séries 4–6
+divididas pelas matrículas nas séries 1–3 do antigo primário de oito anos.
+É uma razão sem unidade, não uma probabilidade individual de progressão.</p><ul><li><p><code>indicator</code>: <code>"gdr6"</code> ou <code>"gross_distribution_ratio_grade_6"</code>;
+<code>NULL</code> seleciona o único indicador disponível.</p></li>
+<li><p><code>year</code>: anos ou intervalo <code>c(inicio, fim)</code>; <code>NULL</code> inclui todos.</p></li>
+<li><p><code>geo_level</code>: <code>"BR"</code> (padrão) ou <code>"UF"</code>; <code>geo</code>: siglas de UFs.</p></li>
+<li><p><code>source</code>: chaves de fonte; <code>NULL</code> inclui todas.</p></li>
+<li><p><code>wide</code>: <code>FALSE</code> por padrão; <code>TRUE</code> coloca indicadores em colunas.</p></li>
+<li><p><code>lang</code>: <code>"en"</code> (padrão) ou <code>"pt"</code> (rótulos traduzidos).</p></li>
+</ul><p>Retorna tibble canônico, com valor, unidade e fonte. A compilação cobre
+1955–2010 e 20 UFs: AL, AM, BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI,
+PR, RJ, RN, RS, SC, SE e SP. AC, AP, DF, MS, RO, RR e TO não constam da
+fonte. Há lacunas nacionais em 1988–1990 e 1994; elas são preservadas.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -205,7 +218,7 @@ dataset behind this function is <a href="progression_kang_fgv.html">progression_
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Tales Mançano. Code under GPL (&gt;= 3). Data under CC BY 4.0 unless original source restricts it (see <code>inst/dict/vocabularies/sources.yaml</code>).</p>
+  <p>Developed by Tales Mançano. Código / Code: GPL (&gt;= 3). Dados / Data: CC BY 4.0, salvo restrições da fonte original / unless restricted by the original source (inst/dict/vocabularies/sources.yaml).</p>
 </div>
 
 <div class="pkgdown-footer-right">

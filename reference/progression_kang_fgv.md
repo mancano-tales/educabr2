@@ -86,3 +86,24 @@ BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI, PR, RJ, RN, RS, SC, SE, SP).
 Newer or territorial-origin UFs (AC, AP, DF, MS, RO, RR, TO) are not
 covered by the source. National BR series has gaps at 1988, 1989, 1990
 and 1994 reflecting transitions in the official grade structure.
+
+## Português
+
+Progressão escolar de Kang, Paese & Felix (2021): 1.090 linhas,
+1955–2010, Brasil e 20 UFs. Prefira
+[`get_progression()`](https://mancano-tales.github.io/educabr2/reference/get_progression.md).
+O indicador `gross_distribution_ratio_grade_6` é a razão entre
+matrículas nas séries 4–6 e nas séries 1–3 do antigo primário de oito
+anos, sem unidade (`ratio`). As UFs cobertas são AL, AM, BA, CE, ES, GO,
+MA, MG, MT, PA, PB, PE, PI, PR, RJ, RN, RS, SC, SE e SP; AC, AP, DF, MS,
+RO, RR e TO não constam da fonte. As lacunas nacionais em 1988–1990 e
+1994 refletem mudanças na estrutura oficial de séries. ETL:
+`data-raw/05_build_progression_kang_fgv.R`.
+
+Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name`
+identificam nível, código e nome geográficos; `indicator`, `value` e
+`unit` registram indicador, valor e unidade; `source` é a chave de fonte
+e `source_note` a nota bibliográfica. Dimensões usam `"total"` para
+agregados, preservando `NA` para informação desconhecida. Os dados
+mantêm identificadores canônicos; consulte a função pública com
+`lang = "pt"` para traduzir rótulos.

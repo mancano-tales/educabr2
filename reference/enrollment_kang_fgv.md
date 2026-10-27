@@ -120,3 +120,25 @@ Column definitions, primary-key constraints, and unit conventions are
 specified in `inst/dict/schema.yaml`. The dataset is validated against
 that schema every time it is rebuilt (see
 `data-raw/01_build_enrollment_kang_fgv.R`).
+
+## Português
+
+Matrículas de Kang/FGV-IBRE: 6.238 linhas, Brasil (1871–2010) e UFs
+(1955–2010), com raça/cor nacional desde 1960. Prefira
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md).
+`level` identifica a etapa; `network` é `"total"`; `dim_race` contém as
+categorias de cor/raça do IBGE; `age_group` registra o denominador
+etário das taxas (ausente nas contagens). `indicator` distingue
+`enrollment_count` (contagem) e `enrollment_rate` (taxa bruta, escala
+0–100). `modality` é `"presencial"` no superior de 2000–2008 e `"total"`
+nos demais casos. Fontes: Kang, Paese & Felix (2021), Kang & Menetrier
+(2024) e Kang, Menetrier & Comim (2024). ETL:
+`data-raw/01_build_enrollment_kang_fgv.R`.
+
+Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name`
+identificam nível, código e nome geográficos; `indicator`, `value` e
+`unit` registram indicador, valor e unidade; `source` é a chave de fonte
+e `source_note` a nota bibliográfica. Dimensões usam `"total"` para
+agregados, preservando `NA` para informação desconhecida. Os dados
+mantêm identificadores canônicos; consulte a função pública com
+`lang = "pt"` para traduzir rótulos.

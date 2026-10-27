@@ -98,3 +98,22 @@ Paulo)*, 54(3), e53575434.
 | `expenditure_per_student_pct_gdp_pc` | EF1/EF2/EF/EM/EF+EM/ES | 1933–2010 |
 | `expenditure_double_ratio_es_ef1` | — | 1933–2010 |
 | `expenditure_double_ratio_es_ef_em` | — | 1933–2010 |
+
+## Português
+
+Despesa pública de Kang & Menetrier (2024): 1.170 linhas, Brasil,
+1933–2010. Prefira
+[`get_expenditure()`](https://mancano-tales.github.io/educabr2/reference/get_expenditure.md).
+`level` registra a etapa educacional; os indicadores medem participação
+no PIB, gasto por estudante em % do PIB per capita e razões duplas de
+gasto ES/EF1 e ES/(EF+EM). Razões duplas comparam gastos por estudante;
+não são percentuais. A fonte é `kang_menetrier_2024`. ETL:
+`data-raw/04_build_expenditure_kang_fgv.R`.
+
+Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name`
+identificam nível, código e nome geográficos; `indicator`, `value` e
+`unit` registram indicador, valor e unidade; `source` é a chave de fonte
+e `source_note` a nota bibliográfica. Dimensões usam `"total"` para
+agregados, preservando `NA` para informação desconhecida. Os dados
+mantêm identificadores canônicos; consulte a função pública com
+`lang = "pt"` para traduzir rótulos.

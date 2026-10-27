@@ -1,29 +1,59 @@
 # educabr2: Harmonized Historical Series on Brazilian Education
 
-Curated long-run series on Brazilian formal education — enrollment and
-educational attainment — compiled from heterogeneous official and
-academic sources into a single tidy schema with explicit provenance.
+Curated long-run series on Brazilian formal education: enrollment,
+schooling, public expenditure, grade progression and international
+educational attainment, compiled from official and academic sources into
+a single tidy schema with observation-level provenance.
 
 ## Details
 
 The canonical output schema (one row per observation; sources as
 separate rows) is documented in `inst/dict/schema.yaml`. Inequality is
-not a dataset but a *cut* applied to indicators: every `get_*()`
-function accepts a `dimension` argument that returns the indicator
-broken down by race, sex, income or location. A `compute_gap()` helper
-for turning long-format breakdowns into the usual gap/ratio metrics is
-on the roadmap for a future release.
+not a dataset but a *cut* applied to indicators: the available
+`dimension` filters expose race or sex breakdowns where supported by the
+function and source. A `compute_gap()` helper for turning long-format
+breakdowns into the usual gap/ratio metrics is on the roadmap for a
+future release.
 
-## Roadmap
+## Available features / Funcionalidades disponíveis
 
-v0 lays out the data schema, ETL pipeline and package skeleton. The
-first user-facing functions —
-[`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
+Five data-access functions
+([`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md),
+[`get_schooling()`](https://mancano-tales.github.io/educabr2/reference/get_schooling.md),
+[`get_expenditure()`](https://mancano-tales.github.io/educabr2/reference/get_expenditure.md),
+[`get_progression()`](https://mancano-tales.github.io/educabr2/reference/get_progression.md),
+[`get_attainment()`](https://mancano-tales.github.io/educabr2/reference/get_attainment.md))
+query six bundled datasets offline.
+[`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)
 and
-[`get_schooling()`](https://mancano-tales.github.io/educabr2/reference/get_schooling.md)
-— and the bundled Shiny dashboard
-([`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md))
-are scheduled for the v0.2–v0.4 milestones. See `NEWS.md` once released.
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
+support discovery and citation.
+[`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md)
+launches the interactive app.
+
+Cinco funções de acesso consultam seis conjuntos de dados offline:
+matrículas, escolaridade, despesa pública, progressão escolar e
+conclusão educacional internacional.
+[`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)
+e
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
+permitem descobrir e citar as fontes;
+[`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md)
+abre o painel interativo.
+
+## Português
+
+Séries históricas harmonizadas da educação brasileira: matrículas
+(1871–2024), escolaridade (1925–2015), despesa pública (1933–2010),
+progressão escolar (1955–2010) e conclusão educacional em 111 países
+(1870–2010). Cada observação registra sua fonte; estimativas
+concorrentes permanecem em linhas separadas. O esquema está em
+`inst/dict/schema.yaml`. As dimensões disponíveis variam por função e
+fonte: raça/cor nas matrículas, raça/cor e sexo na escolaridade, sexo na
+conclusão internacional. O argumento `lang = "pt"` traduz rótulos de
+saída; filtros, colunas e chaves de fonte usam identificadores
+canônicos. Nomes geográficos preservam a fonte. Um auxiliar
+`compute_gap()` permanece como proposta para versão futura.
 
 ## Related work
 
@@ -36,6 +66,17 @@ The two packages are complementary — organised along different axes (by
 theme and historical series here; by official source there) — and can be
 used side by side. If you use both, cite both: `citation("educabR")` and
 `citation("educabr2")`.
+
+O pacote complementar
+[educabR](https://CRAN.R-project.org/package=educabR), de Sidney
+Bissoli, baixa dados oficiais sob demanda e preserva os leiautes das
+agências; aqui o acesso é por tema e série histórica harmonizada. Se
+usar ambos, cite ambos. A compatibilidade dos esquemas é acompanhada na
+[issue 8](https://github.com/mancano-tales/educabr2/issues/8), vinculada
+à [proposta ao
+educabR](https://github.com/SidneyBissoli/educabR/issues/29). Schema
+compatibility is tracked in the same issues; an adapter is not yet
+implemented.
 
 ## See also
 

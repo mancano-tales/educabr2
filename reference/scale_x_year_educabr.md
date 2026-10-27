@@ -37,6 +37,17 @@ Break spacing by span of the series: more than 60 years, every 20 years;
 [`pretty()`](https://rdrr.io/r/base/pretty.html) breaks. Labels are
 always four-digit years.
 
+## Português
+
+Escala temporal que recebe `years`, o vetor dos anos efetivamente
+plotados. Usa espaçamento de 20 anos acima de seis décadas, de 10 anos
+para amplitudes intermediárias (25–60 anos) e
+[`pretty()`](https://rdrr.io/r/base/pretty.html) para amplitudes
+menores. Sempre rotula primeiro e último ano e evita marcas que colidam
+com esses extremos. `...` passa argumentos a
+[`ggplot2::scale_x_continuous()`](https://ggplot2.tidyverse.org/reference/scale_continuous.html).
+Retorna uma escala contínua de posição do ggplot2.
+
 ## Examples
 
 ``` r

@@ -82,6 +82,32 @@ All series are national (BR), 1933-2010. The data behind this function
 is the internal dataset
 [expenditure_kang_fgv](https://mancano-tales.github.io/educabr2/reference/expenditure_kang_fgv.md).
 
+## Português
+
+Consulta a despesa pública em educação compilada por Kang & Menetrier
+(2024), Brasil, 1933–2010. Os indicadores incluem participação no PIB,
+gasto por estudante em % do PIB per capita e razões duplas de
+regressividade.
+
+- `level`: vetor de etapas; inclui `total`, `fundamental`, anos iniciais
+  e finais, `medio`, `fundamental_medio` e `superior`.
+
+- `indicator`: aceita `"share_gdp"`, `"per_student"`,
+  `"double_ratio_es_ef1"`, `"double_ratio_es_ef_em"` ou chaves
+  completas.
+
+- `year`: anos ou intervalo `c(inicio, fim)`; `NULL` inclui todos.
+
+- `source`: chaves de fonte; `NULL` inclui todas.
+
+- `wide`: `FALSE` por padrão; `TRUE` cria uma coluna por indicador.
+
+- `lang`: `"en"` (padrão) ou `"pt"` (rótulos traduzidos).
+
+Filtros `NULL` não restringem os dados. Retorna tibble no esquema
+canônico, com valor, unidade e proveniência. Os dados são nacionais;
+esta função não recebe filtros geográficos nem argumento `dimension`.
+
 ## Examples
 
 ``` r

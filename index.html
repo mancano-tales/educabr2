@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>educabr2: Harmonised Brazilian Education Series • educabr2</title>
+<title>educabr2: Educação brasileira / Brazilian education • educabr2</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -16,23 +16,13 @@
 <link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="educabr2: Harmonised Brazilian Education Series">
-<meta name="description" content="Curated long-run series on Brazilian formal education — enrollment by
-stage and network, mean years of schooling, attainment — compiled
-and reconciled from heterogeneous official and academic sources
-(Censo Escolar, PNAD, IBGE, INEP CENSUP, Kang/FGV-IBRE,
-Walter &amp; Kang) into a single tidy schema with explicit per-row
-provenance. Includes a bundled Shiny dashboard.
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="educabr2: Educação brasileira / Brazilian education">
+<meta name="description" content="Séries históricas harmonizadas da educação brasileira em R: matrículas, escolaridade, despesa pública e progressão escolar, com proveniência e painel. Harmonized historical series on Brazilian education in R: enrollment, schooling, public expenditure and progression, with provenance and a dashboard.
 ">
-<meta property="og:description" content="Curated long-run series on Brazilian formal education — enrollment by
-stage and network, mean years of schooling, attainment — compiled
-and reconciled from heterogeneous official and academic sources
-(Censo Escolar, PNAD, IBGE, INEP CENSUP, Kang/FGV-IBRE,
-Walter &amp; Kang) into a single tidy schema with explicit per-row
-provenance. Includes a bundled Shiny dashboard.
+<meta property="og:description" content="Séries históricas harmonizadas da educação brasileira em R: matrículas, escolaridade, despesa pública e progressão escolar, com proveniência e painel. Harmonized historical series on Brazilian education in R: enrollment, schooling, public expenditure and progression, with provenance and a dashboard.
 ">
 <meta property="og:image" content="https://mancano-tales.github.io/educabr2/reference/figures/logo.png">
-<meta property="og:image:alt" content="educabr2 logo">
+<meta property="og:image:alt" content="Logo do educabr2 / educabr2 logo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@mancano_tales">
 <meta name="twitter:site" content="@mancano_tales">
@@ -54,23 +44,16 @@ provenance. Includes a bundled Shiny dashboard.
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/introduction.html">Get started</a></li>
-<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="articles/introducao-pt.html">Português</a></li>
+<li class="nav-item"><a class="nav-link" href="articles/introduction.html">English</a></li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Referência / Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/introduction.html">Introduction to educabr2</a></li>
-    <li><a class="dropdown-item" href="articles/introducao-pt.html">Introdução ao educabr2 (PT-BR)</a></li>
-    <li><a class="dropdown-item" href="articles/visualization.html">The educabr2 visualization system</a></li>
-  </ul>
-</li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-news">
-<li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
-    <li><a class="dropdown-item" href="news/index.html">All releases</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="news/index.html">Changelog</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-artigos-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artigos / Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-artigos-articles">
+<li><a class="dropdown-item" href="articles/introducao-pt.html">Introdução (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="articles/introduction.html">Introduction (EN)</a></li>
+    <li><a class="dropdown-item" href="articles/visualizacao-pt.html">Visualização (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="articles/visualization.html">Visualization (EN)</a></li>
   </ul>
 </li>
       </ul>
@@ -78,7 +61,7 @@ provenance. Includes a bundled Shiny dashboard.
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Live dashboard"><span class="fa fa-chart-line"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Painel interativo / Interactive dashboard"><span class="fa fa-chart-line"></span></a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/mancano-tales/educabr2/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
@@ -92,183 +75,139 @@ provenance. Includes a bundled Shiny dashboard.
 <img src="logo.png" class="logo" alt=""><h1 id="educabr2-">educabr2 <a class="anchor" aria-label="anchor" href="#educabr2-"></a>
 </h1>
 </div>
+<p><strong>Português e English:</strong> cada seção apresenta o mesmo conteúdo nos dois idiomas. / Each section presents the same content in both languages.</p>
 <blockquote>
-<p>Harmonised historical series on Brazilian education — enrollment and educational attainment, compiled and reconciled across decades of heterogeneous official and academic sources.</p>
+<p>Séries históricas harmonizadas da educação brasileira em R: matrículas, escolaridade, despesa pública e progressão escolar, com proveniência por observação e painel interativo.</p>
+<p>Harmonized historical series on Brazilian education in R: enrollment, schooling, public expenditure and grade progression, with observation-level provenance and an interactive dashboard.</p>
 </blockquote>
-<p><a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL--3-blue.svg" alt="License: GPL (&gt;= 3)"></a> <a href="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://mancano-tales.github.io/educabr2/"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23675602.svg" alt="DOI"></a></p>
-<p><code>educabr2</code> provides curated long-run series on Brazilian formal education — enrollment by stage and network, years of schooling, literacy and attainment — compiled and reconciled from heterogeneous official and academic sources (Censo Escolar, PNAD, Censo Demográfico, Anuário Estatístico do IBGE, INEP CENSUP, Kang/FGV-IBRE, Walter &amp; Kang, among others) into a single tidy schema with explicit per-row provenance.</p>
-<p><strong>🇧🇷</strong> <code>educabr2</code> reúne séries históricas tratadas sobre educação formal no Brasil — matrículas, anos de estudo, atingimento educacional — em um único schema <em>tidy</em>, com proveniência explícita. Veja a <a href="https://mancano-tales.github.io/educabr2/articles/introducao-pt.html">vinheta em português</a>.</p>
-<hr>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL--3-blue.svg" alt="Licença / License: GPL (&gt;= 3)"></a> <a href="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://mancano-tales.github.io/educabr2/"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Ciclo de vida / Lifecycle: experimental"></a> <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23675602.svg" alt="DOI"></a></p>
+<p><strong>PT.</strong> <code>educabr2</code> reúne séries de longo prazo sobre educação formal brasileira, compiladas de fontes oficiais e acadêmicas e harmonizadas em um esquema <em>tidy</em> comum. Os seis conjuntos de dados acompanham o pacote e podem ser consultados offline. Fontes alternativas permanecem em linhas distintas para permitir comparação e auditoria. A cobertura varia por tema e fonte; consulte <code><a href="reference/list_sources.html">list_sources()</a></code> e as vinhetas.</p>
+<p><strong>EN.</strong> <code>educabr2</code> brings together long-run series on Brazilian formal education, compiled from official and academic sources and harmonized into a common tidy schema. All six datasets ship with the package and can be queried offline. Alternative sources remain in separate rows for comparison and auditing. Coverage varies by theme and source; see <code><a href="reference/list_sources.html">list_sources()</a></code> and the vignettes.</p>
 <div class="section level2">
-<h2 id="quick-links">Quick links<a class="anchor" aria-label="anchor" href="#quick-links"></a>
+<h2 id="links-rápidos--quick-links">Links rápidos / Quick links<a class="anchor" aria-label="anchor" href="#links-r%C3%A1pidos--quick-links"></a>
 </h2>
 <ul>
-<li>📖 <strong><a href="https://mancano-tales.github.io/educabr2/">Reference site</a></strong> — function reference, articles, news</li>
-<li>📊 <strong><a href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" class="external-link">Live dashboard</a></strong> — interactive multi-source comparison on shinyapps.io</li>
-<li>📝 <strong><a href="https://mancano-tales.github.io/educabr2/articles/introduction.html">Get started</a></strong> — 10-minute tour of the API</li>
-<li>🐛 <strong><a href="https://github.com/mancano-tales/educabr2/issues" class="external-link">Issues</a></strong>
-</li>
+<li>
+<a href="https://mancano-tales.github.io/educabr2/">Documentação / Documentation</a> — referência de funções e artigos / function reference and articles.</li>
+<li>
+<a href="https://mancano-tales.github.io/educabr2/articles/introducao-pt.html">Introdução em português</a> · <a href="https://mancano-tales.github.io/educabr2/articles/introduction.html">Introduction in English</a>.</li>
+<li>
+<a href="https://mancano-tales.github.io/educabr2/articles/visualizacao-pt.html">Visualização em português</a> · <a href="https://mancano-tales.github.io/educabr2/articles/visualization.html">Visualization in English</a>.</li>
+<li>
+<a href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" class="external-link">Painel interativo / Interactive dashboard</a>.</li>
+<li>
+<a href="https://github.com/mancano-tales/educabr2/issues" class="external-link">Problemas e sugestões / Issues and suggestions</a>.</li>
 </ul>
-<hr>
 </div>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="instalação--installation">Instalação / Installation<a class="anchor" aria-label="anchor" href="#instala%C3%A7%C3%A3o--installation"></a>
 </h2>
-<p><code>educabr2</code> is not yet on CRAN. Install the development version from GitHub:</p>
+<p><strong>PT.</strong> O pacote ainda não está no CRAN. Instale a versão de desenvolvimento pelo GitHub; requer R &gt;= 4.1.</p>
+<p><strong>EN.</strong> The package is not yet on CRAN. Install the development version from GitHub; R &gt;= 4.1 is required.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mancano-tales/educabr2"</span><span class="op">)</span></span></code></pre></div>
-<hr>
+<code class="sourceCode R"><span><span class="co"># Instale remotes uma vez / Install remotes once</span></span>
+<span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mancano-tales/educabr2"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mancano-tales/educabr2" class="external-link">educabr2</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+<h2 id="uso--usage">Uso / Usage<a class="anchor" aria-label="anchor" href="#uso--usage"></a>
 </h2>
-<p>The package exposes six top-level data-access functions, two utility functions, and the bundled dashboard launcher.</p>
+<p><strong>PT.</strong> São <strong>cinco funções de acesso aos dados</strong>, acompanhadas de <code><a href="reference/list_sources.html">list_sources()</a></code>, <code><a href="reference/educabr_cite.html">educabr_cite()</a></code>, componentes de visualização e <code><a href="reference/run_dashboard.html">run_dashboard()</a></code>. Os filtros usam as chaves canônicas em ambos os idiomas. <code>lang = "pt"</code> traduz rótulos de saída; <code>lang = "en"</code> mantém os valores canônicos. Nomes de colunas e chaves de fonte permanecem estáveis. Nomes geográficos preservam o idioma da fonte (inclusive os nomes de países em inglês de Lee &amp; Lee).</p>
+<p><strong>EN.</strong> There are <strong>five data-access functions</strong>, plus <code><a href="reference/list_sources.html">list_sources()</a></code>, <code><a href="reference/educabr_cite.html">educabr_cite()</a></code>, plotting components and <code><a href="reference/run_dashboard.html">run_dashboard()</a></code>. Filters use canonical keys in both languages. <code>lang = "pt"</code> translates output labels; <code>lang = "en"</code> retains canonical values. Column names and source keys remain stable. Geographic names retain the source language (including Lee &amp; Lee’s English country names).</p>
 <div class="section level3">
-<h3 id="get_enrollment--school-enrollment">
-<code>get_enrollment()</code> — school enrollment<a class="anchor" aria-label="anchor" href="#get_enrollment--school-enrollment"></a>
+<h3 id="get_enrollment--matrículas--enrollment">
+<code>get_enrollment()</code> — matrículas / enrollment<a class="anchor" aria-label="anchor" href="#get_enrollment--matr%C3%ADculas--enrollment"></a>
 </h3>
-<blockquote>
-<p>Who is enrolled at a given stage in a given year. <em>Annual flow, school perspective.</em></p>
-</blockquote>
+<p><strong>PT.</strong> Contagens e taxas brutas de matrícula por etapa, ano e geografia; desagregação por raça/cor quando disponível. O ensino superior oferece comparação por fonte, rede, organização acadêmica e modalidade.</p>
+<p><strong>EN.</strong> Enrollment counts and gross rates by stage, year and geography; race/colour breakdowns where available. Tertiary enrollment supports comparison by source, network, institution type and modality.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mancano-tales/educabr2" class="external-link">educabr2</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Taxa bruta no ensino fundamental / Gross fundamental enrollment rate</span></span>
+<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"fundamental"</span>, indicator <span class="op">=</span> <span class="st">"rate"</span>, geo_level <span class="op">=</span> <span class="st">"BR"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Gross enrollment rate for ensino fundamental, Brazil, all years</span></span>
-<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
-<span>  level     <span class="op">=</span> <span class="st">"fundamental"</span>,</span>
-<span>  indicator <span class="op">=</span> <span class="st">"rate"</span>,</span>
-<span>  geo_level <span class="op">=</span> <span class="st">"BR"</span></span>
-<span><span class="op">)</span></span>
+<span><span class="co"># Ensino superior por rede / Tertiary enrollment by network</span></span>
+<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"superior"</span>, network <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"publica"</span>, <span class="st">"privada"</span><span class="op">)</span>,</span>
+<span>               modality <span class="op">=</span> <span class="st">"total"</span>, year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1990</span>, <span class="fl">2024</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Tertiary enrollment by network, all sources kept side by side</span></span>
-<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
-<span>  level    <span class="op">=</span> <span class="st">"superior"</span>,</span>
-<span>  network  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"publica"</span>, <span class="st">"privada"</span><span class="op">)</span>,</span>
-<span>  modality <span class="op">=</span> <span class="st">"total"</span>,</span>
-<span>  year     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1990</span>, <span class="fl">2024</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Enrollment rates by race/colour, 1960 onward</span></span>
-<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
-<span>  level     <span class="op">=</span> <span class="st">"fundamental"</span>,</span>
-<span>  indicator <span class="op">=</span> <span class="st">"rate"</span>,</span>
-<span>  dimension <span class="op">=</span> <span class="st">"race"</span>,</span>
-<span>  year      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1960</span>, <span class="fl">2010</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># Rótulos em português; filtros canônicos / Portuguese labels; canonical filters</span></span>
+<span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"fundamental"</span>, indicator <span class="op">=</span> <span class="st">"rate"</span>,</span>
+<span>               dimension <span class="op">=</span> <span class="st">"race"</span>, year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1960</span>, <span class="fl">2010</span><span class="op">)</span>, lang <span class="op">=</span> <span class="st">"pt"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="get_schooling--educational-attainment">
-<code>get_schooling()</code> — educational attainment<a class="anchor" aria-label="anchor" href="#get_schooling--educational-attainment"></a>
+<h3 id="get_schooling--anos-de-estudo--years-of-schooling">
+<code>get_schooling()</code> — anos de estudo / years of schooling<a class="anchor" aria-label="anchor" href="#get_schooling--anos-de-estudo--years-of-schooling"></a>
 </h3>
-<blockquote>
-<p>How much the population has already studied. <em>Accumulated stock, person perspective.</em></p>
-</blockquote>
+<p><strong>PT.</strong> Anos médios de escolaridade da população adulta, com desagregações por raça/cor e sexo e cobertura nacional, regional e estadual.</p>
+<p><strong>EN.</strong> Mean years of schooling of the adult population, with race/colour and sex breakdowns and national, regional and state coverage.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Mean years of schooling for adults, Brazil</span></span>
-<span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"BR"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Same series broken down by race and by sex</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"BR"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>dimension <span class="op">=</span> <span class="st">"race"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>dimension <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>dimension <span class="op">=</span> <span class="st">"sex"</span>, lang <span class="op">=</span> <span class="st">"pt"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="get_expenditure--public-expenditure-on-education">
-<code>get_expenditure()</code> — public expenditure on education<a class="anchor" aria-label="anchor" href="#get_expenditure--public-expenditure-on-education"></a>
+<h3 id="get_expenditure--despesa-pública--public-expenditure">
+<code>get_expenditure()</code> — despesa pública / public expenditure<a class="anchor" aria-label="anchor" href="#get_expenditure--despesa-p%C3%BAblica--public-expenditure"></a>
 </h3>
-<blockquote>
-<p>How much the State spends on education. <em>Annual flow, public-purse perspective.</em></p>
-</blockquote>
+<p><strong>PT.</strong> Despesa educacional como proporção do PIB, gasto por estudante em proporção do PIB per capita e indicadores de razão dupla de Kang &amp; Menetrier (2024).</p>
+<p><strong>EN.</strong> Education spending as a share of GDP, per-student spending as a share of GDP per capita, and Kang &amp; Menetrier’s (2024) double-ratio indicators.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Total public expenditure on education as share of GDP</span></span>
-<span><span class="fu"><a href="reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"share_gdp"</span>, level <span class="op">=</span> <span class="st">"total"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Per-student spending in tertiary education, all years</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"share_gdp"</span>, level <span class="op">=</span> <span class="st">"total"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"per_student"</span>, level <span class="op">=</span> <span class="st">"superior"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Kang &amp; Menetrier's "double ratio" of fiscal regressivity (ES / EF1)</span></span>
+<span><span class="co"># ES / EF1: gasto por estudante / Tertiary / early-primary spending per student</span></span>
 <span><span class="fu"><a href="reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"double_ratio_es_ef1"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="get_progression--grade-progression-indicators">
-<code>get_progression()</code> — grade-progression indicators<a class="anchor" aria-label="anchor" href="#get_progression--grade-progression-indicators"></a>
+<h3 id="get_progression--progressão-escolar--grade-progression">
+<code>get_progression()</code> — progressão escolar / grade progression<a class="anchor" aria-label="anchor" href="#get_progression--progress%C3%A3o-escolar--grade-progression"></a>
 </h3>
-<blockquote>
-<p>How students flow through the early primary grades. <em>Internal-flow ratio.</em></p>
-</blockquote>
+<p><strong>PT.</strong> GDR6: razão entre matrículas nas séries 4–6 e 1–3 do antigo primário de oito anos. Cobre o Brasil e 20 UFs; as lacunas históricas da fonte são preservadas.</p>
+<p><strong>EN.</strong> GDR6: enrollment in grades 4–6 divided by grades 1–3 of the former eight-year primary system. Covers Brazil and 20 states; historical gaps in the source are preserved.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># National GDR6 series (1955-2010)</span></span>
-<span><span class="fu"><a href="reference/get_progression.html">get_progression</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># GDR6 across Northeast states from 1980</span></span>
-<span><span class="fu"><a href="reference/get_progression.html">get_progression</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"UF"</span>,</span>
-<span>                geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BA"</span>, <span class="st">"PE"</span>, <span class="st">"CE"</span>, <span class="st">"PB"</span>, <span class="st">"MA"</span>, <span class="st">"PI"</span>, <span class="st">"RN"</span>, <span class="st">"AL"</span>, <span class="st">"SE"</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_progression.html">get_progression</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/get_progression.html">get_progression</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"UF"</span>, geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BA"</span>, <span class="st">"PE"</span>, <span class="st">"CE"</span><span class="op">)</span>,</span>
 <span>                year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1980</span>, <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="get_attainment--comparative-international-attainment">
-<code>get_attainment()</code> — comparative international attainment<a class="anchor" aria-label="anchor" href="#get_attainment--comparative-international-attainment"></a>
+<h3 id="get_attainment--conclusão-educacional-internacional--international-educational-attainment">
+<code>get_attainment()</code> — conclusão educacional internacional / international educational attainment<a class="anchor" aria-label="anchor" href="#get_attainment--conclus%C3%A3o-educacional-internacional--international-educational-attainment"></a>
 </h3>
-<blockquote>
-<p>Share of the population aged 15–64 who completed at least a given education level. <em>Accumulated stock, cross-country perspective.</em> Source: Lee &amp; Lee (2016), ~111 countries, 1870–2010.</p>
-</blockquote>
+<p><strong>PT.</strong> Proporção da população de 15–64 anos que completou pelo menos o nível primário, secundário ou terciário. Lee &amp; Lee (2016): 111 países, 1870–2010, intervalos de cinco anos e desagregação por sexo.</p>
+<p><strong>EN.</strong> Share of the population aged 15–64 that completed at least primary, secondary or tertiary education. Lee &amp; Lee (2016): 111 countries, 1870–2010, five-year intervals and sex breakdowns.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Tertiary completion in Brazil over time</span></span>
-<span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"tertiary"</span>, geo <span class="op">=</span> <span class="st">"BRA"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Primary completion across Latin America, post-1950</span></span>
-<span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"primary"</span>,</span>
-<span>               geo   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BRA"</span>, <span class="st">"ARG"</span>, <span class="st">"CHL"</span>, <span class="st">"MEX"</span>, <span class="st">"URY"</span><span class="op">)</span>,</span>
-<span>               year  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1950</span>, <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Compare male vs female secondary completion in Brazil</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"tertiary"</span>, geo <span class="op">=</span> <span class="st">"BRA"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"primary"</span>, geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BRA"</span>, <span class="st">"ARG"</span>, <span class="st">"CHL"</span>, <span class="st">"MEX"</span>, <span class="st">"URY"</span><span class="op">)</span>,</span>
+<span>               year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1950</span>, <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/get_attainment.html">get_attainment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"secondary"</span>, geo <span class="op">=</span> <span class="st">"BRA"</span>, dimension <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="list_sources--list-bundled-data-sources">
-<code>list_sources()</code> — list bundled data sources<a class="anchor" aria-label="anchor" href="#list_sources--list-bundled-data-sources"></a>
+<h3 id="list_sources--catálogo-de-fontes--source-catalogue">
+<code>list_sources()</code> — catálogo de fontes / source catalogue<a class="anchor" aria-label="anchor" href="#list_sources--cat%C3%A1logo-de-fontes--source-catalogue"></a>
 </h3>
-<blockquote>
-<p>Returns a tibble describing every source in the controlled vocabulary, with short name, type, temporal/geographic coverage, DOI and URL.</p>
-</blockquote>
+<p><strong>PT.</strong> Lista chaves de fonte, nomes, tipo, cobertura, DOI e URL. Use as chaves da coluna <code>source</code> para filtrar e citar os dados.</p>
+<p><strong>EN.</strong> Lists source keys, names, type, coverage, DOI and URL. Use the keys in the <code>source</code> column to filter and cite data.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">src</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_sources.html">list_sources</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Filter to academic papers only</span></span>
 <span><span class="va">src</span><span class="op">[</span><span class="va">src</span><span class="op">$</span><span class="va">type</span> <span class="op">==</span> <span class="st">"academic"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"key"</span>, <span class="st">"short_name"</span>, <span class="st">"doi"</span><span class="op">)</span><span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Sources that include UF-level coverage</span></span>
 <span><span class="va">src</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"UF"</span>, <span class="va">src</span><span class="op">$</span><span class="va">geo</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"key"</span>, <span class="st">"year_start"</span>, <span class="st">"year_end"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="run_dashboard--interactive-shiny-app">
-<code>run_dashboard()</code> — interactive Shiny app<a class="anchor" aria-label="anchor" href="#run_dashboard--interactive-shiny-app"></a>
+<h3 id="run_dashboard--painel-shiny--shiny-dashboard">
+<code>run_dashboard()</code> — painel Shiny / Shiny dashboard<a class="anchor" aria-label="anchor" href="#run_dashboard--painel-shiny--shiny-dashboard"></a>
 </h3>
+<p><strong>PT.</strong> Uma visão geral com quatro gráficos narrativos (expansão secular, redes pública e privada, avanço da EAD e inversão da diferença de escolaridade por sexo) e seis abas temáticas. As abas cobrem matrículas, ensino superior, escolaridade, despesa pública, progressão e comparação internacional. Cada aba temática oferece filtros, tabela, fontes, download CSV e código R reproduzível.</p>
+<p><strong>EN.</strong> An overview with four narrative charts (long-run expansion, public and private networks, the rise of distance education and the reversal of the schooling gender gap) and six thematic tabs. The tabs cover enrollment, tertiary education, schooling, public expenditure, progression and international comparison. Each thematic tab provides filters, a table, sources, CSV download and reproducible R code.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>A curated <strong>Overview</strong> tab — four fixed story charts for broad audiences (secular expansion, public × private with the 1997/2005 regulatory landmarks, the rise of EAD, the gender reversal in schooling) — plus six thematic tabs:</p>
-<ul>
-<li>
-<strong>Enrollment</strong> — Kang/FGV series by stage, year, race</li>
-<li>
-<strong>Tertiary Education</strong> — multi-source comparison 1907–2024 (Kang, Maduro Jr., IBGE Século XX, INEP CENSUP), with optional reconstructed totals for the 2000–2008 in-person + EAD split</li>
-<li>
-<strong>Educational Attainment</strong> — Walter &amp; Kang mean years of schooling by BR / region / UF, with race and sex breakdowns</li>
-<li>
-<strong>Public Expenditure</strong> — Kang &amp; Menetrier (2024) series on public spending in education: share of GDP by stage, per-student spending as share of GDP per capita, and the “double ratio” indicators of fiscal regressivity (Brazil, 1933–2010)</li>
-<li>
-<strong>Grade Progression</strong> — Kang/Paese/Felix (2021) GDR6 progression ratio (enrollment in grades 4-6 / grades 1-3 of the old eight-year primary system), BR and 20 UFs, 1955–2010</li>
-<li>
-<strong>International Comparison</strong> — Lee &amp; Lee (2016) attainment shares (primary/secondary/tertiary completed, population 15–64), 111 countries, 1870–2010, with sex breakdowns — Brazil against the world record in the same interface</li>
-</ul>
-<p>Every chart has a “View R code” button that prints a self-contained snippet (educabr2 + ggplot2 + plotly, styled with the package’s own <code><a href="reference/theme_educabr.html">theme_educabr()</a></code> / Okabe-Ito scales / <code><a href="reference/scale_x_year_educabr.html">scale_x_year_educabr()</a></code>) you can paste into RStudio to reproduce the interactive chart locally.</p>
-<hr>
+<code class="sourceCode R"><span><span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span>lang <span class="op">=</span> <span class="st">"pt"</span><span class="op">)</span></span>
+<span><span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span>lang <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></span></code></pre></div>
+<p><strong>PT.</strong> O código exibido usa a API pública, <code>ggplot2</code> e <code>plotly</code>, com o tema e as escalas do pacote. Remova a chamada final a <code>ggplotly()</code> para obter uma figura estática.</p>
+<p><strong>EN.</strong> The displayed code uses the public API, <code>ggplot2</code> and <code>plotly</code>, with the package’s theme and scales. Remove the final <code>ggplotly()</code> call for a static figure.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
+<h2 id="dados-e-cobertura--datasets-and-coverage">Dados e cobertura / Datasets and coverage<a class="anchor" aria-label="anchor" href="#dados-e-cobertura--datasets-and-coverage"></a>
 </h2>
-<p>Six internal datasets back the public functions:</p>
+<p><strong>PT.</strong> Contagens verificadas nos objetos distribuídos com a versão 0.1.3. BR = Brasil; UF = unidade da federação. As funções <code>get_*()</code> aplicam filtros, normalizam o esquema e traduzem rótulos.</p>
+<p><strong>EN.</strong> Counts verified against the objects bundled with version 0.1.3. BR = Brazil; UF = state. The <code>get_*()</code> functions filter, normalize the schema and translate labels.</p>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="23%">
@@ -277,241 +216,190 @@ provenance. Includes a bundled Shiny dashboard.
 <col width="23%">
 </colgroup>
 <thead><tr>
-<th>Dataset</th>
-<th align="right">Rows</th>
-<th>Coverage</th>
-<th>Source(s)</th>
+<th>Conjunto / Dataset</th>
+<th align="right">Linhas / Rows</th>
+<th>Cobertura / Coverage</th>
+<th>Fontes / Sources</th>
 </tr></thead>
 <tbody>
 <tr>
 <td><code>enrollment_kang_fgv</code></td>
 <td align="right">6,238</td>
-<td>BR + UF, EF1/EF2/EF/EM/ES, 1933–2010 (+ race breakdown 1960–2010)</td>
+<td>BR: 1871–2010; UF: 1955–2010; raça/cor desde 1960 / race/colour from 1960</td>
 <td>Kang, Paese &amp; Felix (2021); Kang &amp; Menetrier (2024); Kang, Menetrier &amp; Comim (2024)</td>
 </tr>
 <tr>
 <td><code>enrollment_tertiary</code></td>
 <td align="right">1,143</td>
-<td>BR, ensino superior, 1907–2024, by network/institution/modality</td>
-<td>IBGE <em>Século XX</em>; Maduro Jr. (2007); INEP CENSUP Synopsis / Microdata (Kang/Paese/Felix only inside reconstructed totals)</td>
+<td>BR, ensino superior / tertiary, 1907–2024; rede, organização, modalidade / network, institution type, modality</td>
+<td>IBGE Século XX; Maduro Junior (2007); INEP Sinopse / Synopsis; INEP Microdados / Microdata; Kang em totais derivados / in derived totals</td>
 </tr>
 <tr>
 <td><code>schooling_kang_fgv</code></td>
 <td align="right">2,287</td>
-<td>BR + region + UF, mean years of schooling, 1925–2015, with race and sex breakdowns</td>
+<td>BR + região / region + UF, 1925–2015; raça/cor e sexo / race/colour and sex</td>
 <td>Walter &amp; Kang (2024)</td>
 </tr>
 <tr>
 <td><code>expenditure_kang_fgv</code></td>
 <td align="right">1,170</td>
-<td>BR, public expenditure on education (% GDP, per-student, “double ratios”), 1933–2010</td>
+<td>BR, 1933–2010; % PIB, por estudante, razões duplas / % GDP, per student, double ratios</td>
 <td>Kang &amp; Menetrier (2024)</td>
 </tr>
 <tr>
 <td><code>progression_kang_fgv</code></td>
 <td align="right">1,090</td>
-<td>BR + 20 UFs, GDR6 grade-progression ratio, 1955–2010</td>
+<td>BR + 20 UFs, GDR6, 1955–2010</td>
 <td>Kang, Paese &amp; Felix (2021)</td>
 </tr>
 <tr>
 <td><code>lee_lee_2016</code></td>
-<td align="right">~29,000</td>
-<td>111 countries, primary/secondary/tertiary attainment, 1870–2010 (5-year steps), by sex</td>
+<td align="right">28,971</td>
+<td>111 países / countries, 1870–2010; conclusão por nível e sexo / attainment by level and sex</td>
 <td>Lee &amp; Lee (2016)</td>
 </tr>
 </tbody>
 </table>
-<p>End users should call the <code>get_*()</code> functions. The datasets are exposed for inspection but the public API normalises schema differences, applies per-source filters and translates labels.</p>
-<p><strong>Deduplication hierarchy.</strong> When the same year and sector are covered by multiple sources, the recommended order of precedence is: INEP CENSUP microdata (2009–2024) → INEP statistical synopses (1995–2008) → Kang, Paese &amp; Felix (1990–1994) → Maduro Junior → IBGE <em>Estatísticas do Século XX</em>. The most disaggregated and official source available always wins; all competing estimates remain in the panel for auditing.</p>
-<p><strong>Validation.</strong> Overlapping windows are preserved deliberately so the sources can be checked against each other: in 1995, for example, the INEP synopsis, Maduro Junior (2007) and Kang et al. (2021) all report exactly 1,759,703 tertiary enrollments — a perfect triangulation of the academic reconstructions against the official record.</p>
-<hr>
+<p><strong>PT.</strong> Para montar uma série única, a precedência recomendada em períodos sobrepostos é: microdados INEP CENSUP (2009–2024) → sinopses INEP (1995–2008) → Kang, Paese &amp; Felix (1990–1994) → Maduro Junior → IBGE <em>Estatísticas do Século XX</em>. Essa é uma decisão analítica explícita: a API preserva as estimativas concorrentes, sem escolher automaticamente uma fonte. Em 1995, INEP, Maduro Junior e Kang et al. reportam as mesmas 1.759.703 matrículas no ensino superior.</p>
+<p><strong>EN.</strong> To build a single series, the recommended precedence in overlapping periods is: INEP CENSUP microdata (2009–2024) → INEP synopses (1995–2008) → Kang, Paese &amp; Felix (1990–1994) → Maduro Junior → IBGE <em>Statistics of the 20th Century</em>. This is an explicit analytical decision: the API preserves competing estimates rather than selecting a source automatically. In 1995, INEP, Maduro Junior and Kang et al. report the same 1,759,703 tertiary enrollments.</p>
+<p><strong>PT.</strong> Em 2000–2008, os totais presenciais e de EAD eram publicados separadamente. Totais reconstruídos têm <code>is_derived = TRUE</code>, registram as fontes componentes e só entram em <code><a href="reference/get_enrollment.html">get_enrollment()</a></code> com <code>include_derived = TRUE</code>. A versão 0.1.3 inclui a Sinopse 2002, usa <code>walter_kang_2024</code> (mantendo o alias antigo de 2023) e elimina a duplicação do painel Power BI do INEP, cujos valores coincidem com os microdados.</p>
+<p><strong>EN.</strong> In 2000–2008, in-person and distance-education totals were published separately. Reconstructed totals have <code>is_derived = TRUE</code>, record their component sources and enter <code><a href="reference/get_enrollment.html">get_enrollment()</a></code> only with <code>include_derived = TRUE</code>. Version 0.1.3 includes the 2002 synopsis, uses <code>walter_kang_2024</code> (retaining the old 2023 alias) and removes duplication from INEP’s Power BI panel, whose values match the microdata.</p>
 </div>
 <div class="section level2">
-<h2 id="data-visualization">Data Visualization<a class="anchor" aria-label="anchor" href="#data-visualization"></a>
+<h2 id="visualização--visualization">Visualização / Visualization<a class="anchor" aria-label="anchor" href="#visualiza%C3%A7%C3%A3o--visualization"></a>
 </h2>
-<p>The <code>educabr2</code> package includes a built-in visualization system based on Kieran Healy’s <em>Data Visualization</em> (2018/2026) design principles. It provides a consistent aesthetic theme and colorblind-safe palettes matching the ongoing MA Thesis <em>The Politics of Reforming Tertiary Education</em> (Tales Mançano, 2026).</p>
-<p>To style your plots, use the <code><a href="reference/theme_educabr.html">theme_educabr()</a></code> and <code><a href="reference/scale_educabr.html">scale_fill_educabr()</a></code> / <code><a href="reference/scale_educabr.html">scale_colour_educabr()</a></code> functions:</p>
+<p><strong>PT.</strong> O sistema de visualização segue os princípios de <em>Data Visualization</em>, de Kieran Healy: tema minimalista serifado, paleta Okabe-Ito segura para daltonismo e eixo temporal adequado a séries longas.</p>
+<p><strong>EN.</strong> The plotting system follows Kieran Healy’s <em>Data Visualization</em> principles: a minimal serif theme, the colourblind-safe Okabe-Ito palette and a time axis suited to long series.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mancano-tales/educabr2" class="external-link">educabr2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Query some data</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"superior"</span>, dimension <span class="op">=</span> <span class="st">"race"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Build a plot</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">dim_race</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html" class="external-link">geom_area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"BR"</span>, dimension <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">value</span>, colour <span class="op">=</span> <span class="va">dim_sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/theme_educabr.html">theme_educabr</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/scale_educabr.html">scale_fill_educabr</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/scale_educabr.html">scale_colour_educabr</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/scale_x_year_educabr.html">scale_x_year_educabr</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></code></pre></div>
-<div class="section level3">
-<h3 id="year-axis-for-historical-series-scale_x_year_educabr">Year Axis for Historical Series (<code>scale_x_year_educabr()</code>)<a class="anchor" aria-label="anchor" href="#year-axis-for-historical-series-scale_x_year_educabr"></a>
-</h3>
-<p>Most series in <code>educabr2</code> span many decades (some more than a century), and default <code>ggplot2</code> breaks become unreadable at that scale. The exported <code>scale_x_year_educabr(years)</code> scale picks the break spacing from the span of the data you actually plot — every 20 years beyond six decades, every 10 years for intermediate spans, <code><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty()</a></code> breaks below that — and always labels the first and last year present in the series, dropping any grid break that would collide with those extreme labels. Pass it the vector of years being plotted (typically <code>df$year</code>).</p>
-</div>
-<div class="section level3">
-<h3 id="font-auto-registration-tinytex--latin-modern">Font Auto-Registration (TinyTeX &amp; Latin Modern)<a class="anchor" aria-label="anchor" href="#font-auto-registration-tinytex--latin-modern"></a>
-</h3>
-<p>To match formal academic publications, the theme tries to use the standard LaTeX font family <strong>Latin Modern Roman</strong>. * <strong>Automatic Registration:</strong> If you have <strong>TinyTeX</strong> installed on your system (e.g. via <code><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html" class="external-link">tinytex::install_tinytex()</a></code>) and have the <code>showtext</code> and <code>sysfonts</code> R packages installed, <code><a href="reference/theme_educabr.html">theme_educabr()</a></code> will automatically locate the <code>.otf</code> font files in your TinyTeX directories and load them dynamically using <code><a href="https://rdrr.io/pkg/sysfonts/man/font_add.html" class="external-link">sysfonts::font_add()</a></code>. * <strong>Graceful Fallback:</strong> If the font files are not found on your system or the required packages are missing, the theme will automatically and silently fall back to your system’s default <code>"serif"</code> font family.</p>
-</div>
-<div class="section level3">
-<h3 id="omitinclude-titles-inside-plot-plot_titles">Omit/Include Titles Inside Plot (<code>plot_titles</code>)<a class="anchor" aria-label="anchor" href="#omitinclude-titles-inside-plot-plot_titles"></a>
-</h3>
-<p>Depending on where you are presenting your charts, you may want to include titles within the image or handle them in the document text: * <strong>For General Presentations (<code>plot_titles = TRUE</code>):</strong> This is the default. The plot titles, subtitle, and caption are styled and rendered inside the image canvas itself. * <strong>For LaTeX/Quarto Manuscripts (<code>plot_titles = FALSE</code>):</strong> This hides the title, subtitle, and caption from the ggplot canvas, allowing you to specify them as metadata captions (e.g. <code>fig-cap</code> in Quarto or <code>\caption{}</code> in LaTeX) in the main document, which prevents duplicate titles and enables proper page layout.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Hide title elements within the plot canvas for manuscripts</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">dim_race</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html" class="external-link">geom_area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/theme_educabr.html">theme_educabr</a></span><span class="op">(</span>plot_titles <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/scale_educabr.html">scale_fill_educabr</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
+<p><strong>PT.</strong> Use <code><a href="reference/scale_educabr.html">scale_fill_educabr()</a></code> para áreas e barras. <code>scale_x_year_educabr(anos)</code> escolhe o espaçamento conforme a amplitude: 20 anos acima de seis décadas, 10 anos em intervalos intermediários e <code><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty()</a></code> para intervalos curtos. Sempre rotula o primeiro e o último ano e evita sobreposição nas extremidades.</p>
+<p><strong>EN.</strong> Use <code><a href="reference/scale_educabr.html">scale_fill_educabr()</a></code> for areas and bars. <code>scale_x_year_educabr(years)</code> chooses spacing from the span: 20 years beyond six decades, 10 years for intermediate spans and <code><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty()</a></code> for short spans. It always labels the first and last year and avoids collisions at the endpoints.</p>
+<p><strong>PT.</strong> Com TinyTeX, <code>showtext</code> e <code>sysfonts</code>, <code><a href="reference/theme_educabr.html">theme_educabr()</a></code> registra automaticamente Latin Modern Roman; caso a fonte ou as dependências não estejam disponíveis, usa a fonte serifada do sistema. O padrão <code>plot_titles = TRUE</code> exibe título, subtítulo e legenda dentro da figura. Para manuscritos LaTeX/Quarto, <code>theme_educabr(plot_titles = FALSE)</code> permite defini-los no documento, evitando duplicação.</p>
+<p><strong>EN.</strong> With TinyTeX, <code>showtext</code> and <code>sysfonts</code>, <code><a href="reference/theme_educabr.html">theme_educabr()</a></code> automatically registers Latin Modern Roman; if the font or dependencies are unavailable, it uses the system serif font. The default <code>plot_titles = TRUE</code> displays the title, subtitle and caption inside the figure. For LaTeX/Quarto manuscripts, <code>theme_educabr(plot_titles = FALSE)</code> lets you define them in the document, avoiding duplication.</p>
 </div>
 <div class="section level2">
-<h2 id="schema">Schema<a class="anchor" aria-label="anchor" href="#schema"></a>
+<h2 id="esquema--schema">Esquema / Schema<a class="anchor" aria-label="anchor" href="#esquema--schema"></a>
 </h2>
-<p>All <code>get_*()</code> functions return a <code>tibble</code> in the canonical tidy-long schema documented in <a href="inst/dict/schema.yaml"><code>inst/dict/schema.yaml</code></a>: one row per observation, alternative sources for the same indicator as <strong>separate rows</strong> (column <code>source</code>), aggregations as an explicit factor level (<code>"total"</code>) rather than <code>NA</code>. Controlled vocabularies live in <a href="inst/dict/vocabularies"><code>inst/dict/vocabularies/</code></a>, and PT-BR labels for every factor level in <a href="inst/dict/i18n.yaml"><code>inst/dict/i18n.yaml</code></a>.</p>
-<hr>
+<p><strong>PT.</strong> Cada observação ocupa uma linha, fontes alternativas usam linhas separadas (coluna <code>source</code>) e agregados usam <code>"total"</code>, não <code>NA</code>. O contrato, as chaves e as unidades estão em <a href="https://github.com/mancano-tales/educabr2/blob/main/inst/dict/schema.yaml" class="external-link"><code>inst/dict/schema.yaml</code></a>; os vocabulários em <a href="https://github.com/mancano-tales/educabr2/tree/main/inst/dict/vocabularies" class="external-link"><code>inst/dict/vocabularies/</code></a> e as traduções em <a href="https://github.com/mancano-tales/educabr2/blob/main/inst/dict/i18n.yaml" class="external-link"><code>inst/dict/i18n.yaml</code></a>.</p>
+<p><strong>EN.</strong> Each observation occupies one row, alternative sources use separate rows (<code>source</code> column), and aggregates use <code>"total"</code>, not <code>NA</code>. The contract, keys and units are in <a href="https://github.com/mancano-tales/educabr2/blob/main/inst/dict/schema.yaml" class="external-link"><code>inst/dict/schema.yaml</code></a>; vocabularies are in <a href="https://github.com/mancano-tales/educabr2/tree/main/inst/dict/vocabularies" class="external-link"><code>inst/dict/vocabularies/</code></a> and translations in <a href="https://github.com/mancano-tales/educabr2/blob/main/inst/dict/i18n.yaml" class="external-link"><code>inst/dict/i18n.yaml</code></a>.</p>
 </div>
 <div class="section level2">
-<h2 id="related-work">Related work<a class="anchor" aria-label="anchor" href="#related-work"></a>
+<h2 id="pacotes-relacionados-e-integração--related-packages-and-integration">Pacotes relacionados e integração / Related packages and integration<a class="anchor" aria-label="anchor" href="#pacotes-relacionados-e-integra%C3%A7%C3%A3o--related-packages-and-integration"></a>
 </h2>
-<div class="section level3">
-<h3 id="sibling-package-educabr">Sibling package: <code>educabR</code>
-<a class="anchor" aria-label="anchor" href="#sibling-package-educabr"></a>
-</h3>
-<p><code>educabr2</code> is the historical companion of <a href="https://CRAN.R-project.org/package=educabR" class="external-link"><strong><code>educabR</code></strong></a>, by Sidney Bissoli (<a href="https://github.com/SidneyBissoli/educabR" class="external-link">GitHub</a>, <a href="https://sidneybissoli.github.io/educabR/" class="external-link">site</a>, <a href="https://doi.org/10.5281/zenodo.19410201" class="external-link">doi:10.5281/zenodo.19410201</a>). <code>educabR</code> is on CRAN and downloads, at call time, what INEP, FNDE, CAPES and the National Treasury publish: School Census (since 1995), Higher Education Census (2009–2024), ENEM, SAEB, ENADE, ENCCEJA, IDEB, CPC/IDD/IGC, CAPES and FUNDEB. It organises access <strong>by official source</strong> (<code>get_censo_escolar()</code>, <code>get_censo_superior()</code>, <code>get_ideb()</code>, …) and keeps each year in the agency’s own layout.</p>
-<p><code>educabr2</code> organises access <strong>by theme and historical series</strong>: one indicator compiled across several sources and reconciled across series breaks, back to the nineteenth century, bundled offline with per-row provenance. Neither package replaces the other:</p>
+<p><strong>PT.</strong> O pacote complementar é o <a href="https://CRAN.R-project.org/package=educabR" class="external-link"><strong>educabR</strong></a>, de <strong>Sidney Bissoli</strong> (<a href="https://github.com/SidneyBissoli/educabR" class="external-link">GitHub</a>, <a href="https://sidneybissoli.github.io/educabR/" class="external-link">documentação</a>, <a href="https://doi.org/10.5281/zenodo.19410201" class="external-link">DOI</a>). Ele baixa e armazena em cache dados oficiais do INEP, FNDE, CAPES e Tesouro Nacional sob demanda, preservando os leiautes das agências. O <code>educabr2</code> distribui séries históricas harmonizadas por tema, com proveniência. A compatibilidade entre esquemas ainda está em desenvolvimento; os pacotes não são versões sucessivas de um mesmo produto.</p>
+<p><strong>EN.</strong> The complementary package is <a href="https://CRAN.R-project.org/package=educabR" class="external-link"><strong>educabR</strong></a>, by <strong>Sidney Bissoli</strong> (<a href="https://github.com/SidneyBissoli/educabR" class="external-link">GitHub</a>, <a href="https://sidneybissoli.github.io/educabR/" class="external-link">documentation</a>, <a href="https://doi.org/10.5281/zenodo.19410201" class="external-link">DOI</a>). It downloads and caches official INEP, FNDE, CAPES and National Treasury data on demand, preserving agency layouts. <code>educabr2</code> distributes harmonized historical series by theme, with provenance. Schema compatibility is still under development; the packages are not successive versions of the same product.</p>
 <table class="table">
 <colgroup>
 <col width="50%">
 <col width="50%">
 </colgroup>
 <thead><tr>
-<th>You need…</th>
+<th>Necessidade / Need</th>
 <th>Use</th>
 </tr></thead>
 <tbody>
 <tr>
-<td>Current-year microdata (a school, a course, a student, an exam)</td>
+<td>Microdados de escolas, cursos ou exames / School, course or exam microdata</td>
 <td><code>educabR</code></td>
 </tr>
 <tr>
-<td>An official indicator as INEP publishes it (IDEB, CPC, FUNDEB)</td>
+<td>Indicadores como publicados (IDEB, CPC, FUNDEB) / Indicators as published (IDEB, CPC, FUNDEB)</td>
 <td><code>educabR</code></td>
 </tr>
 <tr>
-<td>A national or state series from before 1995, or one that crosses a series break</td>
+<td>Séries históricas que atravessam fontes e quebras / Historical series crossing sources and breaks</td>
 <td><code>educabr2</code></td>
 </tr>
 <tr>
-<td>A recent cut that <code>educabr2</code> does not ship (municipality, school network) on top of a long series</td>
-<td>Both: <code>educabr2</code> for the history, <code>educabR</code> for the recent detail</td>
+<td>Detalhe recente junto de uma série longa / Recent detail alongside a long series</td>
+<td>Ambos, com harmonização explícita / Both, with explicit harmonization</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Long-run tertiary enrollment (educabr2) ...</span></span>
-<span><span class="va">hist</span> <span class="op">&lt;-</span> <span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"superior"</span>, indicator <span class="op">=</span> <span class="st">"count"</span>,</span>
-<span>                                 network <span class="op">=</span> <span class="st">"total"</span>, institution_type <span class="op">=</span> <span class="st">"total"</span>,</span>
-<span>                                 modality <span class="op">=</span> <span class="st">"total"</span>, source <span class="op">=</span> <span class="st">"inep_microdados_censup"</span><span class="op">)</span></span>
-<span><span class="co"># ... and the 2023 course-level microdata behind its last points (educabR)</span></span>
-<span><span class="va">cursos</span> <span class="op">&lt;-</span> <span class="fu">educabR</span><span class="fu">::</span><span class="fu">get_censo_superior</span><span class="op">(</span><span class="fl">2023</span>, type <span class="op">=</span> <span class="st">"cursos"</span><span class="op">)</span></span></code></pre></div>
-<p>If you use both, cite both: <code>citation("educabR")</code> and <code>citation("educabr2")</code>.</p>
-</div>
-<div class="section level3">
-<h3 id="other-related-packages">Other related packages<a class="anchor" aria-label="anchor" href="#other-related-packages"></a>
-</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Série histórica agregada / Aggregate historical series</span></span>
+<span><span class="va">hist</span> <span class="op">&lt;-</span> <span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
+<span>  level <span class="op">=</span> <span class="st">"superior"</span>, indicator <span class="op">=</span> <span class="st">"count"</span>, network <span class="op">=</span> <span class="st">"total"</span>,</span>
+<span>  institution_type <span class="op">=</span> <span class="st">"total"</span>, modality <span class="op">=</span> <span class="st">"total"</span>, source <span class="op">=</span> <span class="st">"inep_microdados_censup"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Consulta separada; requer educabR / Separate query; requires educabR</span></span>
+<span><span class="co"># cursos &lt;- educabR::get_censo_superior(2023, type = "cursos")</span></span></code></pre></div>
+<p><strong>PT.</strong> A <a href="https://github.com/mancano-tales/educabr2/issues/8" class="external-link">issue #8</a> acompanha o mapeamento de campos, o piloto de agregação e a validação dos totais. Ela se vincula à <a href="https://github.com/SidneyBissoli/educabR/issues/29" class="external-link">proposta #29 ao educabR</a>, que discute as Sinopses 1995–2008 e acesso a séries históricas versionadas. Essas propostas dependem de avaliação e aceite; não representam integração já implementada. Se usar os dois pacotes, cite ambos.</p>
+<p><strong>EN.</strong> <a href="https://github.com/mancano-tales/educabr2/issues/8" class="external-link">Issue #8</a> tracks field mappings, an aggregation pilot and validation of totals. It links to <a href="https://github.com/SidneyBissoli/educabR/issues/29" class="external-link">educabR proposal #29</a>, which discusses the 1995–2008 synopses and access to versioned historical series. These proposals require assessment and acceptance; they do not represent an implemented integration. If you use both packages, cite both.</p>
 <table class="table">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="50%">
+<col width="50%">
 </colgroup>
 <thead><tr>
-<th>Package</th>
-<th>What it gives you</th>
-<th>How it relates</th>
+<th>Pacote / Package</th>
+<th>Uso complementar / Complementary use</th>
 </tr></thead>
 <tbody>
 <tr>
-<td>
-<a href="https://CRAN.R-project.org/package=censobr" class="external-link"><code>censobr</code></a> (Ipea)</td>
-<td>Demographic census microdata, 1960–2022</td>
-<td>Population denominators; schooling by UF in census years</td>
+<td><a href="https://CRAN.R-project.org/package=censobr" class="external-link"><code>censobr</code></a></td>
+<td>Microdados censitários e denominadores populacionais / Census microdata and population denominators</td>
 </tr>
 <tr>
-<td>
-<a href="https://CRAN.R-project.org/package=PNADcIBGE" class="external-link"><code>PNADcIBGE</code></a> (IBGE)</td>
-<td>PNAD Contínua microdata</td>
-<td>Years of schooling after 2015</td>
+<td><a href="https://CRAN.R-project.org/package=PNADcIBGE" class="external-link"><code>PNADcIBGE</code></a></td>
+<td>PNAD Contínua e escolaridade recente / Continuous PNAD and recent schooling</td>
 </tr>
 <tr>
-<td>
-<a href="https://CRAN.R-project.org/package=geobr" class="external-link"><code>geobr</code></a> (Ipea)</td>
-<td>Official boundaries</td>
-<td>Maps of the UF series</td>
+<td><a href="https://CRAN.R-project.org/package=geobr" class="external-link"><code>geobr</code></a></td>
+<td>Limites oficiais e mapas / Official boundaries and maps</td>
 </tr>
 <tr>
 <td><a href="https://CRAN.R-project.org/package=basedosdados" class="external-link"><code>basedosdados</code></a></td>
-<td>Curated cloud tables (BigQuery)</td>
-<td>Cross-domain joins with current data</td>
+<td>Tabelas no BigQuery e cruzamentos entre áreas / BigQuery tables and cross-domain joins</td>
 </tr>
 </tbody>
 </table>
-<p>Design inspirations: <a href="https://github.com/ipea/geobr" class="external-link"><code>geobr</code></a> (coherent function family), <a href="https://cran.r-project.org/package=PNADCperiods" class="external-link"><code>PNADCperiods</code></a> (embedded dashboard + methodological delivery), and the <a href="https://github.com/ipea/brverse" class="external-link"><code>brverse</code></a> ecosystem.</p>
-<hr>
-</div>
-</div>
-<div class="section level2">
-<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
-</h2>
-<p>Cite both the package (for the harmonisation work) and the <strong>originating sources</strong> for any data you actually use. The <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> helper builds APA / BibTeX entries for every bundled source:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr2"</span><span class="op">)</span>                              <span class="co"># cite the package</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="st">"kang_paese_felix_2021"</span><span class="op">)</span>            <span class="co"># cite one source</span></span>
-<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"walter_kang_2024"</span>,               <span class="co"># cite many</span></span>
-<span>              <span class="st">"inep_microdados_censup"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="op">)</span>                                   <span class="co"># all bundled sources</span></span>
-<span></span>
-<span><span class="co"># Typical workflow — query first, then cite only what you used</span></span>
-<span><span class="va">d</span>   <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"fundamental"</span>, indicator <span class="op">=</span> <span class="st">"rate"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">source</span><span class="op">)</span>, style <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
-</h2>
-<p>Issues and PRs welcome. To contribute new data, open an issue first describing the source file, author, geographic/temporal coverage and licence — before submitting a PR.</p>
-<hr>
-</div>
-<div class="section level2">
-<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
-</h2>
-<p>Code under <strong>GPL (&gt;= 3)</strong>. Data redistributed under <strong>CC BY 4.0</strong> (except where the original source imposes restrictions; see <a href="inst/dict/vocabularies/sources.yaml"><code>inst/dict/vocabularies/sources.yaml</code></a>). See the <a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link">GPL-3 licence text</a>.</p>
-<hr>
+<p><strong>PT.</strong> O desenho do pacote também se inspira em <a href="https://github.com/ipea/geobr" class="external-link"><code>geobr</code></a>, <a href="https://cran.r-project.org/package=PNADCperiods" class="external-link"><code>PNADCperiods</code></a> e no ecossistema <a href="https://github.com/ipea/brverse" class="external-link"><code>brverse</code></a>.</p>
+<p><strong>EN.</strong> The package design also draws on <a href="https://github.com/ipea/geobr" class="external-link"><code>geobr</code></a>, <a href="https://cran.r-project.org/package=PNADCperiods" class="external-link"><code>PNADCperiods</code></a> and the <a href="https://github.com/ipea/brverse" class="external-link"><code>brverse</code></a> ecosystem.</p>
 </div>
 <div class="section level2">
 <h2 id="como-citar--how-to-cite">Como citar / How to cite<a class="anchor" aria-label="anchor" href="#como-citar--how-to-cite"></a>
 </h2>
-<p>Se você usar este pacote em uma publicação, cite tanto o pacote quanto as fontes originais dos dados que utilizou. Para obter a entrada BibTeX ou a referência APA do pacote, use:</p>
-<p>If you use this package in a publication, cite both the package and the original data sources you drew from. To get the BibTeX entry or APA reference for the package, run:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr2"</span><span class="op">)</span></span></code></pre></div>
+<p><strong>PT.</strong> Cite o pacote pelo trabalho de harmonização e as fontes originais pelos dados utilizados. <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> produz referências APA/BibTeX a partir das chaves de fonte; consulte primeiro os dados e cite apenas as fontes efetivamente usadas.</p>
+<p><strong>EN.</strong> Cite the package for harmonization and the original sources for the data used. <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> builds APA/BibTeX references from source keys; query the data first and cite only the sources actually used.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"educabr2"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="st">"kang_paese_felix_2021"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"walter_kang_2024"</span>, <span class="st">"inep_microdados_censup"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># Todas as fontes / All sources</span></span>
+<span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"fundamental"</span>, indicator <span class="op">=</span> <span class="st">"rate"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">source</span><span class="op">)</span>, style <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Referência sugerida / Suggested citation:</strong></p>
 <p>Mançano, T. (2026). <em>educabr2: Harmonized Historical Series on Brazilian Education</em> (R package version 0.1.3). Zenodo. <a href="https://doi.org/10.5281/zenodo.23679357" class="external-link uri">https://doi.org/10.5281/zenodo.23679357</a></p>
-<p><strong>BibTeX:</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="va">@Manual</span>{<span class="ot">educabr2</span>,</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">title</span>  = {educabr2: Harmonized Historical Series on Brazilian Education},</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="dt">author</span> = {Tales Mançano},</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="dt">note</span>   = {R package version 0.1.3},</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="dt">doi</span>    = {10.5281/zenodo.23679357},</span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="dt">url</span>    = {https://github.com/mancano-tales/educabr2},</span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>}</span></code></pre></div>
-<p>Cite also the <strong>originating sources</strong> for any data you actually use. The <code><a href="reference/educabr_cite.html">educabr_cite()</a></code> helper builds APA / BibTeX entries for every bundled source (see <a href="#citation">Citation</a> above).</p>
-<p>Cada versão tem um DOI próprio no Zenodo (0.1.3: <a href="https://doi.org/10.5281/zenodo.23679357" class="external-link">10.5281/zenodo.23679357</a>); o DOI <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link">10.5281/zenodo.23675602</a> aponta sempre para a versão mais recente. / Each release has its own Zenodo DOI; 10.5281/zenodo.23675602 always resolves to the latest one.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="va">@Manual</span>{<span class="ot">educabr2</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="dt">title</span>  = {educabr2: Harmonized Historical Series on Brazilian Education},</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="dt">author</span> = {Tales Mançano},</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="dt">note</span>   = {R package version 0.1.3},</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  <span class="dt">doi</span>    = {10.5281/zenodo.23679357},</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  <span class="dt">url</span>    = {https://github.com/mancano-tales/educabr2},</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>PT.</strong> Cada versão tem um DOI próprio (0.1.3: <a href="https://doi.org/10.5281/zenodo.23679357" class="external-link">10.5281/zenodo.23679357</a>); o DOI <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link">10.5281/zenodo.23675602</a> aponta para a versão mais recente.</p>
+<p><strong>EN.</strong> Each release has its own DOI (0.1.3: <a href="https://doi.org/10.5281/zenodo.23679357" class="external-link">10.5281/zenodo.23679357</a>); DOI <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link">10.5281/zenodo.23675602</a> resolves to the latest release.</p>
+</div>
+<div class="section level2">
+<h2 id="contribuições--contributing">Contribuições / Contributing<a class="anchor" aria-label="anchor" href="#contribui%C3%A7%C3%B5es--contributing"></a>
+</h2>
+<p><strong>PT.</strong> Issues e PRs são bem-vindos. Para acrescentar dados, abra primeiro uma issue com o arquivo de origem, autoria, cobertura geográfica e temporal e licença. Mantenha a documentação pública equivalente em português e inglês. Veja o <a href="https://github.com/mancano-tales/educabr2/blob/main/.github/CONTRIBUTING.md" class="external-link">guia de contribuição</a>.</p>
+<p><strong>EN.</strong> Issues and PRs are welcome. To add data, first open an issue describing the source file, authorship, geographic and temporal coverage, and license. Keep public documentation equivalent in Portuguese and English. See the <a href="https://github.com/mancano-tales/educabr2/blob/main/.github/CONTRIBUTING.md" class="external-link">contribution guide</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="licença--license">Licença / License<a class="anchor" aria-label="anchor" href="#licen%C3%A7a--license"></a>
+</h2>
+<p><strong>PT.</strong> Código sob <strong>GPL (&gt;= 3)</strong>. Dados sob <strong>CC BY 4.0</strong>, exceto quando a fonte original impõe restrições; consulte o <a href="https://github.com/mancano-tales/educabr2/blob/main/inst/dict/vocabularies/sources.yaml" class="external-link">catálogo de fontes</a> e o <a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link">texto da GPL-3</a>.</p>
+<p><strong>EN.</strong> Code under <strong>GPL (&gt;= 3)</strong>. Data under <strong>CC BY 4.0</strong>, except where the original source imposes restrictions; see the <a href="https://github.com/mancano-tales/educabr2/blob/main/inst/dict/vocabularies/sources.yaml" class="external-link">source catalogue</a> and the <a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link">GPL-3 text</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -519,9 +407,9 @@ provenance. Includes a bundled Shiny dashboard.
 <ul class="list-unstyled">
 <li><a href="https://github.com/mancano-tales/educabr2/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/mancano-tales/educabr2/issues" class="external-link">Report a bug</a></li>
-<li><a href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" class="external-link">Live dashboard (shinyapps.io)</a></li>
-<li><a href="https://github.com/mancano-tales/educabr2" class="external-link">Source on GitHub</a></li>
-<li><a href="https://github.com/mancano-tales/educabr2/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" class="external-link">Painel interativo / Interactive dashboard</a></li>
+<li><a href="https://github.com/mancano-tales/educabr2" class="external-link">Código no GitHub / Source on GitHub</a></li>
+<li><a href="https://github.com/mancano-tales/educabr2/issues" class="external-link">Relatar problema / Report an issue</a></li>
 </ul>
 </div>
 
@@ -562,7 +450,7 @@ provenance. Includes a bundled Shiny dashboard.
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Tales Mançano. Code under GPL (&gt;= 3). Data under CC BY 4.0 unless original source restricts it (see <code>inst/dict/vocabularies/sources.yaml</code>).</p>
+  <p>Developed by Tales Mançano. Código / Code: GPL (&gt;= 3). Dados / Data: CC BY 4.0, salvo restrições da fonte original / unless restricted by the original source (inst/dict/vocabularies/sources.yaml).</p>
 </div>
 
 <div class="pkgdown-footer-right">

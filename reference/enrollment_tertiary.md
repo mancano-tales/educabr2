@@ -1,8 +1,8 @@
 # Tertiary (ensino superior) enrollment — multi-source compilation
 
 National-level (BR) Brazilian higher-education enrollment from 1907 to
-2024, harmonised across seven different primary sources. The dataset is
-consumed by
+2024, harmonised across official records and academic compilations. The
+dataset is consumed by
 [`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
 when `level = "superior"`. Multiple sources for the same
 `(year, network)` are kept on purpose so users can compare competing
@@ -16,9 +16,8 @@ enrollment_tertiary
 
 ## Format
 
-A tibble with approximately 1 200 rows and 16 columns matching the
-canonical schema (`inst/dict/schema.yaml`). The tertiary-specific
-columns are:
+A tibble with 1 143 rows and 16 columns matching the canonical schema
+(`inst/dict/schema.yaml`). The tertiary-specific columns are:
 
 - level:
 
@@ -83,3 +82,27 @@ ETL: `data-raw/03_build_enrollment_tertiary.R`.
 For derived rows the `source` column is the concatenation
 `"<presencial_key>+<ead_key>"`; the exact composition is documented in
 `source_note`.
+
+## Português
+
+Matrículas no ensino superior: 1.143 linhas, Brasil, 1907–2024. Prefira
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
+com `level = "superior"`. `network` registra rede e subcategorias
+privadas antes/depois de 2009; `institution_type` registra organização
+acadêmica; `modality` distingue presencial, EAD e total. A categoria
+`especial` (2012–2024) é um subconjunto da municipal, não uma parcela a
+ser somada novamente. Fontes: IBGE Século XX, Maduro Junior (2007), INEP
+Sinopses (1995–2008, incluindo 2002) e Microdados (2009–2024). Kang
+entra como componente presencial de totais derivados. `is_derived` marca
+totais reconstruídos (presencial + EAD, 2000–2008), excluídos por
+padrão; `source` combina as chaves das fontes e `source_note` detalha a
+composição. O painel Power BI do INEP foi retirado por duplicar os
+microdados. ETL: `data-raw/03_build_enrollment_tertiary.R`.
+
+Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name`
+identificam nível, código e nome geográficos; `indicator`, `value` e
+`unit` registram indicador, valor e unidade; `source` é a chave de fonte
+e `source_note` a nota bibliográfica. Dimensões usam `"total"` para
+agregados, preservando `NA` para informação desconhecida. Os dados
+mantêm identificadores canônicos; consulte a função pública com
+`lang = "pt"` para traduzir rótulos.

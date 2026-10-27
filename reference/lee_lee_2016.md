@@ -16,7 +16,7 @@ lee_lee_2016
 
 ## Format
 
-A tibble with approximately 29 000 rows and 12 columns:
+A tibble with 28 971 rows and 12 columns:
 
 - year:
 
@@ -100,3 +100,26 @@ By construction, 100 \>= primary \>= secondary \>= tertiary \>= 0 for
 any (country, year, sex). Versions of educabr2 before 0.1.2
 double-counted the completed subsets and overstated primary and
 secondary shares; tertiary was unaffected.
+
+## Português
+
+Conclusão educacional de Lee & Lee (2016): 28.971 linhas, 111 países,
+1870–2010 em intervalos de cinco anos. Prefira
+[`get_attainment()`](https://mancano-tales.github.io/educabr2/reference/get_attainment.md).
+`geo_code` usa ISO de três letras; `geo_name` preserva os nomes em
+inglês da fonte. `level` distingue `primary`, `secondary` e `tertiary`;
+`dim_sex` distingue homens, mulheres e total; `age_group` é `"15-64"`.
+`value` é o percentual cumulativo que completou pelo menos o nível:
+primário = lpc + ls + lh; secundário = lsc + lh; terciário = lhc. Assim,
+100 \>= primário \>= secundário \>= terciário \>= 0. Versões anteriores
+à 0.1.2 contavam subconjuntos completos duas vezes no
+primário/secundário; o terciário não foi afetado. ETL:
+`data-raw/06_build_lee_lee_2016.R`.
+
+Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name`
+identificam nível, código e nome geográficos; `indicator`, `value` e
+`unit` registram indicador, valor e unidade; `source` é a chave de fonte
+e `source_note` a nota bibliográfica. Dimensões usam `"total"` para
+agregados, preservando `NA` para informação desconhecida. Os dados
+mantêm identificadores canônicos; consulte a função pública com
+`lang = "pt"` para traduzir rótulos.

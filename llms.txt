@@ -1,461 +1,468 @@
 # educabr2
 
-> Harmonised historical series on Brazilian education — enrollment and
-> educational attainment, compiled and reconciled across decades of
-> heterogeneous official and academic sources.
+**Português e English:** cada seção apresenta o mesmo conteúdo nos dois
+idiomas. / Each section presents the same content in both languages.
 
-[![License: GPL (\>=
+> Séries históricas harmonizadas da educação brasileira em R:
+> matrículas, escolaridade, despesa pública e progressão escolar, com
+> proveniência por observação e painel interativo.
+>
+> Harmonized historical series on Brazilian education in R: enrollment,
+> schooling, public expenditure and grade progression, with
+> observation-level provenance and an interactive dashboard.
+
+[![Licença / License: GPL (\>=
 3)](https://img.shields.io/badge/License-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![R-CMD-check](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg)](https://mancano-tales.github.io/educabr2/)
-[![Lifecycle:
+[![Ciclo de vida / Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23675602.svg)](https://doi.org/10.5281/zenodo.23675602)
 
-`educabr2` provides curated long-run series on Brazilian formal
-education — enrollment by stage and network, years of schooling,
-literacy and attainment — compiled and reconciled from heterogeneous
-official and academic sources (Censo Escolar, PNAD, Censo Demográfico,
-Anuário Estatístico do IBGE, INEP CENSUP, Kang/FGV-IBRE, Walter & Kang,
-among others) into a single tidy schema with explicit per-row
-provenance.
+**PT.** `educabr2` reúne séries de longo prazo sobre educação formal
+brasileira, compiladas de fontes oficiais e acadêmicas e harmonizadas em
+um esquema *tidy* comum. Os seis conjuntos de dados acompanham o pacote
+e podem ser consultados offline. Fontes alternativas permanecem em
+linhas distintas para permitir comparação e auditoria. A cobertura varia
+por tema e fonte; consulte
+[`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)
+e as vinhetas.
 
-**🇧🇷** `educabr2` reúne séries históricas tratadas sobre educação formal
-no Brasil — matrículas, anos de estudo, atingimento educacional — em um
-único schema *tidy*, com proveniência explícita. Veja a [vinheta em
-português](https://mancano-tales.github.io/educabr2/articles/introducao-pt.html).
+**EN.** `educabr2` brings together long-run series on Brazilian formal
+education, compiled from official and academic sources and harmonized
+into a common tidy schema. All six datasets ship with the package and
+can be queried offline. Alternative sources remain in separate rows for
+comparison and auditing. Coverage varies by theme and source; see
+[`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)
+and the vignettes.
 
-------------------------------------------------------------------------
+## Links rápidos / Quick links
 
-## Quick links
+- [Documentação /
+  Documentation](https://mancano-tales.github.io/educabr2/) — referência
+  de funções e artigos / function reference and articles.
+- [Introdução em
+  português](https://mancano-tales.github.io/educabr2/articles/introducao-pt.html)
+  · [Introduction in
+  English](https://mancano-tales.github.io/educabr2/articles/introduction.html).
+- [Visualização em
+  português](https://mancano-tales.github.io/educabr2/articles/visualizacao-pt.html)
+  · [Visualization in
+  English](https://mancano-tales.github.io/educabr2/articles/visualization.html).
+- [Painel interativo / Interactive
+  dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/).
+- [Problemas e sugestões / Issues and
+  suggestions](https://github.com/mancano-tales/educabr2/issues).
 
-- 📖 **[Reference site](https://mancano-tales.github.io/educabr2/)** —
-  function reference, articles, news
-- 📊 **[Live
-  dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/)** —
-  interactive multi-source comparison on shinyapps.io
-- 📝 **[Get
-  started](https://mancano-tales.github.io/educabr2/articles/introduction.html)**
-  — 10-minute tour of the API
-- 🐛 **[Issues](https://github.com/mancano-tales/educabr2/issues)**
+## Instalação / Installation
 
-------------------------------------------------------------------------
+**PT.** O pacote ainda não está no CRAN. Instale a versão de
+desenvolvimento pelo GitHub; requer R \>= 4.1.
 
-## Installation
-
-`educabr2` is not yet on CRAN. Install the development version from
-GitHub:
+**EN.** The package is not yet on CRAN. Install the development version
+from GitHub; R \>= 4.1 is required.
 
 ``` r
 
+# Instale remotes uma vez / Install remotes once
 # install.packages("remotes")
 remotes::install_github("mancano-tales/educabr2")
-```
-
-------------------------------------------------------------------------
-
-## Usage
-
-The package exposes six top-level data-access functions, two utility
-functions, and the bundled dashboard launcher.
-
-### `get_enrollment()` — school enrollment
-
-> Who is enrolled at a given stage in a given year. *Annual flow, school
-> perspective.*
-
-``` r
-
 library(educabr2)
-
-# Gross enrollment rate for ensino fundamental, Brazil, all years
-get_enrollment(
-  level     = "fundamental",
-  indicator = "rate",
-  geo_level = "BR"
-)
-
-# Tertiary enrollment by network, all sources kept side by side
-get_enrollment(
-  level    = "superior",
-  network  = c("publica", "privada"),
-  modality = "total",
-  year     = c(1990, 2024)
-)
-
-# Enrollment rates by race/colour, 1960 onward
-get_enrollment(
-  level     = "fundamental",
-  indicator = "rate",
-  dimension = "race",
-  year      = c(1960, 2010)
-)
 ```
 
-### `get_schooling()` — educational attainment
+## Uso / Usage
 
-> How much the population has already studied. *Accumulated stock,
-> person perspective.*
+**PT.** São **cinco funções de acesso aos dados**, acompanhadas de
+[`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md),
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md),
+componentes de visualização e
+[`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md).
+Os filtros usam as chaves canônicas em ambos os idiomas. `lang = "pt"`
+traduz rótulos de saída; `lang = "en"` mantém os valores canônicos.
+Nomes de colunas e chaves de fonte permanecem estáveis. Nomes
+geográficos preservam o idioma da fonte (inclusive os nomes de países em
+inglês de Lee & Lee).
+
+**EN.** There are **five data-access functions**, plus
+[`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md),
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md),
+plotting components and
+[`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md).
+Filters use canonical keys in both languages. `lang = "pt"` translates
+output labels; `lang = "en"` retains canonical values. Column names and
+source keys remain stable. Geographic names retain the source language
+(including Lee & Lee’s English country names).
+
+### `get_enrollment()` — matrículas / enrollment
+
+**PT.** Contagens e taxas brutas de matrícula por etapa, ano e
+geografia; desagregação por raça/cor quando disponível. O ensino
+superior oferece comparação por fonte, rede, organização acadêmica e
+modalidade.
+
+**EN.** Enrollment counts and gross rates by stage, year and geography;
+race/colour breakdowns where available. Tertiary enrollment supports
+comparison by source, network, institution type and modality.
 
 ``` r
 
-# Mean years of schooling for adults, Brazil
+# Taxa bruta no ensino fundamental / Gross fundamental enrollment rate
+get_enrollment(level = "fundamental", indicator = "rate", geo_level = "BR")
+
+# Ensino superior por rede / Tertiary enrollment by network
+get_enrollment(level = "superior", network = c("publica", "privada"),
+               modality = "total", year = c(1990, 2024))
+
+# Rótulos em português; filtros canônicos / Portuguese labels; canonical filters
+get_enrollment(level = "fundamental", indicator = "rate",
+               dimension = "race", year = c(1960, 2010), lang = "pt")
+```
+
+### `get_schooling()` — anos de estudo / years of schooling
+
+**PT.** Anos médios de escolaridade da população adulta, com
+desagregações por raça/cor e sexo e cobertura nacional, regional e
+estadual.
+
+**EN.** Mean years of schooling of the adult population, with
+race/colour and sex breakdowns and national, regional and state
+coverage.
+
+``` r
+
 get_schooling(geo_level = "BR")
-
-# Same series broken down by race and by sex
 get_schooling(dimension = "race")
-get_schooling(dimension = "sex")
+get_schooling(dimension = "sex", lang = "pt")
 ```
 
-### `get_expenditure()` — public expenditure on education
+### `get_expenditure()` — despesa pública / public expenditure
 
-> How much the State spends on education. *Annual flow, public-purse
-> perspective.*
+**PT.** Despesa educacional como proporção do PIB, gasto por estudante
+em proporção do PIB per capita e indicadores de razão dupla de Kang &
+Menetrier (2024).
+
+**EN.** Education spending as a share of GDP, per-student spending as a
+share of GDP per capita, and Kang & Menetrier’s (2024) double-ratio
+indicators.
 
 ``` r
 
-# Total public expenditure on education as share of GDP
 get_expenditure(indicator = "share_gdp", level = "total")
-
-# Per-student spending in tertiary education, all years
 get_expenditure(indicator = "per_student", level = "superior")
-
-# Kang & Menetrier's "double ratio" of fiscal regressivity (ES / EF1)
+# ES / EF1: gasto por estudante / Tertiary / early-primary spending per student
 get_expenditure(indicator = "double_ratio_es_ef1")
 ```
 
-### `get_progression()` — grade-progression indicators
+### `get_progression()` — progressão escolar / grade progression
 
-> How students flow through the early primary grades. *Internal-flow
-> ratio.*
+**PT.** GDR6: razão entre matrículas nas séries 4–6 e 1–3 do antigo
+primário de oito anos. Cobre o Brasil e 20 UFs; as lacunas históricas da
+fonte são preservadas.
+
+**EN.** GDR6: enrollment in grades 4–6 divided by grades 1–3 of the
+former eight-year primary system. Covers Brazil and 20 states;
+historical gaps in the source are preserved.
 
 ``` r
 
-# National GDR6 series (1955-2010)
 get_progression()
-
-# GDR6 across Northeast states from 1980
-get_progression(geo_level = "UF",
-                geo = c("BA", "PE", "CE", "PB", "MA", "PI", "RN", "AL", "SE"),
+get_progression(geo_level = "UF", geo = c("BA", "PE", "CE"),
                 year = c(1980, 2010))
 ```
 
-### `get_attainment()` — comparative international attainment
+### `get_attainment()` — conclusão educacional internacional / international educational attainment
 
-> Share of the population aged 15–64 who completed at least a given
-> education level. *Accumulated stock, cross-country perspective.*
-> Source: Lee & Lee (2016), ~111 countries, 1870–2010.
+**PT.** Proporção da população de 15–64 anos que completou pelo menos o
+nível primário, secundário ou terciário. Lee & Lee (2016): 111 países,
+1870–2010, intervalos de cinco anos e desagregação por sexo.
+
+**EN.** Share of the population aged 15–64 that completed at least
+primary, secondary or tertiary education. Lee & Lee (2016): 111
+countries, 1870–2010, five-year intervals and sex breakdowns.
 
 ``` r
 
-# Tertiary completion in Brazil over time
 get_attainment(level = "tertiary", geo = "BRA")
-
-# Primary completion across Latin America, post-1950
-get_attainment(level = "primary",
-               geo   = c("BRA", "ARG", "CHL", "MEX", "URY"),
-               year  = c(1950, 2010))
-
-# Compare male vs female secondary completion in Brazil
+get_attainment(level = "primary", geo = c("BRA", "ARG", "CHL", "MEX", "URY"),
+               year = c(1950, 2010))
 get_attainment(level = "secondary", geo = "BRA", dimension = "sex")
 ```
 
-### `list_sources()` — list bundled data sources
+### `list_sources()` — catálogo de fontes / source catalogue
 
-> Returns a tibble describing every source in the controlled vocabulary,
-> with short name, type, temporal/geographic coverage, DOI and URL.
+**PT.** Lista chaves de fonte, nomes, tipo, cobertura, DOI e URL. Use as
+chaves da coluna `source` para filtrar e citar os dados.
+
+**EN.** Lists source keys, names, type, coverage, DOI and URL. Use the
+keys in the `source` column to filter and cite data.
 
 ``` r
 
 src <- list_sources()
-
-# Filter to academic papers only
 src[src$type == "academic", c("key", "short_name", "doi")]
-
-# Sources that include UF-level coverage
 src[grepl("UF", src$geo), c("key", "year_start", "year_end")]
 ```
 
-### `run_dashboard()` — interactive Shiny app
+### `run_dashboard()` — painel Shiny / Shiny dashboard
+
+**PT.** Uma visão geral com quatro gráficos narrativos (expansão
+secular, redes pública e privada, avanço da EAD e inversão da diferença
+de escolaridade por sexo) e seis abas temáticas. As abas cobrem
+matrículas, ensino superior, escolaridade, despesa pública, progressão e
+comparação internacional. Cada aba temática oferece filtros, tabela,
+fontes, download CSV e código R reproduzível.
+
+**EN.** An overview with four narrative charts (long-run expansion,
+public and private networks, the rise of distance education and the
+reversal of the schooling gender gap) and six thematic tabs. The tabs
+cover enrollment, tertiary education, schooling, public expenditure,
+progression and international comparison. Each thematic tab provides
+filters, a table, sources, CSV download and reproducible R code.
 
 ``` r
 
-educabr2::run_dashboard()
+educabr2::run_dashboard(lang = "pt")
+educabr2::run_dashboard(lang = "en")
 ```
 
-A curated **Overview** tab — four fixed story charts for broad audiences
-(secular expansion, public × private with the 1997/2005 regulatory
-landmarks, the rise of EAD, the gender reversal in schooling) — plus six
-thematic tabs:
+**PT.** O código exibido usa a API pública, `ggplot2` e `plotly`, com o
+tema e as escalas do pacote. Remova a chamada final a `ggplotly()` para
+obter uma figura estática.
 
-- **Enrollment** — Kang/FGV series by stage, year, race
-- **Tertiary Education** — multi-source comparison 1907–2024 (Kang,
-  Maduro Jr., IBGE Século XX, INEP CENSUP), with optional reconstructed
-  totals for the 2000–2008 in-person + EAD split
-- **Educational Attainment** — Walter & Kang mean years of schooling by
-  BR / region / UF, with race and sex breakdowns
-- **Public Expenditure** — Kang & Menetrier (2024) series on public
-  spending in education: share of GDP by stage, per-student spending as
-  share of GDP per capita, and the “double ratio” indicators of fiscal
-  regressivity (Brazil, 1933–2010)
-- **Grade Progression** — Kang/Paese/Felix (2021) GDR6 progression ratio
-  (enrollment in grades 4-6 / grades 1-3 of the old eight-year primary
-  system), BR and 20 UFs, 1955–2010
-- **International Comparison** — Lee & Lee (2016) attainment shares
-  (primary/secondary/tertiary completed, population 15–64), 111
-  countries, 1870–2010, with sex breakdowns — Brazil against the world
-  record in the same interface
+**EN.** The displayed code uses the public API, `ggplot2` and `plotly`,
+with the package’s theme and scales. Remove the final `ggplotly()` call
+for a static figure.
 
-Every chart has a “View R code” button that prints a self-contained
-snippet (educabr2 + ggplot2 + plotly, styled with the package’s own
-[`theme_educabr()`](https://mancano-tales.github.io/educabr2/reference/theme_educabr.md)
-/ Okabe-Ito scales /
-[`scale_x_year_educabr()`](https://mancano-tales.github.io/educabr2/reference/scale_x_year_educabr.md))
-you can paste into RStudio to reproduce the interactive chart locally.
+## Dados e cobertura / Datasets and coverage
 
-------------------------------------------------------------------------
+**PT.** Contagens verificadas nos objetos distribuídos com a versão
+0.1.3. BR = Brasil; UF = unidade da federação. As funções `get_*()`
+aplicam filtros, normalizam o esquema e traduzem rótulos.
 
-## Datasets
+**EN.** Counts verified against the objects bundled with version 0.1.3.
+BR = Brazil; UF = state. The `get_*()` functions filter, normalize the
+schema and translate labels.
 
-Six internal datasets back the public functions:
-
-| Dataset | Rows | Coverage | Source(s) |
+| Conjunto / Dataset | Linhas / Rows | Cobertura / Coverage | Fontes / Sources |
 |----|---:|----|----|
-| `enrollment_kang_fgv` | 6,238 | BR + UF, EF1/EF2/EF/EM/ES, 1933–2010 (+ race breakdown 1960–2010) | Kang, Paese & Felix (2021); Kang & Menetrier (2024); Kang, Menetrier & Comim (2024) |
-| `enrollment_tertiary` | 1,143 | BR, ensino superior, 1907–2024, by network/institution/modality | IBGE *Século XX*; Maduro Jr. (2007); INEP CENSUP Synopsis / Microdata (Kang/Paese/Felix only inside reconstructed totals) |
-| `schooling_kang_fgv` | 2,287 | BR + region + UF, mean years of schooling, 1925–2015, with race and sex breakdowns | Walter & Kang (2024) |
-| `expenditure_kang_fgv` | 1,170 | BR, public expenditure on education (% GDP, per-student, “double ratios”), 1933–2010 | Kang & Menetrier (2024) |
-| `progression_kang_fgv` | 1,090 | BR + 20 UFs, GDR6 grade-progression ratio, 1955–2010 | Kang, Paese & Felix (2021) |
-| `lee_lee_2016` | ~29,000 | 111 countries, primary/secondary/tertiary attainment, 1870–2010 (5-year steps), by sex | Lee & Lee (2016) |
+| `enrollment_kang_fgv` | 6,238 | BR: 1871–2010; UF: 1955–2010; raça/cor desde 1960 / race/colour from 1960 | Kang, Paese & Felix (2021); Kang & Menetrier (2024); Kang, Menetrier & Comim (2024) |
+| `enrollment_tertiary` | 1,143 | BR, ensino superior / tertiary, 1907–2024; rede, organização, modalidade / network, institution type, modality | IBGE Século XX; Maduro Junior (2007); INEP Sinopse / Synopsis; INEP Microdados / Microdata; Kang em totais derivados / in derived totals |
+| `schooling_kang_fgv` | 2,287 | BR + região / region + UF, 1925–2015; raça/cor e sexo / race/colour and sex | Walter & Kang (2024) |
+| `expenditure_kang_fgv` | 1,170 | BR, 1933–2010; % PIB, por estudante, razões duplas / % GDP, per student, double ratios | Kang & Menetrier (2024) |
+| `progression_kang_fgv` | 1,090 | BR + 20 UFs, GDR6, 1955–2010 | Kang, Paese & Felix (2021) |
+| `lee_lee_2016` | 28,971 | 111 países / countries, 1870–2010; conclusão por nível e sexo / attainment by level and sex | Lee & Lee (2016) |
 
-End users should call the `get_*()` functions. The datasets are exposed
-for inspection but the public API normalises schema differences, applies
-per-source filters and translates labels.
+**PT.** Para montar uma série única, a precedência recomendada em
+períodos sobrepostos é: microdados INEP CENSUP (2009–2024) → sinopses
+INEP (1995–2008) → Kang, Paese & Felix (1990–1994) → Maduro Junior →
+IBGE *Estatísticas do Século XX*. Essa é uma decisão analítica
+explícita: a API preserva as estimativas concorrentes, sem escolher
+automaticamente uma fonte. Em 1995, INEP, Maduro Junior e Kang et
+al. reportam as mesmas 1.759.703 matrículas no ensino superior.
 
-**Deduplication hierarchy.** When the same year and sector are covered
-by multiple sources, the recommended order of precedence is: INEP CENSUP
-microdata (2009–2024) → INEP statistical synopses (1995–2008) → Kang,
-Paese & Felix (1990–1994) → Maduro Junior → IBGE *Estatísticas do Século
-XX*. The most disaggregated and official source available always wins;
-all competing estimates remain in the panel for auditing.
+**EN.** To build a single series, the recommended precedence in
+overlapping periods is: INEP CENSUP microdata (2009–2024) → INEP
+synopses (1995–2008) → Kang, Paese & Felix (1990–1994) → Maduro Junior →
+IBGE *Statistics of the 20th Century*. This is an explicit analytical
+decision: the API preserves competing estimates rather than selecting a
+source automatically. In 1995, INEP, Maduro Junior and Kang et
+al. report the same 1,759,703 tertiary enrollments.
 
-**Validation.** Overlapping windows are preserved deliberately so the
-sources can be checked against each other: in 1995, for example, the
-INEP synopsis, Maduro Junior (2007) and Kang et al. (2021) all report
-exactly 1,759,703 tertiary enrollments — a perfect triangulation of the
-academic reconstructions against the official record.
+**PT.** Em 2000–2008, os totais presenciais e de EAD eram publicados
+separadamente. Totais reconstruídos têm `is_derived = TRUE`, registram
+as fontes componentes e só entram em
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
+com `include_derived = TRUE`. A versão 0.1.3 inclui a Sinopse 2002, usa
+`walter_kang_2024` (mantendo o alias antigo de 2023) e elimina a
+duplicação do painel Power BI do INEP, cujos valores coincidem com os
+microdados.
 
-------------------------------------------------------------------------
+**EN.** In 2000–2008, in-person and distance-education totals were
+published separately. Reconstructed totals have `is_derived = TRUE`,
+record their component sources and enter
+[`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
+only with `include_derived = TRUE`. Version 0.1.3 includes the 2002
+synopsis, uses `walter_kang_2024` (retaining the old 2023 alias) and
+removes duplication from INEP’s Power BI panel, whose values match the
+microdata.
 
-## Data Visualization
+## Visualização / Visualization
 
-The `educabr2` package includes a built-in visualization system based on
-Kieran Healy’s *Data Visualization* (2018/2026) design principles. It
-provides a consistent aesthetic theme and colorblind-safe palettes
-matching the ongoing MA Thesis *The Politics of Reforming Tertiary
-Education* (Tales Mançano, 2026).
+**PT.** O sistema de visualização segue os princípios de *Data
+Visualization*, de Kieran Healy: tema minimalista serifado, paleta
+Okabe-Ito segura para daltonismo e eixo temporal adequado a séries
+longas.
 
-To style your plots, use the
-[`theme_educabr()`](https://mancano-tales.github.io/educabr2/reference/theme_educabr.md)
-and
-[`scale_fill_educabr()`](https://mancano-tales.github.io/educabr2/reference/scale_educabr.md)
-/
-[`scale_colour_educabr()`](https://mancano-tales.github.io/educabr2/reference/scale_educabr.md)
-functions:
+**EN.** The plotting system follows Kieran Healy’s *Data Visualization*
+principles: a minimal serif theme, the colourblind-safe Okabe-Ito
+palette and a time axis suited to long series.
 
 ``` r
 
 library(ggplot2)
-library(educabr2)
-
-# Query some data
-df <- get_enrollment(level = "superior", dimension = "race")
-
-# Build a plot
-ggplot(df, aes(x = year, y = value, fill = dim_race)) +
-  geom_area() +
+df <- get_schooling(geo_level = "BR", dimension = "sex")
+ggplot(df, aes(year, value, colour = dim_sex)) +
+  geom_line(linewidth = 0.9) +
   theme_educabr() +
-  scale_fill_educabr() +
+  scale_colour_educabr() +
   scale_x_year_educabr(df$year)
 ```
 
-### Year Axis for Historical Series (`scale_x_year_educabr()`)
+**PT.** Use
+[`scale_fill_educabr()`](https://mancano-tales.github.io/educabr2/reference/scale_educabr.md)
+para áreas e barras. `scale_x_year_educabr(anos)` escolhe o espaçamento
+conforme a amplitude: 20 anos acima de seis décadas, 10 anos em
+intervalos intermediários e
+[`pretty()`](https://rdrr.io/r/base/pretty.html) para intervalos curtos.
+Sempre rotula o primeiro e o último ano e evita sobreposição nas
+extremidades.
 
-Most series in `educabr2` span many decades (some more than a century),
-and default `ggplot2` breaks become unreadable at that scale. The
-exported `scale_x_year_educabr(years)` scale picks the break spacing
-from the span of the data you actually plot — every 20 years beyond six
-decades, every 10 years for intermediate spans,
-[`pretty()`](https://rdrr.io/r/base/pretty.html) breaks below that — and
-always labels the first and last year present in the series, dropping
-any grid break that would collide with those extreme labels. Pass it the
-vector of years being plotted (typically `df$year`).
+**EN.** Use
+[`scale_fill_educabr()`](https://mancano-tales.github.io/educabr2/reference/scale_educabr.md)
+for areas and bars. `scale_x_year_educabr(years)` chooses spacing from
+the span: 20 years beyond six decades, 10 years for intermediate spans
+and [`pretty()`](https://rdrr.io/r/base/pretty.html) for short spans. It
+always labels the first and last year and avoids collisions at the
+endpoints.
 
-### Font Auto-Registration (TinyTeX & Latin Modern)
-
-To match formal academic publications, the theme tries to use the
-standard LaTeX font family **Latin Modern Roman**. \* **Automatic
-Registration:** If you have **TinyTeX** installed on your system
-(e.g. via
-[`tinytex::install_tinytex()`](https://rdrr.io/pkg/tinytex/man/install_tinytex.html))
-and have the `showtext` and `sysfonts` R packages installed,
+**PT.** Com TinyTeX, `showtext` e `sysfonts`,
 [`theme_educabr()`](https://mancano-tales.github.io/educabr2/reference/theme_educabr.md)
-will automatically locate the `.otf` font files in your TinyTeX
-directories and load them dynamically using
-[`sysfonts::font_add()`](https://rdrr.io/pkg/sysfonts/man/font_add.html).
-\* **Graceful Fallback:** If the font files are not found on your system
-or the required packages are missing, the theme will automatically and
-silently fall back to your system’s default `"serif"` font family.
+registra automaticamente Latin Modern Roman; caso a fonte ou as
+dependências não estejam disponíveis, usa a fonte serifada do sistema. O
+padrão `plot_titles = TRUE` exibe título, subtítulo e legenda dentro da
+figura. Para manuscritos LaTeX/Quarto,
+`theme_educabr(plot_titles = FALSE)` permite defini-los no documento,
+evitando duplicação.
 
-### Omit/Include Titles Inside Plot (`plot_titles`)
+**EN.** With TinyTeX, `showtext` and `sysfonts`,
+[`theme_educabr()`](https://mancano-tales.github.io/educabr2/reference/theme_educabr.md)
+automatically registers Latin Modern Roman; if the font or dependencies
+are unavailable, it uses the system serif font. The default
+`plot_titles = TRUE` displays the title, subtitle and caption inside the
+figure. For LaTeX/Quarto manuscripts,
+`theme_educabr(plot_titles = FALSE)` lets you define them in the
+document, avoiding duplication.
 
-Depending on where you are presenting your charts, you may want to
-include titles within the image or handle them in the document text: \*
-**For General Presentations (`plot_titles = TRUE`):** This is the
-default. The plot titles, subtitle, and caption are styled and rendered
-inside the image canvas itself. \* **For LaTeX/Quarto Manuscripts
-(`plot_titles = FALSE`):** This hides the title, subtitle, and caption
-from the ggplot canvas, allowing you to specify them as metadata
-captions (e.g. `fig-cap` in Quarto or `\caption{}` in LaTeX) in the main
-document, which prevents duplicate titles and enables proper page
-layout.
+## Esquema / Schema
 
-``` r
+**PT.** Cada observação ocupa uma linha, fontes alternativas usam linhas
+separadas (coluna `source`) e agregados usam `"total"`, não `NA`. O
+contrato, as chaves e as unidades estão em
+[`inst/dict/schema.yaml`](https://github.com/mancano-tales/educabr2/blob/main/inst/dict/schema.yaml);
+os vocabulários em
+[`inst/dict/vocabularies/`](https://github.com/mancano-tales/educabr2/tree/main/inst/dict/vocabularies)
+e as traduções em
+[`inst/dict/i18n.yaml`](https://github.com/mancano-tales/educabr2/blob/main/inst/dict/i18n.yaml).
 
-# Hide title elements within the plot canvas for manuscripts
-ggplot(df, aes(x = year, y = value, fill = dim_race)) +
-  geom_area() +
-  theme_educabr(plot_titles = FALSE) +
-  scale_fill_educabr()
-```
+**EN.** Each observation occupies one row, alternative sources use
+separate rows (`source` column), and aggregates use `"total"`, not `NA`.
+The contract, keys and units are in
+[`inst/dict/schema.yaml`](https://github.com/mancano-tales/educabr2/blob/main/inst/dict/schema.yaml);
+vocabularies are in
+[`inst/dict/vocabularies/`](https://github.com/mancano-tales/educabr2/tree/main/inst/dict/vocabularies)
+and translations in
+[`inst/dict/i18n.yaml`](https://github.com/mancano-tales/educabr2/blob/main/inst/dict/i18n.yaml).
 
-------------------------------------------------------------------------
+## Pacotes relacionados e integração / Related packages and integration
 
-## Schema
+**PT.** O pacote complementar é o
+[**educabR**](https://CRAN.R-project.org/package=educabR), de **Sidney
+Bissoli** ([GitHub](https://github.com/SidneyBissoli/educabR),
+[documentação](https://sidneybissoli.github.io/educabR/),
+[DOI](https://doi.org/10.5281/zenodo.19410201)). Ele baixa e armazena em
+cache dados oficiais do INEP, FNDE, CAPES e Tesouro Nacional sob
+demanda, preservando os leiautes das agências. O `educabr2` distribui
+séries históricas harmonizadas por tema, com proveniência. A
+compatibilidade entre esquemas ainda está em desenvolvimento; os pacotes
+não são versões sucessivas de um mesmo produto.
 
-All `get_*()` functions return a `tibble` in the canonical tidy-long
-schema documented in
-[`inst/dict/schema.yaml`](https://mancano-tales.github.io/educabr2/inst/dict/schema.yaml):
-one row per observation, alternative sources for the same indicator as
-**separate rows** (column `source`), aggregations as an explicit factor
-level (`"total"`) rather than `NA`. Controlled vocabularies live in
-[`inst/dict/vocabularies/`](https://mancano-tales.github.io/educabr2/inst/dict/vocabularies),
-and PT-BR labels for every factor level in
-[`inst/dict/i18n.yaml`](https://mancano-tales.github.io/educabr2/inst/dict/i18n.yaml).
+**EN.** The complementary package is
+[**educabR**](https://CRAN.R-project.org/package=educabR), by **Sidney
+Bissoli** ([GitHub](https://github.com/SidneyBissoli/educabR),
+[documentation](https://sidneybissoli.github.io/educabR/),
+[DOI](https://doi.org/10.5281/zenodo.19410201)). It downloads and caches
+official INEP, FNDE, CAPES and National Treasury data on demand,
+preserving agency layouts. `educabr2` distributes harmonized historical
+series by theme, with provenance. Schema compatibility is still under
+development; the packages are not successive versions of the same
+product.
 
-------------------------------------------------------------------------
-
-## Related work
-
-### Sibling package: `educabR`
-
-`educabr2` is the historical companion of
-[**`educabR`**](https://CRAN.R-project.org/package=educabR), by Sidney
-Bissoli ([GitHub](https://github.com/SidneyBissoli/educabR),
-[site](https://sidneybissoli.github.io/educabR/),
-[doi:10.5281/zenodo.19410201](https://doi.org/10.5281/zenodo.19410201)).
-`educabR` is on CRAN and downloads, at call time, what INEP, FNDE, CAPES
-and the National Treasury publish: School Census (since 1995), Higher
-Education Census (2009–2024), ENEM, SAEB, ENADE, ENCCEJA, IDEB,
-CPC/IDD/IGC, CAPES and FUNDEB. It organises access **by official
-source** (`get_censo_escolar()`, `get_censo_superior()`, `get_ideb()`,
-…) and keeps each year in the agency’s own layout.
-
-`educabr2` organises access **by theme and historical series**: one
-indicator compiled across several sources and reconciled across series
-breaks, back to the nineteenth century, bundled offline with per-row
-provenance. Neither package replaces the other:
-
-| You need… | Use |
+| Necessidade / Need | Use |
 |----|----|
-| Current-year microdata (a school, a course, a student, an exam) | `educabR` |
-| An official indicator as INEP publishes it (IDEB, CPC, FUNDEB) | `educabR` |
-| A national or state series from before 1995, or one that crosses a series break | `educabr2` |
-| A recent cut that `educabr2` does not ship (municipality, school network) on top of a long series | Both: `educabr2` for the history, `educabR` for the recent detail |
+| Microdados de escolas, cursos ou exames / School, course or exam microdata | `educabR` |
+| Indicadores como publicados (IDEB, CPC, FUNDEB) / Indicators as published (IDEB, CPC, FUNDEB) | `educabR` |
+| Séries históricas que atravessam fontes e quebras / Historical series crossing sources and breaks | `educabr2` |
+| Detalhe recente junto de uma série longa / Recent detail alongside a long series | Ambos, com harmonização explícita / Both, with explicit harmonization |
 
 ``` r
 
-# Long-run tertiary enrollment (educabr2) ...
-hist <- educabr2::get_enrollment(level = "superior", indicator = "count",
-                                 network = "total", institution_type = "total",
-                                 modality = "total", source = "inep_microdados_censup")
-# ... and the 2023 course-level microdata behind its last points (educabR)
-cursos <- educabR::get_censo_superior(2023, type = "cursos")
+# Série histórica agregada / Aggregate historical series
+hist <- educabr2::get_enrollment(
+  level = "superior", indicator = "count", network = "total",
+  institution_type = "total", modality = "total", source = "inep_microdados_censup"
+)
+# Consulta separada; requer educabR / Separate query; requires educabR
+# cursos <- educabR::get_censo_superior(2023, type = "cursos")
 ```
 
-If you use both, cite both: `citation("educabR")` and
-`citation("educabr2")`.
+**PT.** A [issue
+\#8](https://github.com/mancano-tales/educabr2/issues/8) acompanha o
+mapeamento de campos, o piloto de agregação e a validação dos totais.
+Ela se vincula à [proposta \#29 ao
+educabR](https://github.com/SidneyBissoli/educabR/issues/29), que
+discute as Sinopses 1995–2008 e acesso a séries históricas versionadas.
+Essas propostas dependem de avaliação e aceite; não representam
+integração já implementada. Se usar os dois pacotes, cite ambos.
 
-### Other related packages
+**EN.** [Issue \#8](https://github.com/mancano-tales/educabr2/issues/8)
+tracks field mappings, an aggregation pilot and validation of totals. It
+links to [educabR proposal
+\#29](https://github.com/SidneyBissoli/educabR/issues/29), which
+discusses the 1995–2008 synopses and access to versioned historical
+series. These proposals require assessment and acceptance; they do not
+represent an implemented integration. If you use both packages, cite
+both.
 
-| Package | What it gives you | How it relates |
-|----|----|----|
-| [`censobr`](https://CRAN.R-project.org/package=censobr) (Ipea) | Demographic census microdata, 1960–2022 | Population denominators; schooling by UF in census years |
-| [`PNADcIBGE`](https://CRAN.R-project.org/package=PNADcIBGE) (IBGE) | PNAD Contínua microdata | Years of schooling after 2015 |
-| [`geobr`](https://CRAN.R-project.org/package=geobr) (Ipea) | Official boundaries | Maps of the UF series |
-| [`basedosdados`](https://CRAN.R-project.org/package=basedosdados) | Curated cloud tables (BigQuery) | Cross-domain joins with current data |
+| Pacote / Package | Uso complementar / Complementary use |
+|----|----|
+| [`censobr`](https://CRAN.R-project.org/package=censobr) | Microdados censitários e denominadores populacionais / Census microdata and population denominators |
+| [`PNADcIBGE`](https://CRAN.R-project.org/package=PNADcIBGE) | PNAD Contínua e escolaridade recente / Continuous PNAD and recent schooling |
+| [`geobr`](https://CRAN.R-project.org/package=geobr) | Limites oficiais e mapas / Official boundaries and maps |
+| [`basedosdados`](https://CRAN.R-project.org/package=basedosdados) | Tabelas no BigQuery e cruzamentos entre áreas / BigQuery tables and cross-domain joins |
 
-Design inspirations: [`geobr`](https://github.com/ipea/geobr) (coherent
-function family),
-[`PNADCperiods`](https://cran.r-project.org/package=PNADCperiods)
-(embedded dashboard + methodological delivery), and the
-[`brverse`](https://github.com/ipea/brverse) ecosystem.
+**PT.** O desenho do pacote também se inspira em
+[`geobr`](https://github.com/ipea/geobr),
+[`PNADCperiods`](https://cran.r-project.org/package=PNADCperiods) e no
+ecossistema [`brverse`](https://github.com/ipea/brverse).
 
-------------------------------------------------------------------------
-
-## Citation
-
-Cite both the package (for the harmonisation work) and the **originating
-sources** for any data you actually use. The
-[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
-helper builds APA / BibTeX entries for every bundled source:
-
-``` r
-
-citation("educabr2")                              # cite the package
-
-educabr_cite("kang_paese_felix_2021")            # cite one source
-educabr_cite(c("walter_kang_2024",               # cite many
-              "inep_microdados_censup"))
-educabr_cite()                                   # all bundled sources
-
-# Typical workflow — query first, then cite only what you used
-d   <- get_enrollment(level = "fundamental", indicator = "rate")
-educabr_cite(unique(d$source), style = "text")
-```
-
-------------------------------------------------------------------------
-
-## Contributing
-
-Issues and PRs welcome. To contribute new data, open an issue first
-describing the source file, author, geographic/temporal coverage and
-licence — before submitting a PR.
-
-------------------------------------------------------------------------
-
-## License
-
-Code under **GPL (\>= 3)**. Data redistributed under **CC BY 4.0**
-(except where the original source imposes restrictions; see
-[`inst/dict/vocabularies/sources.yaml`](https://mancano-tales.github.io/educabr2/inst/dict/vocabularies/sources.yaml)).
-See the [GPL-3 licence text](https://www.gnu.org/licenses/gpl-3.0.html).
-
-------------------------------------------------------------------------
+**EN.** The package design also draws on
+[`geobr`](https://github.com/ipea/geobr),
+[`PNADCperiods`](https://cran.r-project.org/package=PNADCperiods) and
+the [`brverse`](https://github.com/ipea/brverse) ecosystem.
 
 ## Como citar / How to cite
 
-Se você usar este pacote em uma publicação, cite tanto o pacote quanto
-as fontes originais dos dados que utilizou. Para obter a entrada BibTeX
-ou a referência APA do pacote, use:
+**PT.** Cite o pacote pelo trabalho de harmonização e as fontes
+originais pelos dados utilizados.
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
+produz referências APA/BibTeX a partir das chaves de fonte; consulte
+primeiro os dados e cite apenas as fontes efetivamente usadas.
 
-If you use this package in a publication, cite both the package and the
-original data sources you drew from. To get the BibTeX entry or APA
-reference for the package, run:
+**EN.** Cite the package for harmonization and the original sources for
+the data used.
+[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
+builds APA/BibTeX references from source keys; query the data first and
+cite only the sources actually used.
 
 ``` r
 
 citation("educabr2")
+educabr_cite("kang_paese_felix_2021")
+educabr_cite(c("walter_kang_2024", "inep_microdados_censup"))
+educabr_cite()  # Todas as fontes / All sources
+
+d <- get_enrollment(level = "fundamental", indicator = "rate")
+educabr_cite(unique(d$source), style = "text")
 ```
 
 **Referência sugerida / Suggested citation:**
@@ -463,8 +470,6 @@ citation("educabr2")
 Mançano, T. (2026). *educabr2: Harmonized Historical Series on Brazilian
 Education* (R package version 0.1.3). Zenodo.
 <https://doi.org/10.5281/zenodo.23679357>
-
-**BibTeX:**
 
 ``` bibtex
 @Manual{educabr2,
@@ -477,23 +482,49 @@ Education* (R package version 0.1.3). Zenodo.
 }
 ```
 
-Cite also the **originating sources** for any data you actually use. The
-[`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
-helper builds APA / BibTeX entries for every bundled source (see
-[Citation](#citation) above).
-
-Cada versão tem um DOI próprio no Zenodo (0.1.3:
+**PT.** Cada versão tem um DOI próprio (0.1.3:
 [10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357)); o
 DOI [10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
-aponta sempre para a versão mais recente. / Each release has its own
-Zenodo DOI; 10.5281/zenodo.23675602 always resolves to the latest one.
+aponta para a versão mais recente.
+
+**EN.** Each release has its own DOI (0.1.3:
+[10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357)); DOI
+[10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
+resolves to the latest release.
+
+## Contribuições / Contributing
+
+**PT.** Issues e PRs são bem-vindos. Para acrescentar dados, abra
+primeiro uma issue com o arquivo de origem, autoria, cobertura
+geográfica e temporal e licença. Mantenha a documentação pública
+equivalente em português e inglês. Veja o [guia de
+contribuição](https://github.com/mancano-tales/educabr2/blob/main/.github/CONTRIBUTING.md).
+
+**EN.** Issues and PRs are welcome. To add data, first open an issue
+describing the source file, authorship, geographic and temporal
+coverage, and license. Keep public documentation equivalent in
+Portuguese and English. See the [contribution
+guide](https://github.com/mancano-tales/educabr2/blob/main/.github/CONTRIBUTING.md).
+
+## Licença / License
+
+**PT.** Código sob **GPL (\>= 3)**. Dados sob **CC BY 4.0**, exceto
+quando a fonte original impõe restrições; consulte o [catálogo de
+fontes](https://github.com/mancano-tales/educabr2/blob/main/inst/dict/vocabularies/sources.yaml)
+e o [texto da GPL-3](https://www.gnu.org/licenses/gpl-3.0.html).
+
+**EN.** Code under **GPL (\>= 3)**. Data under **CC BY 4.0**, except
+where the original source imposes restrictions; see the [source
+catalogue](https://github.com/mancano-tales/educabr2/blob/main/inst/dict/vocabularies/sources.yaml)
+and the [GPL-3 text](https://www.gnu.org/licenses/gpl-3.0.html).
 
 # Package index
 
-## Data access
+## Acesso aos dados / Data access
 
-Public API for the harmonised series. Each function returns a tibble in
-the canonical tidy-long schema documented in `inst/dict/schema.yaml`.
+API das séries harmonizadas; cada função retorna um tibble no esquema
+comum de `inst/dict/schema.yaml`. / Harmonized-series API; each function
+returns a tibble following the common schema in `inst/dict/schema.yaml`.
 
 - [`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
   : Brazilian school-enrollment series
@@ -506,21 +537,21 @@ the canonical tidy-long schema documented in `inst/dict/schema.yaml`.
 - [`get_attainment()`](https://mancano-tales.github.io/educabr2/reference/get_attainment.md)
   : Comparative international educational-attainment series
 
-## Citations and provenance
+## Citação e proveniência / Citation and provenance
 
-Discover the underlying sources and cite them — not only the package
-itself.
+Descubra e cite as fontes originais, além do pacote. / Discover and cite
+the original sources as well as the package.
 
 - [`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)
   : List the data sources bundled with educabr2
 - [`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
   : Generate citations for educabr2 data sources
 
-## Visualization
+## Visualização / Visualization
 
-Consistent, colorblind-safe plotting components in the style of Healy’s
-*Data Visualization*: a ggplot2 theme, Okabe-Ito colour scales, and a
-year axis designed for century-long historical series.
+Tema ggplot2, paleta Okabe-Ito segura para daltonismo e eixo de anos
+para séries históricas. / A ggplot2 theme, colourblind-safe Okabe-Ito
+palette and year axis for historical series.
 
 - [`theme_educabr()`](https://mancano-tales.github.io/educabr2/reference/theme_educabr.md)
   : educabr2 Visualization Theme
@@ -530,21 +561,22 @@ year axis designed for century-long historical series.
 - [`scale_x_year_educabr()`](https://mancano-tales.github.io/educabr2/reference/scale_x_year_educabr.md)
   : Year Axis Scale for Historical Series
 
-## Dashboard
+## Painel / Dashboard
 
-Launch the bundled Shiny dashboard. A read-only deployment is also
-[hosted on
-shinyapps.io](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/).
+Abra o painel Shiny local ou consulte o [painel
+público](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/). / Launch
+the local Shiny app or visit the [public
+dashboard](https://qx3hly-tales-man0ano.shinyapps.io/educabr2/).
 
 - [`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md)
   : Launch the educabr2 Shiny dashboard
 
-## Backing datasets
+## Conjuntos de dados / Backing datasets
 
-Internal backing stores for the public `get_*()` functions. End users
-should call the functions instead of loading these objects directly —
-the public API normalises schema differences across datasets, applies
-filters and translates labels.
+Objetos distribuídos com o pacote. Prefira as funções `get_*()` para
+filtrar, normalizar o esquema e traduzir rótulos. / Objects bundled with
+the package. Prefer `get_*()` to filter, normalize the schema and
+translate labels.
 
 - [`enrollment_kang_fgv`](https://mancano-tales.github.io/educabr2/reference/enrollment_kang_fgv.md)
   : Enrollment series — Kang / FGV-IBRE 2023 compilation
@@ -560,7 +592,7 @@ filters and translates labels.
 - [`lee_lee_2016`](https://mancano-tales.github.io/educabr2/reference/lee_lee_2016.md)
   : Comparative international educational attainment — Lee & Lee 2016
 
-## Package
+## Pacote / Package
 
 - [`educabr2`](https://mancano-tales.github.io/educabr2/reference/educabr2-package.md)
   [`educabr2-package`](https://mancano-tales.github.io/educabr2/reference/educabr2-package.md)
@@ -568,11 +600,16 @@ filters and translates labels.
 
 # Articles
 
-### Tutorials
+### Tutoriais em português / Portuguese tutorials
+
+- [Introdução ao educabr2
+  (PT-BR)](https://mancano-tales.github.io/educabr2/articles/introducao-pt.md):
+- [O sistema de visualização do educabr2
+  (PT-BR)](https://mancano-tales.github.io/educabr2/articles/visualizacao-pt.md):
+
+### Tutorials in English / Tutoriais em inglês
 
 - [Introduction to
   educabr2](https://mancano-tales.github.io/educabr2/articles/introduction.md):
-- [Introdução ao educabr2
-  (PT-BR)](https://mancano-tales.github.io/educabr2/articles/introducao-pt.md):
 - [The educabr2 visualization
   system](https://mancano-tales.github.io/educabr2/articles/visualization.md):

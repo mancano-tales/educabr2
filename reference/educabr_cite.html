@@ -5,7 +5,7 @@ built on a get_*() call — cite the originating source(s), not only
 the package itself."><meta property="og:description" content="Builds utils::bibentry() objects for the primary sources whose data
 is harmonised in educabr2. Use this whenever you publish analyses
 built on a get_*() call — cite the originating source(s), not only
-the package itself."><meta property="og:image" content="https://mancano-tales.github.io/educabr2/reference/figures/logo.png"><meta property="og:image:alt" content="educabr2 logo"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@mancano_tales"><meta name="twitter:site" content="@mancano_tales"></head><body>
+the package itself."><meta property="og:image" content="https://mancano-tales.github.io/educabr2/reference/figures/logo.png"><meta property="og:image:alt" content="Logo do educabr2 / educabr2 logo"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@mancano_tales"><meta name="twitter:site" content="@mancano_tales"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -21,24 +21,19 @@ the package itself."><meta property="og:image" content="https://mancano-tales.gi
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/introduction.html">Get started</a></li>
-<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/introducao-pt.html">Português</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/introduction.html">English</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Referência / Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/introduction.html">Introduction to educabr2</a></li>
-    <li><a class="dropdown-item" href="../articles/introducao-pt.html">Introdução ao educabr2 (PT-BR)</a></li>
-    <li><a class="dropdown-item" href="../articles/visualization.html">The educabr2 visualization system</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-news"><li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
-    <li><a class="dropdown-item" href="../news/index.html">All releases</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../news/index.html">Changelog</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-artigos-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artigos / Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-artigos-articles"><li><a class="dropdown-item" href="../articles/introducao-pt.html">Introdução (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="../articles/introduction.html">Introduction (EN)</a></li>
+    <li><a class="dropdown-item" href="../articles/visualizacao-pt.html">Visualização (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="../articles/visualization.html">Visualization (EN)</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Live dashboard"><span class="fa fa-chart-line"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Painel interativo / Interactive dashboard"><span class="fa fa-chart-line"></span></a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/mancano-tales/educabr2/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
@@ -98,6 +93,21 @@ further format via <code><a href="https://rdrr.io/r/utils/toLatex.html" class="e
 <code>inst/dict/vocabularies/sources.yaml</code>, the same controlled vocabulary
 that backs the <code>source</code> column of <code><a href="get_enrollment.html">get_enrollment()</a></code> and
 <code><a href="get_schooling.html">get_schooling()</a></code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="portugu-s">Português<a class="anchor" aria-label="anchor" href="#portugu-s"></a></h2>
+
+
+<p>Gera referências para as fontes originais dos dados. Cite o pacote pela
+harmonização e as fontes utilizadas pela produção dos dados.</p><ul><li><p><code>source_key</code>: vetor de chaves; <code>NULL</code> (padrão) cita todas as fontes.
+Para citar só as usadas, passe <code>unique(dados$source)</code> de uma consulta.
+O alias <code>"walter_kang_2023"</code> é resolvido para <code>"walter_kang_2024"</code>.</p></li>
+<li><p><code>style</code>: <code>"bibentry"</code> (padrão, objeto formatável por <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format()</a></code> ou
+<code><a href="https://rdrr.io/r/utils/toLatex.html" class="external-link">utils::toBibtex()</a></code>), <code>"text"</code> (texto estilo APA por fonte) ou
+<code>"bibtex"</code> (entrada para arquivo <code>.bib</code>).</p></li>
+</ul><p>Retorna <code>bibentry</code>, vetor de texto ou objeto <code>Bibtex</code>, conforme o estilo,
+com uma entrada por fonte. Autores, títulos e demais metadados de citação
+preservam o idioma e a grafia da publicação original.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -211,7 +221,7 @@ that backs the <code>source</code> column of <code><a href="get_enrollment.html"
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Tales Mançano. Code under GPL (&gt;= 3). Data under CC BY 4.0 unless original source restricts it (see <code>inst/dict/vocabularies/sources.yaml</code>).</p>
+  <p>Developed by Tales Mançano. Código / Code: GPL (&gt;= 3). Dados / Data: CC BY 4.0, salvo restrições da fonte original / unless restricted by the original source (inst/dict/vocabularies/sources.yaml).</p>
 </div>
 
 <div class="pkgdown-footer-right">

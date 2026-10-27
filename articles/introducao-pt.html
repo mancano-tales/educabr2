@@ -35,23 +35,16 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../articles/introduction.html">Get started</a></li>
-<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/introduction.html">Introduction to educabr2</a></li>
-    <li><a class="dropdown-item" href="../articles/introducao-pt.html">Introdução ao educabr2 (PT-BR)</a></li>
-    <li><a class="dropdown-item" href="../articles/visualization.html">The educabr2 visualization system</a></li>
-  </ul>
-</li>
+<li class="active nav-item"><a class="nav-link" href="../articles/introducao-pt.html">Português</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/introduction.html">English</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Referência / Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-news">
-<li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
-    <li><a class="dropdown-item" href="../news/index.html">All releases</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../news/index.html">Changelog</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-artigos-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artigos / Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-artigos-articles">
+<li><a class="dropdown-item" href="../articles/introducao-pt.html">Introdução (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="../articles/introduction.html">Introduction (EN)</a></li>
+    <li><a class="dropdown-item" href="../articles/visualizacao-pt.html">Visualização (PT-BR)</a></li>
+    <li><a class="dropdown-item" href="../articles/visualization.html">Visualization (EN)</a></li>
   </ul>
 </li>
       </ul>
@@ -59,7 +52,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Live dashboard"><span class="fa fa-chart-line"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://qx3hly-tales-man0ano.shinyapps.io/educabr2/" aria-label="Painel interativo / Interactive dashboard"><span class="fa fa-chart-line"></span></a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/mancano-tales/educabr2/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
@@ -85,17 +78,17 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mancano-tales/educabr2" class="external-link">educabr2</a></span><span class="op">)</span></span></code></pre></div>
 <blockquote>
-<p>Versão em português da vignette principal. Para a versão em inglês e
-canônica, veja
+<p>Versão em português da vignette principal. Para a versão em inglês
+veja
 <strong><code><a href="../articles/introduction.html">vignette("introduction", "educabr2")</a></code></strong>.</p>
 </blockquote>
+<p><a href="introduction.html">English version</a>.</p>
 <div class="section level2">
 <h2 id="sobre-o-pacote">Sobre o pacote<a class="anchor" aria-label="anchor" href="#sobre-o-pacote"></a>
 </h2>
 <p>O <strong>educabr2</strong> disponibiliza, sob um único esquema
-<em>tidy</em> canônico, o conjunto mais extenso de séries históricas
-harmonizadas sobre educação brasileira disponível em formato
-analítico:</p>
+<em>tidy</em> canônico, um conjunto de séries históricas harmonizadas
+sobre educação brasileira em formato analítico:</p>
 <ul>
 <li>
 <strong>Matrículas no ensino superior</strong> — 1907 a 2024,
@@ -272,12 +265,12 @@ todas devolvendo <em>tibbles</em> no mesmo esquema canônico:</p>
 <p>Todas retornam <em>tibbles</em> longas seguindo o mesmo esquema
 canônico (<code>inst/dict/schema.yaml</code>), com colunas para a
 unidade geográfica, a dimensão de desigualdade (raça, sexo, etc.), a
-fonte e o valor. Os filtros compartilhados (<code>year</code>,
-<code>geo_level</code>, <code>geo</code>, <code>source</code>,
-<code>wide</code>, <code>lang</code>) funcionam de forma idêntica nas
-cinco funções. Como o conjunto de colunas é o mesmo, resultados de temas
-diferentes podem ser empilhados diretamente com
-<code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code>/<code>bind_rows()</code>.</p>
+fonte e o valor. Os filtros <code>year</code>, <code>source</code>,
+<code>wide</code> e <code>lang</code> seguem convenções comuns. Os
+filtros geográficos existem onde se aplicam;
+<code><a href="../reference/get_expenditure.html">get_expenditure()</a></code> contém apenas dados nacionais. As colunas
+variam por tema; confira os esquemas antes de combinar resultados com
+<code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">dplyr::bind_rows()</a></code>.</p>
 <p>Note que o argumento <code>dimension</code> é deliberadamente
 assimétrico: <code><a href="../reference/get_schooling.html">get_schooling()</a></code> oferece raça <em>e</em> sexo;
 <code><a href="../reference/get_enrollment.html">get_enrollment()</a></code> apenas raça; <code><a href="../reference/get_attainment.html">get_attainment()</a></code>
@@ -582,16 +575,16 @@ e o último ano presentes são sempre rotulados.</li>
 <div class="section level2">
 <h2 id="painel-interativo">Painel interativo<a class="anchor" aria-label="anchor" href="#painel-interativo"></a>
 </h2>
-<p>O pacote acompanha um painel Shiny com uma aba
-<strong>Overview</strong> curada (quatro gráficos-história para público
-não técnico) e <strong>seis abas temáticas</strong> — uma por tema
-(Enrollment, Tertiary Education, Educational Attainment, Public
-Expenditure, Grade Progression, International Comparison):</p>
+<p>O pacote acompanha um painel Shiny com uma aba <strong>Visão
+geral</strong> curada (quatro gráficos-história para público não
+técnico) e <strong>seis abas temáticas</strong> — uma por tema
+(Matrículas, Ensino superior, Escolaridade, Despesa pública, Progressão
+escolar, Comparação internacional):</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="../reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>O painel reproduz toda a comparação multi-fonte do ensino superior e
 as séries de despesa, progressão e comparação internacional de forma
-interativa, com um botão “View R code” em cada aba que gera o código
+interativa, com um botão “Ver código R” em cada aba que gera o código
 <code>educabr2</code> + <code>ggplot2</code> para reproduzir a
 visualização no seu ambiente R local — já estilizado com o sistema de
 visualização do próprio pacote — uma ponte direta entre exploração no
@@ -600,11 +593,34 @@ painel e análise reprodutível em script.</p>
 <div class="section level2">
 <h2 id="fontes-e-citação">Fontes e citação<a class="anchor" aria-label="anchor" href="#fontes-e-cita%C3%A7%C3%A3o"></a>
 </h2>
-<p>A lista completa de fontes com DOIs e links está na vignette
-principal em inglês (<code><a href="../articles/introduction.html">vignette("introduction", "educabr2")</a></code>).
-A função <code><a href="../reference/educabr_cite.html">educabr_cite()</a></code> transforma qualquer chave de fonte
-(ou a coluna <code>source</code> de um resultado) em referência pronta
-para colar:</p>
+<p>As principais fontes, com os títulos originais, são:</p>
+<ul>
+<li>Kang, T. H., Paese, L. H. Z., &amp; Felix, N. F. A. (2021). Late and
+unequal. <em>Revista de Historia Económica</em> 39(2), 191-218. <a href="https://doi.org/10.1017/S0212610921000112" class="external-link">doi:10.1017/S0212610921000112</a>
+</li>
+<li>Kang, T. H., &amp; Menetrier, I. (2024). Políticas elitistas e
+despesas públicas em educação. <em>Estudos Econômicos</em> 54(3). <a href="https://doi.org/10.1590/1980-53575434tkim" class="external-link">doi:10.1590/1980-53575434tkim</a>
+</li>
+<li>Kang, T. H., Menetrier, I., &amp; Comim, F. (2024). The side effects
+of a big push growth strategy. <em>RHE</em> 42(3), 387-414. <a href="https://doi.org/10.1017/S0212610924000120" class="external-link">doi:10.1017/S0212610924000120</a>
+</li>
+<li>Walter, J. R., &amp; Kang, T. H. (2024). A new dataset of average
+years of schooling in Brazil. <em>Economic History of Developing
+Regions</em> 39(3), 307-336. <a href="https://doi.org/10.1080/20780389.2024.2417268" class="external-link">doi:10.1080/20780389.2024.2417268</a>
+</li>
+<li>Maduro Junior, P. R. R. M. (2007). <em>Taxas de matrícula e gastos
+em educação no Brasil</em> [MSc dissertation, FGV/EPGE,
+hdl:10438/110].</li>
+<li>IBGE (2007). <em>Estatísticas do Século XX</em>. <a href="https://seculoxx.ibge.gov.br/" class="external-link">seculoxx.ibge.gov.br</a>
+</li>
+<li>INEP/MEC. <em>Sinopse Estatística da Educação Superior</em>
+(1995-2008).</li>
+<li>INEP/MEC. <em>Microdados do Censo da Educação Superior</em>
+(2009-2024).</li>
+</ul>
+<p>A função <code><a href="../reference/educabr_cite.html">educabr_cite()</a></code> transforma qualquer chave de
+fonte (ou a coluna <code>source</code> de um resultado) em referência
+pronta para colar:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="st">"kang_paese_felix_2021"</span>, style <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Kang, T. H., Paese, L. H. Z., &amp; Felix, N. F. A. (2021). Late and unequal: Enrolments and retention in Brazilian education, 1933-2010. Revista de Historia Económica / Journal of Iberian and Latin American Economic History, 39(2), 191–218. https://doi.org/10.1017/S0212610921000112"</span></span></code></pre></div>
@@ -616,6 +632,19 @@ arquivo que produziu os números). Para citar o pacote em si:</p>
 Brazilian Education</em> (versão 0.1.3). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
 </blockquote>
 </div>
+<div class="section level2">
+<h2 id="versão-atual-e-integração">Versão atual e integração<a class="anchor" aria-label="anchor" href="#vers%C3%A3o-atual-e-integra%C3%A7%C3%A3o"></a>
+</h2>
+<p>A versão 0.1.3 inclui a Sinopse INEP de 2002, a chave canônica
+<code>walter_kang_2024</code> (preservando o alias de 2023) e a remoção
+da série redundante do Power BI do INEP. Cite o DOI da versão <a href="https://doi.org/10.5281/zenodo.23679357" class="external-link">10.5281/zenodo.23679357</a>
+com <code>citation("educabr2")</code>.</p>
+<p>A compatibilidade com o <code>educabR</code>, de Sidney Bissoli, está
+na <a href="https://github.com/mancano-tales/educabr2/issues/8" class="external-link">issue
+#8</a>, vinculada à <a href="https://github.com/SidneyBissoli/educabR/issues/29" class="external-link">proposta
+upstream #29</a>. Mapeamentos e validação estão planejados; ainda não há
+adaptador automático.</p>
+</div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
@@ -623,7 +652,7 @@ Brazilian Education</em> (versão 0.1.3). <a href="https://github.com/mancano-ta
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Tales Mançano. Code under GPL (&gt;= 3). Data under CC BY 4.0 unless original source restricts it (see <code>inst/dict/vocabularies/sources.yaml</code>).</p>
+  <p>Developed by Tales Mançano. Código / Code: GPL (&gt;= 3). Dados / Data: CC BY 4.0, salvo restrições da fonte original / unless restricted by the original source (inst/dict/vocabularies/sources.yaml).</p>
 </div>
 
 <div class="pkgdown-footer-right">
