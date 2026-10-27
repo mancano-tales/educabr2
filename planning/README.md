@@ -15,7 +15,8 @@ what is in flight, what is queued, and why a given decision was made.
 | [`ROADMAP.md`](ROADMAP.md) | Macro milestones (v0.2 → v1.0) with dated estimates |
 | [`cran-checklist.md`](cran-checklist.md) | Concrete tasks remaining before first CRAN submission |
 | [`datasets-wishlist.md`](datasets-wishlist.md) | Data sources to incorporate, ranked by priority |
-| [`integration-educabR.md`](integration-educabR.md) | Compatibility analysis with Sidney Bissoli's `educabR`; merge scenarios |
+| [`integration-educabR.md`](integration-educabR.md) | Estratégia atual: dados tratados primeiro, colaboração depois / Current strategy: curated data first, collaboration later; #8 |
+| [`2026-10-26-issue-educabR-rascunho.md`](2026-10-26-issue-educabR-rascunho.md) | Proposta externa retirada; texto histórico / Withdrawn external proposal; historical text |
 | [`integration-pnadc.md`](integration-pnadc.md) | Design notes for the planned `PNADcIBGE` adapter (schooling indicators) |
 | [`proposal-repositioning-2026-09.md`](proposal-repositioning-2026-09.md) | Repositioning in the BRverse: API names, harmonization decision log, educabR/PNADc extensions |
 | [`ideas.md`](ideas.md) | Parking lot for half-baked ideas that don't fit anywhere else yet |

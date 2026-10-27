@@ -215,9 +215,9 @@ hist <- educabr2::get_enrollment(
 # cursos <- educabR::get_censo_superior(2023, type = "cursos")
 ```
 
-**PT.** A [issue #8](https://github.com/mancano-tales/educabr2/issues/8) acompanha o mapeamento de campos, o piloto de agregação e a validação dos totais. Ela se vincula à [proposta #29 ao educabR](https://github.com/SidneyBissoli/educabR/issues/29), que discute as Sinopses 1995–2008 e acesso a séries históricas versionadas. Essas propostas dependem de avaliação e aceite; não representam integração já implementada. Se usar os dois pacotes, cite ambos.
+**PT.** A [issue #8](https://github.com/mancano-tales/educabr2/issues/8) concentra o planejamento: aprimorar e validar os dados já tratados, ampliar sua cobertura e entregá-los pelas funções existentes. As séries pequenas continuam distribuídas com o pacote; dados remotos versionados e cache serão avaliados se houver necessidade. A proposta externa anterior foi retirada; uma colaboração será considerada depois de uma entrega local demonstrável. Se usar ambos os pacotes, cite ambos.
 
-**EN.** [Issue #8](https://github.com/mancano-tales/educabr2/issues/8) tracks field mappings, an aggregation pilot and validation of totals. It links to [educabR proposal #29](https://github.com/SidneyBissoli/educabR/issues/29), which discusses the 1995–2008 synopses and access to versioned historical series. These proposals require assessment and acceptance; they do not represent an implemented integration. If you use both packages, cite both.
+**EN.** [Issue #8](https://github.com/mancano-tales/educabr2/issues/8) now holds the planning: improve and validate the curated data, expand coverage and deliver it through existing functions. Small series remain bundled; versioned remote data and caching will be assessed if needed. The earlier external proposal was withdrawn; collaboration will be considered after a demonstrable local deliverable. If you use both packages, cite both.
 
 | Pacote / Package | Uso complementar / Complementary use |
 |---|---|

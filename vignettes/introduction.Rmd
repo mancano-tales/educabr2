@@ -394,7 +394,9 @@ INEP Power BI series. Cite the version DOI
 [10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357)
 with `citation("educabr2")`.
 
-Compatibility with Sidney Bissoli's `educabR` is tracked in
-[issue #8](https://github.com/mancano-tales/educabr2/issues/8), linked to
-[upstream proposal #29](https://github.com/SidneyBissoli/educabR/issues/29).
-Mappings and validation are planned; an automatic adapter is not yet available.
+Planning for future compatibility with Sidney Bissoli's `educabR` is in
+[issue #8](https://github.com/mancano-tales/educabr2/issues/8). The earlier
+external proposal was withdrawn. The current priority is to improve and
+validate the already curated series through existing functions, keeping
+small datasets bundled for offline use. A collaboration will be considered
+after a demonstrable local deliverable; no automatic adapter is available.

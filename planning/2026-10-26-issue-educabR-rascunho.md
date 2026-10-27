@@ -1,5 +1,12 @@
 # Rascunho: issue para SidneyBissoli/educabR
 
+> **Retirada em 2026-10-27 / Withdrawn on 2026-10-27.** A issue externa #29
+> foi fechada e o texto substituído por uma nota de retirada. Discussão atual:
+> [educabr2#8](https://github.com/mancano-tales/educabr2/issues/8).
+> O texto abaixo é histórico, não uma proposta vigente. / The external issue
+> was closed and its body replaced with a withdrawal note. Current discussion
+> is in educabr2#8; the original below is historical, not an active proposal.
+
 > Publicado em 2026-10-26 como SidneyBissoli/educabR#29 (texto abaixo). Repositório:
 > <https://github.com/SidneyBissoli/educabR/issues/29>
 

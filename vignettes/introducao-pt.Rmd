@@ -396,7 +396,9 @@ redundante do Power BI do INEP. Cite o DOI da versão
 [10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357)
 com `citation("educabr2")`.
 
-A compatibilidade com o `educabR`, de Sidney Bissoli, está na
-[issue #8](https://github.com/mancano-tales/educabr2/issues/8), vinculada à
-[proposta upstream #29](https://github.com/SidneyBissoli/educabR/issues/29).
-Mapeamentos e validação estão planejados; ainda não há adaptador automático.
+O planejamento de compatibilidade futura com o `educabR`, de Sidney Bissoli,
+está na [issue #8](https://github.com/mancano-tales/educabr2/issues/8).
+A proposta externa anterior foi retirada. A prioridade atual é aprimorar e
+validar as séries já tratadas pelas funções existentes, mantendo conjuntos
+pequenos embutidos para uso offline. Uma colaboração será considerada após
+uma entrega local demonstrável; ainda não há adaptador automático.

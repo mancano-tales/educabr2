@@ -63,10 +63,13 @@ O pacote complementar \href{https://CRAN.R-project.org/package=educabR}{educabR}
 de Sidney Bissoli, baixa dados oficiais sob demanda e preserva os leiautes
 das agências; aqui o acesso é por tema e série histórica harmonizada.
 Se usar ambos, cite ambos. A compatibilidade dos esquemas é acompanhada na
-\href{https://github.com/mancano-tales/educabr2/issues/8}{issue 8}, vinculada à
-\href{https://github.com/SidneyBissoli/educabR/issues/29}{proposta ao educabR}.
-Schema compatibility is tracked in the same issues; an adapter is not
-yet implemented.
+\href{https://github.com/mancano-tales/educabr2/issues/8}{issue 8}: primeiro
+aprimorar e validar os dados tratados nas funções existentes; depois avaliar
+colaboração. A proposta externa anterior foi retirada. As séries pequenas
+continuam embutidas no pacote, com acesso offline.
+Planning now focuses on improving and validating curated data through
+existing functions before proposing collaboration. The earlier external
+proposal was withdrawn; small series remain bundled for offline access.
 }
 
 \seealso{

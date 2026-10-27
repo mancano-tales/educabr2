@@ -1,5 +1,85 @@
 # Integration analysis: Sidney Bissoli's `educabR`
 
+## Decisão vigente / Current decision — 2026-10-27
+
+**PT.** Por decisão do autor no chat, a proposta externa foi retirada:
+SidneyBissoli/educabR#29 está fechada e seu corpo foi substituído por uma
+nota curta de retirada. O planejamento fica na
+[issue #8 do educabr2](https://github.com/mancano-tales/educabr2/issues/8).
+O texto original permanece no rascunho versionado e no comentário histórico
+da issue #8. Fechar uma issue não remove seu histórico público.
+
+O objetivo imediato é melhorar a cobertura e a qualidade das séries que o
+autor já organizou e entregá-las pelas funções existentes. A construção de
+um importador geral das sinopses originais não é pré-requisito. O catálogo
+do INEP mistura XLS, PDF e ZIP; a extração reproduzida de 2002 cobre um
+recorte de duas tabelas e não demonstra cobertura automática de 1995–2008.
+O ETL principal já parte da compilação tratada do autor.
+
+Os seis arquivos de `data/` somam 176.468 bytes no checkout inspecionado.
+Manter esses dados pequenos e estáveis embutidos no pacote é a recomendação
+atual: consultas offline, versão fixada e nenhuma nova infraestrutura.
+Esses arquivos são uma entrega versionada, não um cache descartável.
+
+Se o volume ou a frequência de atualização justificarem, avaliar uma
+publicação separada dos dados tratados (CSV comprimido e/ou RDS), com
+manifesto, esquema, versão, checksum, proveniência, citação e arquivamento.
+Só nesse caso um cache local do usuário passa a ser necessário. A consulta
+comum não deve baixar novamente os documentos oficiais; a atualização de
+dados deve ser explícita e preservar versões fixadas.
+
+A ampliação deve passar pelos registros internos e funções `get_*()`
+pertinentes, sem criar uma função apenas para nomear cada fonte. Proveniência,
+transformações manuais, unidades, sobreposições e totais derivados continuam
+explícitos. Uma futura integração ao educabR deve preservar a granularidade:
+agregados históricos não podem ser misturados silenciosamente a microdados.
+
+Primeiro preparar uma entrega local testada e documentada em PT/EN; depois
+avaliar uma proposta concreta ao Sidney. Conversar com o INEP sobre formatos
+e acesso melhores é uma possibilidade futura, sem bloquear a entrega e sem
+contato iniciado nesta rodada. Não há compromisso aprovado de nova função,
+mudança de licença, fusão ou manutenção upstream.
+
+**EN.** At the author's request in this chat, the external proposal was
+withdrawn: SidneyBissoli/educabR#29 is closed and its body is now a short
+withdrawal note. Planning moves to
+[educabr2 issue #8](https://github.com/mancano-tales/educabr2/issues/8).
+The original text is preserved in the versioned draft and an issue comment.
+Closing an issue does not remove its public history.
+
+Improve the coverage and quality of the author's existing curated series
+and deliver them through existing functions. A general importer of original
+synopses is not a prerequisite. INEP's catalogue mixes XLS, PDF and ZIP;
+the reproduced 2002 extraction covers parts of two tables, not all of
+1995–2008. The main ETL already starts from the curated compilation.
+
+The six `data/` files total 176,468 bytes in the inspected checkout. Keeping
+small, stable data bundled is the current recommendation: offline access,
+pinned versions and no additional infrastructure. These are versioned
+package data, not a disposable cache.
+
+If size or update frequency warrants it, assess a separate distribution of
+curated data (compressed CSV and/or RDS), with manifest, schema, version,
+checksum, provenance, citation and archiving. Only then is a persistent user
+cache needed. Routine queries should not download the original documents;
+updates should be explicit and preserve pinned versions.
+
+Extend the relevant internal registries and `get_*()` functions without
+adding a new function for each source. Preserve provenance, manual
+transformations, units, overlaps and derived totals. Future integration
+with educabR must preserve granularity: do not silently mix historical
+aggregates with microdata.
+
+First deliver tested, documented work in PT/EN, then consider a concrete
+proposal to Sidney. A future INEP discussion about formats and access may
+be useful, but does not block delivery and no contact was initiated here.
+No new function, license change, merger or upstream maintenance obligation
+is approved by this decision.
+
+> As análises abaixo são históricas e ficam superadas onde conflitarem com
+> esta decisão. / The analyses below are historical and superseded where
+> they conflict with this decision.
+
 > **Reassessment, 2026-10-26** (supersedes the scenarios below where they
 > conflict; the original 2026-05 analysis is kept underneath).
 
