@@ -566,5 +566,5 @@ archival work that produced the numbers).
 To cite the package itself:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (version 0.1.2).
+> Brazilian Education* (version 0.1.3).
 > <https://github.com/mancano-tales/educabr2>
