@@ -416,7 +416,7 @@ citation("educabr2")
 
 Mançano, T. (2026). *educabr2: Harmonized
 Historical Series on Brazilian Education* (R package version
-0.1.2). Zenodo. <https://doi.org/10.5281/zenodo.23675603>
+0.1.3). Zenodo. <https://doi.org/10.5281/zenodo.23679357>
 
 **BibTeX:**
 
@@ -425,8 +425,8 @@ Historical Series on Brazilian Education* (R package version
   title  = {educabr2: Harmonized Historical Series on Brazilian Education},
   author = {Tales Mançano},
   year   = {2026},
-  note   = {R package version 0.1.2},
-  doi    = {10.5281/zenodo.23675603},
+  note   = {R package version 0.1.3},
+  doi    = {10.5281/zenodo.23679357},
   url    = {https://github.com/mancano-tales/educabr2},
 }
 ```
@@ -435,8 +435,8 @@ Cite also the **originating sources** for any data you actually use.
 The `educabr_cite()` helper builds APA / BibTeX entries for every
 bundled source (see [Citation](#citation) above).
 
-Cada versão tem um DOI próprio no Zenodo (0.1.2:
-[10.5281/zenodo.23675603](https://doi.org/10.5281/zenodo.23675603)); o DOI
+Cada versão tem um DOI próprio no Zenodo (0.1.3:
+[10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357)); o DOI
 [10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602) aponta
 sempre para a versão mais recente. / Each release has its own Zenodo DOI;
 10.5281/zenodo.23675602 always resolves to the latest one.
