@@ -1,6 +1,6 @@
 ## Resubmission
 
-This is a resubmission of `educabr2` (now version 0.1.2). In response to
+This is a resubmission of `educabr2` (now version 0.1.3). In response to
 the review of 0.1.1 (Konstanze Lauseker, 2026-09-24):
 
 * **Acronyms in the Description.** Every acronym is now spelled out:
