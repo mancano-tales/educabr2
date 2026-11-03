@@ -79,9 +79,9 @@ which take their defaults except as noted under `modality`):
 - modality:
 
   `character`. `"total"`, except the tertiary (`superior`) rows for
-  2000-2008, which are `"presencial"`: Kang's series for those years
+  2000-2010, which are `"presencial"`: Kang's series for those years
   counts in-person enrollment only and matches INEP Sinopse's presencial
-  figures.
+  figures (EAD is excluded).
 
 - source:
 

@@ -93,7 +93,7 @@ str(get_enrollment(level = "fundamental", year = 1950))
 #>  $ is_derived      : logi [1:2] FALSE FALSE
 #>  - attr(*, "educabr_meta")=List of 4
 #>   ..$ build_script   : chr "data-raw/01_build_enrollment_kang_fgv.R"
-#>   ..$ built_at       : POSIXct[1:1], format: "2026-09-24 13:26:38"
+#>   ..$ built_at       : POSIXct[1:1], format: "2026-11-03 01:11:12"
 #>   ..$ primary_sources: chr [1:4] "kang_menetrier_comim_2024" "kang_paese_felix_2021" "kang_paese_felix_2021" "kang_menetrier_2024"
 #>   ..$ raw_files      : chr [1:4] "data-raw/sources/kang_fgv_ibre_2023/1._matricula_primario_1871_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/2._matriculas_txmatriculas_porcor_1960_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/4._matricula_txmatriculas_1933_2010_v_abril2023.xlsx" "data-raw/sources/kang_fgv_ibre_2023/6._matricula_txmatriculas_estado_1955_2010_v_abril2023.xlsx"
 str(get_schooling(year = 1950))

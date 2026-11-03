@@ -186,7 +186,7 @@ get_enrollment(level = "fundamental", geo_level = "BR")
 
 # Tertiary enrollment, all sources, compare them
 get_enrollment(level = "superior", network = "total", modality = "total")
-#> # A tibble: 259 × 16
+#> # A tibble: 255 × 16
 #>     year geo_level geo_code geo_name level    network institution_type modality
 #>    <int> <chr>     <chr>    <chr>    <chr>    <chr>   <chr>            <chr>   
 #>  1  1940 BR        BR       Brasil   superior total   total            total   
@@ -199,7 +199,7 @@ get_enrollment(level = "superior", network = "total", modality = "total")
 #>  8  1947 BR        BR       Brasil   superior total   total            total   
 #>  9  1948 BR        BR       Brasil   superior total   total            total   
 #> 10  1949 BR        BR       Brasil   superior total   total            total   
-#> # ℹ 249 more rows
+#> # ℹ 245 more rows
 #> # ℹ 8 more variables: dim_race <chr>, age_group <chr>, indicator <chr>,
 #> #   value <dbl>, unit <chr>, source <chr>, source_note <chr>, is_derived <lgl>
 
