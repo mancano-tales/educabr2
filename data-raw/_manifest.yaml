@@ -62,7 +62,11 @@ datasets:
       counted as public municipal (as in INEP's Power BI panel). Durham
       (2005) was dropped in 0.1.2: secondary source whose printed table
       does not add up. The INEP Power BI panel was dropped in 0.1.2:
-      every one of its cells equals the microdata aggregation.
+      every one of its cells equals the microdata aggregation. Since
+      0.1.3.9000 the microdata layer is also broken down by academic
+      organisation (university, university_center, faculty, cefet_ifet),
+      built by data-raw/sources/tertiary_multisource/extract_microdados_org.R
+      and checked to add up to the existing totals.
     processed_file: data/enrollment_tertiary.rda
     build_script: data-raw/03_build_enrollment_tertiary.R
     storage: embedded

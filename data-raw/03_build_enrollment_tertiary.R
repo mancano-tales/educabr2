@@ -479,6 +479,44 @@ cat(sprintf("Added %d Sinopse 2002 row(s) and %d derived total(s).\n",
             nrow(natural02), nrow(derived02)))
 
 # ---------------------------------------------------------------------
+# 5g. Academic organisation in the microdata layer (2009-2024)
+# ---------------------------------------------------------------------
+#
+# The microdata rows above carry institution_type = "total". The
+# breakdown by academic organisation is aggregated from the same INEP
+# course files by
+# data-raw/sources/tertiary_multisource/extract_microdados_org.R
+# (networks total/publica/federal/estadual/municipal/privada). The build
+# stops unless the organisations add up to the existing totals.
+
+org <- utils::read.csv("data-raw/sources/tertiary_multisource/microdados_censup_org.csv",
+                       stringsAsFactors = FALSE)
+mic <- enrollment_tertiary[enrollment_tertiary$source == "inep_microdados_censup" &
+                             enrollment_tertiary$institution_type == "total",
+                           c("year", "network", "modality", "value")]
+org_sum <- stats::aggregate(value ~ year + network + modality, data = org, FUN = sum)
+chk <- merge(org_sum, mic, by = c("year", "network", "modality"), all.x = TRUE)
+stopifnot("organisation rows do not add up to the microdata totals" =
+            !anyNA(chk$value.y) && all(chk$value.x == chk$value.y))
+
+org_rows <- tibble::tibble(
+  year = as.integer(org$year), geo_level = "BR", geo_code = "BR",
+  geo_name = "Brasil", level = "superior", network = org$network,
+  institution_type = org$institution_type, modality = org$modality,
+  dim_race = "total", age_group = NA_character_,
+  indicator = "enrollment_count", value = as.numeric(org$value), unit = "count",
+  source = "inep_microdados_censup",
+  source_note = sprintf(paste(
+    "INEP Microdados do CENSUP %d (%s; agregação TP_ORGANIZACAO_ACADEMICA ×",
+    "TP_CATEGORIA_ADMINISTRATIVA × TP_MODALIDADE_ENSINO × QT_MAT; IF e CEFET",
+    "em cefet_ifet; 'Especial' como pública municipal)."), org$year, org$file),
+  is_derived = FALSE
+)
+enrollment_tertiary <- dplyr::bind_rows(enrollment_tertiary, org_rows) |>
+  dplyr::arrange(year, network, institution_type, modality, source)
+cat(sprintf("Added %d microdata row(s) by academic organisation.\n", nrow(org_rows)))
+
+# ---------------------------------------------------------------------
 # 6. Validate
 # ---------------------------------------------------------------------
 

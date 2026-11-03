@@ -233,3 +233,17 @@ test_that("Sinopse values checked against INEP originals are kept", {
   expect_equal(pick("maduro_junior_2007", 1997), 1947504)
   expect_equal(pick("maduro_junior_2007", 2003), 3821823)
 })
+
+test_that("microdata 2009-2024 break down by academic organisation", {
+  mic <- enrollment_tertiary[enrollment_tertiary$source == "inep_microdados_censup", ]
+  org <- mic[mic$institution_type != "total", ]
+  expect_true(all(2009:2024 %in% org$year))
+  expect_setequal(unique(org$institution_type),
+                  c("university", "university_center", "faculty", "cefet_ifet"))
+  # Organisations add up to the published totals.
+  s <- stats::aggregate(value ~ year + network + modality, data = org, FUN = sum)
+  t <- mic[mic$institution_type == "total", c("year", "network", "modality", "value")]
+  j <- merge(s, t, by = c("year", "network", "modality"))
+  expect_equal(nrow(j), nrow(s))
+  expect_equal(j$value.x, j$value.y)
+})

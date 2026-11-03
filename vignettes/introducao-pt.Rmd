@@ -204,6 +204,16 @@ explicita que se trata de uma combinação: o **componente presencial**
 vem da primeira fonte e o **componente EAD** vem da segunda. O
 `source_note` registra a composição exata para fins de citação.
 
+A série de ensino superior de Kang, Paese & Felix (em
+`enrollment_kang_fgv`) conta só matrículas presenciais de 2000 a 2010,
+por isso essas linhas têm `modality = "presencial"`. Compare-as com
+outras séries presenciais, não com totais que incluem EAD.
+
+A partir de 2009, as linhas dos microdados também se dividem por
+organização acadêmica (`university`, `university_center`, `faculty`,
+`cefet_ifet`). Elas somam as linhas com `institution_type = "total"`;
+filtre um nível ou o outro antes de somar.
+
 > Convenção de citação sugerida: "Total reconstruído computado a
 > partir de \{fonte\_presencial\} (presencial) e INEP Sinopse CENSUP
 > (EAD), conforme metodologia documentada em `educabr2` (Mançano 2026)."

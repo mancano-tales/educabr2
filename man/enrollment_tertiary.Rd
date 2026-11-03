@@ -5,7 +5,7 @@
 \alias{enrollment_tertiary}
 \title{Tertiary (ensino superior) enrollment — multi-source compilation}
 \format{
-A tibble with 1 143 rows and 16 columns
+A tibble with 2 039 rows and 16 columns
 matching the canonical schema (\code{inst/dict/schema.yaml}). The
 tertiary-specific columns are:
 \describe{
@@ -22,7 +22,10 @@ art. 242 CF; microdata 2012-2024) is an "of which" breakdown of
 \code{faculty_school_institute}, \code{integrated_faculty},
 \code{integrated_faculty_university_center}, \code{technology_center},
 \code{technology_center_fat}, \code{cefet_ifet}, \code{isolated_establishment},
-\code{total}.}
+\code{total}. From 2009 the microdata use \code{university},
+\code{university_center}, \code{faculty} and \code{cefet_ifet} (IF and CEFET),
+for networks \code{total}, \code{publica}, \code{federal}, \code{estadual},
+\code{municipal} and \code{privada}.}
 \item{modality}{\code{presencial}, \code{ead}, or \code{total} (available from
 2000 onwards).}
 \item{is_derived}{\code{TRUE} when the row is a \strong{reconstructed total}
@@ -70,10 +73,11 @@ in \code{source_note}.
 
 \section{Português}{
 
-Matrículas no ensino superior: 1.143 linhas, Brasil, 1907–2024.
+Matrículas no ensino superior: 2.039 linhas, Brasil, 1907–2024.
 Prefira \code{\link[=get_enrollment]{get_enrollment()}} com \code{level = "superior"}. \code{network} registra
 rede e subcategorias privadas antes/depois de 2009; \code{institution_type}
-registra organização acadêmica; \code{modality} distingue presencial, EAD e total.
+registra organização acadêmica (nos microdados de 2009–2024: universidade,
+centro universitário, faculdade e IF/CEFET); \code{modality} distingue presencial, EAD e total.
 A categoria \code{especial} (2012–2024) é um subconjunto da municipal, não uma
 parcela a ser somada novamente. Fontes: IBGE Século XX, Maduro Junior (2007),
 INEP Sinopses (1995–2008, incluindo 2002) e Microdados (2009–2024).
