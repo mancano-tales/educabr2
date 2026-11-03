@@ -35,9 +35,9 @@
 #'   \item{unit}{`character`. Unit of measurement: `"count"` or
 #'     `"percent"`.}
 #'   \item{modality}{`character`. `"total"`, except the tertiary
-#'     (`superior`) rows for 2000-2008, which are `"presencial"`: Kang's
+#'     (`superior`) rows for 2000-2010, which are `"presencial"`: Kang's
 #'     series for those years counts in-person enrollment only and matches
-#'     INEP Sinopse's presencial figures.}
+#'     INEP Sinopse's presencial figures (EAD is excluded).}
 #'   \item{source}{`character`. Compact source key, one per FGV/IBRE file:
 #'     `"kang_menetrier_comim_2024"` (primary 1871-1932),
 #'     `"kang_paese_felix_2021"` (all stages 1933-2010 and by race),

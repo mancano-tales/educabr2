@@ -202,3 +202,34 @@ test_that("2000-2008 have INEP Sinopse rows and reconstructed totals", {
                                enrollment_tertiary$year == 2002, ]
   expect_equal(unique(der$value), 3479913 + 40714)
 })
+
+test_that("Kang, Paese & Felix tertiary is presencial from 2000 to 2010", {
+  # Their 2000-2010 figures are INEP Sinopse presencial totals (no EAD);
+  # 2009 and 2010 equal the published Sinopse presencial headcounts.
+  kpf <- enrollment_kang_fgv[enrollment_kang_fgv$source == "kang_paese_felix_2021" &
+                               enrollment_kang_fgv$level == "superior", ]
+  expect_true(all(kpf$modality[kpf$year %in% 2000:2010] == "presencial"))
+  expect_true(all(kpf$modality[kpf$year < 2000] == "total"))
+  br <- kpf[kpf$geo_level == "BR" & kpf$dim_race == "total" &
+              kpf$indicator == "enrollment_count", ]
+  expect_equal(br$value[br$year == 2009], 5115896)
+  expect_equal(br$value[br$year == 2010], 5449120)
+})
+
+test_that("Sinopse values checked against INEP originals are kept", {
+  # 1997 (PDF) and 2003 (XLS tables 5.1-5.4) were re-read from INEP's
+  # files; Maduro Junior diverges in those two years and is kept apart.
+  pick <- function(src, yr) {
+    d <- enrollment_tertiary[enrollment_tertiary$source == src &
+                               enrollment_tertiary$year == yr &
+                               enrollment_tertiary$network == "total" &
+                               enrollment_tertiary$institution_type == "total" &
+                               enrollment_tertiary$modality != "ead" &
+                               !enrollment_tertiary$is_derived, ]
+    d$value
+  }
+  expect_equal(pick("inep_sinopse_censup", 1997), 1945615)
+  expect_equal(pick("inep_sinopse_censup", 2003), 3887022)
+  expect_equal(pick("maduro_junior_2007", 1997), 1947504)
+  expect_equal(pick("maduro_junior_2007", 2003), 3821823)
+})

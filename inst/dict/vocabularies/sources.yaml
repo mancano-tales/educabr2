@@ -77,6 +77,11 @@ sources:
     notes: >
       Enrollment counts and rates by stage (EF1, EF2, EF, EM, ES) at BR
       and UF level, 1933-2010, including breakdown by color/race 1960-2010.
+      Tertiary (ES) figures for 2000-2010 count in-person enrollment only
+      (they match INEP Sinopse presencial totals and exclude EAD), so
+      those rows carry modality = "presencial"; compare them with other
+      presencial series, not with totals that include EAD. In 2003 the
+      series follows Maduro Junior (3,821,823), not the Sinopse.
 
   kang_menetrier_2024:
     short_name: Kang & Menetrier (2024)
@@ -113,7 +118,15 @@ sources:
     type: academic_thesis
     url: https://hdl.handle.net/10438/110
     coverage: { years: [1933, 2005], geo: [BR] }
-    notes: Tertiary enrollment series reconstructed in the MSc dissertation.
+    notes: >
+      Tertiary enrollment series reconstructed in the MSc dissertation.
+      It matches the INEP Sinopses in 1995-2004 except in 1997
+      (1,947,504 vs 1,945,615 in the Sinopse, +0.10%) and 2003
+      (3,821,823 vs 3,887,022 presencial, -1.68%). Both Sinopse figures
+      were checked against INEP's original files (1997 PDF, table on
+      enrollment at 30/4; 2003 XLS, tables 5.1-5.4); the origin of
+      Maduro Junior's figures for those years is undocumented. Both
+      series are kept as separate rows.
 
   ibge_seculo_xx:
     short_name: IBGE Estatísticas do Século XX
@@ -163,7 +176,10 @@ sources:
       públicas municipais, como no painel Power BI do INEP. Até a
       v0.1.1 o pacote trazia também esse painel (2010–2024); como todas
       as suas células coincidem com esta agregação, ele foi retirado na
-      v0.1.2.
+      v0.1.2. A agregação dos microdados fica 0,5–0,6% acima das Sinopses
+      publicadas (presencial 2009: 5.146.911 contra 5.115.896; 2010:
+      5.476.813 contra 5.449.120), diferença esperada entre o arquivo de
+      microdados e a tabela fechada da Sinopse.
 
   walter_kang_2024:
     short_name: Walter & Kang (2024)

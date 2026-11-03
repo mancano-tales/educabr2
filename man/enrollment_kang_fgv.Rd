@@ -33,9 +33,9 @@ indicators, which are headcounts not tied to a population bracket.}
 \item{unit}{\code{character}. Unit of measurement: \code{"count"} or
 \code{"percent"}.}
 \item{modality}{\code{character}. \code{"total"}, except the tertiary
-(\code{superior}) rows for 2000-2008, which are \code{"presencial"}: Kang's
+(\code{superior}) rows for 2000-2010, which are \code{"presencial"}: Kang's
 series for those years counts in-person enrollment only and matches
-INEP Sinopse's presencial figures.}
+INEP Sinopse's presencial figures (EAD is excluded).}
 \item{source}{\code{character}. Compact source key, one per FGV/IBRE file:
 \code{"kang_menetrier_comim_2024"} (primary 1871-1932),
 \code{"kang_paese_felix_2021"} (all stages 1933-2010 and by race),
