@@ -52,8 +52,10 @@ marcadas com `is_derived`.
 - **1962–1979:** IBGE Século XX e Maduro Junior coincidem em todos os anos.
 - **1995–1999:** Sinopse e Maduro coincidem, exceto em 1997 (diferença de 0,10%).
 - **2000–2004 (presencial): Sinopse e Maduro coincidem, exceto em 2003.** A Sinopse traz 3.887.022 e
-  Maduro 3.821.823 (+1,71%). Kang, Paese & Felix seguem Maduro. É preciso reabrir a tabela 5.1 da
-  Sinopse de 2003 para decidir se é um erro de transcrição ou uma revisão do INEP.
+  Maduro 3.821.823 (+1,71%). Kang, Paese & Felix seguem Maduro. **Resolvido (2026-11-02):** as
+  tabelas 5.1 a 5.4 da Sinopse de 2003 (INEP, `SES2003.zip`) trazem 3.887.022, como o pacote. O
+  3.821.823 é exatamente a média de 2002 e 2004, uma interpolação linear de Maduro, copiada por Kang,
+  Paese & Felix. O outro ano interpolado nas séries Kang é 1990 nos anos iniciais.
 - **Kang, Paese & Felix no superior medem só o presencial a partir de 2000.** Eles coincidem com as
   Sinopses presenciais de 2000 a 2008 e ficam 14% abaixo do total com EAD em 2008. O mesmo
   `get_enrollment(level = "superior")` devolve as duas séries. A nota de fonte deveria dizer isso,
@@ -135,8 +137,10 @@ are flagged with `is_derived`.
 ### Overlaps and discrepancies
 
 - IBGE and Maduro match in 1962–1979. Sinopse and Maduro match in 1995–1999, except 1997 (0.10%).
-- **2003 in-person:** Sinopse 3,887,022 vs Maduro 3,821,823 (+1.71%). Kang, Paese & Felix follow
-  Maduro. Re-check Sinopse 2003 table 5.1.
+- **2003 in-person:** Sinopse 3,887,022 vs Maduro 3,821,823 (+1.71%). **Resolved:** Sinopse 2003
+  tables 5.1–5.4 confirm 3,887,022. Maduro's value is the exact mean of 2002 and 2004 (a linear
+  interpolation), copied by Kang, Paese & Felix. The only other interpolated year in the Kang series
+  is 1990 in early primary.
 - **Kang, Paese & Felix tertiary is in-person only from 2000.** It matches the in-person Sinopse for
   2000–2008 and sits 14% below the total including distance learning in 2008. The source note should
   say so.
