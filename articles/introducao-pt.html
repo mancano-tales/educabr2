@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -398,6 +398,17 @@ trata de uma combinação: o <strong>componente presencial</strong> vem da
 primeira fonte e o <strong>componente EAD</strong> vem da segunda. O
 <code>source_note</code> registra a composição exata para fins de
 citação.</p>
+<p>A série de ensino superior de Kang, Paese &amp; Felix (em
+<code>enrollment_kang_fgv</code>) conta só matrículas presenciais de
+2000 a 2010, por isso essas linhas têm
+<code>modality = "presencial"</code>. Compare-as com outras séries
+presenciais, não com totais que incluem EAD.</p>
+<p>A partir de 2009, as linhas dos microdados também se dividem por
+organização acadêmica (<code>university</code>,
+<code>university_center</code>, <code>faculty</code>,
+<code>cefet_ifet</code>). Elas somam as linhas com
+<code>institution_type = "total"</code>; filtre um nível ou o outro
+antes de somar.</p>
 <blockquote>
 <p>Convenção de citação sugerida: “Total reconstruído computado a partir
 de {fonte_presencial} (presencial) e INEP Sinopse CENSUP (EAD), conforme
@@ -629,7 +640,7 @@ pronta para colar:</p>
 arquivo que produziu os números). Para citar o pacote em si:</p>
 <blockquote>
 <p>Mançano, T. (2026). <em>educabr2: Harmonized Historical Series on
-Brazilian Education</em> (versão 0.1.3). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
+Brazilian Education</em> (versão 0.1.3.9000). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
 </blockquote>
 </div>
 <div class="section level2">

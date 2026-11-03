@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -392,6 +392,16 @@ explicit that this is a combination: the <strong>in-person
 component</strong> comes from the first source and the <strong>EAD
 component</strong> comes from the second. The <code>source_note</code>
 records the exact composition for citation purposes.</p>
+<p>Kang, Paese &amp; Felix’s own tertiary series (in
+<code>enrollment_kang_fgv</code>) counts in-person enrollment only from
+2000 to 2010, so those rows have <code>modality = "presencial"</code>.
+Compare them with other in-person series, not with totals that include
+EAD.</p>
+<p>From 2009 the microdata rows are also broken down by academic
+organisation (<code>university</code>, <code>university_center</code>,
+<code>faculty</code>, <code>cefet_ifet</code>). They add up to the
+<code>institution_type = "total"</code> rows, so filter on one level or
+the other before summing.</p>
 <blockquote>
 <p>Suggested citation convention: “Reconstructed total computed from
 {in-person source} (in-person) and INEP CENSUP Synopsis (EAD), following
@@ -628,7 +638,7 @@ produced the numbers).</p>
 <p>To cite the package itself:</p>
 <blockquote>
 <p>Mançano, T. (2026). <em>educabr2: Harmonized Historical Series on
-Brazilian Education</em> (version 0.1.3). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
+Brazilian Education</em> (version 0.1.3.9000). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
 </blockquote>
 </div>
 <div class="section level2">

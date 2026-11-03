@@ -17,7 +17,7 @@ to lock in a specific series."><meta property="og:image" content="https://mancan
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.3.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ to lock in a specific series.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble with 1 143 rows and 16 columns
+    <p>A tibble with 2 039 rows and 16 columns
 matching the canonical schema (<code>inst/dict/schema.yaml</code>). The
 tertiary-specific columns are:</p><dl><dt>level</dt>
 <dd><p>Always <code>"superior"</code>.</p></dd>
@@ -87,7 +87,10 @@ art. 242 CF; microdata 2012-2024) is an "of which" breakdown of
 <code>faculty_school_institute</code>, <code>integrated_faculty</code>,
 <code>integrated_faculty_university_center</code>, <code>technology_center</code>,
 <code>technology_center_fat</code>, <code>cefet_ifet</code>, <code>isolated_establishment</code>,
-<code>total</code>.</p></dd>
+<code>total</code>. From 2009 the microdata use <code>university</code>,
+<code>university_center</code>, <code>faculty</code> and <code>cefet_ifet</code> (IF and CEFET),
+for networks <code>total</code>, <code>publica</code>, <code>federal</code>, <code>estadual</code>,
+<code>municipal</code> and <code>privada</code>.</p></dd>
 
 <dt>modality</dt>
 <dd><p><code>presencial</code>, <code>ead</code>, or <code>total</code> (available from
@@ -131,10 +134,11 @@ in <code>source_note</code>.</p>
     <h2 id="portugu-s">Português<a class="anchor" aria-label="anchor" href="#portugu-s"></a></h2>
 
 
-<p>Matrículas no ensino superior: 1.143 linhas, Brasil, 1907–2024.
+<p>Matrículas no ensino superior: 2.039 linhas, Brasil, 1907–2024.
 Prefira <code><a href="get_enrollment.html">get_enrollment()</a></code> com <code>level = "superior"</code>. <code>network</code> registra
 rede e subcategorias privadas antes/depois de 2009; <code>institution_type</code>
-registra organização acadêmica; <code>modality</code> distingue presencial, EAD e total.
+registra organização acadêmica (nos microdados de 2009–2024: universidade,
+centro universitário, faculdade e IF/CEFET); <code>modality</code> distingue presencial, EAD e total.
 A categoria <code>especial</code> (2012–2024) é um subconjunto da municipal, não uma
 parcela a ser somada novamente. Fontes: IBGE Século XX, Maduro Junior (2007),
 INEP Sinopses (1995–2008, incluindo 2002) e Microdados (2009–2024).

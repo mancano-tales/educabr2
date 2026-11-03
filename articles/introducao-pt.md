@@ -336,6 +336,16 @@ uma combinação: o **componente presencial** vem da primeira fonte e o
 **componente EAD** vem da segunda. O `source_note` registra a composição
 exata para fins de citação.
 
+A série de ensino superior de Kang, Paese & Felix (em
+`enrollment_kang_fgv`) conta só matrículas presenciais de 2000 a 2010,
+por isso essas linhas têm `modality = "presencial"`. Compare-as com
+outras séries presenciais, não com totais que incluem EAD.
+
+A partir de 2009, as linhas dos microdados também se dividem por
+organização acadêmica (`university`, `university_center`, `faculty`,
+`cefet_ifet`). Elas somam as linhas com `institution_type = "total"`;
+filtre um nível ou o outro antes de somar.
+
 > Convenção de citação sugerida: “Total reconstruído computado a partir
 > de {fonte_presencial} (presencial) e INEP Sinopse CENSUP (EAD),
 > conforme metodologia documentada em `educabr2` (Mançano 2026).”
@@ -570,7 +580,7 @@ originais (pelo trabalho de arquivo que produziu os números). Para citar
 o pacote em si:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (versão 0.1.3).
+> Brazilian Education* (versão 0.1.3.9000).
 > <https://github.com/mancano-tales/educabr2>
 
 ## Versão atual e integração

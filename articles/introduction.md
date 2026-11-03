@@ -328,6 +328,16 @@ is a combination: the **in-person component** comes from the first
 source and the **EAD component** comes from the second. The
 `source_note` records the exact composition for citation purposes.
 
+Kang, Paese & Felix’s own tertiary series (in `enrollment_kang_fgv`)
+counts in-person enrollment only from 2000 to 2010, so those rows have
+`modality = "presencial"`. Compare them with other in-person series, not
+with totals that include EAD.
+
+From 2009 the microdata rows are also broken down by academic
+organisation (`university`, `university_center`, `faculty`,
+`cefet_ifet`). They add up to the `institution_type = "total"` rows, so
+filter on one level or the other before summing.
+
 > Suggested citation convention: “Reconstructed total computed from
 > {in-person source} (in-person) and INEP CENSUP Synopsis (EAD),
 > following the methodology documented in `educabr2` (Mançano 2026).”
@@ -569,7 +579,7 @@ archival work that produced the numbers).
 To cite the package itself:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (version 0.1.3).
+> Brazilian Education* (version 0.1.3.9000).
 > <https://github.com/mancano-tales/educabr2>
 
 ## Current release and integration

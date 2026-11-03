@@ -16,7 +16,7 @@ enrollment_tertiary
 
 ## Format
 
-A tibble with 1 143 rows and 16 columns matching the canonical schema
+A tibble with 2 039 rows and 16 columns matching the canonical schema
 (`inst/dict/schema.yaml`). The tertiary-specific columns are:
 
 - level:
@@ -40,7 +40,10 @@ A tibble with 1 143 rows and 16 columns matching the canonical schema
   `faculty`, `faculty_school_institute`, `integrated_faculty`,
   `integrated_faculty_university_center`, `technology_center`,
   `technology_center_fat`, `cefet_ifet`, `isolated_establishment`,
-  `total`.
+  `total`. From 2009 the microdata use `university`,
+  `university_center`, `faculty` and `cefet_ifet` (IF and CEFET), for
+  networks `total`, `publica`, `federal`, `estadual`, `municipal` and
+  `privada`.
 
 - modality:
 
@@ -85,19 +88,21 @@ For derived rows the `source` column is the concatenation
 
 ## Português
 
-Matrículas no ensino superior: 1.143 linhas, Brasil, 1907–2024. Prefira
+Matrículas no ensino superior: 2.039 linhas, Brasil, 1907–2024. Prefira
 [`get_enrollment()`](https://mancano-tales.github.io/educabr2/reference/get_enrollment.md)
 com `level = "superior"`. `network` registra rede e subcategorias
 privadas antes/depois de 2009; `institution_type` registra organização
-acadêmica; `modality` distingue presencial, EAD e total. A categoria
-`especial` (2012–2024) é um subconjunto da municipal, não uma parcela a
-ser somada novamente. Fontes: IBGE Século XX, Maduro Junior (2007), INEP
-Sinopses (1995–2008, incluindo 2002) e Microdados (2009–2024). Kang
-entra como componente presencial de totais derivados. `is_derived` marca
-totais reconstruídos (presencial + EAD, 2000–2008), excluídos por
-padrão; `source` combina as chaves das fontes e `source_note` detalha a
-composição. O painel Power BI do INEP foi retirado por duplicar os
-microdados. ETL: `data-raw/03_build_enrollment_tertiary.R`.
+acadêmica (nos microdados de 2009–2024: universidade, centro
+universitário, faculdade e IF/CEFET); `modality` distingue presencial,
+EAD e total. A categoria `especial` (2012–2024) é um subconjunto da
+municipal, não uma parcela a ser somada novamente. Fontes: IBGE Século
+XX, Maduro Junior (2007), INEP Sinopses (1995–2008, incluindo 2002) e
+Microdados (2009–2024). Kang entra como componente presencial de totais
+derivados. `is_derived` marca totais reconstruídos (presencial + EAD,
+2000–2008), excluídos por padrão; `source` combina as chaves das fontes
+e `source_note` detalha a composição. O painel Power BI do INEP foi
+retirado por duplicar os microdados. ETL:
+`data-raw/03_build_enrollment_tertiary.R`.
 
 Colunas: `year` é o ano; `geo_level`, `geo_code` e `geo_name`
 identificam nível, código e nome geográficos; `indicator`, `value` e
