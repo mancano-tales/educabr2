@@ -14,6 +14,7 @@ what is in flight, what is queued, and why a given decision was made.
 |---|---|
 | [`ROADMAP.md`](ROADMAP.md) | Macro milestones (v0.2 → v1.0) with dated estimates |
 | [`cran-checklist.md`](cran-checklist.md) | Concrete tasks remaining before first CRAN submission |
+| [`inventario-cobertura.md`](inventario-cobertura.md) | Inventário de cobertura, lacunas e prioridades / Coverage, gap and priority inventory; tabelas em [`inventario-cobertura-tabelas.md`](inventario-cobertura-tabelas.md), geradas por `tools/coverage-inventory.R`; #8 |
 | [`datasets-wishlist.md`](datasets-wishlist.md) | Data sources to incorporate, ranked by priority |
 | [`integration-educabR.md`](integration-educabR.md) | Estratégia atual: dados tratados primeiro, colaboração depois / Current strategy: curated data first, collaboration later; #8 |
 | [`2026-10-26-issue-educabR-rascunho.md`](2026-10-26-issue-educabR-rascunho.md) | Proposta externa retirada; texto histórico / Withdrawn external proposal; historical text |
