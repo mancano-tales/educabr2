@@ -398,11 +398,14 @@ To cite the package itself:
 
 ## Current release and integration
 
-Version 0.1.3 includes the 2002 INEP synopsis, the canonical source key
-`walter_kang_2024` (with the 2023 alias retained), and removal of the redundant
-INEP Power BI series. Cite the version DOI
-[10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357)
-with `citation("educabr2")`.
+Version 0.2.0 adds academic organisation to the 2009-2024 microdata, marks the
+Kang, Paese & Felix tertiary series as in-person through 2010, and brings
+bilingual documentation and dashboard. It keeps the 2002 INEP synopsis, the
+canonical source key `walter_kang_2024` (with the 2023 alias retained), and the
+removal of the redundant INEP Power BI series. Cite the package with
+`citation("educabr2")`; DOI
+[10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602) always
+resolves to the latest version.
 
 Planning for future compatibility with Sidney Bissoli's `educabR` is in
 [issue #8](https://github.com/mancano-tales/educabr2/issues/8). The earlier

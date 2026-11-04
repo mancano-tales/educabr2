@@ -141,9 +141,9 @@ educabr2::run_dashboard(lang = "en")
 
 ## Dados e cobertura / Datasets and coverage
 
-**PT.** Contagens verificadas nos objetos distribuídos com a versão 0.1.3. BR = Brasil; UF = unidade da federação. As funções `get_*()` aplicam filtros, normalizam o esquema e traduzem rótulos.
+**PT.** Contagens verificadas nos objetos distribuídos com a versão 0.2.0. BR = Brasil; UF = unidade da federação. As funções `get_*()` aplicam filtros, normalizam o esquema e traduzem rótulos.
 
-**EN.** Counts verified against the objects bundled with version 0.1.3. BR = Brazil; UF = state. The `get_*()` functions filter, normalize the schema and translate labels.
+**EN.** Counts verified against the objects bundled with version 0.2.0. BR = Brazil; UF = state. The `get_*()` functions filter, normalize the schema and translate labels.
 
 | Conjunto / Dataset | Linhas / Rows | Cobertura / Coverage | Fontes / Sources |
 |---|---:|---|---|
@@ -158,9 +158,9 @@ educabr2::run_dashboard(lang = "en")
 
 **EN.** To build a single series, the recommended precedence in overlapping periods is: INEP CENSUP microdata (2009–2024) → INEP synopses (1995–2008) → Kang, Paese & Felix (1990–1994) → Maduro Junior → IBGE *Statistics of the 20th Century*. This is an explicit analytical decision: the API preserves competing estimates rather than selecting a source automatically. In 1995, INEP, Maduro Junior and Kang et al. report the same 1,759,703 tertiary enrollments.
 
-**PT.** Em 2000–2008, os totais presenciais e de EAD eram publicados separadamente. Totais reconstruídos têm `is_derived = TRUE`, registram as fontes componentes e só entram em `get_enrollment()` com `include_derived = TRUE`. A versão 0.1.3 inclui a Sinopse 2002, usa `walter_kang_2024` (mantendo o alias antigo de 2023) e elimina a duplicação do painel Power BI do INEP, cujos valores coincidem com os microdados.
+**PT.** Em 2000–2008, os totais presenciais e de EAD eram publicados separadamente. Totais reconstruídos têm `is_derived = TRUE`, registram as fontes componentes e só entram em `get_enrollment()` com `include_derived = TRUE`. A versão 0.2.0 traz organização acadêmica nos microdados de 2009–2024 e marca como presencial a série de Kang, Paese & Felix até 2010. Desde a 0.1.3, o pacote inclui a Sinopse 2002, usa `walter_kang_2024` (mantendo o alias antigo de 2023) e elimina a duplicação do painel Power BI do INEP, cujos valores coincidem com os microdados.
 
-**EN.** In 2000–2008, in-person and distance-education totals were published separately. Reconstructed totals have `is_derived = TRUE`, record their component sources and enter `get_enrollment()` only with `include_derived = TRUE`. Version 0.1.3 includes the 2002 synopsis, uses `walter_kang_2024` (retaining the old 2023 alias) and removes duplication from INEP's Power BI panel, whose values match the microdata.
+**EN.** In 2000–2008, in-person and distance-education totals were published separately. Reconstructed totals have `is_derived = TRUE`, record their component sources and enter `get_enrollment()` only with `include_derived = TRUE`. Version 0.2.0 adds academic organisation to the 2009–2024 microdata and marks the Kang, Paese & Felix series as in-person through 2010. Since 0.1.3, the package includes the 2002 synopsis, uses `walter_kang_2024` (retaining the old 2023 alias) and removes duplication from INEP's Power BI panel, whose values match the microdata.
 
 ## Visualização / Visualization
 

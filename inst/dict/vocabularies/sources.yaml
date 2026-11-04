@@ -81,7 +81,7 @@ sources:
       (they match INEP Sinopse presencial totals and exclude EAD), so
       those rows carry modality = "presencial"; compare them with other
       presencial series, not with totals that include EAD. In 2003 the
-      series follows Maduro Junior (3,821,823), not the Sinopse.
+      series copies Maduro Junior's interpolated 3,821,823, not the Sinopse.
 
   kang_menetrier_2024:
     short_name: Kang & Menetrier (2024)
@@ -124,9 +124,10 @@ sources:
       (1,947,504 vs 1,945,615 in the Sinopse, +0.10%) and 2003
       (3,821,823 vs 3,887,022 presencial, -1.68%). Both Sinopse figures
       were checked against INEP's original files (1997 PDF, table on
-      enrollment at 30/4; 2003 XLS, tables 5.1-5.4); the origin of
-      Maduro Junior's figures for those years is undocumented. Both
-      series are kept as separate rows.
+      enrollment at 30/4; 2003 XLS, tables 5.1-5.4). The 2003 value is
+      the exact mean of 2002 and 2004, a linear interpolation; the origin
+      of the 1997 value is undocumented. Both series are kept as separate
+      rows.
 
   ibge_seculo_xx:
     short_name: IBGE Estatísticas do Século XX
