@@ -580,16 +580,19 @@ originais (pelo trabalho de arquivo que produziu os números). Para citar
 o pacote em si:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (versão 0.1.3.9000).
+> Brazilian Education* (versão 0.2.0).
 > <https://github.com/mancano-tales/educabr2>
 
 ## Versão atual e integração
 
-A versão 0.1.3 inclui a Sinopse INEP de 2002, a chave canônica
-`walter_kang_2024` (preservando o alias de 2023) e a remoção da série
-redundante do Power BI do INEP. Cite o DOI da versão
-[10.5281/zenodo.23679357](https://doi.org/10.5281/zenodo.23679357) com
-`citation("educabr2")`.
+A versão 0.2.0 traz organização acadêmica nos microdados de 2009-2024,
+marca como presencial a série de ensino superior de Kang, Paese & Felix
+até 2010 e inclui documentação e painel bilíngues. Ela mantém a Sinopse
+INEP de 2002, a chave canônica `walter_kang_2024` (preservando o alias
+de 2023) e a remoção da série redundante do Power BI do INEP. Cite o
+pacote com `citation("educabr2")`; o DOI
+[10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
+aponta sempre para a versão mais recente.
 
 O planejamento de compatibilidade futura com o `educabR`, de Sidney
 Bissoli, está na [issue
