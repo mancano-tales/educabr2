@@ -100,6 +100,30 @@ datasets:
     post_build:
       - Commit data/enrollment_tertiary.rda together with this manifest entry.
 
+  - name: enrollment_medio_network
+    theme: enrollment
+    description: >
+      National (BR) regular upper-secondary enrollment by administrative
+      dependency. INEP Sinopses da Educação Básica 1996-2006 (2003 and
+      2004 missing: image-only PDFs) and Censo Escolar microdata
+      2007-2024. Series break in 2007 (Educacenso).
+    processed_file: data/enrollment_medio_network.rda
+    build_script: data-raw/07_build_enrollment_medio_network.R
+    storage: embedded
+    release_pointer: null
+    geo_level: [BR]
+    year_range: [1996, 2024]
+    sources: [inep_sinopse_censo_escolar, inep_microdados_censo_escolar]
+    indicators: [enrollment_count]
+    levels: [medio]
+    networks: [federal, estadual, municipal, publica, privada, total]
+    dimensions: []
+    raw_files:
+      - path: data-raw/sources/censo_escolar_inep/medio_rede_inep.csv
+        sha256: ""
+    post_build:
+      - Commit data/enrollment_medio_network.rda together with this manifest entry.
+
   - name: schooling_kang_fgv
     theme: schooling
     description: >
