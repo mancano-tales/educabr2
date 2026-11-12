@@ -182,6 +182,33 @@ sources:
       5.476.813 contra 5.449.120), diferença esperada entre o arquivo de
       microdados e a tabela fechada da Sinopse.
 
+  inep_sinopse_censo_escolar:
+    short_name: INEP Sinopse Censo Escolar
+    full_name: >
+      INEP/MEC. Sinopse Estatística da Educação Básica (anos 1996-2006).
+    type: administrative
+    url: https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/sinopses-estatisticas/educacao-basica
+    coverage: { years: [1996, 2006], geo: [BR] }
+    notes: >
+      Linha Brasil da tabela de matrícula no ensino médio regular por
+      dependência administrativa; a tabela exata está no `source_note`.
+      2003 e 2004 ficam de fora: o INEP só publica esses anos em PDF com
+      as tabelas em imagem.
+
+  inep_microdados_censo_escolar:
+    short_name: INEP Microdados Censo Escolar
+    full_name: >
+      INEP/MEC. Microdados do Censo Escolar da Educação Básica (anos 2007-2024).
+    type: administrative_microdata
+    url: https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar
+    coverage: { years: [2007, 2024], geo: [BR] }
+    notes: >
+      Agregado do arquivo de escolas: `QT_MAT_MED` por `TP_DEPENDENCIA`
+      (1 federal, 2 estadual, 3 municipal, 4 privada), lido com
+      `educabR::get_censo_escolar()`. A partir de 2007 o Censo Escolar
+      registra cada aluno (Educacenso), o que quebra o nível da série em
+      relação às Sinopses de 2006 (8,91 contra 8,37 milhões em 2007).
+
   walter_kang_2024:
     short_name: Walter & Kang (2024)
     full_name: >
