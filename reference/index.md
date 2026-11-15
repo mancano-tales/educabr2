@@ -62,6 +62,8 @@ translate labels.
   : Enrollment series — Kang / FGV-IBRE 2023 compilation
 - [`enrollment_tertiary`](https://mancano-tales.github.io/educabr2/reference/enrollment_tertiary.md)
   : Tertiary (ensino superior) enrollment — multi-source compilation
+- [`enrollment_medio_network`](https://mancano-tales.github.io/educabr2/reference/enrollment_medio_network.md)
+  : Upper-secondary enrollment by network — INEP Censo Escolar
 - [`schooling_kang_fgv`](https://mancano-tales.github.io/educabr2/reference/schooling_kang_fgv.md)
   : Mean years of schooling — Walter & Kang 2024 compilation
 - [`expenditure_kang_fgv`](https://mancano-tales.github.io/educabr2/reference/expenditure_kang_fgv.md)

@@ -162,6 +162,14 @@ educabr_cite()
 #> 2009-2024).”
 #> <https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-da-educacao-superior>.
 #> 
+#> (1996). “INEP/MEC. Sinopse Estatística da Educação Básica (anos
+#> 1996-2006).”
+#> <https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/sinopses-estatisticas/educacao-basica>.
+#> 
+#> (2007). “INEP/MEC. Microdados do Censo Escolar da Educação Básica (anos
+#> 2007-2024).”
+#> <https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar>.
+#> 
 #> (2024). “Walter, J. R., & Kang, T. H. (2024). A new dataset of average
 #> years of schooling in Brazil, 1925–2015. Economic History of Developing
 #> Regions, 39(3), 307–336. [Originally circulated as FGV-IBRE working
