@@ -147,7 +147,7 @@ get_enrollment <- function(level            = NULL,
 #' @noRd
 .enrollment_datasets <- function() {
   # Registry of datasets that contribute rows to `get_enrollment()`.
-  c("enrollment_kang_fgv", "enrollment_tertiary")
+  c("enrollment_kang_fgv", "enrollment_tertiary", "enrollment_medio_network")
 }
 
 # Canonical column order produced by .load_enrollment_panel().

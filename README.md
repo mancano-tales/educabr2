@@ -149,6 +149,7 @@ educabr2::run_dashboard(lang = "en")
 |---|---:|---|---|
 | `enrollment_kang_fgv` | 6,238 | BR: 1871–2010; UF: 1955–2010; raça/cor desde 1960 / race/colour from 1960 | Kang, Paese & Felix (2021); Kang & Menetrier (2024); Kang, Menetrier & Comim (2024) |
 | `enrollment_tertiary` | 2,039 | BR, ensino superior / tertiary, 1907–2024; rede, organização, modalidade / network, institution type, modality | IBGE Século XX; Maduro Junior (2007); INEP Sinopse / Synopsis; INEP Microdados / Microdata; Kang em totais derivados / in derived totals |
+| `enrollment_medio_network` | 162 | BR, ensino médio regular / regular upper secondary, 1996–2024 (sem / no 2003–2004); rede / network | INEP Sinopse Educação Básica / Basic Education Synopsis (1996–2006); INEP Microdados Censo Escolar / School Census Microdata (2007–2024) |
 | `schooling_kang_fgv` | 2,287 | BR + região / region + UF, 1925–2015; raça/cor e sexo / race/colour and sex | Walter & Kang (2024) |
 | `expenditure_kang_fgv` | 1,170 | BR, 1933–2010; % PIB, por estudante, razões duplas / % GDP, per student, double ratios | Kang & Menetrier (2024) |
 | `progression_kang_fgv` | 1,090 | BR + 20 UFs, GDR6, 1955–2010 | Kang, Paese & Felix (2021) |
