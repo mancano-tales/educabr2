@@ -472,26 +472,30 @@ educabr_cite(unique(d$source), style = "text")
 **Referência sugerida / Suggested citation:**
 
 Mançano, T. (2026). *educabr2: Harmonized Historical Series on Brazilian
-Education* (R package version 0.2.0). Zenodo.
-<https://doi.org/10.5281/zenodo.23958624>
+Education* (R package version 0.3.0). Zenodo.
+<https://doi.org/10.5281/zenodo.24504441>
 
 ``` bibtex
 @Manual{educabr2,
   title  = {educabr2: Harmonized Historical Series on Brazilian Education},
   author = {Tales Mançano},
   year   = {2026},
-  note   = {R package version 0.2.0},
-  doi    = {10.5281/zenodo.23958624},
+  note   = {R package version 0.3.0},
+  doi    = {10.5281/zenodo.24504441},
   url    = {https://github.com/mancano-tales/educabr2},
 }
 ```
 
-**PT.** Cada versão tem um DOI próprio (0.2.0:
+**PT.** Cada versão tem um DOI próprio (0.3.0:
+[10.5281/zenodo.24504441](https://doi.org/10.5281/zenodo.24504441);
+0.2.0:
 [10.5281/zenodo.23958624](https://doi.org/10.5281/zenodo.23958624)); o
 DOI [10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
 aponta para a versão mais recente.
 
-**EN.** Each release has its own DOI (0.2.0:
+**EN.** Each release has its own DOI (0.3.0:
+[10.5281/zenodo.24504441](https://doi.org/10.5281/zenodo.24504441);
+0.2.0:
 [10.5281/zenodo.23958624](https://doi.org/10.5281/zenodo.23958624)); DOI
 [10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
 resolves to the latest release.
