@@ -54,6 +54,13 @@ REGION_CHOICES <- c(
 
 # ---- enrollment choices ----------------------------------------------
 
+# The Enrollment tab draws the Kang series only (total network). Other
+# datasets also return rows for these levels (multi-source tertiary, upper
+# secondary by network); mixing them would join different counts into one
+# line. They have their own tab or stay in the API.
+ENR_KANG_SOURCES <- c("kang_paese_felix_2021", "kang_menetrier_comim_2024",
+                      "kang_menetrier_2024")
+
 ENR_LEVEL_CHOICES <- c(
   "Fundamental (total)"             = "fundamental",
   "Fundamental — primary grades"    = "fundamental_anos_iniciais",
@@ -995,6 +1002,8 @@ server <- function(input, output, session) {
   enr_data <- reactive({
     educabr2::get_enrollment(
       level     = input$enr_level,
+      network   = "total",
+      source    = ENR_KANG_SOURCES,
       year      = input$enr_year,
       geo_level = input$enr_geo_level,
       geo       = if (input$enr_geo_level == "UF") input$enr_geo else NULL,
@@ -1704,6 +1713,8 @@ server <- function(input, output, session) {
 
     get_call <- build_r_call("get_enrollment", list(
       level     = if (length(input$enr_level)) input$enr_level else NULL,
+      network   = "total",
+      source    = ENR_KANG_SOURCES,
       year      = input$enr_year,
       geo_level = input$enr_geo_level,
       geo       = geo_arg,

@@ -126,6 +126,24 @@ The gap between the three main categories (`white`, `black`,
 literature on Brazilian education — relative convergence at
 compulsory levels alongside persistent inequality at higher levels.
 
+Enrollment by administrative network is also available for regular
+upper secondary education (`enrollment_medio_network`, Brazil,
+1996-2024): INEP Basic Education Synopses up to 2006 (2003 and 2004 are
+missing, published only as image PDFs) and School Census microdata from
+2007. The 2007 change to the Educacenso breaks the level of the series,
+while the shares by network barely move.
+
+```{r}
+medio_rede <- get_enrollment(
+  level     = "medio",
+  network   = c("publica", "privada"),
+  indicator = "count",
+  year      = c(2000, 2024)
+)
+
+head(medio_rede[, c("year", "network", "value", "source")])
+```
+
 ## Case 2 — multi-source comparison for tertiary enrollment
 
 Brazilian tertiary enrollment has been reconstructed by **multiple
@@ -398,9 +416,11 @@ To cite the package itself:
 
 ## Current release and integration
 
-Version 0.2.0 adds academic organisation to the 2009-2024 microdata, marks the
-Kang, Paese & Felix tertiary series as in-person through 2010, and brings
-bilingual documentation and dashboard. It keeps the 2002 INEP synopsis, the
+Version 0.3.0 adds regular upper secondary enrollment by administrative
+network (1996-2024, INEP). Version 0.2.0 added academic organisation to the
+2009-2024 microdata, marked the Kang, Paese & Felix tertiary series as
+in-person through 2010, and brought bilingual documentation and dashboard.
+The package keeps the 2002 INEP synopsis, the
 canonical source key `walter_kang_2024` (with the 2023 alias retained), and the
 removal of the redundant INEP Power BI series. Cite the package with
 `citation("educabr2")`; DOI

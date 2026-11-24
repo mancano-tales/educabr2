@@ -4,6 +4,10 @@ High-level milestones. Each milestone bundles a coherent set of
 changes worth a version bump; granular tasks live in the topic files
 (see `planning/README.md`).
 
+> **Status (2026-11-23).** Releases go to GitHub and Zenodo only (0.2.0, 0.3.0).
+> The author decided not to submit to CRAN in 2026; the CRAN items below are on
+> hold. Current priorities are in issue #8.
+
 ## Current: 0.1.0 — first public release (2026-05-18)
 
 Initial set of harmonised long-run series (Kang/FGV enrollment,

@@ -117,8 +117,8 @@ Supporting dictionaries:
 `get_enrollment()` calls `.load_enrollment_panel()`, which iterates `.enrollment_datasets()` (a registry of dataset names), fetches each from the package namespace, fills any missing optional columns with `.ENR_DEFAULTS`, and row-binds them into a single canonical frame. New enrollment datasets must be registered in `.enrollment_datasets()`. The same pattern is repeated for the other themes (`.load_schooling_panel()` / `.schooling_datasets()`, `.load_expenditure_panel()` / `.expenditure_datasets()`, `.load_progression_panel()` / `.progression_datasets()`) — each theme has its own registry of contributing dataset names.
 
 #### Themes
-Six datasets are bundled, across five themes:
-- **enrollment** — `enrollment_kang_fgv` (BR+UF, 1871-2010, Kang/FGV), `enrollment_tertiary` (BR, 1907-2024, multi-source)
+Seven datasets are bundled, across five themes:
+- **enrollment** — `enrollment_kang_fgv` (BR+UF, 1871-2010, Kang/FGV), `enrollment_tertiary` (BR, 1907-2024, multi-source), `enrollment_medio_network` (BR, upper secondary by network, 1996-2024 without 2003-2004, INEP)
 - **schooling** — `schooling_kang_fgv` (BR+region+UF, 1925-2015, Walter & Kang)
 - **expenditure** — `expenditure_kang_fgv` (BR, 1933-2010, Kang & Menetrier)
 - **progression** — `progression_kang_fgv` (BR+20 UFs, 1955-2010, Kang/Paese/Felix)

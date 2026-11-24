@@ -23,11 +23,11 @@ metrics is on the roadmap for a future release.
 \section{Available features / Funcionalidades disponíveis}{
 
 Five data-access functions (\code{\link[=get_enrollment]{get_enrollment()}}, \code{\link[=get_schooling]{get_schooling()}},
-\code{\link[=get_expenditure]{get_expenditure()}}, \code{\link[=get_progression]{get_progression()}}, \code{\link[=get_attainment]{get_attainment()}}) query six
+\code{\link[=get_expenditure]{get_expenditure()}}, \code{\link[=get_progression]{get_progression()}}, \code{\link[=get_attainment]{get_attainment()}}) query seven
 bundled datasets offline. \code{\link[=list_sources]{list_sources()}} and \code{\link[=educabr_cite]{educabr_cite()}} support
 discovery and citation. \code{\link[=run_dashboard]{run_dashboard()}} launches the interactive app.
 
-Cinco funções de acesso consultam seis conjuntos de dados offline:
+Cinco funções de acesso consultam sete conjuntos de dados offline:
 matrículas, escolaridade, despesa pública, progressão escolar e conclusão
 educacional internacional. \code{\link[=list_sources]{list_sources()}} e \code{\link[=educabr_cite]{educabr_cite()}} permitem
 descobrir e citar as fontes; \code{\link[=run_dashboard]{run_dashboard()}} abre o painel interativo.

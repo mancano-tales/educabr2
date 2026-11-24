@@ -12,9 +12,9 @@
 [![Ciclo de vida / Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23675602.svg)](https://doi.org/10.5281/zenodo.23675602)
 
-**PT.** `educabr2` reúne séries de longo prazo sobre educação formal brasileira, compiladas de fontes oficiais e acadêmicas e harmonizadas em um esquema *tidy* comum. Os seis conjuntos de dados acompanham o pacote e podem ser consultados offline. Fontes alternativas permanecem em linhas distintas para permitir comparação e auditoria. A cobertura varia por tema e fonte; consulte `list_sources()` e as vinhetas.
+**PT.** `educabr2` reúne séries de longo prazo sobre educação formal brasileira, compiladas de fontes oficiais e acadêmicas e harmonizadas em um esquema *tidy* comum. Os sete conjuntos de dados acompanham o pacote e podem ser consultados offline. Fontes alternativas permanecem em linhas distintas para permitir comparação e auditoria. A cobertura varia por tema e fonte; consulte `list_sources()` e as vinhetas.
 
-**EN.** `educabr2` brings together long-run series on Brazilian formal education, compiled from official and academic sources and harmonized into a common tidy schema. All six datasets ship with the package and can be queried offline. Alternative sources remain in separate rows for comparison and auditing. Coverage varies by theme and source; see `list_sources()` and the vignettes.
+**EN.** `educabr2` brings together long-run series on Brazilian formal education, compiled from official and academic sources and harmonized into a common tidy schema. All seven datasets ship with the package and can be queried offline. Alternative sources remain in separate rows for comparison and auditing. Coverage varies by theme and source; see `list_sources()` and the vignettes.
 
 ## Links rápidos / Quick links
 
@@ -141,9 +141,9 @@ educabr2::run_dashboard(lang = "en")
 
 ## Dados e cobertura / Datasets and coverage
 
-**PT.** Contagens verificadas nos objetos distribuídos com a versão 0.2.0. BR = Brasil; UF = unidade da federação. As funções `get_*()` aplicam filtros, normalizam o esquema e traduzem rótulos.
+**PT.** Contagens verificadas nos objetos distribuídos com a versão 0.3.0. BR = Brasil; UF = unidade da federação. As funções `get_*()` aplicam filtros, normalizam o esquema e traduzem rótulos.
 
-**EN.** Counts verified against the objects bundled with version 0.2.0. BR = Brazil; UF = state. The `get_*()` functions filter, normalize the schema and translate labels.
+**EN.** Counts verified against the objects bundled with version 0.3.0. BR = Brazil; UF = state. The `get_*()` functions filter, normalize the schema and translate labels.
 
 | Conjunto / Dataset | Linhas / Rows | Cobertura / Coverage | Fontes / Sources |
 |---|---:|---|---|

@@ -15,11 +15,11 @@
 #'
 #' @section Available features / Funcionalidades disponíveis:
 #' Five data-access functions ([get_enrollment()], [get_schooling()],
-#' [get_expenditure()], [get_progression()], [get_attainment()]) query six
+#' [get_expenditure()], [get_progression()], [get_attainment()]) query seven
 #' bundled datasets offline. [list_sources()] and [educabr_cite()] support
 #' discovery and citation. [run_dashboard()] launches the interactive app.
 #'
-#' Cinco funções de acesso consultam seis conjuntos de dados offline:
+#' Cinco funções de acesso consultam sete conjuntos de dados offline:
 #' matrículas, escolaridade, despesa pública, progressão escolar e conclusão
 #' educacional internacional. [list_sources()] e [educabr_cite()] permitem
 #' descobrir e citar as fontes; [run_dashboard()] abre o painel interativo.
