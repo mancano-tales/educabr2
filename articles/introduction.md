@@ -234,6 +234,34 @@ traces one of the central narratives in the sociological literature on
 Brazilian education — relative convergence at compulsory levels
 alongside persistent inequality at higher levels.
 
+Enrollment by administrative network is also available for regular upper
+secondary education (`enrollment_medio_network`, Brazil, 1996-2024):
+INEP Basic Education Synopses up to 2006 (2003 and 2004 are missing,
+published only as image PDFs) and School Census microdata from 2007. The
+2007 change to the Educacenso breaks the level of the series, while the
+shares by network barely move.
+
+``` r
+
+medio_rede <- get_enrollment(
+  level     = "medio",
+  network   = c("publica", "privada"),
+  indicator = "count",
+  year      = c(2000, 2024)
+)
+
+head(medio_rede[, c("year", "network", "value", "source")])
+#> # A tibble: 6 × 4
+#>    year network   value source                    
+#>   <int> <chr>     <dbl> <chr>                     
+#> 1  2000 privada 1153419 inep_sinopse_censo_escolar
+#> 2  2000 publica 7039529 inep_sinopse_censo_escolar
+#> 3  2001 privada 1114480 inep_sinopse_censo_escolar
+#> 4  2001 publica 7283528 inep_sinopse_censo_escolar
+#> 5  2002 privada 1122900 inep_sinopse_censo_escolar
+#> 6  2002 publica 7587684 inep_sinopse_censo_escolar
+```
+
 ## Case 2 — multi-source comparison for tertiary enrollment
 
 Brazilian tertiary enrollment has been reconstructed by **multiple
@@ -510,7 +538,7 @@ ggplot(df, aes(year, value, colour = dim_sex)) +
        title = "The gender gap in schooling reversed over the 20th century")
 ```
 
-![](introduction_files/figure-html/unnamed-chunk-10-1.png)
+![](introduction_files/figure-html/unnamed-chunk-11-1.png)
 
 ## Interactive dashboard
 
@@ -579,17 +607,19 @@ archival work that produced the numbers).
 To cite the package itself:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (version 0.2.0).
+> Brazilian Education* (version 0.3.0).
 > <https://github.com/mancano-tales/educabr2>
 
 ## Current release and integration
 
-Version 0.2.0 adds academic organisation to the 2009-2024 microdata,
-marks the Kang, Paese & Felix tertiary series as in-person through 2010,
-and brings bilingual documentation and dashboard. It keeps the 2002 INEP
-synopsis, the canonical source key `walter_kang_2024` (with the 2023
-alias retained), and the removal of the redundant INEP Power BI series.
-Cite the package with `citation("educabr2")`; DOI
+Version 0.3.0 adds regular upper secondary enrollment by administrative
+network (1996-2024, INEP). Version 0.2.0 added academic organisation to
+the 2009-2024 microdata, marked the Kang, Paese & Felix tertiary series
+as in-person through 2010, and brought bilingual documentation and
+dashboard. The package keeps the 2002 INEP synopsis, the canonical
+source key `walter_kang_2024` (with the 2023 alias retained), and the
+removal of the redundant INEP Power BI series. Cite the package with
+`citation("educabr2")`; DOI
 [10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
 always resolves to the latest version.
 

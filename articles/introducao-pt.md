@@ -241,6 +241,34 @@ sobre educação no Brasil — convergência relativa nas matrículas
 obrigatórias acompanhada de persistente desigualdade em níveis mais
 altos.
 
+A matrícula por dependência administrativa também está disponível para o
+ensino médio regular (`enrollment_medio_network`, Brasil, 1996-2024):
+Sinopses Estatísticas da Educação Básica até 2006 (faltam 2003 e 2004,
+publicadas só em PDF com tabelas em imagem) e microdados do Censo
+Escolar a partir de 2007. A mudança para o Educacenso em 2007 quebra o
+nível da série; a participação de cada rede quase não muda.
+
+``` r
+
+medio_rede <- get_enrollment(
+  level     = "medio",
+  network   = c("publica", "privada"),
+  indicator = "count",
+  year      = c(2000, 2024)
+)
+
+head(medio_rede[, c("year", "network", "value", "source")])
+#> # A tibble: 6 × 4
+#>    year network   value source                    
+#>   <int> <chr>     <dbl> <chr>                     
+#> 1  2000 privada 1153419 inep_sinopse_censo_escolar
+#> 2  2000 publica 7039529 inep_sinopse_censo_escolar
+#> 3  2001 privada 1114480 inep_sinopse_censo_escolar
+#> 4  2001 publica 7283528 inep_sinopse_censo_escolar
+#> 5  2002 privada 1122900 inep_sinopse_censo_escolar
+#> 6  2002 publica 7587684 inep_sinopse_censo_escolar
+```
+
 ## Caso 2 — comparação multi-fonte no ensino superior
 
 O ensino superior brasileiro foi reconstituído por **diversos autores**
@@ -518,7 +546,7 @@ ggplot(df, aes(year, value, colour = dim_sex)) +
        title = "A inversão do gender gap educacional no século XX")
 ```
 
-![](introducao-pt_files/figure-html/unnamed-chunk-10-1.png)
+![](introducao-pt_files/figure-html/unnamed-chunk-11-1.png)
 
 ## Painel interativo
 
@@ -580,17 +608,19 @@ originais (pelo trabalho de arquivo que produziu os números). Para citar
 o pacote em si:
 
 > Mançano, T. (2026). *educabr2: Harmonized Historical Series on
-> Brazilian Education* (versão 0.2.0).
+> Brazilian Education* (versão 0.3.0).
 > <https://github.com/mancano-tales/educabr2>
 
 ## Versão atual e integração
 
-A versão 0.2.0 traz organização acadêmica nos microdados de 2009-2024,
-marca como presencial a série de ensino superior de Kang, Paese & Felix
-até 2010 e inclui documentação e painel bilíngues. Ela mantém a Sinopse
-INEP de 2002, a chave canônica `walter_kang_2024` (preservando o alias
-de 2023) e a remoção da série redundante do Power BI do INEP. Cite o
-pacote com `citation("educabr2")`; o DOI
+A versão 0.3.0 acrescenta a matrícula no ensino médio regular por
+dependência administrativa (1996-2024, INEP). A versão 0.2.0 trouxe
+organização acadêmica nos microdados de 2009-2024, marcou como
+presencial a série de ensino superior de Kang, Paese & Felix até 2010 e
+incluiu documentação e painel bilíngues. O pacote mantém a Sinopse INEP
+de 2002, a chave canônica `walter_kang_2024` (preservando o alias de
+2023) e a remoção da série redundante do Power BI do INEP. Cite o pacote
+com `citation("educabr2")`; o DOI
 [10.5281/zenodo.23675602](https://doi.org/10.5281/zenodo.23675602)
 aponta sempre para a versão mais recente.
 

@@ -23,7 +23,7 @@ Five data-access functions
 [`get_expenditure()`](https://mancano-tales.github.io/educabr2/reference/get_expenditure.md),
 [`get_progression()`](https://mancano-tales.github.io/educabr2/reference/get_progression.md),
 [`get_attainment()`](https://mancano-tales.github.io/educabr2/reference/get_attainment.md))
-query six bundled datasets offline.
+query seven bundled datasets offline.
 [`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)
 and
 [`educabr_cite()`](https://mancano-tales.github.io/educabr2/reference/educabr_cite.md)
@@ -31,7 +31,7 @@ support discovery and citation.
 [`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md)
 launches the interactive app.
 
-Cinco funções de acesso consultam seis conjuntos de dados offline:
+Cinco funções de acesso consultam sete conjuntos de dados offline:
 matrículas, escolaridade, despesa pública, progressão escolar e
 conclusão educacional internacional.
 [`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)

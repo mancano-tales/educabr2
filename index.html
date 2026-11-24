@@ -12,8 +12,8 @@
 <link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
-<link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.5.0/font.css" rel="stylesheet">
+<link href="deps/JetBrains_Mono-0.5.0/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><script src="extra.js"></script><meta property="og:title" content="educabr2: Educação brasileira / Brazilian education">
@@ -35,7 +35,7 @@
 
     <a class="navbar-brand me-2" href="index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,8 +81,8 @@
 <p>Harmonized historical series on Brazilian education in R: enrollment, schooling, public expenditure and grade progression, with observation-level provenance and an interactive dashboard.</p>
 </blockquote>
 <p><a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL--3-blue.svg" alt="Licença / License: GPL (&gt;= 3)"></a> <a href="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://mancano-tales.github.io/educabr2/"><img src="https://github.com/mancano-tales/educabr2/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Ciclo de vida / Lifecycle: experimental"></a> <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23675602.svg" alt="DOI"></a></p>
-<p><strong>PT.</strong> <code>educabr2</code> reúne séries de longo prazo sobre educação formal brasileira, compiladas de fontes oficiais e acadêmicas e harmonizadas em um esquema <em>tidy</em> comum. Os seis conjuntos de dados acompanham o pacote e podem ser consultados offline. Fontes alternativas permanecem em linhas distintas para permitir comparação e auditoria. A cobertura varia por tema e fonte; consulte <code><a href="reference/list_sources.html">list_sources()</a></code> e as vinhetas.</p>
-<p><strong>EN.</strong> <code>educabr2</code> brings together long-run series on Brazilian formal education, compiled from official and academic sources and harmonized into a common tidy schema. All six datasets ship with the package and can be queried offline. Alternative sources remain in separate rows for comparison and auditing. Coverage varies by theme and source; see <code><a href="reference/list_sources.html">list_sources()</a></code> and the vignettes.</p>
+<p><strong>PT.</strong> <code>educabr2</code> reúne séries de longo prazo sobre educação formal brasileira, compiladas de fontes oficiais e acadêmicas e harmonizadas em um esquema <em>tidy</em> comum. Os sete conjuntos de dados acompanham o pacote e podem ser consultados offline. Fontes alternativas permanecem em linhas distintas para permitir comparação e auditoria. A cobertura varia por tema e fonte; consulte <code><a href="reference/list_sources.html">list_sources()</a></code> e as vinhetas.</p>
+<p><strong>EN.</strong> <code>educabr2</code> brings together long-run series on Brazilian formal education, compiled from official and academic sources and harmonized into a common tidy schema. All seven datasets ship with the package and can be queried offline. Alternative sources remain in separate rows for comparison and auditing. Coverage varies by theme and source; see <code><a href="reference/list_sources.html">list_sources()</a></code> and the vignettes.</p>
 <div class="section level2">
 <h2 id="links-rápidos--quick-links">Links rápidos / Quick links<a class="anchor" aria-label="anchor" href="#links-r%C3%A1pidos--quick-links"></a>
 </h2>
@@ -206,8 +206,8 @@
 <div class="section level2">
 <h2 id="dados-e-cobertura--datasets-and-coverage">Dados e cobertura / Datasets and coverage<a class="anchor" aria-label="anchor" href="#dados-e-cobertura--datasets-and-coverage"></a>
 </h2>
-<p><strong>PT.</strong> Contagens verificadas nos objetos distribuídos com a versão 0.2.0. BR = Brasil; UF = unidade da federação. As funções <code>get_*()</code> aplicam filtros, normalizam o esquema e traduzem rótulos.</p>
-<p><strong>EN.</strong> Counts verified against the objects bundled with version 0.2.0. BR = Brazil; UF = state. The <code>get_*()</code> functions filter, normalize the schema and translate labels.</p>
+<p><strong>PT.</strong> Contagens verificadas nos objetos distribuídos com a versão 0.3.0. BR = Brasil; UF = unidade da federação. As funções <code>get_*()</code> aplicam filtros, normalizam o esquema e traduzem rótulos.</p>
+<p><strong>EN.</strong> Counts verified against the objects bundled with version 0.3.0. BR = Brazil; UF = state. The <code>get_*()</code> functions filter, normalize the schema and translate labels.</p>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="23%">

@@ -12,8 +12,8 @@
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
-<link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.5.0/font.css" rel="stylesheet">
+<link href="../deps/JetBrains_Mono-0.5.0/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><script src="../extra.js"></script><meta property="og:title" content="Introdução ao educabr2 (PT-BR)">
@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">educabr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -310,6 +310,31 @@ grupos de cor/raça do IBGE entre 1960 e 2010.</p>
 centrais da literatura sociológica sobre educação no Brasil —
 convergência relativa nas matrículas obrigatórias acompanhada de
 persistente desigualdade em níveis mais altos.</p>
+<p>A matrícula por dependência administrativa também está disponível
+para o ensino médio regular (<code>enrollment_medio_network</code>,
+Brasil, 1996-2024): Sinopses Estatísticas da Educação Básica até 2006
+(faltam 2003 e 2004, publicadas só em PDF com tabelas em imagem) e
+microdados do Censo Escolar a partir de 2007. A mudança para o
+Educacenso em 2007 quebra o nível da série; a participação de cada rede
+quase não muda.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">medio_rede</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
+<span>  level     <span class="op">=</span> <span class="st">"medio"</span>,</span>
+<span>  network   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"publica"</span>, <span class="st">"privada"</span><span class="op">)</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"count"</span>,</span>
+<span>  year      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2024</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">medio_rede</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"network"</span>, <span class="st">"value"</span>, <span class="st">"source"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span></span>
+<span><span class="co">#&gt;    year network   value source                    </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>000 privada 1<span style="text-decoration: underline;">153</span>419 inep_sinopse_censo_escolar</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>000 publica 7<span style="text-decoration: underline;">039</span>529 inep_sinopse_censo_escolar</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>001 privada 1<span style="text-decoration: underline;">114</span>480 inep_sinopse_censo_escolar</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>001 publica 7<span style="text-decoration: underline;">283</span>528 inep_sinopse_censo_escolar</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>002 privada 1<span style="text-decoration: underline;">122</span>900 inep_sinopse_censo_escolar</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>002 publica 7<span style="text-decoration: underline;">587</span>684 inep_sinopse_censo_escolar</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="caso-2-comparação-multi-fonte-no-ensino-superior">Caso 2 — comparação multi-fonte no ensino superior<a class="anchor" aria-label="anchor" href="#caso-2-compara%C3%A7%C3%A3o-multi-fonte-no-ensino-superior"></a>
@@ -319,7 +344,7 @@ autores</strong> com metodologias ligeiramente diferentes, sobretudo
 para o longo período 1933-2000 em que as fontes oficiais são esparsas. O
 <code>educabr2</code> mantém <strong>todas as estimativas
 concorrentes</strong> lado a lado, permitindo comparação direta:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">es_1980</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
 <span>  level     <span class="op">=</span> <span class="st">"superior"</span>,</span>
 <span>  year      <span class="op">=</span> <span class="fl">1980</span>,</span>
@@ -367,7 +392,7 @@ ao EAD publicado pelo INEP. Essas linhas têm
 <code>is_derived = TRUE</code> e ficam fora do resultado padrão de
 <code><a href="../reference/get_enrollment.html">get_enrollment()</a></code>; para inspecioná-las basta passar
 <code>include_derived = TRUE</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">recon</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_enrollment.html">get_enrollment</a></span><span class="op">(</span></span>
 <span>  level           <span class="op">=</span> <span class="st">"superior"</span>,</span>
 <span>  year            <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">2008</span><span class="op">)</span>,</span>
@@ -418,7 +443,7 @@ metodologia documentada em <code>educabr2</code> (Mançano 2026).”</p>
 <div class="section level2">
 <h2 id="caso-4-anos-médios-de-escolaridade-por-sexo">Caso 4 — anos médios de escolaridade por sexo<a class="anchor" aria-label="anchor" href="#caso-4-anos-m%C3%A9dios-de-escolaridade-por-sexo"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">escolaridade_sexo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_schooling.html">get_schooling</a></span><span class="op">(</span></span>
 <span>  geo_level <span class="op">=</span> <span class="st">"BR"</span>,</span>
 <span>  dimension <span class="op">=</span> <span class="st">"sex"</span></span>
@@ -449,7 +474,7 @@ desproporcionalmente mais por aluno no ensino superior do que no ensino
 primário — por meio do indicador de <strong>razão dupla</strong>: a
 despesa pública por estudante no Ensino Superior dividida pela despesa
 por estudante no EF1 (anos iniciais).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">razao</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_expenditure.html">get_expenditure</a></span><span class="op">(</span>indicator <span class="op">=</span> <span class="st">"double_ratio_es_ef1"</span><span class="op">)</span></span>
 <span><span class="va">razao</span><span class="op">[</span><span class="va">razao</span><span class="op">$</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1933</span>, <span class="fl">1960</span>, <span class="fl">1980</span>, <span class="fl">2000</span>, <span class="fl">2010</span><span class="op">)</span>,</span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">]</span></span>
@@ -477,7 +502,7 @@ matrículas em séries 1–3 do antigo primário de oito anos — é um
 indicador de fluxo que mede quantas crianças avançam para além dos
 primeiros anos do primário. Valores mais altos indicam menos evasão e
 menos repetência nos anos iniciais.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gdr_estados</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_progression.html">get_progression</a></span><span class="op">(</span></span>
 <span>  geo_level <span class="op">=</span> <span class="st">"UF"</span>,</span>
 <span>  geo       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SP"</span>, <span class="st">"BA"</span><span class="op">)</span>,</span>
@@ -520,7 +545,7 @@ oficiais da estrutura de séries.</p>
 </h2>
 <p>O painel de Lee &amp; Lee (2016) permite ler a expansão brasileira
 contra comparadores sem sair do pacote:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">att</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_attainment.html">get_attainment</a></span><span class="op">(</span></span>
 <span>  level <span class="op">=</span> <span class="st">"tertiary"</span>,</span>
 <span>  geo   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BRA"</span>, <span class="st">"ARG"</span>, <span class="st">"KOR"</span>, <span class="st">"USA"</span><span class="op">)</span>,</span>
@@ -569,7 +594,7 @@ daltonismo.</li>
 seculares: o espaçamento dos rótulos segue o span dos dados e o primeiro
 e o último ano presentes são sempre rotulados.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_schooling.html">get_schooling</a></span><span class="op">(</span>geo_level <span class="op">=</span> <span class="st">"BR"</span>, dimension <span class="op">=</span> <span class="st">"sex"</span><span class="op">)</span></span>
@@ -581,7 +606,7 @@ e o último ano presentes são sempre rotulados.</li>
 <span>  <span class="fu"><a href="../reference/theme_educabr.html">theme_educabr</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="st">"Anos médios de estudo"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"A inversão do gender gap educacional no século XX"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introducao-pt_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="100%"></p>
+<p><img src="introducao-pt_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="painel-interativo">Painel interativo<a class="anchor" aria-label="anchor" href="#painel-interativo"></a>
@@ -591,7 +616,7 @@ geral</strong> curada (quatro gráficos-história para público não
 técnico) e <strong>seis abas temáticas</strong> — uma por tema
 (Matrículas, Ensino superior, Escolaridade, Despesa pública, Progressão
 escolar, Comparação internacional):</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">educabr2</span><span class="fu">::</span><span class="fu"><a href="../reference/run_dashboard.html">run_dashboard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>O painel reproduz toda a comparação multi-fonte do ensino superior e
 as séries de despesa, progressão e comparação internacional de forma
@@ -632,7 +657,7 @@ hdl:10438/110].</li>
 <p>A função <code><a href="../reference/educabr_cite.html">educabr_cite()</a></code> transforma qualquer chave de
 fonte (ou a coluna <code>source</code> de um resultado) em referência
 pronta para colar:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/educabr_cite.html">educabr_cite</a></span><span class="op">(</span><span class="st">"kang_paese_felix_2021"</span>, style <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Kang, T. H., Paese, L. H. Z., &amp; Felix, N. F. A. (2021). Late and unequal: Enrolments and retention in Brazilian education, 1933-2010. Revista de Historia Económica / Journal of Iberian and Latin American Economic History, 39(2), 191–218. https://doi.org/10.1017/S0212610921000112"</span></span></code></pre></div>
 <p>Cite <strong>tanto</strong> o pacote (pela harmonização)
@@ -640,19 +665,21 @@ pronta para colar:</p>
 arquivo que produziu os números). Para citar o pacote em si:</p>
 <blockquote>
 <p>Mançano, T. (2026). <em>educabr2: Harmonized Historical Series on
-Brazilian Education</em> (versão 0.2.0). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
+Brazilian Education</em> (versão 0.3.0). <a href="https://github.com/mancano-tales/educabr2" class="external-link uri">https://github.com/mancano-tales/educabr2</a></p>
 </blockquote>
 </div>
 <div class="section level2">
 <h2 id="versão-atual-e-integração">Versão atual e integração<a class="anchor" aria-label="anchor" href="#vers%C3%A3o-atual-e-integra%C3%A7%C3%A3o"></a>
 </h2>
-<p>A versão 0.2.0 traz organização acadêmica nos microdados de
-2009-2024, marca como presencial a série de ensino superior de Kang,
-Paese &amp; Felix até 2010 e inclui documentação e painel bilíngues. Ela
-mantém a Sinopse INEP de 2002, a chave canônica
-<code>walter_kang_2024</code> (preservando o alias de 2023) e a remoção
-da série redundante do Power BI do INEP. Cite o pacote com
-<code>citation("educabr2")</code>; o DOI <a href="https://doi.org/10.5281/zenodo.23675602" class="external-link">10.5281/zenodo.23675602</a>
+<p>A versão 0.3.0 acrescenta a matrícula no ensino médio regular por
+dependência administrativa (1996-2024, INEP). A versão 0.2.0 trouxe
+organização acadêmica nos microdados de 2009-2024, marcou como
+presencial a série de ensino superior de Kang, Paese &amp; Felix até
+2010 e incluiu documentação e painel bilíngues. O pacote mantém a
+Sinopse INEP de 2002, a chave canônica <code>walter_kang_2024</code>
+(preservando o alias de 2023) e a remoção da série redundante do Power
+BI do INEP. Cite o pacote com <code>citation("educabr2")</code>; o DOI
+<a href="https://doi.org/10.5281/zenodo.23675602" class="external-link">10.5281/zenodo.23675602</a>
 aponta sempre para a versão mais recente.</p>
 <p>O planejamento de compatibilidade futura com o <code>educabR</code>,
 de Sidney Bissoli, está na <a href="https://github.com/mancano-tales/educabr2/issues/8" class="external-link">issue #8</a>.

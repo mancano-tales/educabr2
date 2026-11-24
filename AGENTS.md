@@ -187,14 +187,16 @@ contributing dataset names.
 
 #### Themes
 
-Six datasets are bundled, across five themes: - **enrollment** —
+Seven datasets are bundled, across five themes: - **enrollment** —
 `enrollment_kang_fgv` (BR+UF, 1871-2010, Kang/FGV),
-`enrollment_tertiary` (BR, 1907-2024, multi-source) - **schooling** —
-`schooling_kang_fgv` (BR+region+UF, 1925-2015, Walter & Kang) -
-**expenditure** — `expenditure_kang_fgv` (BR, 1933-2010, Kang &
-Menetrier) - **progression** — `progression_kang_fgv` (BR+20 UFs,
-1955-2010, Kang/Paese/Felix) - **attainment** — `lee_lee_2016` (111
-countries, 1870-2010, Lee & Lee)
+`enrollment_tertiary` (BR, 1907-2024, multi-source),
+`enrollment_medio_network` (BR, upper secondary by network, 1996-2024
+without 2003-2004, INEP) - **schooling** — `schooling_kang_fgv`
+(BR+region+UF, 1925-2015, Walter & Kang) - **expenditure** —
+`expenditure_kang_fgv` (BR, 1933-2010, Kang & Menetrier) -
+**progression** — `progression_kang_fgv` (BR+20 UFs, 1955-2010,
+Kang/Paese/Felix) - **attainment** — `lee_lee_2016` (111 countries,
+1870-2010, Lee & Lee)
 
 #### ETL pipeline (`data-raw/`)
 

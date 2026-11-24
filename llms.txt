@@ -21,7 +21,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 **PT.** `educabr2` reúne séries de longo prazo sobre educação formal
 brasileira, compiladas de fontes oficiais e acadêmicas e harmonizadas em
-um esquema *tidy* comum. Os seis conjuntos de dados acompanham o pacote
+um esquema *tidy* comum. Os sete conjuntos de dados acompanham o pacote
 e podem ser consultados offline. Fontes alternativas permanecem em
 linhas distintas para permitir comparação e auditoria. A cobertura varia
 por tema e fonte; consulte
@@ -30,7 +30,7 @@ e as vinhetas.
 
 **EN.** `educabr2` brings together long-run series on Brazilian formal
 education, compiled from official and academic sources and harmonized
-into a common tidy schema. All six datasets ship with the package and
+into a common tidy schema. All seven datasets ship with the package and
 can be queried offline. Alternative sources remain in separate rows for
 comparison and auditing. Coverage varies by theme and source; see
 [`list_sources()`](https://mancano-tales.github.io/educabr2/reference/list_sources.md)
@@ -236,10 +236,10 @@ for a static figure.
 ## Dados e cobertura / Datasets and coverage
 
 **PT.** Contagens verificadas nos objetos distribuídos com a versão
-0.2.0. BR = Brasil; UF = unidade da federação. As funções `get_*()`
+0.3.0. BR = Brasil; UF = unidade da federação. As funções `get_*()`
 aplicam filtros, normalizam o esquema e traduzem rótulos.
 
-**EN.** Counts verified against the objects bundled with version 0.2.0.
+**EN.** Counts verified against the objects bundled with version 0.3.0.
 BR = Brazil; UF = state. The `get_*()` functions filter, normalize the
 schema and translate labels.
 
