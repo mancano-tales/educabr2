@@ -210,7 +210,7 @@ one `.rda` to `data/`. After running, update `data-raw/_manifest.yaml`.
 The Shiny app (`app.R` + `global.R`) consumes only the public API and
 has five navbar tabs — Enrollment, Tertiary Education, Educational
 Attainment, Public Expenditure, Grade Progression. It is deployed to
-shinyapps.io at <https://qx3hly-tales-man0ano.shinyapps.io/educabr/>.
+shinyapps.io at <https://qx3hly-tales-man0ano.shinyapps.io/educabr2/>.
 During development run it with `shiny::runApp("inst/dashboard")` rather
 than
 [`run_dashboard()`](https://mancano-tales.github.io/educabr2/reference/run_dashboard.md)
