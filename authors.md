@@ -11,7 +11,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/mancano-tales/educabr2/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/mancano-tales/educabr2/blob/v0.3.0/inst/CITATION)
 
 Mançano, T. (2026). educabr2: Harmonized Historical Series on Brazilian
 Education (R package version 0.3.0).
